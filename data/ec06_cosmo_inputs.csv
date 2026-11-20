@@ -1,0 +1,12 @@
+id,quantity,value,err,CL,source_arxiv,location,notes
+z_re,mid-point redshift of reionization (tanh model),7.67,0.73,68,1807.06209,"Planck 2018 VI Table 2, TT,TE,EE+lowE+lensing column","tanh x_e(y=(1+z)^1.5) with Delta z = 0.5, He I with H, He II at z = 3.5 (Planck/CAMB convention); used for the reionization-era rotation"
+dz_re,width of the tanh reionization (fixed in the Planck model),0.5,,-,1807.06209,"Sec. 2 / CAMB default (Planck 2018 VI uses Delta z = 0.5)",model setting not a measurement; not re-opened in task 023
+z_HeII,He II reionization redshift (fixed),3.5,,-,1807.06209,"Planck 2018 VI baseline (CAMB default)",model setting not a measurement; not re-opened in task 023
+sigma8,amplitude of matter fluctuations at 8 Mpc/h,0.8111,0.0060,68,1807.06209,"Planck 2018 VI Table 2, TT,TE,EE+lowE+lensing column",used only to check the analytic linear P(k) normalisation in task 023
+RG_UV_theta_deg,mean rotation of UV polarization of radio galaxies at z > 2,-0.8,2.2,not stated,1003.4823,abstract (di Serego Alighieri Finelli Galaverni 2010),"8 radio galaxies at z > 2; all-sky average, direction-independent rotation assumed; CL of the +- not stated in the abstract; 1-sigma assumed"
+RG_UV_zmin,lower redshift of the radio-galaxy UV sample,2.0,,-,1003.4823,abstract,"z > 2; individual redshifts not opened; z = 2 used as the conservative (smallest-rotation) source redshift"
+LB_dbeta_forecast_deg,forecast error on beta_reio - beta_rec for a LiteBIRD-class satellite,0.05,,-,2108.09287,abstract (Sherwin and Namikawa 2021),"forecast, not a measurement; '~0.05 degrees'"
+YYQ25_chi_per_alpha,rotation per unit alpha (case II l = M^2 ln(Q/M_P^2)),40.21,,-,2508.10532,"Eq. (53), v2 HTML",Delta chi ~ 40.21 alpha (rad); theory number used to check our map
+YYQ25_alpha_lo,lower alpha from Planck PR4 beta = 0.30 +- 0.11 deg (case II),8.23e-5,,68,2508.10532,"Eq. (54), v2 HTML",uses Diego-Palazuelos 2022 (2201.07682) beta; row DP22-beta in birefringence_measurements.csv
+YYQ25_alpha_hi,upper alpha from Planck PR4 beta (case II),1.78e-4,,68,2508.10532,"Eq. (54), v2 HTML",
+LXL07_delta,CS coefficient delta in Delta chi = (delta/2) ln(R(z)/R(0)),-0.011,0.0077,68,hep-ph/0611192,"Eq. (42); Sec. IV text below Fig. 2 (+0.0074 -0.0079 at 1 sigma, WMAP3+B03)",err is the mean of +0.0074/-0.0079

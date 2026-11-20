@@ -1,0 +1,93 @@
+=== check_gauge.py: 8 PASS, 0 FAIL, exit 0, 15.1 s
+PASS: G1 delta_chi L_CFJ = total derivative + (1/4) chi (dp)_{nu mu} Ft^{mu nu}
+   d_nu E^nu / [-(1/2)(dp).Ft] = 1/2
+PASS: G2 divergence of the field equations is proportional to (dp).Ft (consistency needs dp = 0)
+PASS: G2b for constant p the divergence vanishes identically
+PASS: G3a FRW background p = p_tau(tau) dtau is closed
+PASS: G3b gradient perturbation (scalar potential s) keeps dp = 0
+PASS: G3c independent scalar perturbation delta p_tau = q != d_tau s breaks dp = 0
+PASS: G3d transverse vector perturbation breaks dp = 0
+PASS: G4 Stueckelberg: CFJ(A + d sigma) - CFJ(A) = boundary + sigma (dp).Ft / 4
+== 8 PASS, 0 FAIL ==
+=== check_teleparallel.py: 22 PASS, 0 FAIL, exit 0, 30.4 s
+PASS: T1a flat FRW trace T_tau = 3a'/a
+PASS: T1b flat FRW axial S = 0
+PASS: T1c T_mu closed on FRW (T_mu = 3 d ln a)
+PASS: T2a boosted tetrad gives the same metric
+   Delta T_mu under boost eta(tau,x,y) along x: [-Derivative(eta(tau, x, y), x), -Derivative(eta(tau, x, y), tau), 0, 0]
+PASS: T2b TEGR: trace torsion changes under a local boost (frame dependent)
+PASS: T2c the boosted p = xi T_mu is not closed (generic eta)
+   axial S^mu after boost: [0, 0, 0, 2*Derivative(eta(tau, x, y), y)/(3*a(tau)**2)]
+PASS: T2d a local boost also generates axial torsion
+PASS: T3b k=+1 (left) trace T_tau = 3a'/a, spatial T_i = 0
+   k=+1 left: S^0hat = a S^tau = 2/a(tau); spatial S^i = [0, 0, 0]
+PASS: T3c k=+1 (left) |S^0hat| = 2/a (= 2 sqrt(k)/a, comoving radius 1), S^i = 0
+PASS: T3d k=+1 (left) p = xi S_mu closed on FRW
+PASS: T3a left- and right-invariant tetrads give the same metric
+PASS: T3b k=+1 (right) trace T_tau = 3a'/a, spatial T_i = 0
+   k=+1 right: S^0hat = a S^tau = -2/a(tau); spatial S^i = [0, 0, 0]
+PASS: T3c k=+1 (right) |S^0hat| = 2/a (= 2 sqrt(k)/a, comoving radius 1), S^i = 0
+PASS: T3d k=+1 (right) p = xi S_mu closed on FRW
+PASS: T3e the two branches have opposite axial torsion (sign = branch choice, not fixed by the theory)
+PASS: T3f spatial metric is the unit S^3 (3-Ricci scalar = 6k, k = 1) (R3 = 6)
+   flat: torsion scalar = 6*Derivative(a(tau), tau)**2/a(tau)**4
+PASS: T4 flat: antisymmetric part of S_mu^(nu tau) vanishes (good tetrad for any f(T))
+   k=+1 left: torsion scalar = 6*(-a(tau)**2 + Derivative(a(tau), tau)**2)/a(tau)**4
+PASS: T4 k=+1 left: antisymmetric part of S_mu^(nu tau) vanishes (good tetrad for any f(T))
+   k=+1 right: torsion scalar = 6*(-a(tau)**2 + Derivative(a(tau), tau)**2)/a(tau)**4
+PASS: T4 k=+1 right: antisymmetric part of S_mu^(nu tau) vanishes (good tetrad for any f(T))
+   boosted flat tetrad: torsion scalar = 2*(-2*a(tau)*Derivative(eta(tau, x, y), x) + 3*Derivative(a(tau), tau))*Derivative(a(tau), tau)/a(tau)**4
+PASS: T4 boosted tetrad violates the f(T) antisymmetric equation (check has teeth)
+PASS: T5a perturbed trace: T_tau = d(3 ln a - 3Psi), T_i = d_i(Phi - 2Psi) (linear)
+PASS: T5b (dT)_{tau x} = d_x d_tau (Phi + Psi): closed only if Phi + Psi is static (epsilon*(Derivative(Phi(tau, x, y, z), tau, x) + Derivative(Psi(tau, x, y, z), tau, x)))
+== 22 PASS, 0 FAIL ==
+=== check_mz.py: 10 PASS, 0 FAIL, exit 0, 12.3 s
+PASS: M1a MZ trace: T_t = -3T, T_i = 0
+PASS: M1b MZ axial: S^0hat = -2P, S^i = 0 (so S_t = +2P)
+PASS: M2a gamma->inf: T = (g^2 - P^2)/(2g) (T = (-P**2 + g**2)/(2*g))
+PASS: M2b gamma->inf: H = g - T = (g^2 + P^2)/(2g)
+PASS: M3a finite gamma: T/g = gamma x (1-x^2-2x/gamma)/(1-x^2+2 gamma x)
+PASS: M3b finite-gamma T -> gamma->inf result
+PASS: M3c small x: T = gamma P + O(x^2)
+PASS: M4a Eq. 66: R_c = gamma^2/9 at leading order (sqrt(R_c)/gamma = [1/3])
+PASS: M4b Eq. 66: R_c -> 1/2 as gamma -> infinity (2R_c^2 + R_c - 1 = 0)
+PASS: M5 H^2/(kappa rho/3) = 1 - gamma^2/9 + O(gamma^3) on the small-gamma tracker (series 1 - gamma**2/9)
+== 10 PASS, 0 FAIL ==
+=== ec06_numbers.py: 14 PASS, 0 FAIL, exit 0, 16.9 s
+inputs: beta = 0.215 deg = 3.752e-03 rad, z* = 1089.92, z_re = 7.67, H0 = 1.437e-33 eV, H* = 3.338e-29 eV
+PASS: N0 closed p = xi d theta: beta = (xi/2)[theta_0 - theta_*] (endpoint only, achromatic)
+PASS: N0b SNY 0+ mode: Phi = -(3/2) d ln(R + 6 mu/b)/dt
+(b1) teleparallel flat, CFJ on trace: beta = 10.492 xi rad [(3/2)ln(1+z*) = 10.492]; xi = 3.576e-04; fraction after z_re=7.67: 0.309, after z=10: 0.343
+PASS: N1 teleparallel trace: beta = (3 xi/2) ln(1+z*)
+PASS: N2 k=+1 axial: beta = xi sqrt|Omega_K| H0 chi(z*) (conformal-distance weighted) (H0 chi* = 3.116)
+(b2) teleparallel k=+1 axial: eps(z) = +-2 sqrt|Omega_K| (1+z)/E(z); |Omega_K| <= 0.0030 (95%, closed); eps_0 <= 0.110, eps(z*) <= 5.16e-03; xi >= 2.190e-02 (xi sqrt|Omega_K| = 1.20e-03); fraction after z_re: 0.651, after z=10: 0.695
+   MZ tracker gamma = 0.05: R_c = 2.774e-04, x = P/g = 0.017, T/g = 0.000, eps_S = 0.033, eps_T = -0.001, H^2/(kappa rho/3) = 1.000
+   MZ tracker gamma = 0.1: R_c = 1.106e-03, x = P/g = 0.033, T/g = 0.001, eps_S = 0.067, eps_T = -0.003, H^2/(kappa rho/3) = 0.999
+   MZ tracker gamma = 0.3: R_c = 9.589e-03, x = P/g = 0.097, T/g = 0.009, eps_S = 0.197, eps_T = -0.029, H^2/(kappa rho/3) = 0.991
+   MZ tracker gamma = 0.806: R_c = 5.586e-02, x = P/g = 0.230, T/g = 0.053, eps_S = 0.486, eps_T = -0.168, H^2/(kappa rho/3) = 0.947
+   MZ tracker gamma = 1: R_c = 7.735e-02, x = P/g = 0.268, T/g = 0.072, eps_S = 0.577, eps_T = -0.232, H^2/(kappa rho/3) = 0.928
+   MZ tracker gamma = 1e+04: R_c = 4.999e-01, x = P/g = 0.577, T/g = 0.333, eps_S = 1.732, eps_T = -1.500, H^2/(kappa rho/3) = 0.667
+PASS: N3a MZ gamma->inf tracker: H^2/(kappa rho/3) -> 2/3 (33% deficit, excluded by N_eff)
+(a) MZ finite-gamma tracker: N_eff >= 2.65 (95%) => |1 - H^2/(kappa rho/3)| <= 0.053 => gamma <= 0.806, eps_S <= 0.486, eps_T = -0.168; if the tracker persists to z=0: xi_S >= 2.21e-03; beta_reion/beta = 0.31
+PASS: N3b N_eff alone would allow eps_S = O(0.1-1) on the MZ tracker (superseded by the GW bound N3d)
+PASS: N3c MZ tracker x = P/g -> gamma/3 at small gamma (2001.06373: P^2 = gamma^2 kappa rho/27)
+(a) GW170817 |dv/v| <= 3e-15: tracker gamma <= 2.3e-07 -> eps_S <= 1.5e-07 -> xi_S >= 6.9e+03; with the paper's own gamma^2 <~ 1e-15 (Eq. 68): eps_S ~ 2.1e-08, xi >~ 5.1e+04; Lambda era: eps_P <= 4.1e-09 -> eps_S(today) <= 1.2e-08; |gamma| << 1e-21 (Eq. 70) -> xi >> 1e18
+PASS: N3d MZ finite gamma: GW speed forces eps_S <~ 1e-7, so xi >~ 1e4 (dead as a perturbative coupling)
+prior-art forms, beta per unit c: ln Q: -10.053, ln R: -9.357; trace torsion p = xi T: (3/2)ln(1+z*) = 10.492 (= -ln Q form x 1.044); post-reion share ln Q: 0.27
+PASS: N7 flat f(T) trace CFJ equals the ln Q (Q = 6H^2 = torsion scalar) coupling to within 5% in beta (matter-era identical)
+bounds: lab |S_0| < 7.3e-22 eV vs O(H0) torsion 1.44e-33 eV: ratio 2.0e-12 (does not bind for any eps < 1e11)
+   trace flat: p today = xi eps H0 = 1.54e-36 eV, |k_AF| ~ p/2 = 7.7e-37 eV vs radio-galaxy CFJ bound 6e-34 eV
+PASS: N4 trace flat: today's CFJ vector is below the radio-galaxy k_AF bound
+   k=+1 axial: p today = xi eps H0 = 3.46e-36 eV, |k_AF| ~ p/2 = 1.7e-36 eV vs radio-galaxy CFJ bound 6e-34 eV
+PASS: N4 k=+1 axial: today's CFJ vector is below the radio-galaxy k_AF bound
+   MZ axial (N_eff-only case): p today = xi eps H0 = 1.54e-36 eV, |k_AF| ~ p/2 = 7.7e-37 eV vs radio-galaxy CFJ bound 6e-34 eV
+PASS: N4 MZ axial (N_eff-only case): today's CFJ vector is below the radio-galaxy k_AF bound
+   trace flat: beta(z=2.0) = 0.034 deg vs radio-galaxy UV rotation -0.8 +- 2.2 deg
+PASS: N5 low-z rotation (z=2) is far below the radio-galaxy UV limit
+   (div S) F Ft / M^2 with eps = 1.0: needs M = 4.7e-28 eV (H* = 3.3e-29 eV): cutoff below H*
+PASS: N6 dimension-6 gauge-invariant torsion-photon operators need M ~ H* (not an EFT)
+wrote ec06_backgrounds.csv (8 rows); eps = X_t/H, beta = (xi/2) int eps dz/(1+z)
+== 14 PASS, 0 FAIL ==
+
+TOTAL: 54 PASS, 0 FAIL
+ALL PASS

@@ -46,3 +46,31 @@ Written by task `work/20261120-013-lit-nogo-check`. Per-mass bounds on the energ
 ## kk05_edm_inputs.csv
 
 Written by task `work/20261120-016-kk05-edm-cs`. Frequency band of the HfF+ oscillating-EDM search (arXiv:2006.15787 abstract only), used to show that a KK-05 field rolling on a Hubble time is a static EDM for lab purposes. The static eEDM bound itself is the JILA row in `shift_uholst_inputs.csv`.
+
+## ec06_cosmo_inputs.csv
+
+Written by task `work/20261120-023-cosmo-ec06`. Planck 2018 reionization mid-point z_re = 7.67 +- 0.73 and sigma8 = 0.8111 +- 0.0060 (arXiv:1807.06209 Table 2, TT,TE,EE+lowE+lensing; not re-opened), the fixed tanh-model settings (Delta z = 0.5, He II at z = 3.5), the radio-galaxy UV polarization rotation theta = -0.8 +- 2.2 deg at z > 2 (arXiv:1003.4823 abstract; CL not stated there), and the LiteBIRD-class forecast ~0.05 deg on beta_reio - beta_rec (arXiv:2108.09287 abstract; a forecast, not a measurement). Also the published torsion-free CFJ-equivalent numbers used as check targets: Yu-Yang-Qiu 2508.10532 Eqs. 53-54 (case II) and Li-Xia-Li-Zhang hep-ph/0611192 delta = -0.011 (WMAP3+B03, Sec. IV).
+
+## kaf_lowz_bounds.csv
+
+Written by task `work/20261120-024-lit-ec06-novelty`. Low-redshift (z ≲ 4) and local bounds on a constant or slowly varying CFJ coefficient, plus one CMB reference row. Narrative: `literature/ec06_prior_art.md` Sec. 6.
+
+Columns: `id`; `quantity`; `symbol`; `value_published` (as printed); `units_published`; `central`, `err_1sigma_or_limit` (numbers used by the script; for upper limits `central` = 0 and the second column is the limit); `kind` (`meas_angle_deg`, `upper_p0_GeVh`, `meas_p0_GeVh`, `meas_p0_eVh`, `upper_kAF_GeV`, `upper_spatial_GeV`, `reference_noconv`); `z_min`, `z_max`, `z_eff` (sample redshift range and the effective redshift used for conversion); `CL`; derived columns `kAF_T_limit_eV`, `p0_limit_eV`, `ec06_xi_eps_limit`, `conversion_note` (written by `work/20261120-024-lit-ec06-novelty/kaf_lowz.py --write`, checked without `--write`); `experiment`, `arxiv`, `location_in_paper`, `note`.
+
+Conversions (shown per row in `conversion_note`):
+- Measurements are turned into limits as |central| + 2σ (Gaussian 1σ assumed where the CL is not stated).
+- Angle to constant coefficient: |(k_AF)_T| = α / t_L(z_eff), with t_L the lookback time for flat ΛCDM, H0 and Ω_m from `cosmo_inputs.csv` (Kostelecky-Mewes 0905.0031 Eq. 158). p_0 = 2|(k_AF)_T| (`literature/bounds.md` Sec. 2).
+- h0-scaled values use h = H0/100 from `cosmo_inputs.csv`. GeV to eV ×1e9.
+- EC-06: p_0̂ = ξεH gives β(z) = (ξε/2) ln(1+z), so ξε < 2α/ln(1+z_eff).
+
+Caveats:
+- L-CFJ90 is taken as quoted in astro-ph/9704263 Eq. (5); the 1990 paper was not opened.
+- Several angle rows come from compilations (1411.6287 Table 3, 1409.8242 Table 1), not the originals.
+- L-WBB17-radio is Faraday-dominated per its authors and is not a birefringence bound.
+- L-CMB-LCG26 is not converted, because its k-to-angle normalization differs from the one used here by a factor of about 6.
+- GRB polarization gives no d = 3 bound (CFJ rotation is energy independent), so it has no row.
+- The 1003.4823 θ value is also in `ec06_cosmo_inputs.csv` (task 023, abstract); here it is from the full text (Table 2, labelled 1σ).
+
+## ec06_theory_inputs.csv
+
+Written by task `work/20261120-022-theory-ec06`. Same columns as `cosmo_inputs.csv`: Planck 2018 Omega_K (TT,TE,EE+lowE+lensing+BAO; 68% error inferred from the quoted 95% interval) for the closed-FRW teleparallel axial branch, and the GW170817 tensor-speed interval (1710.05834 abstract) for the Magueijo-Zlosnik tensor-speed bound.

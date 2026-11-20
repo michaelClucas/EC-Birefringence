@@ -1,0 +1,9 @@
+theory,component,eps_z_form,eps_today,eps_zstar,needed_xi_and_notes,source
+teleparallel f(T) flat (TEGR: frame dependent),trace T_t,3 (constant),3,3,xi = 3.58e-04; beta_reion/beta = 0.31 (z_re) 0.34 (z=10),check_teleparallel T1; f(T) good tetrad T4
+teleparallel f(T) closed k=+1 (axial branch),axial S_t (sign = branch),+-2 sqrt|Omega_K| (1+z)/E(z),0.11,0.005165,xi >= 2.19e-02 at |Omega_K| = 0.0030; beta_reion/beta = 0.65 (z_re) 0.69 (z=10),check_teleparallel T3; Omega_K from data/ec06_theory_inputs.csv
+teleparallel f(T) closed k=+1 (axial branch),trace T_t,3 (constant),3,3,as flat case,check_teleparallel T3b
+"Magueijo-Zlosnik EC + varying Lambda, finite-gamma tracker",axial S_t (sign = initial P),"constant on tracker (R_c from MZ Eq. 66), P ~ a^-3 in Lambda era",1.549e-07,1.549e-07,"N_eff alone: gamma <= 0.81, xi_S >= 2.21e-03; GW170817 (2001.06373): gamma <= 2.3e-07, eps_S <= 1.5e-07, xi >= 7e+03: DEAD","check_mz M1-M5; 1908.05184 Eqs. 26-29, 57-66"
+"Magueijo-Zlosnik EC + varying Lambda, finite-gamma tracker",trace T_t,constant on tracker,-1.8e-14,-1.8e-14,at GW-allowed gamma = 2.3e-07,check_mz M3
+"Magueijo-Zlosnik, gamma -> infinity (Euler term only)",axial + trace,"x^2 = 1/3: eps_S = 4x/(1+x^2), eps_T = -3(1-x^2)/(1+x^2)",1.732,1.732,DEAD background: tracker 33% H^2 deficit; MZ call it unviable; tensor modes undetermined (2001.06373),check_mz M2; N3a
+PGT 0+ scalar torsion (Shie-Nester-Yo 0805.3834),trace T_t = Phi,Phi = -(3/2) d ln(R+6mu/b)/dt; damped oscillation,"0.8 to 1.4 (SNY cases III-V, Phi/H at t0)",not computed (SNY early-time solutions unreliable),if eps ~ 1 constant: xi ~ 1.1e-03; sign of Phi vs our T_t not verified,"N0b; SNY Eqs. 43-47, Table 1"
+PGT 0- pseudoscalar torsion (EC-04; Chen et al. 0908.3323; BHN 1009.5112),axial S = d phi/sqrt(A),"ALP field: thawing, m ~ H0 needed",free,free,see CLAIMS EC-04: ~1e120 tuning of the E^2 coefficient,work/20261120-007

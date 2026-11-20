@@ -1,0 +1,4 @@
+id,quantity,value,err,CL,source_arxiv,location,notes
+Omega_K,spatial curvature parameter (Omega_K = -k/(a0 H0)^2),0.0007,0.0019,68,1807.06209,"Planck 2018 VI Sec. 7.3 (curvature), TT,TE,EE+lowE+lensing+BAO; 95% interval 0.0007 +- 0.0037 also quoted there","68% error inferred as the 95% half-width / 1.96 (search snippets of the paper and 2002.06892 quote +-0.0019); body not opened in task 022. Closed (k=+1) needs Omega_K < 0: 95% lower end -0.0030"
+cT_GW170817_lo,(c_GW - c)/c lower limit from GW170817/GRB 170817A,-3e-15,,90 (approx; see abstract),1710.05834,abstract,"two-sided interval -3e-15 <= dv/v <= +7e-16; used for the MZ tensor-speed bound with 2001.06373 Eqs. 65-72"
+cT_GW170817_hi,(c_GW - c)/c upper limit from GW170817/GRB 170817A,7e-16,,90 (approx; see abstract),1710.05834,abstract,see cT_GW170817_lo

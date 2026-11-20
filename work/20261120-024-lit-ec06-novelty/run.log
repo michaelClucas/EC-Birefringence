@@ -1,0 +1,18 @@
+H0 = 1.4369e-33 eV, h = 0.6736, t_L(z*) = 6.6152e+32 eV^-1
+L-CFJ90            k_AF< 5.73e-34 eV  p0< 1.15e-33 eV  xi*eps<       
+L-CF97-p0          k_AF< 1.57e-33 eV  p0< 3.15e-33 eV  xi*eps<       
+L-AFG10-UV         k_AF< 1.65e-34 eV  p0<  3.3e-34 eV  xi*eps<  0.136
+L-Leahy-radio      k_AF< 3.79e-34 eV  p0< 7.59e-34 eV  xi*eps<  0.471
+L-compiled-radio   k_AF<          eV  p0<          eV  xi*eps<       
+L-WPC97-UV         k_AF< 1.85e-34 eV  p0< 3.69e-34 eV  xi*eps<  0.212
+L-WBB17-radio      k_AF<          eV  p0<          eV  xi*eps<       
+L-GGP15-comb       k_AF< 2.27e-35 eV  p0< 4.53e-35 eV  xi*eps<       
+L-geomag26         k_AF<          eV  p0<          eV  xi*eps<       
+L-pulsarRM25       k_AF<    1e-27 eV  p0<    2e-27 eV  xi*eps<       
+L-CMB-LCG26        k_AF<          eV  p0<          eV  xi*eps<       
+EC-06 needs xi*eps = 0.00107 for ACT beta = 0.215 deg (z* = 1089.92)
+  that xi*eps gives beta(z=0.47) = 0.0118 deg
+  that xi*eps gives beta(z=0.811) = 0.0183 deg
+  that xi*eps gives beta(z=2.8) = 0.0410 deg
+constant k_AF fitting ACT beta: |(k_AF)_T| = 5.67e-36 eV (p0 = 1.13e-35 eV)
+PASS
