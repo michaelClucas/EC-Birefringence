@@ -28,3 +28,14 @@ KK-03,g_max_GeVinv,g window upper end (GeV^-1),8×10⁻¹³ GeV⁻¹,8e-13,sig,1
 KK-03,natural_excluded,natural lambda = kappa_4 excluded (1 = yes),natural λ = κ₄ excluded,1,exact,0,009 kk_bounds dN_BBN,live
 KK-04,gamma_minus_1,radion PPN gamma - 1,γ-1 = -1/2,-0.5,exact,0,009 kk_bounds,live
 KK-04,m_ISL_eV,ISL mass bound (eV),ISL m > 5 meV,5e-3,sig,1,009 kk_bounds (data/bounds.csv),live
+EC-03,g_ratio_min,g_eff/g_anom lower end (derivative coupling),10⁻⁷⁸-10⁻⁷⁰,1e-78,exp,0,012 check_formfactor F5 (min of printed values),live
+EC-03,g_ratio_max,g_eff/g_anom upper end (derivative coupling),10⁻⁷⁸-10⁻⁷⁰,1e-70,exp,0,012 check_formfactor F5 (max of printed values),live
+EC-03,g_ratio_coeff,coefficient C in g_eff/g_anom = (m_phi/m_e)^2/C,(m_φ/m_e)²/96,96,sig,2,012 check_formfactor ratio(),live
+EC-03',beta_max_cap27_deg,beta_max at 2.7% cap (deg),≤ 0.100° at the cited 2.7% cap,0.100,dec,3,014 fit_candidates (B(5%) sqrt(c/5%)),live
+EC-03',cap_P18BOSS_pct,Planck 2018 + BOSS cap at 1e-32 eV (% rho_DM),2.7% cap,2.7,dec,1,014 fit_candidates.ultralight_caps (data/ultralight_fraction_bounds.csv),live
+EC-03',cap_P18_pct,Planck 2018 cap at 1e-32 eV (% rho_DM),caps 6.9% at 10⁻³² eV,6.9,dec,1,014 fit_candidates.ultralight_caps (data/ultralight_fraction_bounds.csv),live
+EC-03',penalty_cap27_AWP,"chi2 penalty vs free ALP (ACT+WMAP+Planck, 2.7% cap)","Δχ² penalty vs free ALP 8.0 (ACT+WMAP+Planck, 2.7% cap)",8.0,dec,1,014 fit_candidates.main,live
+KK-02,penalty_k1_AWP,chi2 penalty vs free ALP at k = 1 (ACT+WMAP+Planck),Δχ² penalty vs free ALP 0.9 at k = 1,0.9,dec,1,014 fit_candidates.main,live
+KK-05,c_min_MICROSCOPE,"c lower bound (MICROSCOPE, Delta chi = 0.39 M_P)",MICROSCOPE needs c ≥ 340,340,sig,2,012 bounds_uholst B2 (src.claims_numbers.KK05),live
+KK-05,c_min_clocks,c lower bound (clocks),clocks c ≳ 5×10⁴,5e4,sig,1,012 bounds_uholst B3 (src.claims_numbers.KK05),live
+KK-05,c_max_EDM,c upper bound (JILA EDM; disputed by 015),JILA EDM c ≤ 188,188,sig,3,016 edm_bound E2 (src.claims_numbers.KK05),live

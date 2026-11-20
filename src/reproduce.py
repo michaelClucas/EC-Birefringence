@@ -1,24 +1,103 @@
-"""Reproduce entry point: `python -m src.reproduce` (from the repo root, via tools/pin.py, 1 thread).
+"""Reproduce entry point (from the repo root, pinned, 1 thread):
+    .venv/Scripts/python tools/pin.py .venv/Scripts/python -W ignore::SyntaxWarning -m src.reproduce --log <file>
 
 Steps:
   1. likelihood validation (task 010): published beta significances and SPT-3G results.
-  2. claim numbers (task 014): regenerates every number in the "predicted beta" and "needed parameter vs bound"
-     columns of CLAIMS.md by calling the work/ scripts (src/claims_numbers.py) and compares them with the expected
-     values in src/claims_expected.csv, whose printed text is also checked to still occur in CLAIMS.md.
-  3. candidate fits (task 014): EC-03', KK-02, generic ALP vs null on isotropic beta and SPT A_CB.
-Options: --skip-validation (steps 2-3 only), --fast-scan (EC-03' scan on the 17-mass sub-grid instead of all 45).
-Exit code is nonzero if any step fails or any claim number does not match.
+  2. claim numbers, regeneration (tasks 014, 017): calls the work/ scripts (src/claims_numbers.py).
+  3. candidate fits (task 014): EC-03', KK-02, generic ALP vs null on isotropic beta and SPT A_CB. Output csv goes to
+     artifacts/reproduce/, not to work/. The fit numbers quoted in CLAIMS.md are merged into the claim numbers.
+  4. claim numbers vs CLAIMS.md: compared with src/claims_expected.csv, whose printed text is also checked to still
+     occur in CLAIMS.md.
+  5. fit summary table (model, beta_max, penalty vs free ALP, Delta chi2 vs null) for ACT DR6 and ACT+WMAP+Planck.
+  6. path scan: the log (--log) and the text outputs in artifacts/reproduce/ are scanned for absolute local paths;
+     the repo root becomes <repo>, the home folder <home>, anything else absolute <abs-path>. stdout/stderr are
+     scrubbed the same way as they are written, so a shell redirect is also path-free.
+Options: --skip-validation (steps 2-6 only), --fast-scan (EC-03' scan on the 17-mass sub-grid instead of all 45),
+         --log FILE (tee the output to FILE, relative to the current directory).
+Exit code is nonzero if any step fails or any live claim number does not match.
 """
-import importlib.util
-import sys
-import time
+import warnings
 
-from . import claims_numbers as CN
-from .data import ROOT
+# candl has an invalid escape sequence; the SyntaxWarning text contains the absolute site-packages path
+warnings.filterwarnings("ignore", category=SyntaxWarning)
+
+import csv  # noqa: E402
+import importlib.util  # noqa: E402
+import re  # noqa: E402
+import sys  # noqa: E402
+import time  # noqa: E402
+from pathlib import Path  # noqa: E402
+
+from . import claims_numbers as CN  # noqa: E402
+from .data import ROOT  # noqa: E402
 
 VALIDATE = ROOT / "work" / "20261120-010-data-likelihood" / "validate.py"
 FIT = ROOT / "work" / "20261120-014-data-reproduce-fit" / "fit_candidates.py"
+FIT_DATASETS = {"act_dr6": "ACT DR6", "act_wmap_planck": "ACT+WMAP+Planck"}
 
+
+# ------------------------------------------------------------------------------------------ path scrubbing
+
+def _path_regex(p):
+    """Regex for path p with either separator, any case, also in /c/... form."""
+    p = Path(p).resolve()
+    parts = [re.escape(x) for x in p.parts[1:]]
+    drive = p.drive[:1]
+    head = rf"(?:{drive}:|/{drive})" if drive else ""
+    return re.compile(head + r"[\\/]+" + r"[\\/]+".join(parts), re.IGNORECASE)
+
+
+_SCRUB = [(_path_regex(ROOT), "<repo>"), (_path_regex(Path.home()), "<home>"),
+          (re.compile(r"(?<![\w<])[A-Za-z]:[\\/][^\s'\"<>|,;)]*"), "<abs-path>"),
+          (re.compile(r"(?<![\w<.])/(?:Users|home|[a-z]/Users)/[^\s'\"<>|,;)]*"), "<abs-path>")]
+
+
+def scrub(text):
+    n = 0
+    for rx, rep in _SCRUB:
+        text, k = rx.subn(rep, text)
+        n += k
+    return text, n
+
+
+class _Scrubbed:
+    """Text stream wrapper: scrubs absolute paths on write, optionally tees to a log file."""
+
+    def __init__(self, stream, log=None):
+        self._s, self._log, self.hits = stream, log, 0
+
+    def write(self, text):
+        text, n = scrub(text)
+        self.hits += n
+        if self._log is not None:
+            self._log.write(text)
+        return self._s.write(text)
+
+    def flush(self):
+        self._s.flush()
+        if self._log is not None:
+            self._log.flush()
+
+    def __getattr__(self, name):
+        return getattr(self._s, name)
+
+
+def scan_files(paths):
+    """Rewrite each text file with absolute paths replaced; returns (files scanned, replacements)."""
+    nfiles = nrep = 0
+    for p in paths:
+        if not p.is_file():
+            continue
+        text = p.read_text(encoding="utf-8", errors="replace")
+        new, n = scrub(text)
+        nfiles += 1
+        if n:
+            p.write_text(new, encoding="utf-8")
+            nrep += n
+    return nfiles, nrep
+
+
+# ------------------------------------------------------------------------------------------ steps
 
 def _load(path):
     spec = importlib.util.spec_from_file_location(path.stem, path)
@@ -27,38 +106,89 @@ def _load(path):
     return mod
 
 
-def claim_numbers(full_scan):
+def regenerate(full_scan):
     vals, times = CN.regenerate(full_scan=full_scan)
     for k, t in times.items():
         print(f"  {k}: {t:.1f} s")
-    flags = {k: bool(v) for k, v in vals.items() if k.startswith("_") and str(v) in ("True", "False")}
-    for k, v in flags.items():
-        print(f"  [{'PASS' if v else 'FAIL'}] {k[1:]}")
     npts, diff = vals["_EC-03'.scan_points"], vals["_EC-03'.scan_vs_committed_maxreldiff"]
     print(f"  [INFO] EC-03' scan: {npts} masses, max rel. diff of beta/(g phi_i) vs committed "
           f"work/20261120-008 scan.csv = {diff:.1e}")
+    return vals
+
+
+def fits(vals):
+    """Run 014's fits with output redirected to artifacts/reproduce; returns (failed, fit rows, claim values)."""
+    fit = _load(FIT)
+    CN.OUTDIR.mkdir(parents=True, exist_ok=True)
+    fit.HERE = CN.OUTDIR
+    failed = bool(fit.main(vals))
+    with open(CN.OUTDIR / "fit_results.csv", newline="", encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    caps = fit.ultralight_caps(fit.cosmo_inputs()["omch2"])
+    return failed, rows, CN.fit_values(rows, caps)
+
+
+def claim_table(vals):
+    flags = {k: bool(v) for k, v in vals.items() if k.startswith("_") and str(v) in ("True", "False")}
+    for k, v in flags.items():
+        print(f"  [{'PASS' if v else 'FAIL'}] {k[1:]}")
     bad = CN.print_table(CN.compare(vals))
-    failed_flags = [k for k, v in flags.items() if not v]
-    return vals, bool(bad or failed_flags)
+    return bool(bad or [k for k, v in flags.items() if not v])
+
+
+def fit_summary(rows):
+    for ds, label in FIT_DATASETS.items():
+        sub = [r for r in rows if r["dataset"] == ds]
+        print(f"{label}:")
+        print(f"  {'model':28s} | {'beta_max (deg)':>14s} | {'penalty vs ALP':>14s} | {'dchi2 vs null':>13s}")
+        for r in sub:
+            free = r["model"].startswith("ALP")
+            bm = "free" if free else f"{float(r['beta_max_deg']):.3f}"
+            print(f"  {r['model']:28s} | {bm:>14s} | {float(r['penalty_vs_ALP']):14.2f} | "
+                  f"{float(r['dchi2_vs_null']):13.2f}")
 
 
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
     args = sys.argv[1:]
+    log_path = Path(args[args.index("--log") + 1]) if "--log" in args else None
+    log = open(log_path, "w", encoding="utf-8") if log_path else None
+    sys.stdout = out = _Scrubbed(sys.stdout, log)
+    sys.stderr = err = _Scrubbed(sys.stderr, log)
     failed = []
     t0 = time.time()
-    if "--skip-validation" not in args:
-        print("### likelihood validation (20261120-010)")
-        if _load(VALIDATE).main():
-            failed.append("likelihood validation")
-    print("### claim numbers vs CLAIMS.md (20261120-014)")
-    vals, bad = claim_numbers(full_scan="--fast-scan" not in args)
-    if bad:
-        failed.append("claim numbers")
-    print("### candidate fits (20261120-014)")
-    if _load(FIT).main(vals):
-        failed.append("candidate fits")
-    print(f"### reproduce: {'OK' if not failed else f'FAILED: {failed}'} ({time.time() - t0:.0f} s)")
+    try:
+        if "--skip-validation" not in args:
+            print("### likelihood validation (20261120-010)")
+            if _load(VALIDATE).main():
+                failed.append("likelihood validation")
+        print("### claim numbers: regeneration (20261120-014, -017)")
+        vals = regenerate(full_scan="--fast-scan" not in args)
+        print("### candidate fits (20261120-014; csv to artifacts/reproduce/)")
+        fit_failed, rows, fit_vals = fits(vals)
+        if fit_failed:
+            failed.append("candidate fits")
+        vals.update(fit_vals)
+        print("### claim numbers vs CLAIMS.md (20261120-014, -017)")
+        if claim_table(vals):
+            failed.append("claim numbers")
+        print("### fit summary (penalty = chi2_min(model) - chi2_min(free ALP); dchi2 = chi2_null - chi2_min)")
+        fit_summary(rows)
+    finally:
+        print("### path scan")
+        sys.stdout.flush()
+        files = sorted(p for p in CN.OUTDIR.glob("*") if p.suffix in (".csv", ".txt", ".log", ".json"))
+        nf, nr = scan_files(files)
+        print(f"  scrubbed on write: {out.hits + err.hits} absolute path(s); artifacts/reproduce: {nf} text files, "
+              f"{nr} replaced")
+        print(f"### reproduce: {'OK' if not failed else f'FAILED: {failed}'} ({time.time() - t0:.0f} s)")
+        sys.stdout.flush()
+        if log is not None:
+            log.close()
+            sys.stdout, sys.stderr = out._s, err._s
+            _, n = scan_files([log_path])
+            print(f"  log rescan: {n} absolute path(s) replaced")
     return 1 if failed else 0
 
 

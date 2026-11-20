@@ -42,3 +42,7 @@ Written by task `work/20261120-010-data-likelihood`.
 ## ultralight_fraction_bounds.csv
 
 Written by task `work/20261120-013-lit-nogo-check`. Per-mass bounds on the energy density today of an ultralight (DE-like or DM-like) scalar, for the EC-03' energy cap. Columns: `id`, `quantity`, `mass_eV` (single mass or range), `value` (as printed), `units`, `CL` (%), `bound_type`, `data_combination`, `arxiv`, `location_in_paper`, `note`. Fractions of ρ_DM in `note` use the Ω_c h² of the same table row or 0.12 as stated. Two rows (`ULF-P18-zc`, `ULF-NNQ25-consistency`) are not upper bounds: they record that no bound exists or that a region is consistent with data. Table values were extracted from the arXiv HTML. Narrative: `literature/nogo_literature_check.md`.
+
+## kk05_edm_inputs.csv
+
+Written by task `work/20261120-016-kk05-edm-cs`. Frequency band of the HfF+ oscillating-EDM search (arXiv:2006.15787 abstract only), used to show that a KK-05 field rolling on a Hubble time is a static EDM for lab purposes. The static eEDM bound itself is the JILA row in `shift_uholst_inputs.csv`.

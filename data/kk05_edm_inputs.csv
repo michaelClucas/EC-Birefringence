@@ -1,0 +1,3 @@
+id,quantity,value,units,CL,source,location,note
+osc_EDM_HfF_fmin,lowest frequency of the HfF+ oscillating-EDM search band,27e-9,Hz,-,"Roussy et al., PRL 126 171301 (2021), arXiv:2006.15787",abstract,"band 27 nHz - 400 mHz; ALP masses 1e-22 - 1e-15 eV (abstract)"
+osc_EDM_HfF_fmax,highest frequency of the HfF+ oscillating-EDM search band,0.4,Hz,-,"Roussy et al., arXiv:2006.15787",abstract,"see row above"

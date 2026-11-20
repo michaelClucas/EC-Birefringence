@@ -1,0 +1,79 @@
+# task 015 run.log (all commands pinned via tools/pin.py, 1 thread)
+## formfactor_dispersion.py
+[PASS] D1 dispersion P(0) = 1 (heavy-fermion pseudoscalar loop cancels the anomaly)  (1.000000000000)
+[PASS] D2 dispersion P(r) = (4/r) arcsin^2(sqrt(r)/2) for r = 0.01..3.6
+[PASS] D3 dB1/dr|_0 = -1/12 from the dispersion integral  (dP/dr = 0.083333333333)
+[PASS] D4 next term: B1 = -r/12 - r^2/90  (0.011111111111)
+[PASS] D5 coefficient C in g_eff/g_anom = (m_phi/m_e)^2/C with the electron only  (C = 96.000000)
+[INFO] g_eff/g_anom at m_phi = 6e-33 eV: 1.44e-78
+[INFO] g_eff/g_anom at m_phi = 1e-28 eV: 3.99e-70
+[INFO] hadronic (physical) treatment: u,d pieces enter via pi0/eta mixing, ~(m_phi/m_pi)^2, so C = 96 to < 1e-3
+formfactor_dispersion: 5 PASS, 0 FAIL
+## kk05_check.py
+[PASS] K1a d beta/d ln alpha = -c (from Z = 1+12c^2, Y = 16c^3)
+[PASS] K1b beta(c) = 2c - arctan(2 sqrt3 c)/sqrt3
+[PASS] K1c the ratio only needs dY/dZ = 2c
+[INFO] K2 MICROSCOPE Delta chi = 1.0 M_P: c >= 132.7
+[INFO] K2 MICROSCOPE Delta chi = 0.39 M_P: c >= 340.2
+[INFO] K2 MICROSCOPE Delta chi = 0.1 M_P: c >= 1327
+[PASS] K2 reproduces 012: c >= 340 at 0.39 M_P  (340.2)
+[INFO] K3 H0 = 1.4369e-33 eV; |alpha-dot/alpha| <= 6.670e-41 eV; c_clock(R=1) >= 8.08e+04
+[PASS] K3 analytic clock bound within a factor 2 of 012's ODE value 5.1e4  (8.08e+04)
+[INFO] K4 012 form d = 2.838e-32 c e cm -> c <~ 144
+[INFO] K4 normalised d_phys(c->inf) = 8.194e-33 e cm; JILA bound 4.1e-30 e cm
+[INFO]    c = 1: d_phys = 7.87e-33 e cm  (ratio to bound 1.9e-03)
+[INFO]    c = 140: d_phys = 8.19e-33 e cm  (ratio to bound 2.0e-03)
+[INFO]    c = 340: d_phys = 8.19e-33 e cm  (ratio to bound 2.0e-03)
+[INFO]    c = 50000: d_phys = 8.19e-33 e cm  (ratio to bound 2.0e-03)
+[PASS] K4 with canonical normalisation the EDM estimate gives NO upper bound on c (d_phys < bound for all c)
+[INFO] K4b P'-even (MDM-type) piece: mu_phys ~ c k/sqrt12 = 8.38e-15 GeV^-1 at c = 5e4 (Delta a_e ~ 2 m_e mu/e ~ 2.8e-17); grows with c
+kk05_check: 6 PASS, 0 FAIL
+## spotcheck_fit.py
+EC-03' caps from data/ultralight_fraction_bounds.csv (95%, m = 1e-32 eV; no per-mass bound at 5-8e-33 eV):
+  ULF-R23-P18-m1e-32: Omega_a/Omega_DM < 0.0694
+  ULF-R23-P18BOSS-m1e-32: Omega_a/Omega_DM < 0.0268
+SPT likelihood: spt3g_d1_bb_lite; Delta chi2_SPT(A_CB) profiled over r, A_LT; monotone in A_CB >= 0: True
+  Delta chi2_SPT at A_CB = 1e-5, 5e-5, 1.2e-4: 0.275, 1.621, 4.913
+  EC-03' A_CB,max = (H_inf,max g_T F/4pi)^2 = 3.60e-16 (H_inf,max = 4.70e+13 GeV, BK18)
+
+=== act_dr6: beta = 0.215 +- 0.074 deg; chi2_null = 8.441
+model                        beta_max   best   chi2   pen  dchi2 sigma dAIC_eff dAIC_full dBIC_n1 dBIC_n6    B10 SPT dchi2@Amax
+ALP (free beta)                (free)  0.215  0.000  0.00   8.44  2.91     6.44      6.44    8.44    6.65   6.31            nan
+EC-03' 2.7% P18+BOSS            0.100  0.100  2.424  2.42   6.02  2.45     4.02      2.02    6.02    4.23   3.78       9.68e-12
+EC-03' 5.0% 008 assumed         0.136  0.136  1.128  1.13   7.31  2.70     5.31      3.31    7.31    5.52   6.67       9.68e-12
+EC-03' 6.9% P18                 0.161  0.161  0.538  0.54   7.90  2.81     5.90      3.90    7.90    6.11   9.10       9.68e-12
+EC-03' 12.0% fit 0.215 EXCL     0.211  0.211  0.002  0.00   8.44  2.90     6.44      4.44    8.44    6.65  14.35       9.68e-12
+KK-02 k=1                       0.209  0.209  0.006  0.01   8.43  2.90     6.43      4.43    8.43    6.64  14.13          0.372
+KK-02 k=2                       0.418  0.215  0.000  0.00   8.44  2.91     6.44      4.44    8.44    6.65  15.06           1.75
+EC-03' cap needed for the best fit 0.215 deg: 12.4% rho_DM; KK-02 k=1 needs Delta_theta = 1.03 pi
+
+=== act_wmap_planck: beta = 0.264 +- 0.058 deg; chi2_null = 20.718
+model                        beta_max   best   chi2   pen  dchi2 sigma dAIC_eff dAIC_full dBIC_n1 dBIC_n6    B10 SPT dchi2@Amax
+ALP (free beta)                (free)  0.264  0.000  0.00  20.72  4.55    18.72     18.72   20.72   18.93 2292.91            nan
+EC-03' 2.7% P18+BOSS            0.100  0.100  8.017  8.02  12.70  3.56    10.70      8.70   12.70   10.91  53.25       9.68e-12
+EC-03' 5.0% 008 assumed         0.136  0.136  4.839  4.84  15.88  3.98    13.88     11.88   15.88   14.09 233.87       9.68e-12
+EC-03' 6.9% P18                 0.161  0.161  3.170  3.17  17.55  4.19    15.55     13.55   17.55   15.76 535.02       9.68e-12
+EC-03' 12.0% fit 0.215 EXCL     0.211  0.211  0.824  0.82  19.89  4.46    17.89     15.89   19.89   18.10 1973.99       9.68e-12
+KK-02 k=1                       0.209  0.209  0.897  0.90  19.82  4.45    17.82     15.82   19.82   18.03 1883.54          0.372
+KK-02 k=2                       0.418  0.264  0.000  0.00  20.72  4.55    18.72     16.72   20.72   18.93 5462.40           1.75
+EC-03' cap needed for the best fit 0.264 deg: 18.7% rho_DM; KK-02 k=1 needs Delta_theta = 1.26 pi
+
+wrote fit_results.csv
+[PASS] claims_expected penalty_cap27_AWP: regenerated 8.017, expected 8.0
+[PASS] claims_expected penalty_k1_AWP: regenerated 0.897, expected 0.9
+[PASS] beta_max_cap27_deg 0.0998
+act_dr6: uniform prior +-1.0000 deg: B10 = 6.31  (likelihood mass kept 1.00)
+act_dr6: uniform prior +-0.4180 deg: B10 = 15.1  (likelihood mass kept 1.00)
+act_dr6: uniform prior +-0.2091 deg: B10 = 14.1  (likelihood mass kept 0.47)
+act_dr6: uniform prior +-0.0998 deg: B10 = 3.78  (likelihood mass kept 0.06)
+act_wmap_planck: uniform prior +-1.0000 deg: B10 = 2.29e+03  (likelihood mass kept 1.00)
+act_wmap_planck: uniform prior +-0.4180 deg: B10 = 5.46e+03  (likelihood mass kept 1.00)
+act_wmap_planck: uniform prior +-0.2091 deg: B10 = 1.89e+03  (likelihood mass kept 0.17)
+act_wmap_planck: uniform prior +-0.0998 deg: B10 = 53.3  (likelihood mass kept 0.00)
+## rerun of 012 bounds_uholst.py (key lines)
+[INFO] B2 MICROSCOPE |d_e| < 4e-05: Delta chi = 0.1 M_P -> c >= 1.33e+03
+[INFO] B2 MICROSCOPE |d_e| < 4e-05: Delta chi = 0.39 M_P -> c >= 340
+[INFO] B2 MICROSCOPE |d_e| < 4e-05: Delta chi = 1.0 M_P -> c >= 133
+[PASS] B3 clock bound on c is m-independent within an O(1) factor over 1e-33..1e-29 eV (matter-era scaling)  (min 5.13e+04, max 8.14e+05)
+[INFO] B4 EDM estimate d ~ 2.84e-32 c e cm -> c <~ 144 (JILA 4.1e-30 e cm); order of magnitude only
+[PASS] B5 window closed if the EDM estimate holds (c_needed > c_EDM)  (5.13e+04 vs 144)

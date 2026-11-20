@@ -12,6 +12,10 @@ Sources (scripts are imported, not copied; their stdout is captured and parsed w
   EC-04         work/20261120-007 ec04_estimates.main()
   EC-05         work/20261120-007 ec05_loop.main()
   KK-02/03/04   work/20261120-009 kk_bounds.main() (results kept in memory, written to artifacts/ not to work/)
+  EC-03 (photon decoupling), KK-05   work/20261120-012 check_formfactor, bounds_uholst (top-level scripts: imported
+                with stdout captured, values read from module attributes or parsed from the printed [INFO] lines)
+  fit numbers (EC-03' 2.7% beta_max, penalties)   work/20261120-014 fit_candidates.main(), merged by src.reproduce
+                via fit_values()
 Files the scripts write (plots, csv) are redirected to artifacts/reproduce/ by patching the module's HERE.
 """
 import contextlib
@@ -34,6 +38,16 @@ EXPECTED = Path(__file__).resolve().parent / "claims_expected.csv"
 T007 = "20261120-007-theory-nogo-minimal"
 T008 = "20261120-008-cosmo-torsion-axion"
 T009 = "20261120-009-kk-bounds"
+T012 = "20261120-012-theory-shift-uholst"
+T016 = "20261120-016-kk05-edm-cs"
+
+# KK-05 numbers: one line each (task 016 may revise them; change the source here and the row in claims_expected.csv).
+# key -> (work folder, module, getter on the imported module)
+KK05 = {
+    "c_min_MICROSCOPE": (T012, "bounds_uholst", lambda m: m.c_ep[0.39]),
+    "c_min_clocks": (T012, "bounds_uholst", lambda m: m.c_clock_min),
+    "c_max_EDM": (T016, "edm_bound", lambda m: m.c_edm),  # 012 value superseded (EDM/magnetic pieces swapped)
+}
 
 
 # ------------------------------------------------------------------------------------------ module loading
@@ -194,10 +208,61 @@ def kk():
     return out
 
 
+def load_script(folder, name):
+    """Import a work/ script that runs at import time; returns (module, captured stdout)."""
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        mod = load(folder, name)
+    return mod, buf.getvalue()
+
+
+def ec03_photon():
+    """012 F5: g_eff/g_anom for a derivative coupling. Range = min/max of the values 012 prints; coefficient
+    (m_phi/m_e)^2/coeff from its ratio() at a test q."""
+    out = {}
+    ff, txt = load_script(T012, "check_formfactor")
+    r = [float(x) for x in re.findall(r"g_eff/g_anomaly at [^:\n]*: ([\d.eE+-]+)", txt)]
+    if not r:
+        raise ValueError("012 check_formfactor printed no g_eff/g_anomaly values")
+    out["EC-03.g_ratio_min"] = min(r)
+    out["EC-03.g_ratio_max"] = max(r)
+    q = 1e-30
+    out["EC-03.g_ratio_coeff"] = (q / ff.M_E) ** 2 / ff.ratio(q)
+    out["_EC-03.012_formfactor_checks_ok"] = "[FAIL]" not in txt
+    return out
+
+
+def kk05():
+    out, mods = {}, {}
+    for key, (folder, name, get) in KK05.items():
+        if (folder, name) not in mods:
+            mod, txt = load_script(folder, name)
+            mods[(folder, name)] = mod
+            out[f"_KK-05.{name}_checks_ok"] = "[FAIL]" not in txt
+        out[f"KK-05.{key}"] = float(get(mods[(folder, name)]))
+    return out
+
+
+def fit_values(rows, caps):
+    """Claim numbers from the 014 fits. rows: fit_results.csv rows; caps: fit_candidates.ultralight_caps()."""
+    def row(ds, pred):
+        hit = [r for r in rows if r["dataset"] == ds and pred(r["model"])]
+        assert len(hit) == 1, (ds, [r["model"] for r in hit])
+        return hit[0]
+    ec27 = lambda m: m.startswith("EC-03'") and "P18+BOSS" in m
+    return {
+        "EC-03'.beta_max_cap27_deg": float(row("act_wmap_planck", ec27)["beta_max_deg"]),
+        "EC-03'.penalty_cap27_AWP": float(row("act_wmap_planck", ec27)["penalty_vs_ALP"]),
+        "KK-02.penalty_k1_AWP": float(row("act_wmap_planck", lambda m: m == "KK-02 k=1")["penalty_vs_ALP"]),
+        "EC-03'.cap_P18BOSS_pct": 100 * caps["ULF-R23-P18BOSS-m1e-32"],
+        "EC-03'.cap_P18_pct": 100 * caps["ULF-R23-P18-m1e-32"],
+    }
+
+
 def regenerate(full_scan=True):
     vals, times = {}, {}
     for label, fn in (("007 (EC-01/02/04/05)", ec01_ec02_ec04_ec05), ("008 (EC-03, EC-03')", lambda: ec03(full_scan)),
-                      ("009 (KK-02/03/04)", kk)):
+                      ("009 (KK-02/03/04)", kk), ("012 (EC-03 photon, KK-05)", lambda: {**ec03_photon(), **kk05()})):
         t0 = time.time()
         vals.update(fn())
         times[label] = time.time() - t0
@@ -229,6 +294,8 @@ def _match(v, e, rule, digits):
         return round(v, digits) == round(e, digits)
     if rule == "oom":  # same power of ten after rounding log10 ("~10^120")
         return round(math.log10(abs(v))) == round(math.log10(abs(e)))
+    if rule == "exp":  # same decimal exponent in scientific notation ("4e-70" printed as "10^-70")
+        return math.floor(math.log10(abs(v))) == math.floor(math.log10(abs(e)))
     if rule == "floor":  # printed as ">= e"
         return math.floor(v) == e
     if rule == "exact":
