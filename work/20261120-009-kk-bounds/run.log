@@ -1,0 +1,98 @@
+===== check_parity.py (31 s, exit 0)
+[PASS] P1 P' = exp(pi(J12 + J3y)) = diag(1,-1,-1,-1,-1), det +1
+[PASS] P2 eps n dn dn = 2 phi^3 eps dA dA at 3 random points (2608 Eq. 41 EM term)  (sign +)
+[PASS] P3 e^5 ^ T^a ^ T_a independent of A_mu (the Nieh-Yan part carries no photon)
+[PASS] P4 phi^3 F_KK Ftilde_KK odd under P' (forbidden in a P'-invariant 5D theory, all orders)
+[PASS] P5 phi^3 F_KK^2 even under P'
+[PASS] P6 theta f ftilde (KK-02) even under P' (allowed)
+[PASS] P7 n^dn^dn with n oriented along +d_y is odd under P' (needs a P'-odd background)
+[PASS] P8 pullback P'^* n = -n[phi',A']: the sign of u relative to d_y is the P'-odd datum
+[INFO] P'-odd backgrounds that allow a P'-even scalar x F_KK Ftilde_KK: an oriented unit vector u (2608 Stueckelberg vacuum with det(d psi) > 0), FRW axial torsion S_0, a fermion chiral asymmetry.
+===== check_ec_uholst.py (9 s, exit 0)
+[PASS] E1 T^A^T_A = e^A^e^B^(K^K)_AB (so u^Nieh-Yan has no K^2 piece)
+[PASS] E2 Q(K_[ABC]) = -K_ABC K^ABC (same normalization as task 004)
+[PASS] E3 e^A^e^B^R_AB = 0 for Levi-Civita curvature (no EC term without torsion)
+[PASS] E4a einsum forms agree with generic wedge algebra at a random point
+[PASS] E4 Q non-degenerate on 50 contortion components
+[PASS] E5 EC u^Nieh-Yan: L_eff = A W.W only (no W Wtilde)  (A=-0.135, B*=0.00e+00)
+[PASS] E6 EC u^T^A^T_A alone (2608 transplanted): no photon term
+[INFO] u-Holst c=0.001: A=-1.5e-06  B*=-4e-09  fit resid=4.2e-16  c_odd=1.59998e-08
+[INFO] u-Holst c=0.003: A=-1.35e-05  B*=-1.08e-07  fit resid=5.0e-16  c_odd=4.31953e-07
+[INFO] u-Holst c=0.01: A=-0.00015  B*=-4e-06  fit resid=3.6e-16  c_odd=1.59808e-05
+[INFO] u-Holst c=0.03: A=-0.00135  B*=-0.000108  fit resid=4.8e-16  c_odd=0.000427384
+[INFO] u-Holst c=0.1: A=-0.015  B*=-0.004  fit resid=1.2e-16  c_odd=0.0142857
+[INFO] u-Holst c=0.3: A=-0.135  B*=-0.108  fit resid=3.9e-16  c_odd=0.207692
+[INFO] u-Holst c=1: A=-1.5  B*=-4  fit resid=3.2e-16  c_odd=1.23077
+[INFO] u-Holst c=3: A=-13.5  B*=-108  fit resid=2.9e-16  c_odd=3.9633
+[PASS] E7 u-Holst: fits close (W.W, W Wtilde only) and B* ~ c^3, A ~ c^2 at small c  (slopes A 2.000, B 3.000)
+[PASS] E8 u-Holst exact: A = -3c^2/2, B* = -4c^3, c_odd = 16c^3/(1+12c^2) for all scanned c
+[INFO] max |c_odd| over scanned c: 3.963
+===== check_orbifold.py (60 s, exit 0)
+[PASS] O1 A^F^F with A_mu odd, A_5 even: density even (allowed; Wilson line kept, bulk photon zero mode lost)
+[PASS] O2 A^F^F with A_mu even, A_5 odd: density odd (needs eps(y); Wilson line projected out)
+[PASS] O3 mixed A'^F_Y^F_Y (A'_mu odd, A'_5 even; A_Y mu even): density even (allowed)
+[PASS] O4 O3 zero modes give theta' f_Y ftilde_Y (nonzero), density = +-theta eps da da
+[PASS] O5 brane term A'_5(y=0) F Ftilde not gauge invariant (delta A'_5(0) = d_y Lambda(0) != 0 for odd Lambda)
+===== check_rotation_hosotani.py (34 s, exit 0)
+[INFO] rotation c_odd=0.3: numeric -1.577246e-01, (c/2) Delta ln Z = 1.576813e-01
+[INFO] rotation c_odd=-1.2: numeric -9.592410e-01, (c/2) Delta ln Z = 9.600000e-01
+[INFO] rotation c_odd=2.0: numeric 4.762929e-01, (c/2) Delta ln Z = -4.754605e-01
+[PASS] R1 rotation = (c_odd/2) Delta ln Z in magnitude, one consistent sign, three Z(tau) profiles
+[PASS] R2 2608 normalization: beta = 3c Delta ln phi and |Delta alpha/alpha| = |beta|/|c| to O(Delta)
+[INFO] Hosotani x=0.0: closed -1.841293e-01, proper-time KK sum -1.841293e-01
+[PASS] H1 Hosotani closed form = proper-time KK sum at x = M l = 0.0
+[INFO] Hosotani x=2.0: closed -1.003790e-01, proper-time KK sum -1.003790e-01
+[PASS] H1 Hosotani closed form = proper-time KK sum at x = M l = 2.0
+[INFO] Hosotani x=6.0: closed -7.827735e-03, proper-time KK sum -7.827735e-03
+[PASS] H1 Hosotani closed form = proper-time KK sum at x = M l = 6.0
+[PASS] H2 m^2 = q^2 g4^2 (x^2+3x+3) e^-x/(pi^2 l^2) (n=1 term) at x = 20.0  (ratio 1.0000)
+[PASS] H2 m^2 = q^2 g4^2 (x^2+3x+3) e^-x/(pi^2 l^2) (n=1 term) at x = 60.0  (ratio 1.0000)
+===== kk_bounds.py (8 s, exit 0)
+[INFO] beta_rad = 0.003752  ACT DR6 0.215 deg
+[INFO] H0_eV = 1.437e-33  
+[INFO] H_star_eV = 3.333e-29  H at z_star
+[INFO] KK02_k1_beta_max_deg = 0.2091  Delta theta = pi
+[INFO] KK02_k1_Dtheta_over_pi = 1.028  1 sigma range 0.67-1.38
+[INFO] KK02_k1_fa_min_GeV = 2.904e+09  Chandra g < 8e-13/GeV
+[INFO] KK02_k1_invL_min_GeV = 5.524e+09  1/L = 2 pi g4 f_a
+[INFO] KK02_k2_beta_max_deg = 0.4181  Delta theta = pi
+[INFO] KK02_k2_Dtheta_over_pi = 0.5142  1 sigma range 0.34-0.69
+[INFO] KK02_k2_fa_min_GeV = 5.807e+09  Chandra g < 8e-13/GeV
+[INFO] KK02_k2_invL_min_GeV = 1.105e+10  1/L = 2 pi g4 f_a
+[INFO] KK02_k3_beta_max_deg = 0.6272  Delta theta = pi
+[INFO] KK02_k3_Dtheta_over_pi = 0.3428  1 sigma range 0.22-0.46
+[INFO] KK02_k3_fa_min_GeV = 8.711e+09  Chandra g < 8e-13/GeV
+[INFO] KK02_k3_invL_min_GeV = 1.657e+10  1/L = 2 pi g4 f_a
+[INFO] KK02_invL_max_GeV = 9.714e+17  1/L < M_5 with M_5^3 (2 pi L) = M_P^2
+[PASS] K1 k = 1 reaches the ACT central value with Delta theta <= 1.03 pi; k >= 2 needs Delta theta < pi
+[INFO] KK02_xMl_window_at_invL_5.52e+09GeV = 240.2  to 219.9 (m from H0 to H_star); M = x/(2 pi L)
+[INFO] KK02_xMl_window_at_invL_1.00e+12GeV = 250.7  to 230.4 (m from H0 to H_star); M = x/(2 pi L)
+[INFO] KK02_xMl_window_at_invL_1.00e+16GeV = 269.2  to 249.0 (m from H0 to H_star); M = x/(2 pi L)
+[INFO] KK02_xMl_window_at_invL_9.71e+17GeV = 278.4  to 258.2 (m from H0 to H_star); M = x/(2 pi L)
+[INFO] KK02_k1_max_dbeta2_rad2 = 1.331e-05  vs SPT A_CB < 0.00012 rad^2 (not binding)
+[INFO] KK02_k3_max_dbeta2_rad2 = 0.0001198  vs SPT A_CB < 0.00012 rad^2 (not binding)
+[INFO] dNeff_max_CMB = 0.284  Planck+BAO, +2 sigma minus 3.046
+[INFO] dNnu_max_BBN = 0.16  Fields et al. +2 sigma minus 3
+[INFO] stiff_DeltaX_max_CMB_GeV = 4.034e+17  
+[INFO] stiff_DeltaX_max_BBN_GeV = 5.537e+10  binding
+[PASS] K2 stiff-field round trip: Delta X_max(BBN) reproduces dN_BBN
+[INFO] KK03_g_min_GeVinv = 1.355e-13  massless b kicked before BBN, beta = ACT
+[INFO] KK03_g_max_GeVinv = 8e-13  Chandra
+[INFO] KK03_lambda_over_kappa4_min = 1.469e+06  
+[INFO] KK03_lambda_over_kappa4_max = 8.672e+06  
+[INFO] KK03_Ms_max_GeV = 2.009e+15  if lambda = 1/M_s^2
+[INFO] KK03_Ms_min_GeV = 8.269e+14  
+[INFO] KK03_g_natural_GeVinv = 9.225e-20  lambda = kappa_4
+[INFO] KK03_natural_dNnu_BBN = 3.454e+11  excluded if >> dN_BBN
+[PASS] K3 KK-03 window nonempty: g_min(BBN) < g_max(Chandra); natural lambda = kappa_4 excluded
+[INFO] KK03_S0_today_eV_at_gmin = 6.781e-46  S_perp ~ v S0 = 8.36e-49 vs neutron |b_perp| < 6.7e-25 eV
+[INFO] radion_codd_min_CMB_alpha = 0.6823  c_odd needed so that |Delta alpha/alpha|(LSS) < 2 sigma
+[INFO] 2608_c_min_CMB_alpha = 0.3411  c_odd = 2c
+[INFO] radion_frac_after_z1.15 = 5.132e-05  share of Delta ln Z after z = 1.15 (stiff field)
+[INFO] radion_codd_min_QSO = 0.09582  
+[INFO] radion_codd_min_clock = 4.109  
+[INFO] radion_gamma_minus_1 = -0.5  Cassini 2.1e-05 +- 2.3e-05
+[INFO] radion_m_min_ISL_eV = 0.00511  = 1.53e+26 H_star
+[PASS] K4 massless radion excluded by Cassini by > 1e4 sigma; ISL mass >> H_star (cannot roll after LSS)
+[INFO] EC_uHolst_c_needed_clock = 3.108
+===== TOTAL: 33 PASS, 0 FAIL

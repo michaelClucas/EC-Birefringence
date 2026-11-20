@@ -66,3 +66,4 @@ CG23-beta-sync,beta_iso_deg,0.53,0.28,0.28,68,0,"Cosmoglobe LFI/WMAP + HFI PR4, 
 CG23-beta-cited,beta_iso_deg,0.26,0.10,0.10,68,0,Cosmoglobe WMAP + Planck,2305.02268,cited in 2509.13654 Sec. VI,Not in abstract; body not checked
 SUL25-beta-SEVEM,beta_iso_deg,0.46,0.28,0.28,68,0,Planck PR4 map-space SEVEM,2502.07654,abstract,"0.04 stat + 0.28 syst; err column is syst only; no miscalibration correction"
 SUL25-beta-Commander,beta_iso_deg,0.48,0.28,0.28,68,0,Planck PR4 map-space Commander,2502.07654,abstract,"0.04 stat + 0.28 syst; err column is syst only"
+DPK25-alphaprior-corr,alpha_prior_corr_within_PA,0.9,,,,0,ACT optics model,2509.13654,"Sec. II, Fig. 1","Correlation of alpha_i priors between array-bands of the same PA in the baseline Pi^PA prior"

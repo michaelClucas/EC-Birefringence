@@ -12,3 +12,10 @@ python-dateutil==4.0.0
 scipy==1.18.1
 sympy==1.14.0
 tzdata==2026.6
+astropy==8.0.3
+astropy-iers-data==0.2026.11.16.0.37.44
+camb==2.0.5
+candl-like==2.2.0
+clipy-like==0.15
+pyerfa==2.0.1.5
+pyyaml==6.0.3

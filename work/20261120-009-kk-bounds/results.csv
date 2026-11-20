@@ -1,0 +1,44 @@
+key,value,note
+beta_rad,0.00375246,ACT DR6 0.215 deg
+H0_eV,1.43687e-33,
+H_star_eV,3.33281e-29,H at z_star
+KK02_k1_beta_max_deg,0.209054,Delta theta = pi
+KK02_k1_Dtheta_over_pi,1.02844,1 sigma range 0.67-1.38
+KK02_k1_fa_min_GeV,2.90352e+09,Chandra g < 8e-13/GeV
+KK02_k1_invL_min_GeV,5.5245e+09,1/L = 2 pi g4 f_a
+KK02_k2_beta_max_deg,0.418108,Delta theta = pi
+KK02_k2_Dtheta_over_pi,0.514222,1 sigma range 0.34-0.69
+KK02_k2_fa_min_GeV,5.80705e+09,Chandra g < 8e-13/GeV
+KK02_k2_invL_min_GeV,1.1049e+10,1/L = 2 pi g4 f_a
+KK02_k3_beta_max_deg,0.627161,Delta theta = pi
+KK02_k3_Dtheta_over_pi,0.342815,1 sigma range 0.22-0.46
+KK02_k3_fa_min_GeV,8.71057e+09,Chandra g < 8e-13/GeV
+KK02_k3_invL_min_GeV,1.65735e+10,1/L = 2 pi g4 f_a
+KK02_invL_max_GeV,9.71424e+17,1/L < M_5 with M_5^3 (2 pi L) = M_P^2
+KK02_xMl_window_at_invL_5.52e+09GeV,240.178,to 219.9 (m from H0 to H_star); M = x/(2 pi L)
+KK02_xMl_window_at_invL_1.00e+12GeV,250.66,to 230.4 (m from H0 to H_star); M = x/(2 pi L)
+KK02_xMl_window_at_invL_1.00e+16GeV,269.223,to 249.0 (m from H0 to H_star); M = x/(2 pi L)
+KK02_xMl_window_at_invL_9.71e+17GeV,278.442,to 258.2 (m from H0 to H_star); M = x/(2 pi L)
+KK02_k1_max_dbeta2_rad2,1.33128e-05,vs SPT A_CB < 0.00012 rad^2 (not binding)
+KK02_k3_max_dbeta2_rad2,0.000119816,vs SPT A_CB < 0.00012 rad^2 (not binding)
+dNeff_max_CMB,0.284,"Planck+BAO, +2 sigma minus 3.046"
+dNnu_max_BBN,0.16,Fields et al. +2 sigma minus 3
+stiff_DeltaX_max_CMB_GeV,4.03374e+17,
+stiff_DeltaX_max_BBN_GeV,5.53703e+10,binding
+KK03_g_min_GeVinv,1.35541e-13,"massless b kicked before BBN, beta = ACT"
+KK03_g_max_GeVinv,8e-13,Chandra
+KK03_lambda_over_kappa4_min,1.46932e+06,
+KK03_lambda_over_kappa4_max,8.67238e+06,
+KK03_Ms_max_GeV,2.00882e+15,if lambda = 1/M_s^2
+KK03_Ms_min_GeV,8.26856e+14,
+KK03_g_natural_GeVinv,9.22469e-20,lambda = kappa_4
+KK03_natural_dNnu_BBN,3.45426e+11,excluded if >> dN_BBN
+KK03_S0_today_eV_at_gmin,6.78052e-46,S_perp ~ v S0 = 8.36e-49 vs neutron |b_perp| < 6.7e-25 eV
+radion_codd_min_CMB_alpha,0.682265,c_odd needed so that |Delta alpha/alpha|(LSS) < 2 sigma
+2608_c_min_CMB_alpha,0.341133,c_odd = 2c
+radion_frac_after_z1.15,5.13238e-05,share of Delta ln Z after z = 1.15 (stiff field)
+radion_codd_min_QSO,0.0958161,
+radion_codd_min_clock,4.10914,
+radion_gamma_minus_1,-0.5,Cassini 2.1e-05 +- 2.3e-05
+radion_m_min_ISL_eV,0.00511,= 1.53e+26 H_star
+EC_uHolst_c_needed_clock,3.10844,

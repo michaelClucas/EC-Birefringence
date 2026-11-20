@@ -1,0 +1,45 @@
+# run 2026-11-20: python -m src.reproduce, then check_templates.py (pinned, 1 thread)
+### likelihood validation (20261120-010)
+== (a) isotropic beta ==
+[PASS] significance act_dr6: beta = 0.215 +- 0.074 deg, Delta chi2 = 8.441 -> 2.905 sigma (published 2.9); Delta AIC = 6.44, Delta BIC(n=1) = 8.44, B10 (uniform beta in [-1,1] deg) = 6.3 (ln B10 = 1.84)
+[PASS] Savage-Dickey numeric vs analytic act_dr6: 6.3141 vs 6.3141
+[PASS] significance act_wmap_planck: beta = 0.264 +- 0.058 deg, Delta chi2 = 20.718 -> 4.552 sigma (published 4.6); Delta AIC = 18.72, Delta BIC(n=1) = 20.72, B10 (uniform beta in [-1,1] deg) = 2292.9 (ln B10 = 7.74)
+[PASS] Savage-Dickey numeric vs analytic act_wmap_planck: 2292.9063 vs 2292.9063
+[PASS] significance act_cosmoglobe: beta = 0.231 +- 0.059 deg, Delta chi2 = 15.329 -> 3.915 sigma (published 3.9); Delta AIC = 13.33, Delta BIC(n=1) = 15.33, B10 (uniform beta in [-1,1] deg) = 157.6 (ln B10 = 5.06)
+[PASS] Savage-Dickey numeric vs analytic act_cosmoglobe: 157.6191 vs 157.6191
+[PASS] combination act_dr6 + wmap_planck_pr4: 0.2646 +- 0.0578 vs published 0.264 +- 0.058
+[PASS] combination act_dr6 + cosmoglobe_wmap_planck: 0.2309 +- 0.0595 vs published 0.231 +- 0.059
+[PASS] joint() refuses overlapping data: act_wmap_planck shares data ['ACT_DR6'] with another member; use a published combined value instead of multiplying
+[INFO] joint act_dr6 x planck_pr4 (disjoint): best beta = 0.256 deg, 4.30 sigma
+[INFO] planck_pr4 alone (ESK22-beta): 0.33 +- 0.1 deg, 3.30 sigma, B10 = 29.0
+== (b) frequency dependence ==
+[INFO] per-frequency rows available: DPK25-psi-PA5diff, DPK25-psi-PA5f090, DPK25-psi-PA5f150, DPK25-psi-PA6f090, DPK25-psi-PA6f150, DPK25-psi-mean, ESK22-beta0-all, ESK22-beta0-dust, ESK22-beta0-noFG, ESK22-n-all, ESK22-n-dust, ESK22-n-noFG, LOUIS25-psi-mean
+[PASS] psi bands, stat only, weighted mean: 0.1917 +- 0.0318 vs published 0.192 +- 0.032
+[INFO] psi bands + Pi^PA alpha prior, achromatic beta: 0.193 +- 0.075 deg (approximate reconstruction, EB only, no PA4 f220); full analysis Table 2 Pi^PA (EB+TB): 0.212 +- 0.072
+[INFO] psi bands power law beta0 (nu/150)^n: beta0 = 0.258 deg, n = 1.61; chi2 1.17 vs achromatic 5.26 (Delta chi2 = 4.09, 1 extra param, 2.02 sigma); Delta AIC = 2.09, Delta BIC(n=4) = 2.71
+[INFO] PA5 f150 - f090 difference: 0.21 +- 0.090 (stat), +- 0.099 with Pi^PA alpha-difference prior; achromatic chi2 = 5.44 / 4.54
+[INFO] Planck PR4 power law (ESK22, all bands): beta0 = (0.29, 0.11, 0.1), n = (-0.35, 0.47, 0.48); chi2(n=0, beta0=0.29) = 0.53
+== (c) SPT anisotropy ==
+[PASS] candl SPT-3G D1 BB lite own test: -15.446949 vs -15.446949
+[PASS] numpy offset-lognormal vs candl: max |diff| = 5.15e-15 after constant -0.0000
+[INFO] CB template calibration: thin-LSS template x 0.485 reproduces the published A_CB>=0, no-A_LT-prior limit by construction (raw thin-LSS limit = 5.821e-05); Namikawa 2404.13771 abstract: exact spectrum about 2x below thin-LSS at l >~ 100, so a scale near 0.5 is expected
+[PASS] CB template scale consistent with thin-LSS overestimate (0.35-0.65): 0.485
+[INFO] SPT-3G A_CB 95% UL (no A_LT prior; calibration target): 1.199e-04 vs published < 1.20e-04
+[PASS] SPT-3G r 95% UL (A_CB >= 0, no A_LT prior): 0.259 vs published < 0.26
+[PASS] SPT-3G A_CB 95% UL (A_LT APS prior): 4.526e-05 vs published < 5.30e-05 (ratio 0.854; tol 20%; raw thin-LSS 2.195e-05)
+[PASS] SPT-3G A_CB negative allowed: -1.043e-04 +- 9.014e-05 vs published -1.13e-04 +- 9.40e-05 (tol 0.25 sigma, 15%)
+[INFO] negative-allowed extras: A_LT = 1.20 +- 0.36; P(A_CB<0) = 0.87 (published 0.89)
+[PASS] SPT-3G A_LT (A_CB >= 0): 0.670 +- 0.200 vs published 0.69 +- 0.18
+[PASS] SPT Gaussian-approx A_CB 95% UL (truncated at 0): 1.246e-04 vs published < 1.20e-04
+== 18 PASS, 0 FAIL ==
+### reproduce: OK
+exit 0
+### check_templates.py (rerun after fixing the flat-sky IR comparison; first run failed 8-15% from the L~1 flat-sky mismatch, see README)
+[PASS] Wigner-d orthogonality: max error 8.3e-15
+[PASS] isotropic limit: max |ratio-1| = 2.8e-10
+[PASS] full-sky vs flat-sky l=200: full 3.0039e-03 flat 2.9846e-03 (rel +0.645%)
+[PASS] full-sky vs flat-sky l=500: full 3.6790e-03 flat 3.6567e-03 (rel +0.609%)
+[PASS] full-sky vs flat-sky l=1000: full 2.4472e-03 flat 2.4368e-03 (rel +0.427%)
+[PASS] full-sky vs flat-sky l=2000: full 3.2468e-04 flat 3.2838e-04 (rel -1.126%)
+D_l^CB (A_CB=1) at l=80,250,450: 9.104e+00 7.005e+01 3.735e+02 muK^2
+exit 0

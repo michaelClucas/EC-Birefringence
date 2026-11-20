@@ -1,0 +1,26 @@
+id,quantity,value,err,CL,source_arxiv,location,notes
+H0,Hubble constant (km/s/Mpc),67.36,0.54,68,1807.06209,"Planck 2018 VI Table 2, TT,TE,EE+lowE+lensing",base LCDM
+Omega_m,matter density parameter,0.3153,0.0073,68,1807.06209,"Table 2, TT,TE,EE+lowE+lensing",flat LCDM
+Omega_c_h2,cold dark matter density,0.1200,0.0012,68,1807.06209,"Table 2, TT,TE,EE+lowE+lensing",
+Omega_b_h2,baryon density,0.02237,0.00015,68,1807.06209,"Table 2, TT,TE,EE+lowE+lensing",
+z_star,redshift of last scattering,1089.92,0.25,68,1807.06209,"Table 2, TT,TE,EE+lowE+lensing",
+T_cmb_K,CMB temperature today (K),2.72548,0.00057,68,0911.1955,abstract (Fixsen 2009),
+N_eff_SM,Standard-Model N_eff (theory),3.044,0.0002,-,2012.02726,abstract (Bennett et al. 2021),"theory input, not a measurement"
+N_eff_obs,N_eff from Planck+BAO,2.99,0.17,68,1807.06209,abstract,used only for the generous non-equilibrated xi_nu case (95% upper ~ mean + 2 err)
+xi_nu,common neutrino degeneracy parameter (all flavours equilibrated),0.024,0.012,68,2409.08280,"Table 4, BBN+CMB+BAO (Li & Yu, JHEP 06 (2025) 213)","assumes xi_e = xi_mu = xi_tau (flavour equilibration before BBN, their Sec. 3.1); EMPRESS He-4 drives the positive central value. 95% upper used here: value + 2 err = 0.048"
+dm21_sq,solar mass splitting (eV^2),7.49e-5,,-,2410.05380,"NuFit-6.0 Table 1, normal ordering, IC24 with SK-atm",best fit; errors not transcribed
+dm31_sq,atmospheric mass splitting (eV^2),2.513e-3,,-,2410.05380,"NuFit-6.0 Table 1, normal ordering, IC24 with SK-atm",best fit; errors not transcribed
+m_WDM_min_eV,thermal-relic WDM mass lower limit (eV),5300,,95 (2 sigma),1702.01764,abstract (Irsic et al. 2017),"Lyman-alpha XQ-100 + HIRES/MIKE; 3.5 keV if IGM temperature may jump"
+B_1Mpc_nG,primordial magnetic field (comoving) upper limit (nG),4.4,,95,1502.01594,abstract (Planck 2015 XIX),non-helical; 5.6 nG maximally helical
+Reig_Lambda_star_TeV_per_sqrt_xi,scale Lambda*/sqrt(xi_nu_e) fitting the birefringence for L = -(1/2)(1/Lambda*^2) j.A Ftilde (TeV),44,,-,2611.07578,"Eq. (3), using M/sqrt(b_J xi) = 44 (+12 -7) TeV from 2610.02667","j = nu_e-bar gamma P_L nu_e with j^0 = Delta n (relativistic); used here only as a cross-check of our time integral"
+helioscope_gag_gae_GeV,helioscope bound on g_agamma * g_ae (GeV^-1),8.1e-23,,not stated,2611.07578,"bounds paragraph of the dual-axion section, Reig ref. [45]",quoted in Reig; original paper not opened
+SumQ2_SM,sum of Q^2 over SM charged Dirac fermions incl. colour,8,,-,astro-ph/9706044,text below Eq. (12),theory input: 3 x (1 + 3 x (4/9 + 1/9))
+alpha_em,fine-structure constant,7.2973525693e-3,,-,CODATA 2018,-,constant
+m_e_eV,electron mass (eV),510998.95,,-,CODATA 2018,-,constant
+m_p_eV,proton mass (eV),938272088.16,,-,CODATA 2018,-,constant
+mu_B_eV_T,Bohr magneton (eV/T),5.7883818060e-5,,-,CODATA 2018,-,constant
+k_B_eV_K,Boltzmann constant (eV/K),8.617333262e-5,,-,CODATA 2018 (exact),-,constant
+hbar_eV_s,hbar (eV s),6.582119569e-16,,-,CODATA 2018 (exact),-,constant
+hbar_c_eV_m,hbar c (eV m),1.973269804e-7,,-,CODATA 2018 (exact),-,constant
+Mpc_km,megaparsec (km),3.0856775814913673e19,,-,IAU 2015 B2,-,constant
+MP_reduced_eV,reduced Planck mass (eV),2.435e27,,-,CONVENTIONS.md,-,kappa = 1/MP^2

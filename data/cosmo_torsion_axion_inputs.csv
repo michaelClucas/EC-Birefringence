@@ -1,0 +1,37 @@
+id,quantity,value,units,source,location,note
+H0,Hubble constant,67.36,km/s/Mpc,"Planck 2018 VI, arXiv:1807.06209","Table 2, TT,TE,EE+lowE+lensing column","+-0.54; not re-opened in task 008 (same set as data/planck2018_bestfit.csv)"
+ombh2,Omega_b h^2,0.02237,-,"Planck 2018 VI, arXiv:1807.06209","Table 2, same column","+-0.00015; not re-opened in task 008"
+omch2,Omega_c h^2,0.1200,-,"Planck 2018 VI, arXiv:1807.06209","Table 2, same column","+-0.0012; not re-opened in task 008"
+z_star,redshift of photon decoupling (optical depth 1),1089.92,-,"Planck 2018 VI, arXiv:1807.06209","Table 2, same column","+-0.25; used only as a check of the recombination code; not re-opened in task 008"
+logA,ln(1e10 A_s),3.044,-,"Planck 2018 VI, arXiv:1807.06209","Table 2, same column","+-0.014"
+Y_P,primordial helium mass fraction,0.2454,-,"Planck 2018 VI, arXiv:1807.06209","Table 2 (Y_P^BBN), same column","not re-opened in task 008; only sets n_H = (1-Y_P) n_b"
+N_eff,effective number of neutrino species,3.046,-,"Planck 2018 VI, arXiv:1807.06209","Sec. 2 baseline","massless-neutrino radiation approximation used here"
+T_CMB,CMB temperature today,2.7255,K,"Fixsen 2009, arXiv:0911.1955",abstract,"+-0.0006"
+r_BK18,tensor-to-scalar ratio upper limit,0.036,-,"BICEP/Keck 2021 (BK18), arXiv:2110.00483",abstract,"95% CL; sets H_inf upper bound via H_inf = pi M_P sqrt(r A_s / 2)"
+alpha_em,fine-structure constant (low energy),7.2973525693e-3,-,CODATA 2018,-,
+sigma_T,Thomson cross section,6.6524587321e-29,m^2,CODATA 2018,-,
+m_e,electron mass,0.51099895e6,eV,CODATA 2018,-,
+m_H,hydrogen atom mass,938.783e6,eV,"CODATA 2018 (m_p + m_e - 13.6 eV)",-,"derived: 938.272088e6 + 0.510999e6 eV"
+E_ion_H,hydrogen ionization energy,13.605693,eV,CODATA 2018 (Rydberg energy),-,"reduced-mass correction neglected (<1e-3)"
+k_B,Boltzmann constant,8.617333262e-5,eV/K,CODATA 2018 (exact),-,
+G_Newton,Newton constant,6.67430e-11,m^3 kg^-1 s^-2,CODATA 2018,-,"used for rho_crit"
+m_proton_kg,eV-to-kg conversion (1 eV/c^2),1.78266192e-36,kg,CODATA 2018 (exact),-,
+Lambda_2s1s,hydrogen 2s-1s two-photon rate,8.22458,s^-1,"RECFAST, Seager Sasselov Scott, astro-ph/9909275 and astro-ph/9912182",-,"standard value; not opened in task 008"
+lambda_Lya,Lyman-alpha wavelength,1.215682e-7,m,"RECFAST, astro-ph/9912182",-,"not opened in task 008"
+recfast_F,RECFAST fudge factor on case-B recombination,1.14,-,"Seager Sasselov Scott astro-ph/9909275",-,"not opened in task 008; multiplies the Pequignot alpha_B fit"
+pequignot_a,alpha_B fit parameter a,4.309,-,"Pequignot Petitjean Boisson 1991 A&A 251 680, as used in RECFAST astro-ph/9912182",-,"alpha_B = 1e-19 a t^b / (1 + c t^d) m^3/s, t = T/1e4 K; not opened in task 008"
+pequignot_b,alpha_B fit parameter b,-0.6166,-,same,-,
+pequignot_c,alpha_B fit parameter c,0.6703,-,same,-,
+pequignot_d,alpha_B fit parameter d,0.5300,-,same,-,
+rho_loc_DM,local dark matter density,0.4,GeV/cm^3,"as used in Shao Obata Zhang, arXiv:2512.21888","Sec. 2 (below Eq. 3)","literature range 0.3-0.6 GeV/cm^3"
+rho_crit_h2,critical density / h^2,1.05371e-5,GeV/cm^3,"PDG 2024 Astrophysical constants table",-,"= 1.87834e-26 h^2 kg m^-3"
+maxfa_QCD,QCD axion m_a f_a,5.70e15,eV^2,"Grilli di Cortona, Hardy, Pardo Vega, Villadoro, arXiv:1511.02867","Eq. (22): m_a = 5.70(7) ueV (1e12 GeV / f_a)","5.70e-6 eV x 1e21 eV; zero-temperature value (valid at recombination)"
+cgamma_QCD,QCD (pion-mixing) part of the photon anomaly coefficient,-1.92,-,"arXiv:1511.02867","Eq. (2)/(17): g_agg = (alpha/(2 pi f_a)) (E/N - 1.92(4))","applies only if the field couples to G Gtilde"
+EoverN_universal,E/N for unit axial charge on every SM fermion,2.6666667,-,"derived here (= DFSZ value 8/3 quoted in arXiv:1511.02867 Sec. 2.3)",-,"E = sum_f N_c Q_f^2 = 8 over 3 generations, N = 3; equals 2 Qbar^2 / N_q of 1502.03694 with Qbar^2 = 8, N_q = 6"
+f_CF,torsion-descended axion scale,3.98e27,eV,"Castillo-Felisola et al., arXiv:1502.03694","Eq. (24): f = kappa^-1 sqrt(8/3) ~ 4e18 GeV","computed sqrt(8/3) x 2.435e18 GeV; their kappa^2 = 8 pi G"
+Nq_CF,number of quark flavours in the gluon term,6,-,"arXiv:1502.03694","Eq. (23) and text below","effective theta = theta + N_q phi / f, so f_a = f / N_q"
+m_CF_quoted,torsion axion mass as quoted,1e-12,eV,"arXiv:1502.03694",Eq. (27),"order of magnitude; uses f (not f/N_q)"
+f_LM,Barbero-Immirzi axion scale,1.98e27,eV,"Lattanzi & Mercuri, arXiv:0911.2698","text after Eq. (4): f = 1.98e18 GeV","colour anomaly index 1 assumed (text after Eq. (6))"
+m_LM_quoted,Barbero-Immirzi axion mass as quoted,3.04e-12,eV,"arXiv:0911.2698",Eq. (5),"LO formula with f_pi = 93 MeV"
+thetai_DM_LM,misalignment angle for BI axion = all DM,1.2e-4,-,"arXiv:0911.2698","Sec. 3, below Eq. (8)","rho = 85 theta_i^2 GeV/cm^3 today (Eq. (8)); WMAP-era Omega_dm h^2 = 0.1131"
+rayleigh95_SOZ,95% upper value of local field amplitude in units of phi_0 = sqrt(2 rho_loc)/m (Rayleigh),1.39,-,"arXiv:2512.21888","Sec. 2 (below Eq. 4)","used only to reproduce their Eq. (6)"

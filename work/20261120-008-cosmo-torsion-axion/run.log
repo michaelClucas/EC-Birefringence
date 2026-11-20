@@ -1,0 +1,127 @@
+=== beta_scan.py: 0 PASS, 0 FAIL, exit 0, 127.9 s
+    m [eV]   phibar_LSS    washout         phi0       env0  beta/(g phi_i)
+ 1.000e-35   1.0000e+00  1.000e+00   9.9999e-01  1.000e+00      3.3557e-06
+ 1.778e-35   1.0000e+00  1.000e+00   9.9998e-01  1.000e+00      1.0612e-05
+ 3.162e-35   1.0000e+00  1.000e+00   9.9993e-01  9.999e-01      3.3557e-05
+ 5.623e-35   1.0000e+00  1.000e+00   9.9979e-01  9.998e-01      1.0611e-04
+ 1.000e-34   1.0000e+00  1.000e+00   9.9933e-01  9.993e-01      3.3550e-04
+ 1.778e-34   1.0000e+00  1.000e+00   9.9788e-01  9.979e-01      1.0605e-03
+ 3.162e-34   1.0000e+00  1.000e+00   9.9330e-01  9.933e-01      3.3487e-03
+ 5.623e-34   1.0000e+00  1.000e+00   9.7892e-01  9.789e-01      1.0541e-02
+ 1.000e-33   1.0000e+00  1.000e+00   9.3429e-01  9.343e-01      3.2856e-02
+ 1.778e-33   1.0000e+00  1.000e+00   8.0149e-01  8.015e-01      9.9257e-02
+ 3.162e-33   1.0000e+00  1.000e+00   4.5691e-01  4.569e-01      2.7155e-01
+ 5.623e-33   1.0000e+00  1.000e+00  -8.6320e-02  8.632e-02      5.4316e-01
+ 1.000e-32   1.0000e+00  1.000e+00   2.8555e-02  2.856e-02      4.8572e-01
+ 1.778e-32   1.0000e+00  1.000e+00  -5.1161e-02  5.116e-02      5.2558e-01
+ 3.162e-32   1.0000e+00  1.000e+00   3.3745e-02  3.374e-02      4.8313e-01
+ 5.623e-32   1.0000e+00  1.000e+00  -9.7501e-03  9.750e-03      5.0487e-01
+ 1.000e-31   1.0000e+00  1.000e+00  -3.0213e-03  3.021e-03      5.0151e-01
+ 1.778e-31   1.0000e+00  1.000e+00  -6.8213e-03  6.821e-03      5.0341e-01
+ 3.162e-31   9.9999e-01  1.000e+00   3.3167e-03  3.317e-03      4.9834e-01
+ 5.623e-31   9.9997e-01  1.000e+00          nan  2.171e-03      4.9998e-01
+ 1.000e-30   9.9990e-01  1.000e+00          nan  1.227e-03      4.9995e-01
+ 1.778e-30   9.9970e-01  9.999e-01          nan  6.948e-04      4.9985e-01
+ 3.162e-30   9.9905e-01  9.996e-01          nan  3.947e-04      4.9952e-01
+ 5.623e-30   9.9701e-01  9.989e-01          nan  2.251e-04      4.9850e-01
+ 1.000e-29   9.9075e-01  9.967e-01          nan  1.291e-04      4.9537e-01
+ 1.778e-29   9.7235e-01  9.911e-01          nan  7.455e-05      4.8618e-01
+ 3.162e-29   9.2069e-01  9.785e-01          nan  4.342e-05      4.6034e-01
+ 5.623e-29   7.7814e-01  9.489e-01          nan  2.554e-05      3.8907e-01
+ 1.000e-28   4.3147e-01  8.713e-01          nan  1.520e-05      2.1574e-01
+ 1.778e-28  -9.3935e-02  1.073e+00          nan  9.147e-06     -4.6967e-02
+ 3.162e-28  -3.4380e-02  5.363e-01          nan  5.571e-06     -1.7190e-02
+ 5.623e-28  -3.7322e-02  3.606e-01          nan  3.431e-06     -1.8661e-02
+ 1.000e-27  -9.1570e-03  2.732e-01          nan  2.135e-06     -4.5785e-03
+ 1.778e-27  -5.0545e-04  1.195e-02          nan  1.340e-06     -2.5273e-04
+ 3.162e-27  -2.8927e-06  1.111e-04          nan  8.471e-07     -1.4464e-06
+ 5.623e-27   1.1645e-09  6.106e-08          nan  5.388e-07      5.8226e-10
+ 1.000e-26  -2.3475e-10  1.919e-08          nan  3.443e-07     -1.1738e-10
+ 1.778e-26  -6.7726e-12  8.632e-10          nan  2.209e-07     -3.3863e-12
+ 3.162e-26   1.9361e-11  3.836e-09          nan  1.421e-07      9.6806e-12
+ 5.623e-26   1.7188e-11  5.281e-09          nan  9.163e-08      8.5940e-12
+ 1.000e-25  -5.5060e-12  2.619e-09          nan  5.919e-08     -2.7530e-12
+ 3.162e-25  -6.9422e-13  7.886e-10          nan  2.478e-08     -3.4711e-13
+ 1.000e-24   3.1226e-13  8.445e-10          nan  1.041e-08      1.5613e-13
+ 3.162e-24   3.6789e-11  2.365e-07          nan  4.380e-09      1.8395e-11
+ 1.000e-23  -6.0182e-12  9.185e-08          nan  1.845e-09     -3.0091e-12
+wrote scan.csv, beta_vs_m.png
+=== variants.py: 0 PASS, 0 FAIL, exit 0, 48.2 s
+== Item 1/3: torsion axion with QCD anomaly mass ==
+KR/BI, 1502.03694, f_a = f/N_q: f_a = 6.633e+17 GeV, m = 8.593e-12 eV, g = 1.307e-21 GeV^-1 (E/N - 1.92 = 0.747); local phi amplitude (all DM) = 2.885e-01 GeV; beta amplitude = 1.89e-22 rad = 1.08e-20 deg, period 4.81e-04 s; shortfall 10^19.3
+    comparison: field frozen at pi f_a would give beta = 0.078 deg (with QCD mixing), 0.279 deg (E/N only)
+BI Nieh-Yan, 0911.2698, f_a = f: f_a = 1.980e+18 GeV, m = 2.879e-12 eV, g = 4.380e-22 GeV^-1 (E/N - 1.92 = 0.747); local phi amplitude (all DM) = 8.612e-01 GeV; beta amplitude = 1.89e-22 rad = 1.08e-20 deg, period 1.44e-03 s; shortfall 10^19.3
+    comparison: field frozen at pi f_a would give beta = 0.078 deg (with QCD mixing), 0.279 deg (E/N only)
+KR/BI, 1502.03694, f_a = f (as in their Eq. 27): f_a = 3.980e+18 GeV, m = 1.432e-12 eV, g = 2.179e-22 GeV^-1 (E/N - 1.92 = 0.747); local phi amplitude (all DM) = 1.731e+00 GeV; beta amplitude = 1.89e-22 rad = 1.08e-20 deg, period 2.89e-03 s; shortfall 10^19.3
+    comparison: field frozen at pi f_a would give beta = 0.078 deg (with QCD mixing), 0.279 deg (E/N only)
+f_a-independent amplitude alpha|E/N-1.92| sqrt(2 rho_loc)/(4 pi m_a f_a) = 1.886e-22 rad
+
+== Item 4: generic ALP, homogeneous field, LSS + observer term ==
+    m [eV]        F    cap phi_i,max [GeV]  g_min [GeV^-1] (g phi_i)_needed
+ 1.000e-35 6.711e-06  0.050       9.855e+19       1.135e-17        1.118e+03
+ 5.623e-35 2.122e-04  0.050       1.753e+19       2.018e-18        3.536e+01
+ 3.162e-34 6.697e-03  0.050       3.132e+18       3.578e-19        1.121e+00
+ 1.778e-33 1.985e-01  0.050       6.506e+17       5.811e-20        3.781e-02
+ 1.000e-32 9.714e-01  0.050       8.573e+17       9.012e-21        7.726e-03
+ 5.623e-32 1.010e+00  0.050       8.018e+17       9.270e-21        7.432e-03
+ 3.162e-31 9.967e-01  0.050       8.077e+17       9.322e-21        7.530e-03
+ 1.778e-30 1.000e+00  0.010       3.567e+17       2.103e-20        7.502e-03
+ 1.000e-29 9.909e-01  0.010       3.414e+17       2.219e-20        7.574e-03
+ 5.623e-29 7.782e-01  0.010       3.068e+17       3.143e-20        9.644e-03
+ 3.162e-28 3.439e-02  0.050       5.594e+17       3.902e-19        2.183e-01
+lowest required g: 7.36e-21 GeV^-1 at m = 5.62e-33 eV (phi_i = 9.39e+17 GeV = 0.39 M_P); Chandra bound 8.0e-13 GeV^-1
+m range with g_min < Chandra: 1.00e-35 .. 1.00e-27 eV
+(g f)_min if phi_i <= pi f: 2 beta/(pi F) = 2.20e-03 (dimensionless)
+
+2512.21888 regime (m=1e-24 eV, all DM): phi_0 = 2.479e+12 GeV, g_req = 2.178e-15 GeV^-1, washout g_max = 9.598e-16 GeV^-1 (x_max = 0.1524); ratio 2.27
+
+== Item 4: torsion-fixed coupling g = alpha Qbar^2/(pi f) without a QCD mass ==
+g_T = 4.669e-21 GeV^-1, phi_i <= pi f/N_q: max beta = 0.136 deg at m = 5.62e-33 eV; beta >= 0.141 deg for m in none
+g_T = 4.669e-21 GeV^-1, phi_i <= pi f: max beta = 0.136 deg at m = 5.62e-33 eV; beta >= 0.141 deg for m in none
+wrote g_required.png, variants_summary.csv
+=== anisotropy.py: 0 PASS, 0 FAIL, exit 0, 32.9 s
+tau* = 0.0630/H0, D = 3.1218/H0, H_inf,max (BK18) = 4.70e+13 GeV
+S_L (horizon-entry suppression, massless): L=2: 0.997, L=10: 0.959, L=30: 0.776, L=50: 0.553, L=100: 0.129, L=200: 0.015, L=400: 0.004
+SPT-3G A_CB < 1.2e-04 (95%)
+    m [eV]       R       F  (H/phi_i)_max (SL=1)  phi_i [GeV]  A_CB at H_max
+ 1.000e-35   1.000   0.000             1.231e-04    9.855e+19      1.802e-09
+ 1.000e-34   1.000   0.001             1.231e-02    9.860e+18      1.801e-11
+ 1.000e-33   1.000   0.066             1.205e+00    1.036e+18      1.701e-13
+ 1.000e-32   1.000   0.971             1.782e+01    8.573e+17      1.137e-15
+ 1.000e-31   1.000   1.003             1.840e+01    8.177e+17      1.172e-15
+ 1.000e-30   1.000   1.001             1.836e+01    3.593e+17      6.094e-15
+ 1.000e-29   0.991   0.991             1.834e+01    3.414e+17      6.765e-15
+ 1.000e-28   0.431   0.431             1.834e+01    2.901e+17      9.373e-15
+ 1.000e-27  -0.009   0.009             1.835e+01    4.616e+17      3.699e-15
+A_CB(H_inf, phi_i) = (beta R/F)^2 (H_inf/(2 pi phi_i))^2 S_L; plateau case R = F = 1: A_CB = 3.567e-07 (H_inf/phi_i)^2
+=== check_ode.py: 9 PASS, 0 FAIL, exit 0, 120.8 s
+PASS: conformal eq. = a^2 x (phi_tt + 3H phi_t + m^2 phi) -- sympy simplify
+PASS: slow-roll limit today (m = 1e-35 eV): beta/(g phi_i) = mu^2 [I(tau0) - I(tau*)]/2 -- ODE 1-phi0 = 6.711447e-06, analytic 6.711461e-06, rel diff 2.1e-06
+PASS: slow-roll beta at LSS-to-today -- ODE 3.355723e-06, analytic 3.355730e-06
+PASS: radiation era vs Bessel J_{1/4} solution -- max |diff| = 2.2e-12
+PASS: WKB (switch at m/H=300) vs full ODE, m=1e-25 eV, z=1300..900 -- max |diff|/envelope = 2.3e-04
+PASS: rho a^3 conserved after oscillation onset (m=1e-29 eV, a=0.5 vs 1) -- ratio 0.9999
+PASS: Peebles+fudge: kappa(z)=1 vs Planck 2018 z* -- 1090.9 vs 1089.92
+PASS: visibility peak within 2% of z* -- peak z = 1079.6
+PASS: visibility FWHM in z plausible (150-250) -- FWHM = 203
+=== check_numbers.py: 12 PASS, 0 FAIL, exit 0, 79.8 s
+PASS: f_CF = sqrt(8/3) M_P matches data value (~4e18 GeV) -- 3.9763e+18 GeV
+PASS: E/N = 8/3 for universal unit charges -- E = 8, N = 3
+PASS: 2 Qbar^2 / N_q = E/N (1502.03694 normalisation f_a = f/N_q) -- N_q = 6
+PASS: E/N stored in data file -- 
+PASS: beta_amp = g sqrt(2 rho)/(2m) independent of f_a when m f_a = const -- beta = sqrt(2)*alpha*c*sqrt(rho)/(4*pi*K)
+PASS: m(f_LM) from 1511.02867 Eq. (22) vs 0911.2698 Eq. (5) quoted 3.04e-12 eV -- 2.879e-12 eV
+PASS: m(f_CF) is O(1e-12 eV) as quoted in 1502.03694 Eq. (27) -- 1.432e-12 eV
+PASS: 2512.21888 Eq. (4): phi_0 = 2.5e12 GeV -- 2.479e+12 GeV
+PASS: 2512.21888 Eq. (6): g_min = 2.16e-15 GeV^-1 -- 2.178e-15
+PASS: 2512.21888 Eq. (12): washout g_max = 9.6e-16 GeV^-1 -- 9.598e-16 (Omega_c h^2 = 0.12 vs their 0.11933)
+PASS: B1 -> -1/(3 tau) for heavy fermions -- series -t/3
+PASS: derivative-coupling photon term suppressed by (H_LSS/m_e)^2/12 < 1e-60 -- 3.5e-70
+=== check_anisotropy.py: 4 PASS, 0 FAIL, exit 0, 60.3 s
+PASS: A_CB in terms of beta -- sympy
+PASS: S_L = 1 for T(k) = 1 (L = 2, 10, 50) -- [0.99999983 0.99999658 0.99992032]
+PASS: T(k tau* = 1e-3) = 1 -- 1.000000
+PASS: |T(k tau* = 200)| < 0.02 (decays inside horizon) -- -2.92e-03
+
+TOTAL: 25 PASS, 0 FAIL
+ALL PASS

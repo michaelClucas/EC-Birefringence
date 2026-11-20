@@ -1,0 +1,8 @@
+id,quantity,value,err,source,location,note
+ombh2,Omega_b h^2,0.02237,0.00015,"Planck 2018 VI, arXiv:1807.06209","Table 2, TT,TE,EE+lowE+lensing column","not re-opened in task 010; standard base-LCDM best-fit set; used only for BB templates"
+omch2,Omega_c h^2,0.1200,0.0012,"Planck 2018 VI, arXiv:1807.06209","Table 2, same column",
+H0,Hubble constant,67.36,0.54,"Planck 2018 VI, arXiv:1807.06209","Table 2, same column",km/s/Mpc
+tau,reionization optical depth,0.0544,0.0073,"Planck 2018 VI, arXiv:1807.06209","Table 2, same column",
+logA,ln(1e10 A_s),3.044,0.014,"Planck 2018 VI, arXiv:1807.06209","Table 2, same column",
+ns,scalar spectral index,0.9649,0.0042,"Planck 2018 VI, arXiv:1807.06209","Table 2, same column",
+mnu,sum of neutrino masses,0.06,,"Planck 2018 VI, arXiv:1807.06209","Sec. 2 baseline assumption",eV; one massive eigenstate

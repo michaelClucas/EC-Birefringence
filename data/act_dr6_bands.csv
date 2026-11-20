@@ -1,0 +1,6 @@
+array_band,PA,nu_nominal_GHz,nu_low_GHz,nu_high_GHz,source,location,note
+PA4f220,PA4,220,182,277,"ACT DR6, arXiv:2509.13654",Sec. II,"nominal = band label; low/high = band edges quoted in 2509.13654"
+PA5f090,PA5,90,77,112,"ACT DR6, arXiv:2509.13654",Sec. II,
+PA5f150,PA5,150,124,172,"ACT DR6, arXiv:2509.13654",Sec. II,
+PA6f090,PA6,90,77,112,"ACT DR6, arXiv:2509.13654",Sec. II,
+PA6f150,PA6,150,124,172,"ACT DR6, arXiv:2509.13654",Sec. II,

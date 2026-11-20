@@ -1,0 +1,4 @@
+id,quantity,value,err,units,CL,source,location,note
+gamma_minus_1_Cassini,PPN gamma - 1 (Shapiro delay),2.1e-5,2.3e-5,-,68,"Bertotti Iess Tortora 2003 (Cassini), as tabulated in Will, Living Rev. Rel. 17 (2014) 4, arXiv:1403.7377","Sec. 4.1.2 (text) and Table 4","Will: scalar-tensor theories need omega_BD > 40000. gamma = (1+omega)/(2+omega), Sec. 3.3.2 and Eq. (39) text: 1/(2+omega) = 2 alpha0^2/(1+alpha0^2)"
+Nnu_BBN,effective number of neutrino species at BBN,2.86,0.15,-,68,"Fields, Olive, Yeh, Young, arXiv:1912.01132",abstract,"BBN with Planck eta, lithium set aside"
+Neff_Planck_BAO,N_eff (CMB+BAO),2.99,0.17,-,68,"Planck 2018 VI, arXiv:1807.06209",abstract,"Planck TT,TE,EE+lowE+lensing+BAO"

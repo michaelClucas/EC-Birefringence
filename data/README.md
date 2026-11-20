@@ -30,3 +30,11 @@ Written by task `work/20261120-005-bounds`. Narrative and mapping conventions: `
 `bounds.csv` columns: `id` (prefix F fermion SME, T torsion, P photon CFJ, A axion-photon, U ultralight axion, K KK-specific, C EC cosmology), `quantity`, `symbol`, `value_published` (as printed; `a +- b`, `< x`, `> x`, or an interval), `units_published`, `value_eV` (converted; dimensionless quantities unchanged; couplings in eV^-1), `CL`, `sign` (one-sided upper/lower or two-sided), `experiment`, `arxiv`, `location_in_paper` ("abstract" = only the arXiv abstract was opened; "0801.0287v19 Table Dxx" = read from the Kostelecky-Russell Data Tables), `conversion_note`.
 
 `bounds_inputs.csv`: unit constants (exact SI/IAU definitions), Planck 2018 CMB dipole and H0/Omega_m used for derived bounds, and two theory inputs (g*, T_BBN) marked as such.
+
+## planck2018_bestfit.csv, act_dr6_bands.csv
+
+Written by task `work/20261120-010-data-likelihood`.
+
+- `planck2018_bestfit.csv`: Planck 2018 base-LCDM parameters (arXiv:1807.06209 Table 2, TT,TE,EE+lowE+lensing column), used only to compute the BB templates (r, lensing, anisotropic-birefringence) for the SPT likelihood in `src/templates.py`. Values not re-opened in task 010.
+- `act_dr6_bands.csv`: ACT DR6 polarized array-bands with nominal frequency (the band label) and band edges quoted in arXiv:2509.13654 Sec. II. Used by the beta(nu) likelihoods in `src/likelihood.py`. Effective band centres are not recorded; the nominal labels are an approximation for chromatic fits.
+- Row `DPK25-alphaprior-corr` (0.9) in `birefringence_measurements.csv`: correlation of the Pi^PA alpha priors within a PA (2509.13654 Sec. II), added in task 010.

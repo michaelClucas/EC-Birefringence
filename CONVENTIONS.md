@@ -22,7 +22,7 @@ Fixed by the overseer in iteration 1. Every derivation and every imported result
 - F_{μν} = ∂_μ A_ν - ∂_ν A_μ. Maxwell Lagrangian L = -¼ F_{μν}F^{μν}.
 - Dual: F̃^{μν} = ½ ε^{μνρσ} F_{ρσ}.
 - Chern-Simons baseline: L ⊃ -(g_{φγ}/4) φ F_{μν} F̃^{μν}. Carroll-Field-Jackiw: L ⊃ -½ p_μ A_ν F̃^{μν}. The two are equivalent up to a total derivative with **p_μ = -g_{φγ} ∂_μ φ** (corrected iter 1; checked in work/20261120-003-theory-ec-photon/check_cfj_rotation.py).
-- Rotation angle β: the sign convention of arXiv:2509.13654 (Minami-Komatsu): β > 0 is clockwise on the sky as seen by the observer (IAU). Wording and polarization convention in `literature/conventions_beta.md`. Note: Komatsu's review uses ε^{0123} = +1/√(-g), opposite to ours, so formulas imported from it flip sign.
+- Rotation angle β: the sign convention of arXiv:2509.13654 (Minami-Komatsu). The viewpoint ("β > 0 is clockwise on the sky as seen by the observer", IAU) is stated in Komatsu's review arXiv:2202.13919, not in 2509.13654 (skeptic, work/20261120-006). Wording and polarization convention in `literature/conventions_beta.md`. Note: Komatsu's review uses ε^{0123} = +1/√(-g), opposite to ours, so formulas imported from it flip sign.
 - **In our conventions:** a photon with CFJ vector p gives β = +½∫p_τ dτ (conformal time, last scattering to today), and L ⊃ -(g/4)φFF̃ gives **β = -(g_{φγ}/2)(φ_0 - φ_LSS)**. Derived and checked numerically (field evolution) in work/20261120-003-theory-ec-photon (derivation Sec. on CFJ rotation).
 - Angles: β is reported in degrees in `data/`; all code works in radians internally and converts on input/output.
 

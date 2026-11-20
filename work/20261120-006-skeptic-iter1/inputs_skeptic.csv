@@ -1,0 +1,7 @@
+id,quantity,value,source,note
+T_cmb,CMB temperature today (K),2.7255,"Fixsen 2009, arXiv:0911.1955",measured; not in data/ yet
+kB,Boltzmann constant (eV/K),8.617333262e-5,"CODATA 2018 (exact)",
+z_star,redshift of last scattering,1089.92,"Planck 2018 VI, arXiv:1807.06209, Table 2 (TT,TE,EE+lowE+lensing)",measured; not in data/ yet
+N_eff,effective neutrino number,3.046,"standard-model value",theory input
+xi_nu_generous,neutrino degeneracy parameter used by 003,0.1,"placeholder in work/20261120-003 inputs.json","generous vs BBN+CMB fits of order 0.05 (e.g. EMPRESS He-4, arXiv:2203.09617; not opened here)"
+xi_nu_Neff_extreme,deliberately extreme neutrino degeneracy,1.0,"stress test, not a bound","roughly where Delta N_eff from degeneracy becomes O(1)"
