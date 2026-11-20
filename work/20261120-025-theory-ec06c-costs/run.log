@@ -1,0 +1,165 @@
+=== check_ft_lorentz.py: 19 PASS, 0 FAIL, exit 0, 21.6 s
+   rotation omega(x,y): T_mu = [3*Derivative(a(tau), tau)/a(tau), -Derivative(omega(x, y), y), Derivative(omega(x, y), x), 0], T_sc = 6*Derivative(a(tau), tau)**2/a(tau)**4
+PASS: L1a omega(x,y): same metric, same T_tau = 3a'/a, same torsion scalar
+   rotation omega(x,y): Y = g_nk S_m^(k tau) change = [[0, Derivative(omega(x, y), y)/2, -Derivative(omega(x, y), x)/2, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+PASS: L1b omega(x,y): antisymmetric S_[tau i]^tau = (d_y w, -d_x w)/2: f(T) Lorentz eq forces grad w = 0
+PASS: L1c omega(x,y): T_i = (-d_y w, d_x w, 0), (dT)_xy = +(d_x^2+d_y^2) w: not closed
+   rotation omega(tau,x,y,z): T_mu = [3*Derivative(a(tau), tau)/a(tau), -Derivative(omega(tau, x, y, z), y), Derivative(omega(tau, x, y, z), x), 0], T_sc = 6*Derivative(a(tau), tau)**2/a(tau)**4
+PASS: L1a omega(tau,x,y,z): same metric, same T_tau = 3a'/a, same torsion scalar
+   rotation omega(tau,x,y,z): Y = g_nk S_m^(k tau) change = [[0, Derivative(omega(tau, x, y, z), y)/2, -Derivative(omega(tau, x, y, z), x)/2, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+PASS: L1b omega(tau,x,y,z): antisymmetric S_[tau i]^tau = (d_y w, -d_x w)/2: f(T) Lorentz eq forces grad w = 0
+PASS: L1c omega(tau,x,y,z): T_i = (-d_y w, d_x w, 0), (dT)_xy = +(d_x^2+d_y^2) w: not closed
+PASS: L1d CFJ contribution to the omega (rotation) equation: (xi/2)(d_y K^x - d_x K^y) (photon source for the frame) (xi*(-Derivative(Kx(tau, x, y, z), y) + Derivative(Ky(tau, x, y, z), x))/2)
+PASS: L2a background torsion scalar = 6 a'^2/a^4 = 6H^2
+   delta_1 T_sc = 4*((-3*Derivative(Psi(tau, x), tau) - Derivative(eta(tau, x), x))*a(tau) - 3*Phi(tau, x)*Derivative(a(tau), tau))*Derivative(a(tau), tau)/a(tau)**4
+   delta_1 T_mu = [-3*Derivative(Psi(tau, x), tau) - Derivative(eta(tau, x), x), Derivative(Phi(tau, x), x) - 2*Derivative(Psi(tau, x), x) - Derivative(eta(tau, x), tau), 0, 0]
+PASS: L2b boosted trace: dT_tau = -3Psi' - eta_x, dT_x = (Phi-2Psi)_x - eta'
+   (dT)_{tau x} = -Derivative(eta(tau, x), (tau, 2)) + Derivative(eta(tau, x), (x, 2)) + Derivative(Phi(tau, x), tau, x) + Derivative(Psi(tau, x), tau, x)
+PASS: L2c TEGR (F2 = 0, F1 const) gives no eta equation (frame is pure gauge)
+   eta equation / f_TT = -16*(-3*a(tau)*Derivative(Psi(tau, x), x)*Derivative(a(tau), (tau, 2)) + a(tau)*Derivative(a(tau), tau)*Derivative(eta(tau, x), (x, 2)) + 3*a(tau)*Derivative(a(tau), tau)*Derivative(Psi(tau, x), tau, x) + 3*Derivative(Phi(tau, x), x)*Derivative(a(tau), tau)**2 + 6*Derivative(Psi(tau, x), x)*Derivative(a(tau), tau)**2)*Derivative(a(tau), tau)/a(tau)**3
+PASS: L2d f(T): eta equation is proportional to f_TT
+PASS: L2e eta_xx is fixed uniquely by Phi, Psi (no free function once f_TT != 0)
+PASS: L2f eta_xx = d_x[-3Psi' + 3(a''/a')Psi - 3(a'/a)(Phi + 2Psi)]
+   matter era: E(tau) = [-15*phi0/(k*tau)]
+   matter era, on the f(T) solution: (dT)_{tau x} = 15*phi0*(k**2*tau**2 + 2)*sin(k*x)/(k*tau**3)
+PASS: L2g matter era, static Phi = Psi: (dT)_{tau x} = 15 k phi0 sin(kx)/tau (1 + 2/(k tau)^2) != 0
+PASS: L2h (cross-check with 022 T5) at eta = 0, static Phi = Psi, dT = 0
+PASS: L3a tensor mode: delta_1 T_sc = 0 and delta_1 T_mu = 0
+   tensor EL: (48*(h(tau, z)*Derivative(a(tau), (tau, 2)) - Derivative(a(tau), tau)*Derivative(h(tau, z), tau))*F2(tau)*a(tau)*Derivative(a(tau), tau)**2 + (2*F1(tau)*a(tau)**2*Derivative(h(tau, z), (tau, 2)) - 2*F1(tau)*a(tau)**2*Derivative(h(tau, z), (z, 2)) + 4*F1(tau)*a(tau)*h(tau, z)*Derivative(a(tau), (tau, 2)) + 4*F1(tau)*a(tau)*Derivative(a(tau), tau)*Derivative(h(tau, z), tau) + 4*F1(tau)*h(tau, z)*Derivative(a(tau), tau)**2 - a(tau)**4*f0(tau)*h(tau, z))*a(tau)**4 + 24*F2(tau)*a(tau)**2*Derivative(a(tau), tau)*Derivative(a(tau), (tau, 2))*Derivative(h(tau, z), tau) - 96*F2(tau)*h(tau, z)*Derivative(a(tau), tau)**4)/(2*a(tau)**4)
+PASS: L3b c_T^2 = -coef(h_zz)/coef(h_tautau) = 1 for any f(T)
+PASS: L3c friction = 2a'/a + f_TT Tbar'/f_T (only the damping changes) (2*(F1(tau)*a(tau)**4 + 6*F2(tau)*a(tau)*Derivative(a(tau), (tau, 2)) - 12*F2(tau)*Derivative(a(tau), tau)**2)*Derivative(a(tau), tau)/(F1(tau)*a(tau)**5))
+PASS: L4 static Phi = Psi = P: torsion scalar = +2 eps^2 |grad P|^2 (same sign as +6H^2) (2*epsilon**2*(Derivative(P(x, y, z), x)**2 + Derivative(P(x, y, z), y)**2 + Derivative(P(x, y, z), z)**2))
+== 19 PASS, 0 FAIL ==
+=== check_stueckelberg.py: 5 PASS, 0 FAIL, exit 0, 171.4 s
+PASS: S1 L(A - d sigma) - L(A) + 1/4 sigma (dp).F~ is a total derivative (all Euler-Lagrange terms vanish)
+   det M = m**2*(k**2 + m**2 - omega**2)*(-k**2 + k*p0 - m**2 + omega**2)*(k**2 + k*p0 + m**2 - omega**2)
+PASS: S2a det contains the transverse factor (w^2 - k^2 - m^2)^2 - p0^2 k^2
+PASS: S2b min_k w^2 = m^2 - p0^2/4 (stable iff m > |p0|/2; m = 0 gives a tachyonic band 0 < k < p0) (m**2 - p0**2/4)
+   mixing Lagrangian: D*pi(t, z)*Derivative(Ay(t, z), z)/(2*m)
+PASS: S3a mixing = c * pi * d_z A_y with |c| = |D|/(2m) (off-diagonal element D k/(2m) for a mode e^{ikz}) (c = D/(2*m))
+   numeric converted amplitude 0.09980, analytic sin(D k L/(4 m w)) = 0.09981, D L/(4m) = 0.10000
+PASS: S3b degenerate mixing: converted amplitude = sin(D k L/(4 m w)) ~ |D| L/(4m) (numeric, 1%)
+== 5 PASS, 0 FAIL ==
+=== ec06c_numbers.py: 10 PASS, 0 FAIL, exit 0, 9.0 s
+N1 xi (flat f(T), eps_T = 3) = 3.576e-04
+PASS: N1 xi = 3.6e-4 (022)
+PASS: N2a C(matter era) = -7.5 (matches L2g: 15/tau = 7.5 aH)
+N2 C(0) = -4.419, C(z*) = -7.500
+N2 Sun surface   : Phi = 2.12e-06, |grad Phi| = 6.02e-22 eV, |dp| static = 1.4e-57 eV^2, moving (v = 370 km/s) = 7.5e-44 eV^2 -> m_min(A<0.1) = 6.6e-28 eV
+N2 Sun at 1 au   : Phi = 9.87e-09, |grad Phi| = 1.30e-26 eV, |dp| static = 3.0e-62 eV^2, moving (v = 370 km/s) = 7.6e-51 eV^2 -> m_min(A<0.1) = 1.4e-32 eV
+N2 Earth surface : Phi = 6.95e-10, |grad Phi| = 2.15e-23 eV, |dp| static = 4.9e-59 eV^2, moving (v = 370 km/s) = 2.9e-43 eV^2 -> m_min(A<0.1) = 2.4e-29 eV
+N2 Galaxy at Sun : Phi = 5.83e-07, |grad Phi| = 4.59e-34 eV, |dp| static = 1.0e-69 eV^2, moving (v = 370 km/s) = 1.6e-67 eV^2 -> m_min(A<0.1) = 5.1e-40 eV
+PASS: N2b moving-source term dominates the static (C H) term for every local source
+N2 cosmological z =      0: H = 1.44e-33 eV, Phi = 2.7e-05: A*m = 1.6e-39 eV
+N2 cosmological z =   1090: H = 2.91e-29 eV, Phi = 2.7e-05: A*m = 5.4e-35 eV
+N3 m_min from conversion: local 6.6e-28 eV, cosmological 5.4e-34 eV (vacuum, degenerate mixing)
+N3 CFJ tachyon removal m > p/2: today 7.7e-37 eV, at z* 1.6e-32 eV
+N3 window: 6.6e-28 eV < m_gamma < 1e-18 eV (PDG) or < 1e-26 eV (Proca galactic field)
+PASS: N3a a photon-mass window exists below the PDG limit
+PASS: N3b the window survives the Proca galactic-field limit 1e-26 eV (lower end 6.6e-28)
+N3 naive cutoff (m M_P^2/xi)^(1/3) at m = 7e-28 eV: 2.2e+10 eV
+N3 naive cutoff (m M_P^2/xi)^(1/3) at m = 1e-26 eV: 5.5e+10 eV
+N3 naive cutoff (m M_P^2/xi)^(1/3) at m = 1e-18 eV: 2.5e+13 eV
+N3 max growth of the m = 0 tachyonic band over 60 e-folds: exp(0.032)
+N4 q ~ 16 pi G p = 1.0e-97 m vs LAGEOS q < 2.0e+06 m: margin 1.9e+103
+PASS: N4a an O(kappa^2 p) gravitational CS coefficient is far below LAGEOS/GP-B
+N4 GW amplitude birefringence estimate q H0 k = 1.6e-129 /m vs 2.4e-26 /m (2101.11153)
+PASS: N4b GW birefringence from that coefficient is negligible
+N5 ln(T_obs/T_*) cosmological observer  = -19.83
+N5 ln(T_obs/T_*) ground (ACT)           = +25.93
+N5 ln(T_obs/T_*) L2 (Planck)            = +11.11
+N5 beta(ground)/beta(L2) = 2.33; sign relative to the cosmological-observer value: flipped
+PASS: N5a ln T completion: local field dominates the observer endpoint (|ln(T_ground/T0)| > |ln(T0/T*)|)
+PASS: N5b ln T completion: ground and L2 observers differ by more than a factor 2
+N5 (c2) M > xi/g_CAST = 6.2e+15 eV = 6.2e+06 GeV; M/H_inf > 2.6e-03 (SPT-3G A_CB)
+N5 (c2) M^2 T.T correction to the teleparallel action relative to M_P^2: 6.4e-24 at the CAST minimum
+PASS: N5c (c2) both lower limits on M are far below M_P (correction to gravity negligible)
+== 10 PASS, 0 FAIL ==
+=== sny_background.py: 29 PASS, 0 FAIL, exit 0, 14.5 s
+PASS: Y1 case II oscillation period 2 pi sqrt(-a1 b/(2 a0 mu)) = 3.63 with a1 = mu + a0 (SNY Eq. 53) (3.628)
+PASS: Y2 case III: rho(t0) from the constraint = 0.83 (SNY Sec. V.C) (0.828)
+   case III: rho0 = 0.828; backward integration reached z = 4.72e+03 (stop: |H|+|Phi| > 1e8 or t = -5)
+     z =     1.0: t = 0.3099, H = 1.76, Phi = 1.735, Phi/H = 0.986, Y = 8.519, constraint residual = 2.1e-10
+PASS: Y3 case III z = 1: Friedmann constraint preserved (< 1e-5)
+PASS: Y4 case III z = 1: int_t^t0 Phi dt = -(3/2) ln(Y0/Y) (closed-form beta) (0.47664 vs 0.47664)
+     z =    10.0: t = 0.1154, H = 120.5, Phi = 336.1, Phi/H = 2.790, Y = 115.5, constraint residual = -2.6e-09
+PASS: Y3 case III z = 10: Friedmann constraint preserved (< 1e-5)
+PASS: Y4 case III z = 10: int_t^t0 Phi dt = -(3/2) ln(Y0/Y) (closed-form beta) (4.38685 vs 4.38685)
+     z =   100.0: t = 0.1115, H = 1.129e+04, Phi = 3.363e+04, Phi/H = 2.978, Y = 8628, constraint residual = -2.1e-07
+PASS: Y3 case III z = 100: Friedmann constraint preserved (< 1e-5)
+PASS: Y4 case III z = 100: int_t^t0 Phi dt = -(3/2) ln(Y0/Y) (closed-form beta) (10.8572 vs 10.8572)
+     z =  1089.9: t = 0.1114, H = 1.332e+06, Phi = 3.993e+06, Phi/H = 2.998, Y = 9.936e+05, constraint residual = -4.6e-06
+PASS: Y3 case III z = 1090: Friedmann constraint preserved (< 1e-5)
+PASS: Y4 case III z = 1090: int_t^t0 Phi dt = -(3/2) ln(Y0/Y) (closed-form beta) (17.9767 vs 17.9767)
+   case IV: rho0 = 1.656; backward integration reached z = 4.88e+03 (stop: |H|+|Phi| > 1e8 or t = -5)
+     z =     1.0: t = 0.3239, H = 2.098, Phi = 1.26, Phi/H = 0.601, Y = 11.47, constraint residual = 1.3e-10
+PASS: Y3 case IV z = 1: Friedmann constraint preserved (< 1e-5)
+PASS: Y4 case IV z = 1: int_t^t0 Phi dt = -(3/2) ln(Y0/Y) (closed-form beta) (0.0229042 vs 0.0229042)
+     z =    10.0: t = 0.1457, H = 116.4, Phi = 303, Phi/H = 2.604, Y = 105, constraint residual = -8.2e-09
+PASS: Y3 case IV z = 10: Friedmann constraint preserved (< 1e-5)
+PASS: Y4 case IV z = 10: int_t^t0 Phi dt = -(3/2) ln(Y0/Y) (closed-form beta) (3.34326 vs 3.34326)
+     z =   100.0: t = 0.1416, H = 1.063e+04, Phi = 3.141e+04, Phi/H = 2.955, Y = 6970, constraint residual = -3.1e-07
+PASS: Y3 case IV z = 100: Friedmann constraint preserved (< 1e-5)
+PASS: Y4 case IV z = 100: int_t^t0 Phi dt = -(3/2) ln(Y0/Y) (closed-form beta) (9.63684 vs 9.63684)
+     z =  1089.9: t = 0.1415, H = 1.25e+06, Phi = 3.746e+06, Phi/H = 2.996, Y = 7.915e+05, constraint residual = -6.3e-06
+PASS: Y3 case IV z = 1090: Friedmann constraint preserved (< 1e-5)
+PASS: Y4 case IV z = 1090: int_t^t0 Phi dt = -(3/2) ln(Y0/Y) (closed-form beta) (16.7353 vs 16.7353)
+   case V: rho0 = 0.786; backward integration reached z = 6.65e+03 (stop: |H|+|Phi| > 1e8 or t = -5)
+     z =     1.0: t = 0.4717, H = 1.87, Phi = 1.884, Phi/H = 1.007, Y = 15.79, constraint residual = -6.6e-11
+PASS: Y3 case V z = 1: Friedmann constraint preserved (< 1e-5)
+PASS: Y4 case V z = 1: int_t^t0 Phi dt = -(3/2) ln(Y0/Y) (closed-form beta) (0.700147 vs 0.700147)
+     z =    10.0: t = 0.1979, H = 61.86, Phi = 158.3, Phi/H = 2.559, Y = 135, constraint residual = -1.0e-08
+PASS: Y3 case V z = 10: Friedmann constraint preserved (< 1e-5)
+PASS: Y4 case V z = 10: int_t^t0 Phi dt = -(3/2) ln(Y0/Y) (closed-form beta) (3.91961 vs 3.91961)
+     z =   100.0: t = 0.1902, H = 5701, Phi = 1.682e+04, Phi/H = 2.951, Y = 8744, constraint residual = -3.7e-07
+PASS: Y3 case V z = 100: Friedmann constraint preserved (< 1e-5)
+PASS: Y4 case V z = 100: int_t^t0 Phi dt = -(3/2) ln(Y0/Y) (closed-form beta) (10.1754 vs 10.1754)
+     z =  1089.9: t = 0.1901, H = 6.716e+05, Phi = 2.012e+06, Phi/H = 2.995, Y = 9.904e+05, constraint residual = -7.6e-06
+PASS: Y3 case V z = 1090: Friedmann constraint preserved (< 1e-5)
+PASS: Y4 case V z = 1090: int_t^t0 Phi dt = -(3/2) ln(Y0/Y) (closed-form beta) (17.2701 vs 17.2701)
+
+   beta/xi = (1/2) int Phi dt from z to today, and xi for beta = 0.215 deg:
+     case III z =     1.0: beta/xi = +0.2383 rad, xi = +0.0157
+     case III z =    10.0: beta/xi = +2.1934 rad, xi = +0.00171
+     case III z =   100.0: beta/xi = +5.4286 rad, xi = +0.000691
+     case III z =  1089.9: beta/xi = +8.9884 rad, xi = +0.000417
+     case IV z =     1.0: beta/xi = +0.0115 rad, xi = +0.328
+     case IV z =    10.0: beta/xi = +1.6716 rad, xi = +0.00224
+     case IV z =   100.0: beta/xi = +4.8184 rad, xi = +0.000779
+     case IV z =  1089.9: beta/xi = +8.3677 rad, xi = +0.000448
+     case V z =     1.0: beta/xi = +0.3501 rad, xi = +0.0107
+     case V z =    10.0: beta/xi = +1.9598 rad, xi = +0.00191
+     case V z =   100.0: beta/xi = +5.0877 rad, xi = +0.000738
+     case V z =  1089.9: beta/xi = +8.6350 rad, xi = +0.000435
+PASS: Y5 at least one SNY case reaches z* in its own (matter-only) equations (3 of 3)
+     case III z =     1.0: H_SNY/H_LCDM = 0.983
+     case III z =    10.0: H_SNY/H_LCDM = 5.88
+     case III z =   100.0: H_SNY/H_LCDM = 19.8
+     case III z =  1089.9: H_SNY/H_LCDM = 65.8
+     case IV z =     1.0: H_SNY/H_LCDM = 1.17
+     case IV z =    10.0: H_SNY/H_LCDM = 5.68
+     case IV z =   100.0: H_SNY/H_LCDM = 18.6
+     case IV z =  1089.9: H_SNY/H_LCDM = 61.8
+     case V z =     1.0: H_SNY/H_LCDM = 1.04
+     case V z =    10.0: H_SNY/H_LCDM = 3.02
+     case V z =   100.0: H_SNY/H_LCDM = 10
+     case V z =  1089.9: H_SNY/H_LCDM = 33.2
+PASS: Y6 all three SNY cases have H(z*) > 10 H_LCDM(z*) (torsion-dominated, radiation-like early universe: excluded by the CMB) (min 33.2)
+PASS: Y7 on these torsion-dominated histories Phi/H -> 3 at z* (same eps_T = 3 as flat f(T))
+   wrote sny_background.csv (reached = -1 rows give the earliest z the integration reached)
+== 29 PASS, 0 FAIL ==
+=== check_sny_limit.py: 7 PASS, 0 FAIL, exit 0, 11.4 s
+PASS: Q1 T_mu = -(3/2) d ln Y is closed off FRW (any Y(x))
+PASS: Q1b it solves grad R + (2/3) Y T = 0 identically
+PASS: Q2a eps = Phi/H = (9/2) R/(Yc + R)
+PASS: Q2b beta/xi = (3/4) ln(Y*/Y0) -> (3/4) s* = eps*/6 for s* << 1, s0 -> 0
+   delta = H^2/(rho/3) - 1 to first order: 3*b*rho/8
+   delta / (rho b / mu) = 3*mu/8
+PASS: Q3a GR limit: H^2 -> rho/3 as rho b/mu -> 0
+PASS: Q3b first-order shift delta is linear in s = rho b/(6 mu) with an O(1) coefficient
+   with mu = 1: |delta| = 2.25 s*; xi needed for |delta(z*)| = 1e-2: 1.12
+PASS: Q3c GR-compatible recombination (|delta| <= 1e-2) needs xi >= 0.1
+== 7 PASS, 0 FAIL ==
+
+TOTAL: 70 PASS, 0 FAIL
+ALL PASS

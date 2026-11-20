@@ -1,0 +1,46 @@
+== skep_beta.py
+ACT beta (deg, from data): 0.215
+int_0^z* dz/(1+z): 6.99477665592177   [analytic ln(1+z*) = 6.994777]
+int H dt on a-grid: 6.994776657347737
+xi*eps for ACT beta (p tracks H): 1.0729e-03
+point share ln(1+z_re)/ln(1+z*): 0.3088
+share at z=10: 0.3428
+visibility-avg share (H only, no He): 0.2303
+visibility-avg share (H+He, fHe=0.08 sensitivity): 0.2284
+f(T) xi (eps_T = 3): 3.5764e-04
+trace beta/xi = 1.5 ln(1+z*): 10.4922
+lnQ  beta per unit = ln E(z*): 10.0535   [same coefficient normalisation as 022 N7]
+ratio trace/lnQ - 1: 0.0436
+lnQ post-reion share ln E(z_re)/ln E(z*): 0.2651
+gamma max using +7e-16 side (correct side, c_T>1): 1.122e-07   [eps_S = 2g/3 = 7.48e-08, xi >= 1.43e+04]
+gamma max using -3e-15 side (as in 022): 2.324e-07   [eps_S = 1.55e-07, xi >= 6.93e+03]
+Eq.65 gamma^2 coefficient of c_T-1 at z=0.0: 0.0582   [vs 1/18 = 0.0556 (normalisation of Lambda assumed)]
+Eq.65 gamma^2 coefficient of c_T-1 at z=0.0098: 0.0574   [vs 1/18 = 0.0556 (normalisation of Lambda assumed)]
+t_L(z_eff) eV^-1: 5.5075e+32   [file: 5.508e32]
+k_AF limit eV: 1.648e-34   [file: 1.65e-34; p0 = 2k]
+xi eps limit (p tracks H): 2 alpha/ln(1+z): 0.136   [file 0.136]
+A_CB kinematic D_L at L=2: 1.30e-12
+A_CB kinematic D_L at L=10: 3.84e-12
+A_CB kinematic D_L at L=100: 2.32e-11
+A_CB kinematic D_L at L=300: 4.00e-11
+A_CB kinematic D_L at L=770: 4.57e-11
+A_CB kinematic D_L at L=1500: 4.24e-11
+== skep_tegr.py
+diag tetrad: T_mu = [3*Derivative(a(tau), tau)/a(tau), 0, 0, 0]  S^mu = [0, 0, 0, 0]
+PASS: T_tau = 3a'/a, T_i = 0 (T_t = T_tau/a = 3H, eps_T = 3)
+PASS: S = 0 on the diagonal tetrad
+PASS: metric unchanged to O(eps)
+boost: delta T_mu = [-Derivative(eta(tau, x, y), x), -Derivative(eta(tau, x, y), tau), 0, 0] ; delta S^mu = [0, 0, 0, 2*Derivative(eta(tau, x, y), y)/(3*a(tau)**2)]
+d(delta T) nonzero components: {(0, 1): -Derivative(eta(tau, x, y), (tau, 2)) + Derivative(eta(tau, x, y), (x, 2)), (0, 2): Derivative(eta(tau, x, y), x, y), (1, 2): Derivative(eta(tau, x, y), tau, y)}
+PASS: delta T_mu = (-eta_x, -eta_tau, 0, 0)
+PASS: delta T not closed for generic eta
+PASS: delta S^z = 2 eta_y/(3a^2), other components 0 (022's T2)
+time-only boost: delta T_mu = [0, -Derivative(h(tau), tau), 0, 0] ; delta S = [0, 0, 0, 0]
+PASS: time-only boost: T_tau unchanged, T_x = -h': line-of-sight beta shift (xi/2) n^x [h] is a pure dipole
+perturbed diagonal tetrad: delta T_mu = [-3*Derivative(Psi(tau, x, y, z), tau), Derivative(Phi(tau, x, y, z), x) - 2*Derivative(Psi(tau, x, y, z), x), Derivative(Phi(tau, x, y, z), y) - 2*Derivative(Psi(tau, x, y, z), y), Derivative(Phi(tau, x, y, z), z) - 2*Derivative(Psi(tau, x, y, z), z)] ; delta S = [0, 0, 0, 0]
+PASS: delta T_tau = -3 Psi', delta T_i = d_i(Phi - 2 Psi)
+PASS: (dT)_{tau x} = d_x d_tau (Phi + Psi) (022's T5)
+with zeta: delta T_mu = [-3*Derivative(Psi(tau, x, y, z), tau) - Derivative(zeta(tau, x, y, z), (x, 2)) - Derivative(zeta(tau, x, y, z), (y, 2)) - Derivative(zeta(tau, x, y, z), (z, 2)), Derivative(Phi(tau, x, y, z), x) - 2*Derivative(Psi(tau, x, y, z), x) - Derivative(zeta(tau, x, y, z), tau, x), Derivative(Phi(tau, x, y, z), y) - 2*Derivative(Psi(tau, x, y, z), y) - Derivative(zeta(tau, x, y, z), tau, y), Derivative(Phi(tau, x, y, z), z) - 2*Derivative(Psi(tau, x, y, z), z) - Derivative(zeta(tau, x, y, z), tau, z)] ; delta S = [0, 0, 0, 0]
+extra (dT)_{tau x} from zeta: Derivative(zeta(tau, x, y, z), (x, 3)) - Derivative(zeta(tau, x, y, z), (tau, 2), x) + Derivative(zeta(tau, x, y, z), x, (y, 2)) + Derivative(zeta(tau, x, y, z), x, (z, 2))
+PASS: zeta adds a non-zero piece to (dT)_{tau i}: 022's formula is incomplete unless zeta = 0
+10 PASS, 0 FAIL

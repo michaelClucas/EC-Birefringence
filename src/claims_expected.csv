@@ -39,3 +39,16 @@ KK-02,penalty_k1_AWP,chi2 penalty vs free ALP at k = 1 (ACT+WMAP+Planck),Δχ² 
 KK-05,c_min_MICROSCOPE,"c lower bound (MICROSCOPE, Delta chi = 0.39 M_P)",MICROSCOPE needs c ≥ 340,340,sig,2,012 bounds_uholst B2 (src.claims_numbers.KK05),live
 KK-05,c_min_clocks,c lower bound (clocks),clocks c ≳ 5×10⁴,5e4,sig,1,012 bounds_uholst B3 (src.claims_numbers.KK05),live
 KK-05,c_max_EDM,c upper bound (JILA EDM; disputed by 015),JILA EDM c ≤ 188,188,sig,3,016 edm_bound E2 (src.claims_numbers.KK05),live
+EC-06,xieps_needed,xi eps for 0.215 deg with p tracking H,ξε ≈ 1.07×10⁻³,1.07e-3,sig,3,023 ec06_common beta_unit(z*; n = 0),live
+EC-06,xieps_max_lowz,low-z radio-galaxy UV xi eps limit (L-AFG10-UV),ξε < 0.14,0.14,sig,2,024 kaf_lowz (data/kaf_lowz_bounds.csv; run from repo root),live
+EC-06,ACB_max,max L(L+1)C_L/2pi of the rotation (rad^2),A_CB ≤ 5×10⁻¹¹,5e-11,sig,1,023 ec06_aniso (max over models A and B),live
+EC-06a,epsS_max_GW,MZ eps_S bound from GW170817 (c_T > 1 side),ε_S ≤ 7.5×10⁻⁸,7.5e-8,sig,2,026 skep_beta 2 g_hi/3 (skeptic 026 correction of 022's 1.5e-7),live
+EC-06a,xi_min_GW,MZ xi lower bound from GW170817 (c_T > 1 side),ξ ≥ 1.4×10⁴,1.4e4,sig,2,026 skep_beta xieps/(2 g_hi/3) (skeptic 026 correction of 022's 7e3),live
+EC-06c,eps_T,f(T) flat trace eps_T = T_t/H,ε_T = 3,3,exact,0,022 ec06_numbers eps_T,live
+EC-06c,post_reion_min_pct,share of beta after reionization: visibility-avg (%),23-31%,23,dec,0,026 skep_beta visibility-avg share (H only; 023: 0.23),live
+EC-06c,post_reion_max_pct,share of beta after reionization: at z_re (%),23-31%,31,dec,0,022 ec06_numbers fr_re,live
+EC-06c,xi_needed,xi needed (flat trace),ξ = 3.6×10⁻⁴,3.6e-4,sig,2,022 ec06_numbers xi_T,live
+EC-06c,xi_min_k1,xi lower bound (k = +1 axial branch),ξ ≥ 0.022,0.022,sig,2,022 ec06_numbers xi_k (|Omega_K| = 0.0030),live
+EC-06d,Phi_coeff,coefficient in T_t = c d ln(R+6mu/b)/dt,T_t = -(3/2) d ln(R+6μ/b)/dt,-1.5,exact,0,022 ec06_numbers sympy Phi (SNY Eq. 46),live
+EC-06d,PhiH_min,Phi/H today lower end (transcribed SNY Table 1),Φ/H ≈ 0.8-1.4,0.8,exact,0,022 ec06_numbers rows (SNY 0805.3834 Table 1; transcribed not computed),live
+EC-06d,PhiH_max,Phi/H today upper end (transcribed SNY Table 1),Φ/H ≈ 0.8-1.4,1.4,exact,0,022 ec06_numbers rows (SNY 0805.3834 Table 1; transcribed not computed),live

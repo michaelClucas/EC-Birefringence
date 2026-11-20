@@ -16,6 +16,10 @@ Sources (scripts are imported, not copied; their stdout is captured and parsed w
                 with stdout captured, values read from module attributes or parsed from the printed [INFO] lines)
   fit numbers (EC-03' 2.7% beta_max, penalties)   work/20261120-014 fit_candidates.main(), merged by src.reproduce
                 via fit_values()
+  EC-06, EC-06a-d   work/20261120-022 ec06_numbers (needed xi, GW bound, f(T) numbers, SNY 0+ form), -023 ec06_common
+                (xi eps for p tracking H) and ec06_aniso (A_CB), -024 kaf_lowz (low-z xi eps limit, run from the repo
+                root), -026 skep_beta (skeptic corrections: MZ GW side, visibility-averaged
+                reionization share). Table EC06 below, one line per number (task 027).
 Files the scripts write (plots, csv) are redirected to artifacts/reproduce/ by patching the module's HERE.
 """
 import contextlib
@@ -40,6 +44,10 @@ T008 = "20261120-008-cosmo-torsion-axion"
 T009 = "20261120-009-kk-bounds"
 T012 = "20261120-012-theory-shift-uholst"
 T016 = "20261120-016-kk05-edm-cs"
+T022 = "20261120-022-theory-ec06"
+T023 = "20261120-023-cosmo-ec06"
+T024 = "20261120-024-lit-ec06-novelty"
+T026 = "20261120-026-skeptic-ec06"
 
 # KK-05 numbers: one line each (task 016 may revise them; change the source here and the row in claims_expected.csv).
 # key -> (work folder, module, getter on the imported module)
@@ -52,16 +60,20 @@ KK05 = {
 
 # ------------------------------------------------------------------------------------------ module loading
 
-def load(folder, name):
-    """Import work/<folder>/<name>.py. Work folders share module names (common.py), so modules from other work
-    folders are dropped from sys.modules first; modules already imported keep their own references."""
-    d = (WORK / folder).resolve()
+def _drop_other_work_modules(d):
     for k, m in list(sys.modules.items()):
         f = getattr(m, "__file__", None)
         if f:
             p = Path(f).resolve().parent
             if p.parent == WORK.resolve() and p != d:
                 del sys.modules[k]
+
+
+def load(folder, name):
+    """Import work/<folder>/<name>.py. Work folders share module names (common.py), so modules from other work
+    folders are dropped from sys.modules first; modules already imported keep their own references."""
+    d = (WORK / folder).resolve()
+    _drop_other_work_modules(d)
     old = list(sys.path)
     sys.path.insert(0, str(d))
     try:
@@ -208,6 +220,29 @@ def kk():
     return out
 
 
+def exec_script(folder, name, here=None, cwd=None):
+    """Run the top-level script work/<folder>/<name>.py in-process and return (namespace, stdout, exit code).
+    `here`: directory the script sees as its own (__file__), so files it writes next to itself land there instead
+    of in work/. `cwd`: working directory during the run (024's kaf_lowz.py reads data/ relative to the repo root)."""
+    d = (WORK / folder).resolve()
+    _drop_other_work_modules(d)
+    src = d / f"{name}.py"
+    g = {"__name__": f"_reproduce_{name}", "__file__": str(Path(here or d) / f"{name}.py")}
+    old_path, old_argv = list(sys.path), list(sys.argv)
+    sys.path.insert(0, str(d))
+    sys.argv = [src.name]
+    buf, code = io.StringIO(), 0
+    try:
+        with contextlib.redirect_stdout(buf), contextlib.chdir(cwd or Path.cwd()):
+            try:
+                exec(compile(src.read_text(encoding="utf-8"), str(src), "exec"), g)
+            except SystemExit as e:
+                code = e.code or 0
+    finally:
+        sys.path[:], sys.argv = old_path, old_argv
+    return g, buf.getvalue(), code
+
+
 def load_script(folder, name):
     """Import a work/ script that runs at import time; returns (module, captured stdout)."""
     buf = io.StringIO()
@@ -243,6 +278,90 @@ def kk05():
     return out
 
 
+# ------------------------------------------------------------------------------------------ EC-06 (tasks 022-024)
+# Sources: each runs once per reproduce; getters below read from its namespace. Files the scripts write
+# (ec06_backgrounds.csv, acb_estimate.csv) go to artifacts/reproduce/.
+
+def _ec06_022():
+    g, txt, _ = exec_script(T022, "ec06_numbers", here=OUTDIR)
+    g["_checks_ok"] = "FAIL:" not in txt and re.search(r"== \d+ PASS, 0 FAIL ==", txt) is not None
+    return g
+
+
+def _ec06_023():
+    c = load(T023, "ec06_common")
+    return {"xieps_n0": c.BETA_ACT * c.DEG / c.beta_unit(c.ZSTAR, 0.0), "_checks_ok": True}
+
+
+def _ec06_023_aniso():
+    g, txt, _ = exec_script(T023, "ec06_aniso", here=OUTDIR)
+    g["_checks_ok"] = all(g["checks"]) and "FAIL:" not in txt
+    return g
+
+
+def _ec06_024():
+    g, txt, code = exec_script(T024, "kaf_lowz", cwd=ROOT)
+    g["_txt"] = txt
+    g["_checks_ok"] = code == 0 and txt.rstrip().endswith("PASS")
+    return g
+
+
+def _ec06_026():
+    g, txt, code = exec_script(T026, "skep_beta", cwd=ROOT)  # read-only; loads data/ relative to the repo root
+    g["_checks_ok"] = code == 0
+    return g
+
+
+def _sny_coeff(g):
+    """Coefficient c in Phi = c d ln(R + 6 mu/b)/dt from 022's sympy solve of SNY Eq. 46."""
+    import sympy as sp
+    R, t, mu, b = g["R"], g["t"], g["mu"], g["b"]
+    return float(sp.simplify(g["Phi"] * (R + 6 * mu / b) / sp.diff(R, t)))
+
+
+def _sny_range(g, i):
+    """Phi/H today for SNY cases III-V: transcribed in 022's background table (SNY 0805.3834 Table 1), not computed."""
+    row = next(r for r in g["rows"] if r[0].startswith("PGT 0+"))
+    return float(re.search(r"([\d.]+) to ([\d.]+)", row[3]).group(i))
+
+
+def _kaf_xieps(g, rid):
+    return float(re.search(rf"^{re.escape(rid)}\s.*xi\*eps<\s*([\d.eE+-]+)", g["_txt"], re.M).group(1))
+
+
+EC06_SOURCES = {"022": _ec06_022, "023": _ec06_023, "023-aniso": _ec06_023_aniso, "024": _ec06_024, "026": _ec06_026}
+
+# One line per CLAIMS.md number: "claim.key" -> (source, getter on that source's namespace). Task 025 may revise
+# EC-06c/EC-06d: change the getter here and the row in claims_expected.csv.
+EC06 = {
+    "EC-06.xieps_needed": ("023", lambda g: g["xieps_n0"]),
+    "EC-06.xieps_max_lowz": ("024", lambda g: _kaf_xieps(g, "L-AFG10-UV")),
+    "EC-06.ACB_max": ("023-aniso", lambda g: max(g["res"]["A"].max(), g["res"]["B"].max())),
+    # skeptic 026: GW170817 applied on the c_T > 1 side (+7e-16), eps_S = 2 gamma/3 (022 used the -3e-15 side)
+    "EC-06a.epsS_max_GW": ("026", lambda g: 2 * g["g_hi"] / 3),
+    "EC-06a.xi_min_GW": ("026", lambda g: g["xieps"] / (2 * g["g_hi"] / 3)),
+    "EC-06c.eps_T": ("022", lambda g: g["eps_T"](0.0)),
+    "EC-06c.post_reion_min_pct": ("026", lambda g: 100 * g["wavg"] / g["math"].log(1 + g["zs"])),  # visibility-avg
+    "EC-06c.post_reion_max_pct": ("022", lambda g: 100 * g["fr_re"]),  # at z_re
+    "EC-06c.xi_needed": ("022", lambda g: g["xi_T"]),
+    "EC-06c.xi_min_k1": ("022", lambda g: g["xi_k"]),
+    "EC-06d.Phi_coeff": ("022", _sny_coeff),
+    "EC-06d.PhiH_min": ("022", lambda g: _sny_range(g, 1)),
+    "EC-06d.PhiH_max": ("022", lambda g: _sny_range(g, 2)),
+}
+
+
+def ec06():
+    OUTDIR.mkdir(parents=True, exist_ok=True)
+    out, ns = {}, {}
+    for key, (src, get) in EC06.items():
+        if src not in ns:
+            ns[src] = EC06_SOURCES[src]()
+            out[f"_EC-06.{src}_checks_ok"] = bool(ns[src]["_checks_ok"])
+        out[key] = float(get(ns[src]))
+    return out
+
+
 def fit_values(rows, caps):
     """Claim numbers from the 014 fits. rows: fit_results.csv rows; caps: fit_candidates.ultralight_caps()."""
     def row(ds, pred):
@@ -262,7 +381,8 @@ def fit_values(rows, caps):
 def regenerate(full_scan=True):
     vals, times = {}, {}
     for label, fn in (("007 (EC-01/02/04/05)", ec01_ec02_ec04_ec05), ("008 (EC-03, EC-03')", lambda: ec03(full_scan)),
-                      ("009 (KK-02/03/04)", kk), ("012 (EC-03 photon, KK-05)", lambda: {**ec03_photon(), **kk05()})):
+                      ("009 (KK-02/03/04)", kk), ("012 (EC-03 photon, KK-05)", lambda: {**ec03_photon(), **kk05()}),
+                      ("022-024 (EC-06)", ec06)):
         t0 = time.time()
         vals.update(fn())
         times[label] = time.time() - t0

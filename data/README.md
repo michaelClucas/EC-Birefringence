@@ -74,3 +74,7 @@ Caveats:
 ## ec06_theory_inputs.csv
 
 Written by task `work/20261120-022-theory-ec06`. Same columns as `cosmo_inputs.csv`: Planck 2018 Omega_K (TT,TE,EE+lowE+lensing+BAO; 68% error inferred from the quoted 95% interval) for the closed-FRW teleparallel axial branch, and the GW170817 tensor-speed interval (1710.05834 abstract) for the Magueijo-Zlosnik tensor-speed bound.
+
+## ec06c_costs_inputs.csv
+
+Written by task `work/20261120-025-theory-ec06c-costs`. Columns: `id`, `quantity`, `value`, `units`, `CL`, `source_arxiv`, `location`, `notes`. Contents: photon-mass limits (PDG 2024 adopted 1e-18 eV, Ryutov 07; Proca galactic-field 1e-26 eV, Adelberger-Dvali-Gruzinov hep-ph/0306245, and Chibisov 3e-27 eV, both listed but not used by PDG; listing page 1 opened); GW amplitude birefringence kappa < 0.74 Gpc^-1 and dCS l0 < 1e3 km (2101.11153 abstract); nondynamical CS gravity LAGEOS 1/m_cs < ~1000 km and the GP-B projection 0.01 km^-1 (0708.0001 Sec. VI, Fig. 2); IAU 2015 nominal solar/terrestrial constants and the au (not re-opened); Milky Way v_c and R0 (abstract values); and theory inputs: Shie-Nester-Yo 0805.3834 Table I cases III-V and the case II parameters (Sec. V.B), used as model parameters, not measurements.

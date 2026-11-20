@@ -1,0 +1,30 @@
+id,quantity,value,units,CL,source_arxiv,location,notes
+m_gamma_PDG,photon mass upper limit (PDG adopted),1e-18,eV,not stated,PDG 2024 (Navas et al. PRD 110 030001); Ryutov 2007 (PPCF 49 B429),"PDG 2024 photon listing, gamma MASS, first row (RYUTOV 07, MHD of solar wind)","listing opened in task 025; CL not given in the listing"
+m_gamma_Proca_gal,photon Proca mass limit from the galactic magnetic field (not used by PDG),1e-26,eV,not stated,hep-ph/0306245 (Adelberger Dvali Gruzinov 2007),"PDG 2024 photon listing row ADELBERGER 07A 'Proca galactic field'","applies to a Proca/Stueckelberg mass; same row says no limit is feasible for a Higgs mass; PDG does not use it"
+m_gamma_Chibisov,photon mass limit from galactic magnetic field (not used by PDG),3e-27,eV,not stated,Chibisov 1976 (Sov. Phys. Usp. 19 624),"PDG 2024 photon listing row CHIBISOV 76",older galactic-field argument; listed only
+GW_kappa_birefringence,GW amplitude birefringence opacity kappa upper limit,0.74,Gpc^-1,not stated in abstract,2101.11153,abstract (Okounkova Farr Isi Stein PRD 106 044067),GWTC-2
+dCS_l0,dynamical Chern-Simons length scale upper limit from GW amplitude birefringence,1.0e3,km,not stated in abstract,2101.11153,abstract,canonical length scale l0
+LAGEOS_mcs_inv,nondynamical CS gravity: inverse CS mass 1/m_cs upper limit (LAGEOS),1000,km,approx,0708.0001,"Sec. VI (conclusions); m_cs = -3/(8 pi G l thetadot), Eq. 23 / Sec. VI","'roughly 1000 km', i.e. m_cs >~ 2e-22 GeV; action Eq. 1: (l/12) theta R R~ with -R/(2 kappa^2)"
+GPB_mcs_projection,nondynamical CS gravity: m_cs lower limit for a 10% GP-B frame-dragging test,0.01,km^-1,projection,0708.0001,"Fig. 2 caption","a projection written before the GP-B result; not a measured bound"
+GM_sun,solar mass parameter (nominal),1.3271244e20,m^3 s^-2,exact (nominal),1510.07674,"IAU 2015 Resolution B3",nominal value; not re-opened in task 025
+R_sun,solar radius (nominal),6.957e8,m,exact (nominal),1510.07674,"IAU 2015 Resolution B3",not re-opened
+GM_earth,terrestrial mass parameter (nominal),3.986004e14,m^3 s^-2,exact (nominal),1510.07674,"IAU 2015 Resolution B3",not re-opened
+R_earth,Earth equatorial radius (nominal),6.3781e6,m,exact (nominal),1510.07674,"IAU 2015 Resolution B3",not re-opened
+au,astronomical unit,149597870700,m,exact,-,"IAU 2012 Resolution B2 (definition)",
+v_circ_MW,Milky Way circular speed at the Sun,229.0,km/s,68 (+-0.2 stat),1810.09466,abstract (Eilers et al. 2019),"used only for the galactic potential Phi ~ v^2/c^2; ~1 kpc scale is a choice"
+R0_MW,distance to the Galactic centre,8.122,kpc,68 (+-0.031),1807.09409,abstract (GRAVITY 2018),galactic field gradient ~ v^2/R0
+SNY_a_now,SNY scaled scale factor today,50,-,-,0805.3834,"Sec. V.C",theory input (normalization a(t0 = 1) = 50)
+SNY_caseII_mu,SNY case II mu,1.2,-,-,0805.3834,"Sec. V.B",theory input; used only for the period check (period 3.63)
+SNY_caseII_b,SNY case II b,4,-,-,0805.3834,"Sec. V.B",theory input
+SNY_caseIII_mu,SNY case III mu,1.09,-,-,0805.3834,"Table I",theory input (a0 = -1 in all cases)
+SNY_caseIII_b,SNY case III b,1.4,-,-,0805.3834,"Table I",
+SNY_caseIII_Phi,SNY case III Phi(t0) (scaled; = T_t),1.4,-,-,0805.3834,"Table I",
+SNY_caseIII_Y,SNY case III Y(t0) = R + 6 mu/b,6.2,-,-,0805.3834,"Table I",
+SNY_caseIV_mu,SNY case IV mu,1.27,-,-,0805.3834,"Table I",
+SNY_caseIV_b,SNY case IV b,1.1,-,-,0805.3834,"Table I",
+SNY_caseIV_Phi,SNY case IV Phi(t0),0.8,-,-,0805.3834,"Table I",
+SNY_caseIV_Y,SNY case IV Y(t0),11.3,-,-,0805.3834,"Table I",
+SNY_caseV_mu,SNY case V mu,1.38,-,-,0805.3834,"Table I",
+SNY_caseV_b,SNY case V b,1.1,-,-,0805.3834,"Table I",
+SNY_caseV_Phi,SNY case V Phi(t0),1.1,-,-,0805.3834,"Table I",
+SNY_caseV_Y,SNY case V Y(t0),9.9,-,-,0805.3834,"Table I",

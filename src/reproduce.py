@@ -9,11 +9,14 @@ Steps:
   4. claim numbers vs CLAIMS.md: compared with src/claims_expected.csv, whose printed text is also checked to still
      occur in CLAIMS.md.
   5. fit summary table (model, beta_max, penalty vs free ALP, Delta chi2 vs null) for ACT DR6 and ACT+WMAP+Planck.
+  5b. only with --checks (task 027, skeptic 020 MINOR 12): the derivation/symbolic check scripts behind the
+     no-number verdicts (tasks 003, 004, 009, 012, 016, 019, 022, and 025 if present), each in its own pinned
+     process; fails if any exits nonzero or prints FAIL. Output files they write into work/ are restored.
   6. path scan: the log (--log) and the text outputs in artifacts/reproduce/ are scanned for absolute local paths;
      the repo root becomes <repo>, the home folder <home>, anything else absolute <abs-path>. stdout/stderr are
      scrubbed the same way as they are written, so a shell redirect is also path-free.
 Options: --skip-validation (steps 2-6 only), --fast-scan (EC-03' scan on the 17-mass sub-grid instead of all 45),
-         --log FILE (tee the output to FILE, relative to the current directory).
+         --log FILE (tee the output to FILE, relative to the current directory), --checks (step 5b).
 Exit code is nonzero if any step fails or any live claim number does not match.
 """
 import warnings
@@ -23,7 +26,9 @@ warnings.filterwarnings("ignore", category=SyntaxWarning)
 
 import csv  # noqa: E402
 import importlib.util  # noqa: E402
+import os  # noqa: E402
 import re  # noqa: E402
+import subprocess  # noqa: E402
 import sys  # noqa: E402
 import time  # noqa: E402
 from pathlib import Path  # noqa: E402
@@ -148,6 +153,74 @@ def fit_summary(rows):
                   f"{float(r['dchi2_vs_null']):13.2f}")
 
 
+# symbolic/derivation checks behind the no-number verdicts (--checks). Task 025 is picked up if it has a run_checks.py.
+CHECKS = ["20261120-003-theory-ec-photon/run_checks.py", "20261120-004-kk-reduction/run_checks.py",
+          "20261120-009-kk-bounds/run_checks.py", "20261120-012-theory-shift-uholst/run_checks.py",
+          "20261120-016-kk05-edm-cs/run_checks.py", "20261120-019-adjudicate-kk05-edm/adjudicate_edm.py",
+          "20261120-022-theory-ec06/run_checks.py"]
+OPTIONAL_CHECKS = ["20261120-025-*/run_checks.py"]
+# outputs the check scripts write into their own work folder (run.log, csv, png); restored afterwards so --checks
+# leaves work/ unchanged. Scripts and READMEs are never touched.
+_OUTPUT_SUFFIXES = (".log", ".csv", ".png", ".json", ".txt")
+_FAIL_RX = re.compile(r"^\s*(\[FAIL\]|FAIL\b)|\b[1-9]\d* FAIL|SOME FAIL", re.M)
+
+
+def _snapshot(folder):
+    return {p: p.read_bytes() for p in folder.rglob("*") if p.is_file() and p.suffix in _OUTPUT_SUFFIXES
+            and "__pycache__" not in p.parts}
+
+
+def _restore(folder, snap):
+    n = 0
+    for p in folder.rglob("*"):
+        if not p.is_file() or p.suffix not in _OUTPUT_SUFFIXES or "__pycache__" in p.parts:
+            continue
+        if p not in snap:
+            p.unlink()
+            n += 1
+        elif p.read_bytes() != snap[p]:
+            p.write_bytes(snap[p])
+            n += 1
+    return n
+
+
+def run_checks():
+    """Run each check script in its own pinned process (tools/pin.py, 1 thread) from the repo root. Full output goes
+    to artifacts/reproduce/checks_<task>.log. Fails if a script exits nonzero or prints a FAIL line/count."""
+    work = ROOT / "work"
+    scripts = [work / s for s in CHECKS] + sorted(p for g in OPTIONAL_CHECKS for p in work.glob(g))
+    env = dict(os.environ, OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", MKL_NUM_THREADS="1",
+               NUMEXPR_NUM_THREADS="1", PYTHONIOENCODING="utf-8")
+    py = [sys.executable, "-W", "ignore::SyntaxWarning"]
+    CN.OUTDIR.mkdir(parents=True, exist_ok=True)
+    bad, t_all = [], time.time()
+    for s in scripts:
+        rel = s.relative_to(ROOT).as_posix()
+        if not s.is_file():
+            print(f"  [FAIL] {rel}: missing")
+            bad.append(rel)
+            continue
+        snap = _snapshot(s.parent)
+        t0 = time.time()
+        r = subprocess.run(py + [str(ROOT / "tools" / "pin.py")] + py + [str(s)], cwd=ROOT, env=env,
+                           capture_output=True, text=True, encoding="utf-8", errors="replace")
+        dt = time.time() - t0
+        restored = _restore(s.parent, snap)
+        text, _ = scrub(r.stdout + r.stderr)
+        (CN.OUTDIR / f"checks_{s.parent.name.split('-')[1]}.log").write_text(text, encoding="utf-8")
+        npass = len(re.findall(r"^\s*(\[PASS\]|PASS\b)", text, re.M))
+        fails = [ln.strip() for ln in text.splitlines() if _FAIL_RX.search(ln)]
+        ok = r.returncode == 0 and not fails
+        print(f"  [{'PASS' if ok else 'FAIL'}] {rel}: exit {r.returncode}, {npass} PASS lines, {len(fails)} FAIL lines, "
+              f"{dt:.1f} s; {restored} output file(s) in its folder restored")
+        for ln in fails[:10]:
+            print(f"      {ln}")
+        if not ok:
+            bad.append(rel)
+    print(f"  checks: {len(scripts) - len(bad)}/{len(scripts)} scripts pass ({time.time() - t_all:.0f} s)")
+    return bad
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
@@ -175,6 +248,10 @@ def main():
             failed.append("claim numbers")
         print("### fit summary (penalty = chi2_min(model) - chi2_min(free ALP); dchi2 = chi2_null - chi2_min)")
         fit_summary(rows)
+        if "--checks" in args:
+            print("### derivation checks behind the no-number verdicts (--checks; logs in artifacts/reproduce/)")
+            if run_checks():
+                failed.append("derivation checks")
     finally:
         print("### path scan")
         sys.stdout.flush()
