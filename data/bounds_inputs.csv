@@ -1,0 +1,18 @@
+id,quantity,value,units,source,location,note
+hbarc,hbar*c,1.973269804e-7,eV m,"CODATA 2018 (exact: h and c are defined SI constants)",-,"1 m^-1 = hbarc eV"
+hbar,hbar,6.582119569e-16,eV s,"CODATA 2018 (exact)",-,"1 s^-1 = hbar eV"
+c_kms,speed of light,299792.458,km/s,"SI definition (exact)",-,
+julian_year,Julian year,3.15576e7,s,"IAU definition (365.25 d)",-,"used for per-year rates"
+Mpc,megaparsec,3.0856775814913673e22,m,"IAU 2015 Resolution B2 (pc defined via au)",-,
+GeV,GeV,1e9,eV,definition,-,
+MP_reduced,reduced Planck mass,2.435e27,eV,CONVENTIONS.md,-,"2.435e18 GeV"
+gal_ngp_ra,RA of north galactic pole (J2000),192.85948,deg,"IAU galactic frame, J2000 values (Hipparcos Catalogue vol. 1 sec 1.5.3)",-,"NOT opened in this task; standard value; only sets v_perp to <1%"
+gal_ngp_dec,Dec of north galactic pole (J2000),27.12825,deg,"same as above",-,"NOT opened in this task"
+gal_l_ncp,galactic longitude of north celestial pole (J2000),122.93192,deg,"same as above",-,"NOT opened in this task"
+v_sun_cmb,Sun velocity relative to CMB,369.82,km/s,"Planck 2018 I, arXiv:1807.06205","Table 3 (Sun-CMB row), Sec 2.1","+-0.11 km/s"
+l_sun_cmb,galactic longitude of Sun-CMB dipole,264.021,deg,"Planck 2018 I, arXiv:1807.06205","Tables 2-3, Sec 2.1","+-0.011 deg"
+b_sun_cmb,galactic latitude of Sun-CMB dipole,48.253,deg,"Planck 2018 I, arXiv:1807.06205","Tables 2-3, Sec 2.1","+-0.005 deg"
+H0,Hubble constant,67.4,km/s/Mpc,"Planck 2018 VI, arXiv:1807.06209",abstract,"+-0.5; base LCDM"
+Omega_m,matter density parameter,0.315,-,"Planck 2018 VI, arXiv:1807.06209",abstract,"+-0.007; flat LCDM assumed, radiation neglected in t_L (error < 1e-3)"
+g_star_BBN,relativistic dof at T~1 MeV,10.75,-,"SM value (photons + e+- + 3 nu)",-,"theory input, not a measurement"
+T_BBN,reference temperature for BBN expansion rate,1e6,eV,"order-of-magnitude choice (n/p freeze-out ~ 0.7-1 MeV)",-,"choice, not a measurement"

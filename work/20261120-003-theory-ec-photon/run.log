@@ -1,0 +1,98 @@
+=== check_contortion.py: 5 PASS, 0 FAIL, exit 0, 10.2 s
+PASS: corrected K_lmn = 1/2(T_lmn + T_nlm - T_mnl): torsion reproduced (seed 1)
+PASS: corrected K_lmn: metric compatible (seed 1)
+PASS: corrected K_lmn = 1/2(T_lmn + T_nlm - T_mnl): torsion reproduced (seed 2)
+PASS: corrected K_lmn: metric compatible (seed 2)
+INFO: CONVENTIONS.md K_lmn = 1/2(T_lmn - T_mln - T_nlm): torsion reproduced=True, metric compatible=False
+PASS: CONVENTIONS.md contortion formula is inconsistent with its own definitions (expected: fails)
+INFO: CONVENTIONS.md expression == -K_{lnm} (correct K, index order l,m,n of Gamma^l_mn)
+INFO: CONVENTIONS.md expression == +K_{mnl} (correct K, index order l,m,n of Gamma^l_mn)
+=== check_maxwell_zero.py: 8 PASS, 0 FAIL, exit 0, 11.4 s
+PASS: (a) nabla_m A_n - nabla_n A_m = F_mn - T^l_mn A_l (generic Gamma)
+PASS: (a) symmetric (Levi-Civita) connection drops out: curl = dA
+PASS: (b) gauge variation of F' is -T^l_mn d_l chi (nonzero for T != 0)
+PASS: (b) F = dA is gauge invariant
+PASS: (c) sqrt(-g) g^ma g^nb = eta^ma eta^nb for g = a^2 eta
+PASS: (c) sqrt(-g) eps^{0123} = -1 independent of a
+PASS: (d) axial vector of the test torsion is S^m = (s,0,0,0)
+INFO: trace vector T_m = [3*h, 0, 0, 0]
+PASS: (d) -1/4 F'F' + 1/4 FF = CFJ(p_m = 2 S_m) + (1/3) T_m A_n F^mn + derivative-free A^2 terms
+INFO: derivative-free remainder (photon 'mass' terms): -(-h + s)*(h + s)*(A1(x0, x1, x2, x3)**2 + A2(x0, x1, x2, x3)**2 + A3(x0, x1, x2, x3)**2)/2
+=== check_dirac_torsion.py: 11 PASS, 0 FAIL, exit 0, 12.3 s
+PASS: Clifford {g^a,g^b} = -2 eta^ab
+INFO: gamma_5 = [-1, -1, 1, 1] (diag; upper = left-handed)
+PASS: unique c for spinor spin connection
+INFO: Omega_m = c omega_{m ab} gamma^a gamma^b with c = -1/4
+PASS: beta Omega^dag beta^-1 = -Omega
+PASS: torsion enters the Dirac action only via c_A S_m J5^m (trace/tensor drop out)
+INFO: c_A = 3/4  (L_D contains c_A S_m psibar gamma^m gamma_5 psi)
+PASS: decomposition: trace part has T_m = (t0,t1,0,0), S = 0
+PASS: decomposition: axial part T_lmn = eps_lmnk S^k has S = (s0,s1,0,0), T_m = 0
+PASS: R_Q(trace) = b_T T.T, R_Q(axial) = b_S S.S with constant b
+INFO: b_T = -2/3, b_S = 3/2
+PASS: no trace-axial cross term in R_Q
+PASS: q has zero trace and zero axial part
+PASS: no cross terms between tensor part q and (trace, axial)
+INFO: S^m = [-J0*kappa/2, -J1*kappa/2, -J2*kappa/2, -J3*kappa/2]  (J are J5^m upper components)
+INFO: L_eff = 3*kappa*(J0**2 - J1**2 - J2**2 - J3**2)/16  =  -3*kappa/16 * J5.J5
+PASS: L_eff = -(kappa c_A^2/(2 b_S)) J5.J5
+=== check_frw_torsion.py: 5 PASS, 0 FAIL, exit 0, 11.2 s
+PASS: rotation invariance leaves exactly 2 free components
+INFO: free components: [t303, t312]
+INFO: nonzero T^l_{mn} (m<n): {(1, 0, 1): t303, (1, 2, 3): t312, (2, 0, 2): t303, (2, 1, 3): -t312, (3, 0, 3): t303, (3, 1, 2): t312}
+PASS: solution space = span{T^i_0j = h delta_ij, T^i_jk = f [ijk]}
+PASS: reference torsion is rotation invariant
+INFO: on g = a^2 eta: S^m = [-f/a**2, 0, 0, 0] , T_m = [3*h, 0, 0, 0]
+PASS: S^tau = -f/a^2 (so f = -a^2 S^tau), S^i = 0
+PASS: T_tau = 3h, T_i = 0
+=== check_cfj_rotation.py: 14 PASS, 0 FAIL, exit 0, 30.7 s
+PASS: 1. -(g/4) phi FFt == CFJ with p_m = -g d_m phi (same EL equations)
+PASS: 1. ... and NOT with p_m = +g d_m phi (CONVENTIONS.md sign)
+PASS: 1. F_mn Ftilde^mn = 2 d_m(A_n Ftilde^mn)
+PASS: 2. EL equations are d_m F^mn = p_m Ftilde^mn (same overall factor for all n)
+PASS: 2. 1D reduction: A'' - A_zz = p0 curl A
+INFO: dispersion e_+: -k**2 + k*p_0 + omega**2 = 0 ; e_-: -k**2 - k*p_0 + omega**2 = 0
+PASS: 3. omega_+^2 = k^2 - p0 k, omega_-^2 = k^2 + p0 k
+INFO: omega_pm ~ k -+ p0/2 for k >> |p0|
+PASS: 4. e_+ e^{i th} + e_- e^{-i th} = 2(cos th, -sin th)
+INFO: numerical chi = -0.250010 rad, predicted -p0 dtau/2 = -0.250000 rad
+PASS: 5. numerical rotation matches chi = -(1/2) p0 dtau (1e-3 rel)
+PASS: 5. RHS used in simulation equals the symbolic EOM
+PASS: 6. delta L_CFJ = -d_n(xi chi S_m Ft^mn / 2) + (xi/2) chi d_n S_m Ft^mn
+PASS: 6. remainder vanishes for S_m = d_m vphi (curl-free)
+PASS: 6. remainder vanishes for FRW S_m = (S_tau(tau),0,0,0)
+PASS: 7. chi > 0 (right-handed about k) is counterclockwise on the sky as seen by the observer
+INFO: our conventions, L = -(g/4) phi F Ftilde: chi = Delta_phi*g/2  beta_paper = -chi = -Delta_phi*g/2
+PASS: 7. beta_paper = -(g/2)(phi_obs - phi_emit) for L = -(g/4) phi F Ftilde in CONVENTIONS.md
+INFO: CFJ form: beta_paper = +(1/2) int p_tau dtau (p_tau: conformal-coordinate covariant component)
+=== check_nieh_yan.py: 3 PASS, 0 FAIL, exit 0, 34.8 s
+PASS: Nieh-Yan fit solvable
+PASS: same (a, b) holds for an independent third configuration
+INFO: d_m([mnrs] T_nrs) = 1/2 [mnrs] T^l_mn T_lrs + -1 [mnrs] R_mnrs
+PASS: [mnrs] T_nrs = -6 sqrt(-g) S^m
+=== estimates.py: 1 PASS, 0 FAIL, exit 0, 10.0 s
+beta = 0.215 deg = 3.7525e-03 rad;  H0 = 1.4369e-33 eV;  kappa = 1.6866e-55 eV^-2
+t(LSS->today) = 6.6138e+32 eV^-1 = 13.795 Gyr;  int a^-3 dt = 2.7326e+37 eV^-1
+PASS: cosmic time since LSS in [13, 14.5] Gyr
+
+[baseline phi F Ftilde]  |g Delta_phi| = 2|beta| = 7.505e-03 (rad)
+  sign (our conventions): beta > 0 needs g (phi_0 - phi_LSS) < 0
+
+[(i) CFJ, xi S]  constant S^0hat:   |xi S^0hat| = 1.13e-35 eV  (= 7.90e-03 H0)
+                 S^0hat ~ a^-3:      |xi S^0hat(today)| = 2.75e-40 eV
+  gauge-breaking 'torsionful minimal coupling' is the case xi = 2 (plus photon mass terms).
+
+[minimal EC source, S = -(kappa/2) J5]
+  CnuB asymmetry (|xi_nu| = 0.1, 3 flavors, relativistic, upper bound): n5 = 2.36e-13 eV^3 = 30.7 cm^-3
+  |S^0hat| today = 1.99e-68 eV
+  needed |xi| (n5 ~ a^-3 from LSS) = 1.4e+28  -> log10 shortfall at xi = 1: 28.1
+  fermion DM (m = 1000 eV, fully chiral, generous): n5 = 1.26 cm^-3, |S^0hat| = 8.2e-70 eV, needed |xi| = 3.4e+29
+
+[(iv) fermion-loop CFJ, one charged Dirac fermion, C = 0.0190]  |p|/|S| = 2.61e-03
+  needed |S^0hat| (constant) = 4.3e-33 eV;  minimal-EC S from CnuB: 2.0e-68 eV
+
+[(ii),(iii) loop-induced phi F Ftilde from d(phi) J5_e/f]  suppression ~ (H_LSS/m_e)^2 = 4.3e-69
+  with g added by hand, g ~ 1/M_P:  |Delta_phi| = 2|beta| M_P = 1.83e+16 GeV
+
+TOTAL: 47 PASS, 0 FAIL
+ALL PASS

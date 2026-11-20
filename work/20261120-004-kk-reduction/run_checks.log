@@ -1,0 +1,18 @@
+PASS | KK Ricci reduction: sqrt(-g5)R5 = sqrt(-g)[R - (dphi)^2/2 - e^{-sqrt3 phi}F^2/4 - 2a Box(phi)] | max residual 2.89e-15, fitted Box coefficient -0.577350269 vs -2a = -0.577350269
+  [check_kk_ricci: 0.0 s]
+PASS | contortion formula K_lmn = 1/2(T_lmn + T_nlm - T_mnl) is metric-compatible and reproduces T | compat 0.0e+00, torsion 2.8e-16
+PASS | INFO CONVENTIONS.md formula 1/2(T_lmn - T_mln - T_nlm) with Gam^lam_{mu nu}, mu=derivative index | metric-compat violation 8.56, torsion mismatch 0.00 (nonzero => formula is for the other index order; reported in README)
+PASS | torsion counting 50 = 5 trace + 10 three-form + 35 tensor; 4D split 24+16+6+4 | dim 50, trace rank 5, 3-form rank 10, joint 15, remainder 35, blocks {'T^a_bc': 24, 'T^a_b5': 16, 'T^5_ab': 6, 'T^5_a5': 4}
+PASS | R(LC+K) = R_LC + div V + Q(K) (generic metric, K, dK; D=5 and D=4) | max rel residual 5.0e-15
+PASS | Q(K) = -K_ABC K^ABC for totally antisymmetric K; Q non-degenerate on 50 compatible K | |dQ| 4.3e-14, rank 50/50
+PASS | 5D Clifford algebra; {G^C,G^AB} = 2 G^CAB; G^ABC = c eps^ABCDE G_DE/2 with one constant c | anticomm err 0.0e+00, c = 0.000-1.000j
+PASS | eps_abcd eps^abce = -6 delta (4D Lorentzian), gives J_abc J^abc = -6 A^2 | 
+PASS | KK Levi-Civita spin connection: omega_[CAB] = (sign) (k/6) F_ab in [a b 5hat], zero for [abc] | sign +, residual 5.6e-17, [abc] part 3.3e-18
+  [check_torsion: 0.5 s]
+PASS | 5D CS A^F^F on S1 -> 3 theta f^f + 3c theta^2 f^F_KK + c^2 theta^3 F_KK^F_KK (EL-equivalent) | EL match True; control with coefficient 2 instead of 3 fails: True
+PASS | f^f = -(1/2) sqrt(-g) F Ft d^4x  (eps_0123 = +sqrt(-g)) | 
+PASS | mixed coupling b G Ft: no rotation for an initial pure photon (amplitude cos Phi only) | rotation 0.0e+00, photon amplitude 0.9323 = cos(0.37)
+  [check_cs: 8.6 s]
+PASS | 5D: d(T_A^T^A) = 2 R_AB^e^B^T^A, so e^R^T (unique eps-free 5-form) is exact | max |difference| at random rational points = 0, |lhs| sample 44402
+  [check_forms: 25.3 s]
+ALL PASS

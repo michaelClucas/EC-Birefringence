@@ -10,6 +10,6 @@ Research program: can Einstein-Cartan torsion explain the cosmic birefringence (
 - Two tracks: 4D Einstein-Cartan, and Einstein-Cartan-Kaluza-Klein (claim ids `KK-`). In KK the photon is geometric, so the 4D zero-coupling argument must be rechecked there, not assumed.
 - Every bound and measured number is cited (arXiv ID, table/equation) in `data/` or `literature/`. Don't hardcode measured numbers in scripts: load them from `data/`.
 - Python lives in `.venv/`. Add dependencies to `requirements.txt` with pinned versions.
-- 14 CPU cores shared with other work: this program uses at most 4 unless load is low. Intel iGPU, no CUDA. Long jobs run in the background and log to `work/<id>/run.log`.
+- CPU: this program owns logical CPUs 12-13 only (2 CPUs); 0-3 are reserved for the user. Run every compute command as `python tools/pin.py <command>` and size threads/workers to 2 total. Intel iGPU, no CUDA. Long jobs run in the background and log to `work/<id>/run.log`.
 - Repo is public. No personal info, credentials, or absolute local paths in committed files. Don't change the git identity, don't force-push.
 - Use "candidate mechanism" for every finding unless `RESULT.md` exists.

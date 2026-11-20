@@ -1,0 +1,68 @@
+id,quantity,value,err_minus,err_plus,CL,upper_limit_flag,dataset,arxiv,location_in_paper,notes
+DPK25-beta-baseline,beta_iso_deg,0.215,0.074,0.074,68,0,ACT DR6 EB+TB 5 array-bands,2509.13654,"Abstract; Table 3; Sec. VI","Baseline: Pi^PA prior (90% corr within PA), I->P leakage marginalised; 2.9 sigma"
+DPK25-beta-ind-leak,beta_iso_deg,0.208,0.059,0.059,68,0,ACT DR6 EB+TB,2509.13654,Table 3,"Independent alpha priors, with leakage"
+DPK25-beta-nu-leak,beta_iso_deg,0.216,0.073,0.073,68,0,ACT DR6 EB+TB,2509.13654,Table 3,"Per-frequency correlated alpha priors, with leakage"
+DPK25-beta-ind,beta_iso_deg,0.204,0.058,0.058,68,0,ACT DR6 EB+TB,2509.13654,Table 2,"Independent alpha priors, no leakage"
+DPK25-beta-PA,beta_iso_deg,0.212,0.072,0.072,68,0,ACT DR6 EB+TB,2509.13654,Table 2,"Pi^PA, no leakage"
+DPK25-beta-nu,beta_iso_deg,0.212,0.072,0.072,68,0,ACT DR6 EB+TB,2509.13654,Table 2,"Pi^nu, no leakage"
+DPK25-beta-TBonly,beta_iso_deg,0.254,0.131,0.131,68,0,ACT DR6 TB only,2509.13654,Sec. IV,Pi^PA prior
+DPK25-psi-PA5f090,psi_alpha_plus_beta_deg,0.108,0.064,0.064,68,0,ACT DR6 EB PA5 f090,2509.13654,Sec. IV,"Fit of psi_i=alpha_i+beta, EB only, stat only, pipeline validation"
+DPK25-psi-PA5f150,psi_alpha_plus_beta_deg,0.316,0.059,0.059,68,0,ACT DR6 EB PA5 f150,2509.13654,Sec. IV,"stat only"
+DPK25-psi-PA6f090,psi_alpha_plus_beta_deg,0.118,0.074,0.074,68,0,ACT DR6 EB PA6 f090,2509.13654,Sec. IV,"stat only"
+DPK25-psi-PA6f150,psi_alpha_plus_beta_deg,0.185,0.060,0.060,68,0,ACT DR6 EB PA6 f150,2509.13654,Sec. IV,"stat only"
+DPK25-psi-mean,psi_alpha_plus_beta_deg,0.192,0.032,0.032,68,0,ACT DR6 EB 4 array-bands,2509.13654,Sec. IV,"Weighted mean, stat only; ACT team gets 0.20+-0.03"
+DPK25-psi-PA5diff,psi_difference_deg,0.21,0.09,0.09,68,0,ACT DR6 EB PA5 f150 minus f090,2509.13654,Sec. IV,Frequency-dependent pattern within one optics tube
+DPK25-alpha-PA4f220,alpha_miscal_deg,0.025,0.085,0.085,68,0,ACT DR6,2509.13654,"Table 3, Pi^PA column",
+DPK25-alpha-PA5f090,alpha_miscal_deg,-0.014,0.072,0.072,68,0,ACT DR6,2509.13654,"Table 3, Pi^PA column",
+DPK25-alpha-PA5f150,alpha_miscal_deg,0.023,0.072,0.072,68,0,ACT DR6,2509.13654,"Table 3, Pi^PA column",
+DPK25-alpha-PA6f090,alpha_miscal_deg,-0.030,0.077,0.077,68,0,ACT DR6,2509.13654,"Table 3, Pi^PA column",
+DPK25-alpha-PA6f150,alpha_miscal_deg,-0.029,0.076,0.076,68,0,ACT DR6,2509.13654,"Table 3, Pi^PA column",
+DPK25-alphaprior-PA4,alpha_prior_sigma_deg,0.09,,,68,0,ACT optics model,2509.13654,Sec. II,"Gaussian prior width from Murphy et al. 2403.00763"
+DPK25-alphaprior-PA5,alpha_prior_sigma_deg,0.09,,,68,0,ACT optics model,2509.13654,Sec. II,
+DPK25-alphaprior-PA6,alpha_prior_sigma_deg,0.11,,,68,0,ACT optics model,2509.13654,Sec. II,
+DPK25-comb-EK22,beta_iso_deg,0.264,0.058,0.058,68,0,ACT DR6 + WMAP+Planck PR4,2509.13654,Sec. VI,"Inverse-variance combination assuming independence; 4.6 sigma; reproduced"
+DPK25-comb-CG,beta_iso_deg,0.231,0.059,0.059,68,0,ACT DR6 + Cosmoglobe WMAP+Planck,2509.13654,Sec. VI,"3.9 sigma; reproduced"
+LOUIS25-psi-mean,psi_alpha_plus_beta_deg,0.20,0.08,0.08,68,0,ACT DR6 EB,2503.14452,"cited in 2509.13654 Sec. I, VI","ACT team mean array angle incl. optics systematic; not a beta estimate"
+BAL25-ACB-SPT3G,A_CB_rad2,1.2e-4,,,95,1,SPT-3G D1 BB lite,2510.07928,"Eq. 7; Abstract","No A_LT prior; A_CB>=0 prior"
+BAL25-ACB-SPT3G-APS,A_CB_rad2,0.53e-4,,,95,1,"SPT-3G D1 BB lite + A_LT prior N(1.010, 0.016^2)",2510.07928,"Eq. 8; Abstract",A_LT prior from ACT+SPT+Planck lensing 2504.20038
+BAL25-ACB-SPT3G-Planckprior,A_CB_rad2,0.55e-4,,,95,1,SPT-3G D1 BB lite + Planck-based A_LT prior,2510.07928,Footnote 5,
+BAL25-ACB-SPT3G-neg,A_CB_rad2,-1.13e-4,0.94e-4,0.94e-4,68,0,SPT-3G D1 BB lite,2510.07928,Sec. 3.2,"Unphysical A_CB<0 allowed, no A_LT prior; 89% mass below zero"
+BAL25-ACB-SPTpol-APS,A_CB_rad2,1.6e-4,,,95,1,SPTpol BB lite + A_LT APS prior,2510.07928,Sec. 3.2,Posterior peaks at A_CB>0
+BAL25-ACB-SPTpol-Planck-lite,A_CB_rad2,1.64e-4,,,95,1,SPTpol BB lite + Planck-based A_LT prior,2510.07928,Footnote 4,"multi-freq: 1.70 (orig FG), 1.62 (updated radio model)"
+BAL25-ALT-SPT3G,A_LT,0.69,0.18,0.18,68,0,SPT-3G D1 BB lite,2510.07928,Eq. 7,
+BAL25-r-SPT3G,r,0.26,,,95,1,SPT-3G D1 BB lite,2510.07928,"Eq. 7, 8",
+LON25-ACB-cited,A_CB_rad2,0.85e-4,,,95,1,BICEP/Keck+POLARBEAR+ACT BB,2504.13154,cited in 2510.07928 Sec. 3.2,"Planck-based A_LT prior; v3 abstract says <1e-4"
+LON25-ACB-abs,A_CB_rad2,1e-4,,,95,1,SPTpol+ACT+POLARBEAR+BICEP BB,2504.13154,abstract (v3),
+LON25-ACB-bestfit,A_CB_rad2,0.42e-4,0.34e-4,0.40e-4,68,0,SPTpol+ACT+POLARBEAR+BICEP BB,2504.13154,abstract (v3),CL assumed 68% (abstract says consistent with zero within 2 sigma)
+NAM24-ACB-SPTpol,A_CB_rad2,1.03e-4,0.97e-4,0.91e-4,95,0,SPTpol BB,2404.13771,abstract,Errors are 2 sigma
+BIA20-ACB-SPTpol,A_CB_rad2,0.10e-4,,,95,1,SPTpol 150 GHz quadratic estimator,2006.08061,"abstract; cited in 2510.07928 Sec. 3.2",= 0.033 deg^2
+GRU20-Aaa-Planck,A_alphaalpha_deg2,0.104,,,95,1,Planck 2018 large scales,2008.10334,abstract,"0.085 deg^2 when sliced at A^{alpha T}=0"
+CON17-Aaa-Planck,A_CB_rad2,2.2e-5,,,95,1,Planck,1705.06387,abstract,"+-0.7e-5 syst on the limit; = 0.07 deg^2"
+YIN26-gMpl-ACT,g_MPl,0.129,0.075,0.031,68,0,ACT DR6 EB + Planck TT/TE/EE + DESI DR2 + PantheonPlus,2601.13624,Table 1,"EDE n=3, theta_i=2.7; CL not stated in table caption (assumed 68%); M_Pl definition not stated"
+YIN26-gMpl-Planck,g_MPl,0.164,0.079,0.038,68,0,Planck EB (EK22) + Planck + DESI DR2 + PantheonPlus,2601.13624,Table 1,"as above"
+YIN26-fEDE-ACT,f_EDE,0.232,0.047,0.074,68,0,ACT-EB combination,2601.13624,"Table 1; Abstract",
+YIN26-fEDE-Planck,f_EDE,0.215,0.049,0.083,68,0,Planck-EB combination,2601.13624,Table 1,
+YIN26-H0-ACT,H0_kms_Mpc,76.9,2.5,2.9,68,0,ACT-EB combination,2601.13624,"Table 1; Abstract",
+YIN26-H0-Planck,H0_kms_Mpc,76.2,2.5,3.1,68,0,Planck-EB combination,2601.13624,Table 1,
+YIN26-chi2-ACTEB-ACTfit,chi2_ACT_EB_38pts,53.4,,,,0,ACT-EB best fit vs 38 ACT EB points,2601.13624,Sec. 3 (Fig. 4 text),PTE 0.039
+YIN26-chi2-ACTEB-Planckfit,chi2_ACT_EB_38pts,117.6,,,,0,Planck-EB best fit vs 38 ACT EB points,2601.13624,Sec. 3 (Fig. 4 text),PTE 2.49e-10
+SOZ26-washout,washout_1_minus_J0,5.8e-3,,,95,1,Planck-based simulation (Fedderke+ 2019),2512.21888,Eq. 11,"Original: Fedderke, Graham, Rajendran PRD 100 015040 (arXiv ID not given in citing paper)"
+SOZ26-g-washout,g_phigamma_GeV-1_at_1e-24eV,9.6e-16,,,95,1,derived (washout),2512.21888,Eq. 12,"Times (m/1e-24 eV)(f_phi Omega_DM h^2/0.11933)^-1/2"
+SOZ26-g-req-lower,g_phigamma_GeV-1_at_1e-24eV,2.16e-15,,,95,0,derived from ACT beta=0.215,2512.21888,Eq. 6,"Lower bound required, times (m/1e-24 eV) kappa^-1/2; single field"
+FER22-osc-SPT3G,beta_osc_amplitude_deg,0.071,,,95,1,SPT-3G,2203.16567,"abstract; cited in 2512.21888 footnote 1","Median limit, periods 1-100 days"
+PB24-osc-Crab,beta_osc_amplitude_deg,0.065,,,95,1,POLARBEAR Crab Nebula 150 GHz,2403.02096,abstract,"Median limit, 0.75/yr to 0.66/hr"
+MK20-beta,beta_iso_deg,0.35,0.14,0.14,68,0,Planck PR3 (2018) HFI,2011.11254,abstract,"alpha from Galactic foreground EB; 2.4 sigma"
+DP22-beta,beta_iso_deg,0.30,0.11,0.11,68,0,Planck PR4 nearly full sky,2201.07682,abstract,"Decreases with larger Galactic mask; authors assign no cosmological significance"
+ESK22-beta,beta_iso_deg,0.33,0.10,0.10,68,0,Planck PR4 LFI+HFI all bands,2201.13347,abstract,Assuming no frequency dependence
+ESK22-beta0-noFG,beta0_150GHz_deg,0.26,0.11,0.11,68,0,Planck PR4 HFI+70GHz f_sky 0.93,2201.13347,abstract,"beta_nu=beta0(nu/150GHz)^n; n=-0.45 +0.61 -0.82; no FG EB"
+ESK22-n-noFG,beta_powerlaw_index_n,-0.45,0.82,0.61,68,0,Planck PR4 HFI+70GHz,2201.13347,abstract,
+ESK22-beta0-dust,beta0_150GHz_deg,0.33,0.12,0.12,68,0,Planck PR4 HFI+70GHz filamentary dust EB,2201.13347,abstract,"n=-0.37 +0.49 -0.64"
+ESK22-n-dust,beta_powerlaw_index_n,-0.37,0.64,0.49,68,0,Planck PR4 HFI+70GHz filamentary dust EB,2201.13347,abstract,
+ESK22-beta0-all,beta0_150GHz_deg,0.29,0.11,0.10,68,0,Planck PR4 all bands incl. 30/44 GHz,2201.13347,abstract,"n=-0.35 +0.48 -0.47"
+ESK22-n-all,beta_powerlaw_index_n,-0.35,0.47,0.48,68,0,Planck PR4 all bands,2201.13347,abstract,
+EK22-beta,beta_iso_deg,0.342,0.091,0.094,68,0,WMAP9 + Planck PR4 23-353 GHz nearly full sky,2205.13962,"abstract; cited in 2509.13654 Sec. I","3.6 sigma; no evidence for frequency dependence"
+CG23-beta-LFIWMAP,beta_iso_deg,0.35,0.70,0.70,68,0,Cosmoglobe LFI+WMAP only,2305.02268,abstract,
+CG23-beta-sync,beta_iso_deg,0.53,0.28,0.28,68,0,"Cosmoglobe LFI/WMAP + HFI PR4, channels <=70 GHz",2305.02268,abstract,1.9 sigma
+CG23-beta-cited,beta_iso_deg,0.26,0.10,0.10,68,0,Cosmoglobe WMAP + Planck,2305.02268,cited in 2509.13654 Sec. VI,Not in abstract; body not checked
+SUL25-beta-SEVEM,beta_iso_deg,0.46,0.28,0.28,68,0,Planck PR4 map-space SEVEM,2502.07654,abstract,"0.04 stat + 0.28 syst; err column is syst only; no miscalibration correction"
+SUL25-beta-Commander,beta_iso_deg,0.48,0.28,0.28,68,0,Planck PR4 map-space Commander,2502.07654,abstract,"0.04 stat + 0.28 syst; err column is syst only"

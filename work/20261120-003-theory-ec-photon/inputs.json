@@ -1,0 +1,18 @@
+{
+  "_note": "Inputs for estimates.py. beta is read from data/birefringence_measurements.csv. The rest are task-local because data/ had no shared cosmology/constants file when this ran; the overseer should move these into data/ and point estimates.py there. Entries flagged 'placeholder' are order-of-magnitude inputs that the bounds analyst must replace with a cited bound.",
+  "H0_km_s_Mpc": {"value": 67.36, "source": "arXiv:1807.06209 Table 2 (TT,TE,EE+lowE+lensing)"},
+  "Omega_m": {"value": 0.3153, "source": "arXiv:1807.06209 Table 2 (TT,TE,EE+lowE+lensing)"},
+  "Omega_c_h2": {"value": 0.1200, "source": "arXiv:1807.06209 Table 2 (TT,TE,EE+lowE+lensing)"},
+  "z_star": {"value": 1089.92, "source": "arXiv:1807.06209 Table 2 (TT,TE,EE+lowE+lensing)"},
+  "T_cmb_K": {"value": 2.7255, "source": "arXiv:0911.1955 (Fixsen 2009)"},
+  "N_eff": {"value": 3.046, "source": "standard-model value, e.g. arXiv:1807.06209 Sec. 7.4"},
+  "M_P_reduced_GeV": {"value": 2.435e18, "source": "CONVENTIONS.md"},
+  "alpha_em": {"value": 0.0072973525693, "source": "CODATA 2018"},
+  "hbar_eV_s": {"value": 6.582119569e-16, "source": "CODATA 2018 (exact in SI)"},
+  "hbar_c_eV_cm": {"value": 1.973269804e-5, "source": "CODATA 2018"},
+  "k_B_eV_K": {"value": 8.617333262e-5, "source": "CODATA 2018 (exact in SI)"},
+  "Mpc_km": {"value": 3.0856775814913673e19, "source": "IAU 2015 B2 (pc definition)"},
+  "xi_nu_max": {"value": 0.1, "source": "placeholder: order of BBN+CMB bounds on neutrino degeneracy |xi_nu|; bounds analyst to cite"},
+  "m_fermion_dm_eV": {"value": 1000.0, "source": "placeholder: illustrative light fermionic DM mass near phase-space (Tremaine-Gunn type) limits; bounds analyst to cite"},
+  "C_JK": {"value": 0.018997, "source": "3/(16 pi^2), one of the regularization-dependent values of the radiative CFJ coefficient, Jackiw & Kostelecky, hep-ph/9901358 (to be confirmed by literature scout); other schemes give 0"}
+}

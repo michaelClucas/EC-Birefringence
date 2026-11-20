@@ -1,0 +1,28 @@
+id,quantity,value_eV,note
+v-perp,Sun-CMB velocity component in equatorial plane (units of c),0.00122,"v = 1.2336e-03, dipole Dec = -6.94 deg"
+S-perp-electron,"|S_X|,|S_Y| bound from electron (Sun frame), minimal coupling",4.93e-22,"|c|+2sigma of Heckel 2008 b~_X,Y"
+S0-boost-electron,|S_0| (CMB frame) from electron b_perp via Sun-CMB boost,4.03e-19,assumes S_mu purely timelike in CMB frame (FRW-compatible) and constant over the solar system
+S0-direct-electron,|S_0| from electron b_T directly,1.41e-17,"2 x (|c|+2sigma) of Heckel 2008 half-combination, torsion-only"
+S-perp-neutron,"|S_X|,|S_Y| bound from neutron (Sun frame), minimal coupling",8.93e-25,Allmendinger 2014 |b~_perp| (68% CL)
+S0-boost-neutron,|S_0| (CMB frame) from neutron b_perp via Sun-CMB boost,7.3e-22,assumes S_mu purely timelike in CMB frame (FRW-compatible) and constant over the solar system
+S0-direct-neutron,|S_0| from neutron b_T directly,1.33e-18,Data Tables S2/D15 order of magnitude
+S-perp-proton,"|S_X|,|S_Y| bound from proton (Sun frame), minimal coupling",8e-23,Brown 2010 via Data Tables D10
+S0-boost-proton,|S_0| (CMB frame) from proton b_perp via Sun-CMB boost,6.53e-20,assumes S_mu purely timelike in CMB frame (FRW-compatible) and constant over the solar system
+S0-direct-proton,|S_0| from proton b_T directly,1.33e-17,Data Tables S2/D10 order of magnitude
+t-L,lookback time to z=inf (eV^-1),6.61e+32,= 13.80 Gyr; H0 = 1.438e-33 eV
+kAF-ACT,"|(k_AF)_T| equivalent to ACT DR6 beta (constant CFJ, KM Eq. 158)",5.67e-36,+- 1.95e-36 eV; beta = 0.215 deg
+kV00-ACT,|k^(3)_(V)00| = sqrt(4pi)|k_AF| for ACT beta,2.01e-35,
+p0-ACT,|p_0| in L = -(1/2) p_mu A_nu Ftilde^{mu nu} for ACT beta (p = -2 k_AF),1.13e-35,beta = (1/2) Int p_0 dt; matches KM: beta = |k_AF| t_L
+kV00-MK-check,k_(V)00 for beta=0.35 deg from KM Eq. 158 (compare Data Tables row P-kV00-MK),3.27e-35,Data Tables value 7.32e-36 eV; ratio 4.47 (unresolved)
+g-A-CAST,g_agg bound (A-CAST) in eV^-1,5.8e-20,"CAST (Xe Micromegas run), m_a <~ 0.02 eV"
+g-A-HB-Ayala,g_agg bound (A-HB-Ayala) in eV^-1,6.6e-20,"HB/RGB star counts in 39 globular clusters, m_a <~ 10 keV (mass range not in abstract)"
+g-A-HB-Dolan,g_agg bound (A-HB-Dolan) in eV^-1,4.7e-20,AGB/HB ratio with MESA (Dolan Hiskens Volkas JCAP 10 096 2022)
+g-A-SN1987A,g_agg bound (A-SN1987A) in eV^-1,5.3e-21,"SMM gamma-ray non-observation, m_a < 4.4e-10 eV"
+g-A-Chandra,g_agg bound (A-Chandra) in eV^-1,8e-22,"Chandra HETG spectrum of NGC 1275, m_a < 1e-12 eV"
+g-A-MWD,g_agg bound (A-MWD) in eV^-1,5.4e-21,"Magnetic white dwarf linear polarization, m_a <~ 3e-7 eV"
+alphadot-eV,alpha_dot/alpha today in eV,2.09e-41,+- 2.29e-41 eV
+alphadot-H0,alpha_dot/alpha today in units of H0,1.45e-08,+- 1.60e-08
+m-yukawa,mass of gravitational-strength scalar must exceed (eV),0.00511,hbar c/lambda
+R-mUED,R upper bound if SM in bulk (eV^-1),7.14e-13,= 1.41e-19 m
+H-BBN,H at T = 1 MeV (eV),4.46e-16,H = sqrt(pi^2 g*/90) T^2 / M_P
+T0-BBN,|T_0| (trace torsion) bound at T ~ 1 MeV (eV),5.18e-17,"T_mu = -6 phi u_mu; trace part only, sign depends on their signature"
