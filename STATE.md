@@ -1,34 +1,29 @@
 # State
 
-Iteration: 9 (completed 2026-11-20)
+Iteration: 10 (completed 2026-11-20)
 
 The ACT DR6 β = 0.215° ± 0.074° is 2.9σ with stated systematics caveats (miscalibration angle set by an optics-model prior, dust EB neglected). The signal may not be cosmological. Nothing below is an explanation; every mechanism is a candidate mechanism. No `RESULT.md`.
 
 ## Environment
 - `.venv`: Python 3.12.14 (uv), packages pinned in `requirements.txt` (candl 2.2.0).
-- CPU: logical CPUs 12-13 only, via `tools/pin.py`. iter 9: `repin.ps1` re-pinned 1 python.exe and 2 agent bash shells mid-iteration (shells match the repo path in their command line; harmless).
-- `artifacts/` (gitignored): candl_data, reproduce outputs, `clean_checkout/` (safe to delete).
-- Path leak in commit 87caa4e (iter 3) remains in history; path-scan gate before every commit since. 033 fixed a reproduce crash path that printed "OK" and leaked a path.
-- `python -m src.reproduce` (~4-7 min): 18 validation + 66/66 CLAIMS numbers + draft-only numbers (`src/draft_expected.csv`, checked against RESULT_DRAFT.md); exit 0 after iter-9 audit. `--checks`: symbolic check scripts (8 as of iter 8; 031 and 032 have run_checks.py too). Not regenerated: 020 higher-dim Λ scales, 0908.0629 4.9σ, LiteBIRD 3σ, KK-05 10²¹ m_e.
+- CPU: logical CPUs 12-13 only, via `tools/pin.py`. iter 10: `repin.ps1` re-pinned 1 python.exe mid-iteration.
+- Path leak in commit 87caa4e (iter 3) remains in history; path-scan gate before every commit since.
+- `python -m src.reproduce`: 18 validation + 66/66 CLAIMS numbers + 4/4 draft numbers; `--checks` 8/8 (skeptic 035 run, exit 0). Not regenerated: 031's 3.6 keV and 9.4 orders, KK-04's 3.6-4.1, EC-03′ best-fit mass 5.6×10⁻³³ eV, and the iter-9 list.
 
-## Iteration 9 tasks
-- 031 theory: EC-06a (MZ) dead: CFJ vector not closed in matter, Stückelberg photon needed, strong coupling at 3.6 keV (9.4 orders in energy below 10 TeV); no off-tracker escape; GW bound was outside 2001.06373's regime (respecting it needs ξ ≥ 4.7×10¹⁶). 36/36 PASS (rerun). Open: tensor torsion in the Λ equation, local physics near masses, one input (24 Hz) from a search snippet.
-- 032 literature/bounds: 028's compact-star inputs verified into data/compact_star_inputs.csv (Sirius B radius citation was wrong; correct source 1806.00061; no verdict change); cited H(z*) bound (δH/H < 0.18-0.49%, 95%) gives EC-06d 3.8-4.5 orders short with radiation-corrected ratio 29-57; KK-04 4.34 orders vs Cassini; 2610.02667 added (no novelty change). PASS (rerun).
-- 033 data: reproduce gaps closed; draft-number checking added.
-- 018: draft revision 3 written: both tracks Result B for torsion, ALP statement explicit, shortfall tables per kill.
+## Iteration 10 tasks
+- 034 skeptic on 031: EC-06a kill survives (non-closure holds for every solution with a growing density mode; 3.58 keV re-derived; off-tracker best case is ≤ 9 MeV; k* argument strengthened, ξ ≫ 1.6×10¹⁸; 24 Hz cited to PRL 119, 161101). Missed remnant: f(Λ)FF̃, ALP-class. 15/15 PASS (rerun).
+- 035 final skeptic on draft rev 3: BLOCKER 1: EC-06d heavy-0⁺ GR-compatible branch (ξ ≳ 1, closed p) was set aside as "not O(H) torsion" but never killed; β depends on ln Y at the endpoints, and the observer endpoint may follow local density (ground vs L2 ratio -7.8×10³; script PASS on rerun). BLOCKER 2: label. EC-04 and KK-03 produce β within bounds at stated costs, which is the program's Result C definition; call is Result C on both tracks with the B-type no-go for EC-generated couplings as the main content. MAJOR 3: shortfalls quoted at ξ = 1, not at the cited bound ξ < 9×10¹⁷ (then ~10.5 and ~7.5 orders; vector-current route needs c ≈ 2×10¹⁸, not excluded by any repo bound). MAJOR 4: no "not examined" scope section (metric-affine photon sectors, Weyl-invariant EC, EC + non-minimal scalar, Hojman-Rosenbaum-Ryan gradient torsion, bosonic spin sources, D > 5, KK-05 brane-photon loophole). MINOR: 10 TeV threshold is "a choice" in data; four 029 fixes unapplied; uncovered numbers. Verified at source: CAST g_aγ·g_ae, ξ_ν, Proca galactic limit.
 
-## Settled
-- 4D: every torsion route examined is dead with a named reason and shortfall (see draft rev 3 tables); EC-06a pending skeptic.
-- KK: KK-01, -04, -05 dead with shortfalls.
-- Survivors are ALP-class with hand-added couplings (EC-03', EC-04, KK-02, KK-03); torsion plays no role.
+## Decision (overseer)
+Accept 035's labelling: both tracks are Result C (effect possible only at stated costs, via fields with couplings added beyond EC), with the no-go for every coupling EC generates itself as the main content. This matches OVERSEER_PROMPT's definitions.
 
-## Open questions
-- Skeptic review of 031 (EC-06a strong-coupling kill; non-closure in matter; k* regime argument; the 24 Hz input).
-- KK-05 brane-photon mixing loophole (low priority).
+## Live / open
+- EC-06d heavy-0⁺ branch: needs the 0⁺ mass / Compton length (SNY parameters), local vs universal endpoint, matter coupling of the 0⁺ mode (fifth-force bounds), and whether it reduces to the published ∂ ln R coupling (hep-ph/0611192). Possible kill (environment-dependent β) or a Result C entry.
+- Vector-current-sourced torsion at the ξ bound (c ≈ 2×10¹⁸): any bound on c (baryon contact interactions M_P/√c ~ 10⁹ GeV)?
+- ALP class with costs: EC-03', EC-04, KK-02, KK-03, EC-06a f(Λ) remnant.
 
-## Direction toward a stop
-Draft rev 3 states Result B for both tracks. Remaining: skeptic on 031, and a fresh final skeptic on draft rev 3 (one full iteration, the stop condition). If neither finds a blocker, write RESULT.md, commit, push, send a push notification, end the loop.
-
-## Next planned tasks (iter 10)
-1. Skeptic on 031.
-2. Fresh final skeptic (new agent, none of the work, no earlier skeptic READMEs until its own list is formed) on RESULT_DRAFT.md rev 3 + CLAIMS.md + repo, judging the draft under both outcomes of (1).
+## Next planned tasks (iter 11)
+1. Theorist: EC-06d heavy-0⁺ branch: SNY 0⁺ mass and matter coupling, endpoint dependence, fifth-force bounds, verdict.
+2. Theorist (or same): shortfalls at the cited ξ bound for EC-02 / Pauli / vector-current routes; is c ≈ 2×10¹⁸ excluded?
+3. Data analyst: regenerate the uncovered numbers; cite or relabel the 10 TeV threshold.
+4. Overseer: draft rev 4: Result C labels with B-type core, cost table for each surviving route, "not examined" scope section, remaining 029 fixes. Then a fresh final skeptic in iter 12.

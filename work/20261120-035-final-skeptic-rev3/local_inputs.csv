@@ -1,0 +1,5 @@
+id,quantity,value,units,source,note
+rho_air_5200m,air density at ~5.2 km altitude (ACT site),0.736,kg/m^3,"U.S. Standard Atmosphere 1976 (NOAA-S/T 76-1562), table value at 5.2 km geometric altitude",standard reference value; not in data/ (skeptic scratch input)
+rho_si,silicon density (detector wafer),2329,kg/m^3,"CRC Handbook of Chemistry and Physics, silicon density",standard reference value; skeptic scratch input
+n_sw_1AU,solar-wind proton density at 1 AU (typical),5,cm^-3,"typical OMNI value; order of magnitude only",only used for the L2 (Planck) endpoint
+n_ism,local interstellar medium density (typical),1,cm^-3,order of magnitude,illustrative galactic endpoint

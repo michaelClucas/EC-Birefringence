@@ -1,0 +1,38 @@
+PASS: K1 delta(-1/2 p.A Ftilde) = -1/4 sigma (dp).Ftilde + d_nu(-1/2 sigma p_mu Ftilde^{mu nu})
+PASS: K2a c = xi (1-c_s)/(2 sqrt3 M_P m) (same as 031 T5, derived from K1)
+PASS: K2b power counting: operator pi d d phi F has dim 6, [c] = -2, amplitude c^2 E^6/E^2 = c^2 E^4 dimensionless
+K2 xi*gamma = 1.637e-03; xi(GW speed) = 1.48e+04; xi(tracker, N_eff only, no GW) = 2.37e-03
+   GW-speed tracker: 1-c_s = 0.315: Lambda_SC(PDG) = 3.58e+03 eV, (Proca gal) 3.58e-01 eV; unitarity |a0|<=1/2 with a0=M/(16pi): 3.01e+03 eV
+   GW-speed tracker: 1-c_s = 1.000: Lambda_SC(PDG) = 2.01e+03 eV, (Proca gal) 2.01e-01 eV; unitarity |a0|<=1/2 with a0=M/(16pi): 1.69e+03 eV
+   tracker, no GW bound: 1-c_s = 0.315: Lambda_SC(PDG) = 8.94e+06 eV, (Proca gal) 8.94e+02 eV; unitarity |a0|<=1/2 with a0=M/(16pi): 7.52e+06 eV
+   tracker, no GW bound: 1-c_s = 1.000: Lambda_SC(PDG) = 5.02e+06 eV, (Proca gal) 5.02e+02 eV; unitarity |a0|<=1/2 with a0=M/(16pi): 4.22e+06 eV
+PASS: K2c Lambda_SC = 3-4 keV at xi(GW speed), PDG m, 1-c_s = Omega_m (031: 3.6 keV)
+PASS: K2d no-GW-bound tracker (gamma at N_eff limit) still < 20 MeV at PDG m
+   m needed for 10 TeV (GW): 7.8e+00 eV = 10^18.9 x PDG; energy shortfall 9.4 orders
+   m needed for 10 TeV (noGW): 1.3e-06 eV = 10^12.1 x PDG; energy shortfall 6.0 orders
+   with the phi momentum enhancement, Lambda_SC -> Lambda_SC sqrt(c_s) at least; c_s = 0.68 today (cosmic mean), -> 0 wherever kappa rho >> Lambda
+K3 O(gamma^2) of g^2 - P^2 - H^2 at P = gamma pt: gamma**2*pt*(2*H - 5*pt)  [Friedmann: H^2 = (L+kr)/3 - this]
+PASS: K3 MZ Eqs. 26-29: H^2 - (Lambda + kappa rho)/3 = 5P^2 - 2 gamma H P = -gamma^2 H^2/9 on the tracker
+PASS: K4a GB = C^2 + f(rho) with f = 24 (krho+L)/3 (L - krho/2)/3: GB is local in rho at linear order (C^2 is 2nd order)
+PASS: K4b s_dot = gamma kappa rho/3 along each dust worldline (Lambda = 0)
+PASS: K4c background s = -(2/3) gamma H, |s| = 2P with P = gamma H/3 (tracker, matches 031 T2)
+PASS: K4d growing mode: delta s = 3 s_bar delta (+ x-dependent constant): grows as t^(-1/3), so no constant of integration can cancel it; d_i s != 0 => dS != 0 for every solution with a growing density mode
+K5 forward-integrated tracker eps/gamma: z* 0.6667, today 0.4155; closed form 0.6667, 0.4155
+PASS: K5a numerical integration of the transport law reproduces 031's closed-form tracker to 1e-3
+   backward from today with eps(0) shifted by 1 (gamma units): eps(z*) shifts by 1.04e-04
+PASS: K5b any shift of eps(0) moves eps(z*) by < 1e-3 of it: no branch large at z* and small today except tuned cancellation at z ~ 0
+K6 k* = H/eps_S > k_GW today -> xi_min vs frequency:
+   f =     10 Hz: gamma < 8.4e-20, xi >= 2.0e+16, Lambda_SC(PDG, Omega_m) = 3.1e-03 eV
+   f =     24 Hz: gamma < 3.5e-20, xi >= 4.7e+16, Lambda_SC(PDG, Omega_m) = 2.0e-03 eV
+   f =    100 Hz: gamma < 8.4e-21, xi >= 2.0e+17, Lambda_SC(PDG, Omega_m) = 9.8e-04 eV
+   f =   1000 Hz: gamma < 8.4e-22, xi >= 2.0e+18, Lambda_SC(PDG, Omega_m) = 3.1e-04 eV
+PASS: K6a for any f in 10 Hz - 1 kHz the k* condition needs xi >= 1e16 (031: 4.7e16 at 24 Hz)
+   2001.06373 Eq. 70 (|gamma| << 1e-21): xi >> 1.6e+18
+PASS: K6b paper's own Eq. 70 bound gives xi > 1e18, stronger than 031's 4.7e16
+K7 S_vac = (1/gamma) d ln Lambda = c_s S on the background; int c_s eps dlna = 0.216 gamma vs 4.584: xi*gamma(alt) = 3.47e-02
+   GW speed (outside k* regime): gamma = 1.1e-07, xi = 3.1e+05, vacuum ALP coupling g = xi/(sqrt3 M_P) = 7.4e-14 GeV^-1; in matter g_eff = c_s g -> 0
+   k* at 24 Hz: gamma = 3.5e-20, xi = 1.0e+18, vacuum ALP coupling g = xi/(sqrt3 M_P) = 2.4e-01 GeV^-1; in matter g_eff = c_s g -> 0
+   Eq. 70 gamma = 1e-21: gamma = 1.0e-21, xi = 3.5e+19, vacuum ALP coupling g = xi/(sqrt3 M_P) = 8.2e+00 GeV^-1; in matter g_eff = c_s g -> 0
+   N_eff only: gamma = 6.9e-01, xi = 5.0e-02, vacuum ALP coupling g = xi/(sqrt3 M_P) = 1.2e-20 GeV^-1; in matter g_eff = c_s g -> 0
+PASS: K7 the vacuum-gradient-only coupling needs xi larger by J/J_alt > 3 than 031's full-S coupling
+== 15 PASS, 0 FAIL ==

@@ -1,0 +1,9 @@
+s* = 4.444e-03, R(z*)/rho_crit = 4.090e+08, Yc/rho_crit = 9.202e+10
+cosmological observer (mean rho_m today)                     beta/xi = -3.326e-03 rad  |xi| needed = 1.13e+00  sign -
+local ISM (1 p/cm^3)                                         beta/xi = -3.324e-03 rad  |xi| needed = 1.13e+00  sign -
+L2 / solar wind (Planck, if Compton length >> spacecraft)    beta/xi = -3.318e-03 rad  |xi| needed = 1.13e+00  sign -
+ground, air at 5.2 km (ACT, Compton length >> instrument)    beta/xi = +2.585e+01 rad  |xi| needed = 1.45e-04  sign +
+inside a silicon detector (Compton length << mm)             beta/xi = +3.190e+01 rad  |xi| needed = 1.18e-04  sign +
+ratio ground/L2 = -7.79e+03
+PASS: cosmological-observer xi reproduces 025's xi = 3 mu beta/delta
+PASS: ground vs space endpoints differ by > 100x (environment dependence)
