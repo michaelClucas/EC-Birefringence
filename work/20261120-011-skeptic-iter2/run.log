@@ -1,0 +1,39 @@
+=== s1_ec02_independent.py
+xi_nu<=0.048, 3 flavours: n5(LSS) = 1.468e-04 eV^3, beta(xi=1) = 7.466e-30 deg, shortfall 10^28.46, xi needed = 2.88e+28, Lambda_eff = M_P sqrt(2/xi) = 2.03e+04 GeV
+xi_mu,tau<=0.57 (N_eff only), 2 flavours: n5(LSS) = 1.200e-03 eV^3, beta(xi=1) = 6.104e-29 deg, shortfall 10^27.55, xi needed = 3.52e+27, Lambda_eff = M_P sqrt(2/xi) = 5.80e+04 GeV
+Reig/helioscope: xi < 9.40e+17
+PASS: EC-02 007 value 7.5e-30 deg reproduced within 10% -- 7.466e-30
+PASS: EC-02 007 'xi needed 2.9e28' within 10% -- 2.880e+28
+PASS: generous case 6.3e-29 deg within 10% -- 6.104e-29
+PASS: Reig xi bound 9.4e17 within 5% -- 9.399e+17
+exit 0
+=== s2_shift_symmetry.py
+PASS: reading B (full chiral rotation): V_min(phi) flat => m_phi = 0 -- ptp V_B = 1.3e-15
+PASS: reading A reproduces the textbook QCD-axion mass (so the test can fail) -- m^2 numeric 2.63158e-02, formula 2.63158e-02
+PASS: reading A is not flat -- ptp V_A = 1.17e-01
+PASS: theta_bar = theta_G + arg det M is phi-independent under the rotation (sympy)
+PASS: phi-pi0 kinetic mixing alone leaves a massless eigenstate -- roots [0, -m_pi**2/(epsilon**2 - 1)]
+r = q^2/m^2, B1 (Feynman-parameter integral), B1 (closed form), -r/12
+  1e-03  -8.334445e-05  -8.334445e-05  -8.333333e-05
+  1e-01  -8.446263e-03  -8.446263e-03  -8.333333e-03
+  1e+00  -9.662271e-02  -9.662271e-02  -8.333333e-02
+  3e+00  -4.621636e-01  -4.621636e-01  -2.500000e-01
+PASS: B1 from the Feynman-parameter integral = closed form
+PASS: B1 -> -r/12 for r -> 0 (heavy-fermion decoupling)
+PASS: massless/light fermion limit is NOT suppressed (r = 3: |B1| = O(1)) -- B1(3) = -0.462
+exit 0
+=== s3_pprime.py
+PASS: exp(pi (J12 + J3y)) = diag(1,-1,-1,-1,-1)
+PASS: P' in SO(4,1), det +1, time orientation preserved
+PASS: Clifford algebra built
+PASS: spinor lift S exists with S^-1 Gamma^M S = P'^M_N Gamma^N (5D fermions incl. masses covariant)
+PASS: S^2 = +1 on spinors (two rotations by pi)
+PASS: g'_55(x) = phi(Px)^2
+PASS: A'_0(x) = -A_0(Px), A'_i(x) = +A_i(Px)
+PASS: phi^p F_KK F~_KK is P'-odd (forbidden in a P'-invariant vacuum)
+PASS: phi^p F_KK^2 is P'-even
+PASS: bulk U(1): theta f f~ (theta = a_5) is P'-even (KK-02 allowed, check discriminates)
+PASS: KK fermion tower: graviphoton FF~ coefficient = 0 with no Wilson line -- w=0: 0.00e+00, w=0.13: -6.89e-03
+PASS: nonzero with a P'-odd Wilson line (w = 0.13)
+PASS: w = 1/2 (theta = pi, P'-even point) gives zero again -- 0.00e+00
+exit 0

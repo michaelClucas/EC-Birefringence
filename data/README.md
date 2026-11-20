@@ -38,3 +38,7 @@ Written by task `work/20261120-010-data-likelihood`.
 - `planck2018_bestfit.csv`: Planck 2018 base-LCDM parameters (arXiv:1807.06209 Table 2, TT,TE,EE+lowE+lensing column), used only to compute the BB templates (r, lensing, anisotropic-birefringence) for the SPT likelihood in `src/templates.py`. Values not re-opened in task 010.
 - `act_dr6_bands.csv`: ACT DR6 polarized array-bands with nominal frequency (the band label) and band edges quoted in arXiv:2509.13654 Sec. II. Used by the beta(nu) likelihoods in `src/likelihood.py`. Effective band centres are not recorded; the nominal labels are an approximation for chromatic fits.
 - Row `DPK25-alphaprior-corr` (0.9) in `birefringence_measurements.csv`: correlation of the Pi^PA alpha priors within a PA (2509.13654 Sec. II), added in task 010.
+
+## ultralight_fraction_bounds.csv
+
+Written by task `work/20261120-013-lit-nogo-check`. Per-mass bounds on the energy density today of an ultralight (DE-like or DM-like) scalar, for the EC-03' energy cap. Columns: `id`, `quantity`, `mass_eV` (single mass or range), `value` (as printed), `units`, `CL` (%), `bound_type`, `data_combination`, `arxiv`, `location_in_paper`, `note`. Fractions of ρ_DM in `note` use the Ω_c h² of the same table row or 0.12 as stated. Two rows (`ULF-P18-zc`, `ULF-NNQ25-consistency`) are not upper bounds: they record that no bound exists or that a region is consistent with data. Table values were extracted from the arXiv HTML. Narrative: `literature/nogo_literature_check.md`.

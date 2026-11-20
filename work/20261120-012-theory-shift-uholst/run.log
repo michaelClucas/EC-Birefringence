@@ -1,0 +1,84 @@
+===== check_chiral_rotation.py (15 s, exit 0)
+[PASS] S1a derivative coupling: theta-bar = theta + arg det M is phi-independent  (theta-bar = rho1 + rho2 + rho3 + theta0)
+[PASS] S1b reading A (anomaly kept, mass phases dropped): theta-bar shifts by -2 sum(c) phi/f
+[PASS] S1c derivative + GS term lambda phi GGtilde/f: theta-bar = theta-bar0 + lambda phi/f (shift broken)
+[PASS] S1d KSVZ control (phi in a mass phase, non-derivative): theta-bar depends on phi
+[PASS] S2 KR dual: L = -(1/2)(d phi)^2 + a d phi.J5 - (a^2/2) J5^2 - c_GS phi X
+[PASS] S2b without GS (c_GS = 0) phi enters only through d phi (exact shift symmetry)
+[PASS] S2c with GS the action changes by c_GS * const * int X under phi -> phi + const
+[PASS] S3a chiral Lagrangian: V(phi) flat for pure derivative coupling  (max-min = 0.0e+00)
+[PASS] S3b reading A: V = -K sqrt(mu^2+md^2+2 mu md cos theta-bar(phi))
+[PASS] S3b curvature = K m_u m_d/(m_u+m_d) (d theta-bar/d phi)^2 (axion mass formula)  (5.115644 vs 5.115646)
+[PASS] S3c curvature = K m_u m_d/(m_u+m_d) (d theta-bar/d phi)^2 (axion mass formula)  (0.258980 vs 0.258980)
+[INFO] Only an explicit, non-derivative phi G Gtilde (GS term, or phi in a quark-mass phase) gives a QCD mass.
+===== check_holst_bi.py (3 s, exit 0)
+[PASS] H0 EC quadratic form non-degenerate on 24 contortion components
+[INFO] gb = 0, lam = 1: Y = -3  ->  lam = 0.25 reproduces -(3/16) J5^2 (normalization of eps K J sums over all a,b,c)
+[PASS] H1 minimal EC: Y(0) < 0, so lam is real (normalization fixed by the repo result)
+[INFO] gb=+0.00: P=-0.75000000  X=-0.75000000  Y=-0.18750000  resid=0.0e+00
+[INFO] gb=+0.10: P=-0.74257426  X=-0.74257426  Y=-0.18564356  resid=0.0e+00
+[INFO] gb=+0.50: P=-0.60000000  X=-0.60000000  Y=-0.15000000  resid=0.0e+00
+[INFO] gb=+1.00: P=-0.37500000  X=-0.37500000  Y=-0.09375000  resid=0.0e+00
+[INFO] gb=+2.00: P=-0.15000000  X=-0.15000000  Y=-0.03750000  resid=0.0e+00
+[INFO] gb=+5.00: P=-0.02884615  X=-0.02884615  Y=-0.00721154  resid=8.4e-17
+[INFO] gb=-1.30: P=-0.27881041  X=-0.27881041  Y=-0.06970260  resid=0.0e+00
+[PASS] H2 Y = -(3/16) gamma^2/(1+gamma^2) = -(3/16)/(1+gb^2) (Perez-Rovelli Eq. 15)
+[PASS] H3 only v.v, v.J, J.J invariants (no other structure)
+[PASS] H4 P(gb) = P0/(1+gb^2) (Taveras-Yunes structure)  (P0 = -0.750000)
+[INFO] X(gb)(1+gb^2) values: [np.float64(-0.75), np.float64(-0.75), np.float64(-0.75), np.float64(-0.75), np.float64(-0.75), np.float64(-0.75), np.float64(-0.75)]
+[PASS] H4b X(gb) = X0/(1+gb^2): cross term X(gb) d(gb).J = d G(gb).J, a total-derivative-type coupling  (X0 = -0.750000)
+[INFO] P0 = -0.750000 -> healthy (P0 < 0): True; gb = sinh(phi/F), F = 1.224745/sqrt(kappa) = 1.2247 M_P
+[PASS] H5 canonical field: Y(phi) = -(3 kappa/16)/cosh^2(phi/F) is phi-dependent (shift symmetry broken)
+[PASS] H4c complete square: L_eff = -(3/4kappa)(v + J/2)^2/(1+gb^2)
+[PASS] H6 Y and P even in gb: no gb-odd non-derivative coupling at tree level (no theta-bar shift)
+===== check_formfactor.py (17 s, exit 0)
+[PASS] F1 pseudoscalar triangle: closed form = Feynman-parameter integral (q^2/m^2 = 0.01..3.6)
+[PASS] F2 B1 = -z/12 - z^2/90 + O(z^3), z = q^2/m^2  (-z**2/90 - z/12)
+[PASS] F3 heavy fermion: B1 -> 0; light fermion (q >> m): |B1 - 1| -> 0  (B1(q/m=1e-3) = -8.33e-08, B1(m/q=5e-5) = 1.000001-0.000000j)
+[PASS] F4 sum_f N_c Q_f^2 = 8 over three generations
+[INFO] g_eff/g_anomaly at m_phi = 6e-33 eV (008 plateau): 1.44e-78
+[INFO] g_eff/g_anomaly at m_phi = 1e-28 eV (washout edge): 3.99e-70
+[INFO] g_eff/g_anomaly at q ~ H(z*): 4.43e-71
+[INFO] EC-03' anomaly value g_T = 4.673e-21 GeV^-1 (008: 4.67e-21); derivative coupling gives g_eff <= 1.9e-90 GeV^-1
+[PASS] F5 g_eff/g_anomaly < 1e-60 for every m_phi in the beta window (<= 1e-27 eV)  (4.0e-68 at 1e-27 eV)
+[INFO] n_e(z*) <= 246 cm^-3, n_e/m_e^3 = 1.4e-29 (crude upper scale of medium terms)
+[PASS] F6 medium-term scale n_e/m_e^3 at z* below 1e-25
+===== check_uholst_chi.py (37 s, exit 0)
+[INFO] c=0.01, c'=0.3: A=-0.00015 B*=-4e-06 C=-0.27 (C/c'^2 = -3) cross=0.0e+00
+[INFO] c=0.1, c'=1: A=-0.015 B*=-0.004 C=-3 (C/c'^2 = -3) cross=0.0e+00
+[INFO] c=0.5, c'=-0.7: A=-0.375 B*=-0.5 C=-1.47 (C/c'^2 = -3) cross=0.0e+00
+[INFO] c=1, c'=0.2: A=-1.5 B*=-4 C=-0.12 (C/c'^2 = -3) cross=0.0e+00
+[INFO] c=3, c'=1.5: A=-13.5 B*=-108 C=-6.75 (C/c'^2 = -3) cross=0.0e+00
+[PASS] U1 c(chi) u-Holst: A = -3c^2/2, B* = -4c^3 pointwise; no W x dchi cross term; (dchi)^2 term only
+[INFO] C/c'^2 is c-independent: True, value -3 (sign < 0 adds a healthy chi kinetic term)
+[PASS] U1b chi kinetic correction C = C0 c'^2 with C0 < 0 (no ghost)
+[PASS] U2 exact u (X = d u = 0): K = 0 is the solution, no photon term
+[INFO] U3 c=0.001: K_[ab4] = -1.333e-06 W_ab + 0.001 W~_ab
+[INFO] U3 c=0.01: K_[ab4] = -0.0001333 W_ab + 0.01 W~_ab
+[INFO] U3 c=0.1: K_[ab4] = -0.01333 W_ab + 0.1 W~_ab
+[INFO] U3 c=1: K_[ab4] = -1.333 W_ab + 1 W~_ab
+[INFO] U3 c=10: K_[ab4] = -133.3 W_ab + 10 W~_ab
+[INFO] U3 c=100: K_[ab4] = -1.333e+04 W_ab + 100 W~_ab
+[PASS] U3 K_[ab4] = (+-)c W~_ab (+-)(4/3)c^2 W_ab exactly (c-odd piece linear in c)
+[PASS] U4 helicity phase difference = int Y'/Z dtau (rotation beta = half of it)  (0.313205 vs 0.313205)
+[PASS] U5 d beta / d ln alpha = -c exactly
+[PASS] U5b beta(c) = 2c - arctan(2 sqrt(3) c)/sqrt(3) + const
+[PASS] U6 (d psi)^2 = (d pi - (w/R) A)^2 + (w/R)^2/phi^2: a winding orienting scalar gives the KK photon a mass
+===== bounds_uholst.py (17 s, exit 0)
+[INFO] beta (ACT DR6 baseline) = 3.7525e-03 rad
+[INFO] B1 CMB alpha: |dalpha/alpha| <= 1.10e-02 (2 sigma) -> c >= 0.341
+[INFO] B2 MICROSCOPE |d_e| < 4e-05: Delta chi = 0.1 M_P -> c >= 1.33e+03
+[INFO] B2 MICROSCOPE |d_e| < 4e-05: Delta chi = 0.39 M_P -> c >= 340
+[INFO] B2 MICROSCOPE |d_e| < 4e-05: Delta chi = 1.0 M_P -> c >= 133
+[INFO] clock |alpha-dot/alpha| <= 3.20e-18/yr; QSO |dalpha/alpha|(z=1.15) <= 4.02e-06
+[INFO] m=1e-33 eV: Delta chi/chi_i=0.066  R_clock(env)=10.074  c_clock >= 8.14e+05 (this phase 1.53e+05)  R_qso=0.839  c_qso >= 7.83e+02
+[INFO] m=6e-33 eV: Delta chi/chi_i=1.128  R_clock(env)=0.634  c_clock >= 5.13e+04 (this phase 3.41e+04)  R_qso=0.699  c_qso >= 6.52e+02
+[INFO] m=1e-31 eV: Delta chi/chi_i=1.003  R_clock(env)=0.836  c_clock >= 6.76e+04 (this phase 6.54e+04)  R_qso=0.012  c_qso >= 1.13e+01
+[INFO] m=1e-30 eV: Delta chi/chi_i=0.999  R_clock(env)=0.855  c_clock >= 6.91e+04 (this phase 5.90e+04)  R_qso=0.002  c_qso >= 1.81e+00
+[INFO] m=1e-29 eV: Delta chi/chi_i=0.994  R_clock(env)=0.904  c_clock >= 7.31e+04 (this phase 5.79e+04)  R_qso=0.000  c_qso >= 4.21e-01
+[PASS] B3 clock bound on c is m-independent within an O(1) factor over 1e-33..1e-29 eV (matter-era scaling)  (min 5.13e+04, max 8.14e+05)
+[INFO] B4 EDM estimate d ~ 2.84e-32 c e cm -> c <~ 144 (JILA 4.1e-30 e cm); order of magnitude only
+[INFO] Required c (Delta chi = 0.39 M_P, field moving today): c >= 5.13e+04; EDM estimate allows c <~ 144
+[PASS] B5 window closed if the EDM estimate holds (c_needed > c_EDM)  (5.13e+04 vs 144)
+[PASS] B6 MICROSCOPE alone needs c > 100 at Delta chi = 0.39 M_P  (340)
+===== TOTAL: 37 PASS, 0 FAIL

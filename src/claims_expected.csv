@@ -1,0 +1,30 @@
+claim,key,quantity,claims_text,expected,rule,digits,source,status
+EC-01,xiS_needed_eV,needed |xi S_0| (eV),1.1×10⁻³⁵ eV,1.1e-35,sig,2,007 common.Cosmo: 2 beta / int dt,live
+EC-01,S0_lab_eV,lab |S_0| bound (eV),7.3×10⁻²² eV,7.3e-22,sig,2,005 derived_bounds.csv via 007 common.load,live
+EC-02,beta_max_deg,max beta at xi = 1 (deg),7.5×10⁻³⁰ deg,7.5e-30,sig,2,007 ec02_nogo nu-A,live
+EC-02,xi_needed,xi needed,ξ ≈ 3×10²⁸,3e28,sig,1,007 ec02_nogo nu-A,live
+EC-02,orders_short,orders short at xi = 1,28.5 orders,28.5,dec,1,007 ec02_nogo nu-A,live
+EC-02,xi_max_helioscope,xi bound (Reig dual axion + helioscope),ξ < 9×10¹⁷,9e17,sig,1,007 ec02_nogo,live
+EC-03,beta_osc_deg,local oscillation amplitude (deg),1.1×10⁻²⁰ deg,1.1e-20,sig,2,008 variants.qcd_variants,superseded (skeptic 011: shift symmetry so no QCD mass)
+EC-03,m_QCD_min_eV,QCD mass lower end (eV),1.4-8.6×10⁻¹² eV,1.4e-12,sig,2,008 variants.qcd_variants,superseded (skeptic 011: shift symmetry so no QCD mass)
+EC-03,m_QCD_max_eV,QCD mass upper end (eV),1.4-8.6×10⁻¹² eV,8.6e-12,sig,2,008 variants.qcd_variants,superseded (skeptic 011: shift symmetry so no QCD mass)
+EC-03,orders_short,shortfall (orders),19.3 orders short,19.3,dec,1,008 variants.qcd_variants,superseded (skeptic 011: shift symmetry so no QCD mass)
+EC-03',g_T_GeVinv,g = 8 alpha/(pi f) (GeV^-1),4.7×10⁻²¹ GeV⁻¹,4.7e-21,sig,2,008 variants.main,live
+EC-03',beta_max_deg,beta_max at 5% rho_DM (deg),≤ 0.136°,0.136,dec,3,008 beta_scan + variants (sub-grid),live
+EC-03',cap_at_best,energy cap at best m,5% ρ_DM,0.05,sig,1,008 variants.frac_cap,live
+EC-03',cap_needed_pct,cap needed for 0.215 deg (% rho_DM),~12% ρ_DM,12,dec,0,5% x (0.215/beta_max)^2,live
+EC-04,xi_min_lab,xi lower end (lab |S_0|),10⁻¹⁴ ≲ ξ,1e-14,oom,0,007 ec04_estimates,live
+EC-04,xi_max_CAST,xi upper end (CAST),ξ < 2×10⁸,2e8,sig,1,007 ec04_estimates,live
+EC-04,w_tuning,tuning w = A/m^2 for m ~ H0,~4×10¹²⁰ tuning,4e120,sig,1,007 ec04_estimates,live
+EC-05,beta_max_deg,max beta (deg),≤ 1.3×10⁻³⁰ deg,1.3e-30,sig,2,007 ec05_loop nu-C JK,live
+EC-05,orders_short,shortfall (orders),≥ 29 orders short,29,floor,0,007 ec05_loop nu-C JK,live
+KK-02,beta_max_k1_deg,beta_max at k = 1 (deg),≤ 0.209° at k = 1,0.209,dec,3,009 kk_bounds,live
+KK-02,invL_min_GeV,1/L lower end (GeV),5.5×10⁹ GeV,5.5e9,sig,2,009 kk_bounds (Chandra),live
+KK-02,invL_max_GeV,1/L upper end (GeV),~10¹⁸ GeV,1e18,oom,0,009 kk_bounds (M_5),live
+KK-02,Ml_min,2 pi L M lower end,2πLM ≈ 220-280,220,sig,2,009 kk_bounds Hosotani,live
+KK-02,Ml_max,2 pi L M upper end,2πLM ≈ 220-280,280,sig,2,009 kk_bounds Hosotani,live
+KK-03,g_min_GeVinv,g window lower end (GeV^-1),1.4×10⁻¹³,1.4e-13,sig,2,009 kk_bounds (BBN),live
+KK-03,g_max_GeVinv,g window upper end (GeV^-1),8×10⁻¹³ GeV⁻¹,8e-13,sig,1,009 kk_bounds (Chandra),live
+KK-03,natural_excluded,natural lambda = kappa_4 excluded (1 = yes),natural λ = κ₄ excluded,1,exact,0,009 kk_bounds dN_BBN,live
+KK-04,gamma_minus_1,radion PPN gamma - 1,γ-1 = -1/2,-0.5,exact,0,009 kk_bounds,live
+KK-04,m_ISL_eV,ISL mass bound (eV),ISL m > 5 meV,5e-3,sig,1,009 kk_bounds (data/bounds.csv),live

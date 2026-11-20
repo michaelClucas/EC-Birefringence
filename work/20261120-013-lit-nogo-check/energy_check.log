@@ -1,0 +1,14 @@
+g_T = 4.669e-21 GeV^-1, beta = 0.215 deg, H0 = 1.4369e-33 eV
+m [eV]     phi_i/M_P   rho_phi,0/rho_DM  (needed for beta = ACT central)
+2.0e-33      2.676        5.815
+3.0e-33      1.322        1.863
+4.0e-33      0.863        0.629
+5.0e-33      0.668        0.208
+6.0e-33      0.585        0.111
+7.0e-33      0.562        0.144
+8.0e-33      0.579        0.198
+1.0e-32      0.680        0.186
+2.0e-32      0.685        0.189
+PASS minimum required fraction within 0.09-0.14 (task 008: ~12% at ~6e-33 eV)
+PASS minimum lies in 4e-33..8e-33 eV
+PASS at 1e-32 eV required 0.186 > Planck18 cap 0.069 (excluded there)

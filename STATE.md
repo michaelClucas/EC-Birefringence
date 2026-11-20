@@ -1,55 +1,48 @@
 # State
 
-Iteration: 2 (completed 2026-11-20)
+Iteration: 3 (completed 2026-11-20)
 
 The ACT DR6 β = 0.215° ± 0.074° is 2.9σ with stated systematics caveats (miscalibration angle set by an optics-model prior, dust EB neglected). The signal may not be cosmological. Nothing below is an explanation; every mechanism is a candidate mechanism. No `RESULT.md`.
 
 ## Environment
-- `.venv`: Python 3.12.14 (uv), packages pinned in `requirements.txt` (candl 2.2.0 added in iter 2).
-- CPU: logical CPUs 12-13 only, via `tools/pin.py`. iter 2: `repin.ps1` re-pinned 2 python.exe mid-iteration and 1 after return. Cause: the `.venv` launcher stub that starts `pin.py` and short unpinned helper scripts (data task 010). Not a sustained load.
-- `artifacts/` (gitignored) holds SPT candl_data (commit c4eb8fb), regenerate with `work/20261120-010-data-likelihood/download_candl_data.py`.
-- `python -m src.reproduce`: currently reproduces the published β significances and SPT bounds (18 PASS). Does not yet regenerate claim numbers.
+- `.venv`: Python 3.12.14 (uv), packages pinned in `requirements.txt` (candl 2.2.0).
+- CPU: logical CPUs 12-13 only, via `tools/pin.py`. iter 3: `repin.ps1` re-pinned 1 python.exe mid-iteration (the `.venv` launcher stub pattern from iter 2); the skeptic reported one sub-second unpinned file-edit helper. No sustained unpinned load.
+- `artifacts/` (gitignored): SPT candl_data and reproduce outputs.
+- `python -m src.reproduce` (~2 min, 1 CPU): published β/A_CB validation (18 PASS) and every number in CLAIMS.md's last two columns (expected values in `src/claims_expected.csv`; EC-03 QCD-mass rows kept as "superseded"). Exit 0 after iter-3 audit. Newer numbers (EC-03' 2.7% cap, fit penalties, KK-05) are not yet in the reproduce table.
 
-## Iteration 2 tasks
-- 006 skeptic on iter 1: no sign or factor errors; all iter-1 formulas survive. EC-02 framing weakened (fixed in 007). β-viewpoint citation moved to 2202.13919 (CONVENTIONS.md updated).
-- 007 theory no-go: EC-02, EC-05 dead with cited inputs; EC-04 is an axion with g_φγ ≈ 0. 29/29 PASS (rerun by overseer). Inputs in `data/cosmo_inputs.csv`.
-- 008 cosmology of torsion axions: QCD-mass variants dead; generic ALP region mapped; washout reproduced from 2512.21888 to 1%. 25/25 PASS (rerun).
-- 009 KK bounds: P' parity argument makes KK-01 an all-orders no-go; 2608.09299 analysed; KK-02, KK-03 live but ALP-in-disguise; radion × FF̃ dead. 33/33 PASS (rerun).
-- 010 data likelihood: `src/` likelihood layer, candl SPT likelihood runs on 2 CPUs. 18/18 PASS (rerun).
+## Iteration 3 tasks
+- 011 skeptic on 007-009: EC-02, EC-05, EC-04, washout, P', KK-04, KK-02/03 survive. 008's QCD-mass reasoning BROKEN (∂φ·J₅ is exactly shift symmetric). EC-03' broken as a torsion mechanism. Scripts 25/25 PASS (rerun).
+- 012 theory: shift symmetry confirmed (m = 0; agrees with 2506.11836 for gluons); photon coupling decouples as (m_φ/m_e)²/96 (new, not in 2506.11836); Green-Schwarz term restores φFF̃ but also φGG̃ and the QCD mass; u-Holst with a non-radion scalar = KK-05, excluded at estimate level. 37/37 PASS (rerun).
+- 013 literature: no-go only partly published (hep-th/0207165 for KR torsion parity; 2310.09152 EFT no-go without gravity, which minimal EC falls under after torsion elimination). KK P' all-orders argument, shortfall numbers, radion Cassini kill not found in literature. Cited ultralight caps in `data/ultralight_fraction_bounds.csv`.
+- 014 data: reproduce extended; fits of axion-class candidates. No candidate beats a free-β ALP; SPT A_CB does not discriminate.
 
-## Settled (checked; skeptic-audited where noted)
-- Iter-1 items: all survived skeptic 006 (EC-00, KK-01 tree level, CFJ sign, β = -(g/2)(φ_0 - φ_LSS), contortion, FRW torsion, S = -(κ/2)J₅, L_eff = -(3κ/16)J₅², CS reduction, δα/α formulas).
-- Data: ACT DR6 2.905σ, ACT+WMAP+Planck 4.55σ, Cosmoglobe combination 3.9σ reproduced. Power-law β(ν) fit gives n ≈ 1.6 at 2.0σ, driven by the PA5 f150-f090 split the ACT paper attributes to instrument systematics. SPT: r, A_LT reproduce from candl; A_CB template scaled by 0.485 (fitted to the published 1.2×10⁻⁴ limit, so that limit is reproduced by construction; lensing-prior limit 4.5×10⁻⁵ vs published 5.3×10⁻⁵).
-- Generic ALP baseline (008): washout 50% at m ≈ 1.1×10⁻²⁸ eV; allowed 10⁻³⁵ ≲ m ≲ 10⁻²⁷ eV, 7×10⁻²¹ ≲ g ≲ 8×10⁻¹³ GeV⁻¹. A_CB = 3.6×10⁻⁷(H_inf/φ_i)².
+## Settled
+- All iter-1/2 items listed in CLAIMS.md as skeptic-survived.
+- Minimal EC and EC with minimally coupled fermions give no isotropic β: EC-00 exact; EC-02 28.5 orders short; EC-05 ≥ 29 orders short. After torsion elimination minimal EC is GR + LEFT-type four-fermion operators, so 2310.09152's no-go applies.
+- Torsion pseudoscalars coupled via ∂φ·J₅ (KR, BI×Nieh-Yan, PGT 0⁻, Holst-BI with minimal fermions) are exactly shift symmetric: no QCD mass, and the photon coupling decouples (~10⁻⁷⁰). EC-03 dead.
+- Any working route needs a photon coupling added beyond EC (by hand, Green-Schwarz term, or 5D Chern-Simons term); then the field is an ALP and torsion at most sets f.
+- Pure EC-KK: no parity-odd photon coupling at any order (P'). Radion × FF̃ excluded (Cassini, ISL).
+- Fits (ACT+WMAP+Planck): free-β ALP Δχ² = 20.7 vs null; EC-03' at 2.7% cap β ≤ 0.100°, penalty 8.0; KK-02 k = 1 β ≤ 0.209°, penalty 0.9.
 
-## Live candidate mechanisms (none has torsion doing the work)
-- EC-03' torsion-scale pseudoscalar with the gluon coupling removed by assumption: g = 8α/(πf) = 4.7×10⁻²¹ GeV⁻¹, β_max = 0.136° at ρ_φ ≤ 5% ρ_DM; 0.215° needs ~12%. The 5% cap is an uncited assumption. Marginal.
-- EC-04 PGT 0⁻ mode: shift-symmetric axion, g_φγ ≈ 0 unless a CFJ-type term is added by hand; needed mass takes ~10¹²⁰ tuning. Axion class.
-- KK-02 Wilson-line axion: β = kαΔϑ/2π, k = 1 gives at most 0.209°. ALP in disguise.
-- KK-03 KR 2-form + Green-Schwarz: g window 1.4-8×10⁻¹³ GeV⁻¹; natural λ = κ₄ excluded. ALP in disguise.
+## Live candidate mechanisms
+None in which torsion does the work.
+- KK-02, KK-03: ALPs in disguise, viable as ALPs; torsion plays no role.
+- EC-03', EC-04: ALPs with a hand-set coupling; EC-03' disfavoured by the cited energy cap.
+- KK-05: the only route found where torsion generates the parity-odd photon coupling; excluded at estimate level (EDM estimate c ≲ 140 vs MICROSCOPE c ≥ 340); needs a non-dynamical P'-odd background and the KK photon as the CMB photon. Skeptic pending; EDM bound is an estimate, needs firming.
 
 ## Dead mechanisms
-- EC-00 minimal EC + minimal Maxwell: β = 0 (theorem; skeptic-survived).
-- EC-02 minimal EC spin source + CFJ: 28.5 orders short at ξ = 1 with cited ξ_ν ≤ 0.048 (2409.08280); ~35 orders for polarized fermion DM. Dead as a torsion mechanism; the torsion-free J₅·AF̃/M² operator at M ~ 3×10⁴ GeV (0711.4617, 2302.11140) is a separate published mechanism.
-- EC-05 fermion-loop CFJ: ≥ 29 orders short; scheme ambiguity resolves to (H/m_e)² suppression on FRW.
-- EC-03 torsion axion with the universal torsion-quark coupling (KR/torsion axion 1502.03694; Holst/Nieh-Yan BI fields with fermions): QCD mass 1.4-8.6×10⁻¹² eV, full washout, local oscillation ≤ 1.1×10⁻²⁰ deg, 19.3 orders short. Holst/Nieh-Yan BI without fermions: g = 0.
-- KK-01 pure EC-KK: no parity-odd photon coupling at all orders (P' = diag(1,-1,-1,-1,-1) argument, 009; skeptic-proposed).
-- KK-04 radion × FF̃ (2608.09299 teleparallel; EC analogue via u-Holst term, c_odd = 16c³/(1+12c²)): needs an oriented P'-odd background, and the radion must roll after recombination, which Cassini (γ-1 = -1/2) and the inverse-square-law bound (m > 5 meV) exclude.
-
-Pending skeptic for 007, 008, 009 results.
+EC-00, EC-02, EC-03, EC-05, KK-01, KK-04 (reasons and numbers in CLAIMS.md).
 
 ## Open questions
-- 008: the torsion-fermion coupling is shift-symmetric ∂φ·J₅. With massive fermions this may give no QCD potential and a photon coupling suppressed ~10⁻⁷⁰. If so, EC-03 dies by a different route and EC-03' has no torsion-generated g at all. Needs a theorist check.
-- The u-Holst term (009) is the only place found where torsion itself generates a parity-odd photon coupling. Does it work with a field other than the radion (avoiding Cassini), and is the oriented background natural?
-- EC-03' energy-density cap (5% ρ_DM) needs a cited bound for an early-dark-energy-like ultralight field.
-- CS level normalization (k ∈ Z vs 6Z) quoted, not derived.
-- Unresolved: Data Tables β→k_AF factor 4.47; Planck isocurvature bound unverified; no BBN bound on axial torsion.
+- KK-05: firm up the EDM bound (cited, with the coupling of χ to the electron EDM operator derived); is there any P'-odd background that is non-dynamical and does not give the KK photon a mass?
+- CS level normalization (k ∈ Z vs 6Z) for KK-02, quoted not derived.
+- Minor: Data Tables β→k_AF factor 4.47; Planck isocurvature bound; no BBN bound on axial torsion. None affects a verdict.
 
-## Direction
-Both tracks are converging on a Result B / C structure: minimal EC and pure EC-KK give nothing; every live route is an axion-like field where torsion sets at most the coupling scale. Before a stop: skeptic on 007-009, literature check of the no-go, the u-Holst loose end, and `src.reproduce` regenerating every claim number.
+## Direction toward a stop
+Both tracks are at a Result B structure with a C-type footnote: Einstein-Cartan torsion (minimal or with the named extensions) does not produce the observed β within bounds; the effect is possible only by adding an axion-like field with a photon coupling put in beyond EC, where torsion plays no role (cost: new field + coupling + for EC-03' an energy fraction above the cited cap). Remaining before RESULT.md: skeptic on 012 (shift-symmetry photon decoupling, GS, KK-05); firm KK-05 EDM bound; reproduce covering iter-3 numbers; then a fresh skeptic on a RESULT draft for one full iteration.
 
-## Next planned tasks (iter 3)
-1. Skeptic on 007, 008, 009 (EC-02/05 numbers, QCD-mass argument, washout, P' argument, Cassini kill of KK-04, KK-02/03 windows).
-2. Theorist: shift-symmetric ∂φ·J₅ question (does a QCD potential and a photon coupling arise; anomaly matching); u-Holst term with a non-radion field.
-3. Literature scout: has the no-go (minimal EC and EC-KK give no birefringence; torsion axions reduce to ALPs) been published? Search specifically; also cite an EDE-like energy-density bound for EC-03'.
-4. Data analyst: extend `src.reproduce` to regenerate the claim numbers in CLAIMS.md from data/ (calling the work/ scripts), and fit the live axion-class candidates (EC-03', KK-02) to the β likelihood vs null with Δχ²/AIC/BIC.
+## Next planned tasks (iter 4)
+1. Skeptic on 012 and 014 (photon decoupling formula, GS argument, KK-05 coefficient c_odd and dβ = -c dlnα, EDM estimate, fit parameter counts).
+2. Theorist: KK-05 EDM bound derived and cited; P'-odd background question; CS level normalization for KK-02.
+3. Data analyst: add iter-3 numbers (EC-03 g_eff ratio, EC-03' 2.7%/6.9% β_max, fit penalties, KK-05 c bounds) to `src/claims_expected.csv` and reproduce.
+4. Overseer: draft RESULT candidate text in `work/` (not RESULT.md) for the iter-5 skeptic.
