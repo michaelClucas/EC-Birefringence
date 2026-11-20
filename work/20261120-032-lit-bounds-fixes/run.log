@@ -1,0 +1,61 @@
+### verify_inputs.py
+id               028 recalled   opened        rel. diff
+M_SiriusB        1.018          1.018         +0.000%
+R_SiriusB        0.008098       0.00802       +0.973%
+Teff_SiriusB     25000          25922         -3.557%
+M_WD_typ         0.6            0.6           +0.000%
+R_WD_typ         0.0125         0.0125        +0.000%
+M_J0030          1.34           1.34          +0.000%
+R_J0030          12.71          12.71         +0.000%
+ne_corona_model  1e+08          1e+08         +0.000%
+PASS: Sirius B mass, J0030 mass and radius, Baumbach-Allen normalisation as recalled 
+PASS: Sirius B radius 0.008098 (028) within 1 sigma of 1806.00061 Table 4 (but its arXiv ID and error bar are wrong) (+0.97%)
+   effect on 028 W1 Sirius B lower edge: x1.020 with the opened radius (m_min ~ M/R^2)
+PASS: opened radius changes 028's Sirius B edge by < 5% (verdict unaffected) 
+   Nauenberg R(Sirius B mass) = 0.00779 R_sun vs opened 0.00802 (hot WD: measured larger)
+PASS: Nauenberg relation on Sirius B: within 5% of the opened radius 
+   Nauenberg R(0.6 M_sun) = 0.01258 R_sun = 8750 km; 028 used 0.0125
+PASS: 028's typical WD radius 0.0125 R_sun agrees with the zero-T relation to < 3% 
+   n_e(BA) at x = 3: 9.05e+05 cm^-3; at x = 19 (028's solar mixing radius): 4.35e+04 cm^-3 (extrapolated)
+PASS: flag: 028's solar plasma radius (~19 R_sun) is outside the Baumbach-Allen validity range x < 3 
+   Retino 2016: 1.4e-49 kg = 7.85e-14 eV, 3.4e-51 kg = 1.91e-15 eV
+PASS: data row m_gamma_Retino = 1.4e-49 kg in eV 
+== 7 PASS, 0 FAIL
+
+### hz_bounds.py
+rho_r/rho_m(z*) = 0.321, radiation fraction 0.243
+allowed dH/H at z* (95%): Delta N_eff < 0.30 -> 4.88e-03; Omega_e < 0.0036 -> 1.80e-03
+allowed dH/H for z > 50 (95%): Omega_e(z>50) < 0.02 -> 1.02e-02
+PASS: both z* bounds allow < 1% in H 
+
+case   z       H/H_LCDM(025, no rad)  H/H_LCDM(with rad)  orders in H  orders in rho   bound
+III     100.00        19.8                   19.5           3.26         4.27      Omega_e(z>50)
+III    1089.92        65.8                   57.3           4.06         5.53      dNeff
+III    1089.92        65.8                   57.3           4.49         5.96      Omega_e
+IV      100.00        18.6                   18.4           3.23         4.22      Omega_e(z>50)
+IV     1089.92        61.8                   53.8           4.03         5.47      dNeff
+IV     1089.92        61.8                   53.8           4.47         5.90      Omega_e
+V       100.00          10                   9.86           2.94         3.67      Omega_e(z>50)
+V      1089.92        33.2                   28.9           3.76         4.93      dNeff
+V      1089.92        33.2                   28.9           4.19         5.36      Omega_e
+PASS: radiation correction: 025's H/H_LCDM(z*) is high by sqrt(1 + rho_r/rho_m) = 1.15 (025 comment says ~1.5) (1.149)
+PASS: every SNY case excluded at z* by > 3.5 orders in H (both bounds) (min 3.76)
+PASS: every SNY case excluded at z = 100 by > 2.5 orders in H (min 2.94)
+
+Summary: H(z*)/H_LCDM = 28.9-57.3 (radiation included); shortfall 3.8-4.5 orders in H, 4.9-6.0 orders in energy density (95% bounds).
+== 4 PASS, 0 FAIL
+
+### kk04_shortfall.py
+bulk matter (omega = 0)       : |gamma-1| = 0.5000; orders short vs 2.3e-05: 4.34; vs 2 sigma 6.7e-05: 3.87
+brane matter (alpha0^2 = 1/6) : |gamma-1| = 0.2857; orders short vs 2.3e-05: 4.09; vs 2 sigma 6.7e-05: 3.63
+PASS: KK-04 bulk: 4.3 orders (029's ~4.3) (4.337)
+PASS: KK-04 brane: still > 3.5 orders even at 2 sigma 
+== 2 PASS, 0 FAIL
+
+### ec02_yinkomatsu.py
+xi needed (EC spin torsion, nu asymmetry at the 95% bound xi_nu = 0.048): 1.3e+29
+CLAIMS EC-02 xi_needed = 3e28; ratio 4.3
+PASS: Yin-Komatsu fit implies the same 28-29 orders as EC-02 (within a factor 10) (log10 xi = 29.11)
+== 1 PASS, 0 FAIL
+
+### scripts with failures: 0

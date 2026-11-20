@@ -1,0 +1,5 @@
+claim,key,quantity,draft_text,expected,rule,digits,source
+EC-02,orders_short_pauli,orders short at xi = 1 for any fermionic axial source (Pauli bound; g = 100; rho_f = rho_LCDM),≥ 25 orders (25.49),25.49,dec,2,029 pauli_bound beta_max_deg(100; 1.0)
+EC-02,c_vector_needed,coefficient c for vector-current-sourced torsion at xi = 1,c ≈ 10³⁶,1e36,oom,0,029 pauli_bound c_need (value 1.7e36)
+EC-03',penalty_cap27_CG,"chi2 penalty vs free ALP (ACT + Cosmoglobe WMAP+Planck, 2.7% cap)",| 4.95 |,4.95,dec,2,014 fit_candidates.main with DATASETS + act_cosmoglobe (src.reproduce)
+KK-02,penalty_k1_CG,chi2 penalty vs free ALP at k = 1 (ACT + Cosmoglobe WMAP+Planck),| 0.14 |,0.14,dec,2,014 fit_candidates.main with DATASETS + act_cosmoglobe (src.reproduce)

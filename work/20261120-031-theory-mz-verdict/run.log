@@ -1,0 +1,62 @@
+=== check_offfrw.py: 12 PASS, 0 FAIL, exit 0, 10.5 s
+PASS: A1 forms code: omega^i_0 = g e^i, omega^ij = -P eps_ijk e^k give MZ torsion T^i = -T e0^ei + P eps_ijk ej^ek with g = adot/a + T
+   eps sign s = +1 (eps^0123 = -1): Eq. 15 on FRW reproduces Eqs. 28 + 29: True
+   eps sign s = -1 (eps^0123 = +1): Eq. 15 on FRW reproduces Eqs. 28 + 29: False
+PASS: A2 Eq. 15 on FRW (spatial curvature only, since dLambda ~ dt) reproduces MZ Eqs. 28 and 29 for exactly one eps sign
+PASS: A3 2P = (2/(3 gamma)) G_t^t theta_dot + 6 g P Ldot/Lambda^2 is Eq. 29: normalisation of the covariant formula
+   alpha (eps-R part) per draw: [-2/3, -2/3, -2/3]; beta (R part) per draw: [-2/3, -2/3, -2/3]
+PASS: B1 axial part of the Eq. 15 solution for M = eps.R is exactly alpha * E_A^F v_F (E = Eq. 14 contraction), same alpha for every random curvature
+PASS: B2 axial part for M = R^AB is exactly beta * W^AF v_F, W = dual of R^A_B ^ e^B (= dual of D T^A)
+PASS: B3 so S_mu = (2/(3 gamma)) (kappa tau - Lambda) . d theta + O(d theta . DT): the 1/gamma part is fixed by matter + Lambda through Eq. 14 (normalisation from A3)
+PASS: C1 Bianchi D T^A = R^A_B ^ e^B on the MZ FRW connection (beta-term = dual DT)
+PASS: C2 eps_ABCD R^AB ^ R^CD = + GB vol (vol = e0^e1^e2^e3 = a^3 dt^dx^dy^dz) for the Levi-Civita FRW connection
+PASS: D1 (dS)_{tau x} = d_x Y at O(eps), Y = (rho+p) dtheta_c' + p' dtheta_c + theta' drho_c (no Phi, Psi left); background dS = 0
+PASS: D2 a pure time-shift (adiabatic super-horizon) mode gives Y = 0
+PASS: D3 dust: Y = rho (dtheta_c' + theta' delta_c); zero only if theta's comoving perturbation tracks the density contrast, dtheta_c' = -theta' delta_c (not implied: theta carries its own data, MZ Table 1)
+PASS: E1 S ~ (phi_t, c_s phi_x): (dS)_{tx} = (c_s - 1) phi_tx, closed only where c_s = Lambda/(Lambda + kappa rho) = 1 (vacuum)
+== 12 PASS, 0 FAIL ==
+=== check_dynamics.py: 14 PASS, 0 FAIL, exit 0, 6.4 s
+PASS: T1 Eq. 30 at O(gamma^0) (P = gamma p~) is (3/2) a^-3 d_t[a^3 (L + k rho) 2 p~] = (3/8) GB - Lambda^2, i.e. nabla.(G.S) = (gamma/4) (GB - (8/3) Lambda^2)
+PASS: T2a P = gamma H/3 - (gamma Lambda^2/9) (int a^3 dt)/(a^3 H^2) is an exact particular solution for any flat a(t); the first term alone for Lambda = 0
+PASS: T2c de Sitter (H^2 = Lambda/3, int a^3 dt = a^3/(3H)): particular P = 0, so on the tracker eps_S decays in the Lambda era (P -> P_i/a^3, 2001.06373)
+PASS: T2b homogeneous solution P_h = C/(a^3 H^2): eps_h = 2 P_h/H ~ 1/(a H)^3 grows through radiation and matter eras
+PASS: T3a radiation: gamma H/3 = (gamma/(3 a^2)) H0 sqrt(Omega_r) (2001.06373 Eq. 27)
+PASS: T3b matter: (gamma H/3)^2 = gamma^2 kappa rho/27 with kappa rho = 3 H^2 (2001.06373 Sec. VIII)
+PASS: T3c radiation: P_h/P_tracker ~ a^3 (2001.06373 Eq. 28, delta_P = C a^3)
+PASS: T4a theta action normalisation N = 4 M_P^2/(3 gamma^2) reproduces the transport equation (N = [4*M_P**2/(3*gamma**2)])
+PASS: T4b S = -(1/(sqrt3 M_P)) (phidot, c_s grad phi): gamma cancels; c_s = Lambda/(Lambda + kappa rho)
+PASS: T4c canonical kinetic term (N/2) G^2 thetadot^2 = phidot^2/2 and gradient term (N/2) Lambda^2 (grad theta)^2 = c_s^2 (grad phi)^2/2
+PASS: T5 pi-phi-gamma vertex coefficient c = xi (1 - c_s)/(2 sqrt3 M_P m)
+PASS: T6a coefficient of H'' in the tensor equation is A/(A^2 + B^2) (vanishes and flips sign where A = 0)
+PASS: T6b with Eq. 29 (exact), A = 0 at k_P* = (Lambda + kappa rho)/(6 P), independent of gamma (k_P* = [(Lambda + kappa*rho(t))/(6*P)])
+PASS: T6c flat: Lambda + kappa rho = 3H^2 (+O(P^2)), eps_S = 2P/H  =>  k* = H/eps_S
+== 14 PASS, 0 FAIL ==
+=== mz_numbers.py: 10 PASS, 0 FAIL, exit 0, 7.1 s
+inputs: beta = 0.215 deg, H0 = 1.4369e-33 eV, Omega_m = 0.3153, Omega_r = 9.203e-05, z* = 1089.92
+N1 tracker: eps_S/gamma = 0.6667 at z*, 0.4155 today; int eps dz/(1+z) = 4.584 gamma (constant 2/3 would give 4.663); xi*gamma needed = 1.637e-03; constant-eps xi*eps = 1.073e-03
+PASS: N1 tracker: eps_S = 2 gamma/3 in radiation and matter eras, reduced by the Lambda term today
+N2 GW170817 speed: gamma <= 1.11e-07, eps_S(z*) <= 7.39e-08, xi >= 1.48e+04 (026: 1.4e4)
+PASS: N2 reproduces 026's xi >= 1.4e4 within 15% (Lambda-era eps reduction included here)
+N3 k_GW(24 Hz) = 9.926e-14 eV, H0/k_GW = 1.45e-20. Tracker at gamma = 1.1e-07: k_GW/k* = 3.2e+12. k* > k_GW needs eps_S(0) < 1.4e-20: gamma < 3.5e-20, xi >= 4.7e+16
+PASS: N3 at the GW170817 speed bound the LIGO band sits >= 1e12 above k* (Eq. 72 used outside its regime)
+PASS: N3 k* > k_GW on the tracker needs xi >= 1e16
+N4 homogeneous mode: eps_h(z*)/eps_h(0) = 1.04e-04 (it grows toward today; no large-at-z* decaying branch)
+PASS: N4a homogeneous eps_h(z*)/eps_h(0) < 1e-3: off-tracker modes cannot make eps(z*) >> eps(0)
+N4 cancellation branch (C tuned so eps(0) = 0): z_GW = 0.0090, max |eps|/gamma on z <= z_GW = 1.04e-03, beta integral 3.707 gamma (tracker 4.584)
+N4 N_eff >= 2.65: deficit <= 0.053, gamma <= 0.69; best case if no GW bound applied: xi >= 2.9e-03. With the k* condition on z <= z_GW: gamma < 1.4e-17, xi >= 1.5e+14
+PASS: N4b cancellation branch: with only N_eff, xi ~ 1e-3; with the k* condition, xi >= 1e14
+N5 xi = 2.9e-03: Lambda_SC (1 - c_s = 0.315) m = 1e-26: 8.04e+02 eV, m = 1e-24: 8.04e+03 eV, m = 1e-18: 8.04e+06 eV
+N5 xi = 1.5e+04: Lambda_SC (1 - c_s = 0.315) m = 1e-26: 3.58e-01 eV, m = 1e-24: 3.58e+00 eV, m = 1e-18: 3.58e+03 eV
+N5 xi = 4.7e+16: Lambda_SC (1 - c_s = 0.315) m = 1e-26: 2.01e-07 eV, m = 1e-24: 2.01e-06 eV, m = 1e-18: 2.01e-03 eV
+N5 m needed for Lambda_SC = 1e+13 eV: 7.8e+00 eV at xi = 1.5e+04; 1.5e-06 eV at xi = 2.9e-03 (PDG m < 1e-18 eV): 18.9 and 12.2 orders above PDG
+PASS: N5a Lambda_SC < 10 keV for xi >= 1.4e4 at every m up to the PDG limit
+PASS: N5b even the best off-tracker case (xi ~ 1e-3, no GW bound) has Lambda_SC < 10 MeV at the PDG limit
+PASS: N5c collider-safe Lambda_SC needs m >= 1e10 x PDG in every branch
+N5 029's dim-7 arithmetic (m M_P^2/xi)^(1/3) at xi = 1.5e+04, m = 1e-26: 0.159 GeV
+N5 029's dim-7 arithmetic (m M_P^2/xi)^(1/3) at xi = 1.5e+04, m = 1e-18: 73.8 GeV
+PASS: N5d 029's ~0.1 GeV reproduced as the dim-7 scale at m = 1e-26 eV, but the theta-exchange scale is lower
+N5 gauge-invariant (gradient) piece = ALP coupling of canonical phi: g = xi/(sqrt3 M_P) = 3.5e-15 GeV^-1 at xi = 1.5e+04
+== 10 PASS, 0 FAIL ==
+
+TOTAL: 36 PASS, 0 FAIL
+ALL PASS

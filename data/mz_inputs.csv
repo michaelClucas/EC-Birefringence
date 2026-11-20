@@ -1,0 +1,4 @@
+id,quantity,value,units,CL,source_arxiv,location,notes
+GW170817_f_low,lowest frequency of GW170817 in the detectors' band (start of the ~100 s in-band signal),24,Hz,-,1710.05832,"text (signal 'about 100 s (calculated starting from 24 Hz) in the detectors' sensitive band'); seen via search snippet of the PDF, not opened in full",lowest frequency gives the smallest k and so the weakest k* condition (task 031)
+GW170817_dL,luminosity distance of GW170817,40,Mpc,90 (+8 -14),1710.05832,abstract,"converted to z with z = H0 d_L/c (z << 1); task 031"
+E_collider_safe,photon-photon energy above which photon physics is treated as observed standard (LEP/LHC gamma-gamma; TeV blazar pair production),1e13,eV,choice,-,"same threshold as task 028 (window_cutoff.py C2c)","a choice, not a measurement; the verdict only needs Lambda_SC << 1 MeV vs TeV-blazar sqrt(s) ~ 0.1-2 MeV and LEP/LHC"

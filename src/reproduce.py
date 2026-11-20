@@ -8,7 +8,11 @@ Steps:
      artifacts/reproduce/, not to work/. The fit numbers quoted in CLAIMS.md are merged into the claim numbers.
   4. claim numbers vs CLAIMS.md: compared with src/claims_expected.csv, whose printed text is also checked to still
      occur in CLAIMS.md.
-  5. fit summary table (model, beta_max, penalty vs free ALP, Delta chi2 vs null) for ACT DR6 and ACT+WMAP+Planck.
+  4b. draft-only numbers (task 033): src/draft_expected.csv, numbers due in the RESULT draft but not in CLAIMS.md
+     (029 Pauli bound, Cosmoglobe penalties). A wrong or missing value fails; text not (yet) in
+     work/20261120-018-result-draft/RESULT_DRAFT.md is reported as "not in draft" and does not fail.
+  5. fit summary table (model, beta_max, penalty vs free ALP, Delta chi2 vs null) for ACT DR6, ACT+WMAP+Planck (EK22)
+     and ACT+Cosmoglobe WMAP+Planck.
   5b. only with --checks (task 027, skeptic 020 MINOR 12): the derivation/symbolic check scripts behind the
      no-number verdicts (tasks 003, 004, 009, 012, 016, 019, 022, and 025 if present), each in its own pinned
      process; fails if any exits nonzero or prints FAIL. Output files they write into work/ are restored.
@@ -38,7 +42,8 @@ from .data import ROOT  # noqa: E402
 
 VALIDATE = ROOT / "work" / "20261120-010-data-likelihood" / "validate.py"
 FIT = ROOT / "work" / "20261120-014-data-reproduce-fit" / "fit_candidates.py"
-FIT_DATASETS = {"act_dr6": "ACT DR6", "act_wmap_planck": "ACT+WMAP+Planck"}
+FIT_DATASETS = {"act_dr6": "ACT DR6", "act_wmap_planck": "ACT+WMAP+Planck",
+                "act_cosmoglobe": "ACT+Cosmoglobe WMAP+Planck"}  # Cosmoglobe added by task 033 (skeptic 020 S4)
 
 
 # ------------------------------------------------------------------------------------------ path scrubbing
@@ -126,6 +131,7 @@ def fits(vals):
     fit = _load(FIT)
     CN.OUTDIR.mkdir(parents=True, exist_ok=True)
     fit.HERE = CN.OUTDIR
+    fit.DATASETS = list(FIT_DATASETS)  # 014 fits ACT DR6 and EK22 only; the Cosmoglobe rows feed the draft numbers
     failed = bool(fit.main(vals))
     with open(CN.OUTDIR / "fit_results.csv", newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
@@ -138,7 +144,9 @@ def claim_table(vals):
     for k, v in flags.items():
         print(f"  [{'PASS' if v else 'FAIL'}] {k[1:]}")
     bad = CN.print_table(CN.compare(vals))
-    return bool(bad or [k for k, v in flags.items() if not v])
+    print("### draft-only numbers vs the RESULT draft (src/draft_expected.csv; task 033)")
+    bad_draft = CN.print_draft_table(CN.compare_draft(vals))
+    return bool(bad or bad_draft or [k for k, v in flags.items() if not v])
 
 
 def fit_summary(rows):
@@ -252,6 +260,11 @@ def main():
             print("### derivation checks behind the no-number verdicts (--checks; logs in artifacts/reproduce/)")
             if run_checks():
                 failed.append("derivation checks")
+    except Exception:
+        # task 033: an exception used to print "reproduce: OK" and its traceback bypassed the path scrubbing
+        import traceback
+        traceback.print_exc()  # sys.stderr is the scrubbed wrapper here
+        failed.append("exception")
     finally:
         print("### path scan")
         sys.stdout.flush()

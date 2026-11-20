@@ -22,6 +22,14 @@ Sources (scripts are imported, not copied; their stdout is captured and parsed w
                 reionization share), -025 ec06c_numbers (EC-06c photon-mass window, EFT cutoff), sny_background
                 (EC-06d xi and H(z*) on SNY cases III-V), check_sny_limit (EC-06d GR-regime xi). Table EC06 below,
                 one line per number (tasks 027, 030).
+  iter-8 skeptic numbers (task 033)   work/20261120-028 window_cutoff (EC-06c Lambda_eta, white-dwarf lower edge),
+                025 sny_background (EC-06d H/H_LCDM at z = 10), 025 check_sny_limit (xi for 10% deviations),
+                032 kk04_shortfall (KK-04 shortfall vs Cassini), 032 hz_bounds (EC-06d H(z*) ratios with radiation and
+                shortfall vs the cited H(z*) bounds; replaces 025's no-radiation ratios); in EC06.
+  draft-only numbers (task 033)   src/draft_expected.csv: numbers quoted in the RESULT draft
+                (work/20261120-018-result-draft/RESULT_DRAFT.md) but not in CLAIMS.md. Table DRAFT_NUMBERS below
+                (029 pauli_bound) plus the Cosmoglobe fit penalties from fit_values(). compare_draft() checks each
+                value and whether the printed text occurs in the draft ("not in draft" is reported, never a failure).
 Files the scripts write (plots, csv) are redirected to artifacts/reproduce/ by patching the module's HERE.
 """
 import contextlib
@@ -51,6 +59,11 @@ T023 = "20261120-023-cosmo-ec06"
 T024 = "20261120-024-lit-ec06-novelty"
 T025 = "20261120-025-theory-ec06c-costs"
 T026 = "20261120-026-skeptic-ec06"
+T028 = "20261120-028-skeptic-ec06c-costs"
+T029 = "20261120-029-final-skeptic-rev2"
+T032 = "20261120-032-lit-bounds-fixes"
+DRAFT_EXPECTED = Path(__file__).resolve().parent / "draft_expected.csv"
+DRAFT = WORK / "20261120-018-result-draft" / "RESULT_DRAFT.md"
 
 # KK-05 numbers: one line each (task 016 may revise them; change the source here and the row in claims_expected.csv).
 # key -> (work folder, module, getter on the imported module)
@@ -325,6 +338,53 @@ def _ec06_025(name):
     return f
 
 
+def _ec06_028():
+    """028 window_cutoff.py: reads its own inputs_028.csv next to the script and writes no files, so it runs with
+    its own folder as __file__ (no `here` redirect)."""
+    g, txt, code = exec_script(T028, "window_cutoff", cwd=ROOT)
+    g["_checks_ok"] = code == 0 and re.search(r"== \d+ PASS, 0 FAIL ==", txt) is not None
+    return g
+
+
+def _pauli_029():
+    """029 pauli_bound.py: top-level asserts; read-only."""
+    g, txt, code = exec_script(T029, "pauli_bound", cwd=ROOT)
+    g["_checks_ok"] = code == 0 and txt.count("PASS:") == 2
+    return g
+
+
+def _kk04_032():
+    """032 kk04_shortfall.py: |gamma - 1| of the radion (bulk matter) vs the Cassini 1 sigma error
+    (data/kk_bounds_inputs.csv); read-only. 032's summary line has no closing '=='."""
+    g, txt, code = exec_script(T032, "kk04_shortfall", cwd=ROOT)
+    g["_checks_ok"] = code == 0 and "FAIL:" not in txt and re.search(r"== \d+ PASS, 0 FAIL", txt) is not None
+    return g
+
+
+def _hz_032():
+    """032 hz_bounds.py: SNY H(z)/H_LCDM with radiation included, from 025's committed sny_background.csv (read
+    only), and the shortfall in orders of delta H/H against the cited 95% bounds (data/expansion_history_bounds.csv)."""
+    g, txt, code = exec_script(T032, "hz_bounds", cwd=ROOT)
+    g["_checks_ok"] = code == 0 and "FAIL:" not in txt and "PASS:" in txt
+    return g
+
+
+def _hz_star(g):
+    """032 rows at z*: (case, z, H/H_LCDM with radiation, bound, orders in H, orders in rho); 3 cases x 2 bounds."""
+    rows = [o for o in g["out"] if abs(o[1] - g["zstar"]) < 1]
+    if len({o[0] for o in rows}) != 3:
+        raise ValueError(f"032 hz_bounds: {len(rows)} rows at z*, need all three SNY cases")
+    return rows
+
+
+def _sny_at(g, z):
+    """H_SNY/H_LCDM at redshift z for every SNY case (025 sny_background.py rows; all three must reach z)."""
+    rows = [r for r in g["res"] if abs(r["z"] - z) < 1e-9]
+    if len(rows) != 3:
+        raise ValueError(f"025 sny_background: {len(rows)} of 3 cases reached z = {z}")
+    return [r["H_over_LCDM"] for r in rows]
+
+
 def _sny_star(g):
     """SNY cases III-V rows at z* from 025 sny_background.py (all three must reach z*)."""
     rows = g["reached_star"]
@@ -352,7 +412,8 @@ def _kaf_xieps(g, rid):
 
 EC06_SOURCES = {"022": _ec06_022, "023": _ec06_023, "023-aniso": _ec06_023_aniso, "024": _ec06_024, "026": _ec06_026,
                 "025-num": _ec06_025("ec06c_numbers"), "025-sny": _ec06_025("sny_background"),
-                "025-lim": _ec06_025("check_sny_limit")}
+                "025-lim": _ec06_025("check_sny_limit"), "028-win": _ec06_028, "029-pauli": _pauli_029,
+                "032-kk04": _kk04_032, "032-hz": _hz_032}
 
 # One line per CLAIMS.md number: "claim.key" -> (source, getter on that source's namespace). Task 025 may revise
 # EC-06c/EC-06d: change the getter here and the row in claims_expected.csv.
@@ -377,20 +438,53 @@ EC06 = {
     "EC-06c.cutoff_min_GeV": ("025-num", lambda g: (g["m_low"] * g["MP"]**2 / g["xi"])**(1 / 3) / 1e9),
     "EC-06c.cutoff_max_GeV": ("025-num", lambda g: (g["m_up_proca"] * g["MP"]**2 / g["xi"])**(1 / 3) / 1e9),
     "EC-06d.xi_SNY_zstar": ("025-sny", lambda g: sum(r["xi_needed"] for r in _sny_star(g)) / 3),  # mean of III-V
-    "EC-06d.Hratio_min_zstar": ("025-sny", lambda g: min(r["H_over_LCDM"] for r in _sny_star(g))),
-    "EC-06d.Hratio_max_zstar": ("025-sny", lambda g: max(r["H_over_LCDM"] for r in _sny_star(g))),
+    # task 032 (iter 9) re-sources the z* ratios with radiation in H_LCDM (025's 33-66 omitted it)
+    "EC-06d.Hratio_min_zstar": ("032-hz", lambda g: min(o[2] for o in _hz_star(g))),
+    "EC-06d.Hratio_max_zstar": ("032-hz", lambda g: max(o[2] for o in _hz_star(g))),
+    "EC-06d.orders_short_Hzstar_min": ("032-hz", lambda g: min(o[4] for o in _hz_star(g))),  # weakest: dNeff, case V
+    "EC-06d.orders_short_Hzstar_max": ("032-hz", lambda g: max(o[4] for o in _hz_star(g))),  # Omega_e, case III
     "EC-06d.xi_min_GRlike": ("025-lim", lambda g: g["xi_per"](1e-2)),  # |delta H^2/H^2 (z*)| <= 1e-2, mu = 1
+    # skeptic 028 (iter 8), added by task 033. Lambda_eta = (64 pi alpha M_P^2 m^2/(3 xi^2))^(1/4) at alpha = 1, on
+    # 025's window [m_low, m_up_proca] and at the PDG photon-mass limit (data/ec06c_costs_inputs.csv)
+    "EC-06c.Lambda_eta_min_keV": ("028-win", lambda g: g["lam_eta"](g["_src"]("025-num")["m_low"], 1.0) / 1e3),
+    "EC-06c.Lambda_eta_max_keV": ("028-win", lambda g: g["lam_eta"](g["m_proca"], 1.0) / 1e3),
+    "EC-06c.Lambda_eta_PDG_MeV": ("028-win", lambda g: g["lam_eta"](g["m_pdg"], 1.0) / 1e6),
+    # typical 0.6 M_sun white dwarf, A < 0.1 (025's criterion); Sirius B gives 1e-23 eV, A < 1 gives 2.5e-25 eV
+    "EC-06c.mgamma_min_WD_eV": ("028-win", lambda g: g["res"]["WD 0.6 Msun"][0.1]),
+    "EC-06d.Hratio_max_z10": ("025-sny", lambda g: max(_sny_at(g, 10.0))),  # case III
+    "EC-06d.xi_min_10pct": ("025-lim", lambda g: g["xi_per"](1e-1)),  # |delta H^2/H^2 (z*)| <= 0.1, mu = 1
+    # skeptic 029 item 3, computed by task 032: orders between the bulk-matter radion |gamma - 1| = 1/2 and Cassini
+    "KK-04.orders_short_Cassini": ("032-kk04", lambda g: g["math"].log10(g["pred"]["bulk matter (omega = 0)"] / g["b1"])),
 }
+
+# Numbers due in the RESULT draft but not in CLAIMS.md: "claim.key" -> (source, getter). Expected values in
+# src/draft_expected.csv. The Cosmoglobe penalties come from fit_values() (src.reproduce merges them).
+DRAFT_NUMBERS = {
+    # 029 Pauli bound: any fermionic axial source in minimal EC, g = 100 helicity states carrying all of rho_LCDM
+    "EC-02.orders_short_pauli": ("029-pauli", lambda g: g["math"].log10(g["beta_obs"] / g["beta_max_deg"](100, 1.0))),
+    "EC-02.c_vector_needed": ("029-pauli", lambda g: g["c_need"]),  # vector-current (baryon) source, xi = 1
+}
+
+
+def _run_table(table, ns, out):
+    """Evaluate {key: (source, getter)}; sources run once and are cached in ns. Each namespace gets `_src(name)` so a
+    getter can read another source (028's Lambda_eta uses 025's lower mass)."""
+    def src_ns(src):
+        if src not in ns:
+            ns[src] = EC06_SOURCES[src]()
+            ns[src]["_src"] = src_ns
+            out[f"_EC-06.{src}_checks_ok"] = bool(ns[src]["_checks_ok"])
+        return ns[src]
+    for key, (src, get) in table.items():
+        out[key] = float(get(src_ns(src)))
+    return out
 
 
 def ec06():
     OUTDIR.mkdir(parents=True, exist_ok=True)
-    out, ns = {}, {}
-    for key, (src, get) in EC06.items():
-        if src not in ns:
-            ns[src] = EC06_SOURCES[src]()
-            out[f"_EC-06.{src}_checks_ok"] = bool(ns[src]["_checks_ok"])
-        out[key] = float(get(ns[src]))
+    ns, out = {}, {}
+    _run_table(EC06, ns, out)
+    _run_table(DRAFT_NUMBERS, ns, out)
     return out
 
 
@@ -407,6 +501,9 @@ def fit_values(rows, caps):
         "KK-02.penalty_k1_AWP": float(row("act_wmap_planck", lambda m: m == "KK-02 k=1")["penalty_vs_ALP"]),
         "EC-03'.cap_P18BOSS_pct": 100 * caps["ULF-R23-P18BOSS-m1e-32"],
         "EC-03'.cap_P18_pct": 100 * caps["ULF-R23-P18-m1e-32"],
+        # draft only (task 033; skeptic 020 S4, 029 item 13): penalties with the ACT + Cosmoglobe combination
+        "EC-03'.penalty_cap27_CG": float(row("act_cosmoglobe", ec27)["penalty_vs_ALP"]),
+        "KK-02.penalty_k1_CG": float(row("act_cosmoglobe", lambda m: m == "KK-02 k=1")["penalty_vs_ALP"]),
     }
 
 
@@ -414,7 +511,7 @@ def regenerate(full_scan=True):
     vals, times = {}, {}
     for label, fn in (("007 (EC-01/02/04/05)", ec01_ec02_ec04_ec05), ("008 (EC-03, EC-03')", lambda: ec03(full_scan)),
                       ("009 (KK-02/03/04)", kk), ("012 (EC-03 photon, KK-05)", lambda: {**ec03_photon(), **kk05()}),
-                      ("022-026 (EC-06)", ec06)):
+                      ("022-029 (EC-06, iter-8 skeptics)", ec06)):
         t0 = time.time()
         vals.update(fn())
         times[label] = time.time() - t0
@@ -432,8 +529,8 @@ def claims_rows():
     return rows
 
 
-def expected():
-    with open(EXPECTED, newline="", encoding="utf-8") as f:
+def expected(path=EXPECTED):
+    with open(path, newline="", encoding="utf-8") as f:
         return [r for r in csv.DictReader(f) if not r["claim"].startswith("#")]
 
 
@@ -496,4 +593,34 @@ def print_table(table):
     print(f"claim numbers (live): {len(live) - len(bad)} match, {len(bad)} not matching; "
           f"superseded (EC-03 QCD-mass reading, skeptic 011): {sum(t['status'].startswith('match') for t in sup)}/{len(sup)} "
           "still reproduced by 008's scripts")
+    return bad
+
+
+def compare_draft(vals):
+    """Draft-only numbers (src/draft_expected.csv). A value mismatch or a missing value is a failure; text absent from
+    the draft is reported as "not in draft" and is not."""
+    text = DRAFT.read_text(encoding="utf-8") if DRAFT.is_file() else ""
+    table = []
+    for x in expected(DRAFT_EXPECTED):
+        v = vals.get(f"{x['claim']}.{x['key']}")
+        if v is None:
+            status = "NOT REGENERATED"
+        else:
+            status = "match" if _match(v, float(x["expected"]), x["rule"], int(x["digits"] or 0)) else "MISMATCH"
+        in_draft = x["draft_text"] in text
+        table.append(dict(claim=x["claim"], quantity=x["quantity"], value=v, printed=x["draft_text"],
+                          rule=f"{x['rule']}{x['digits']}", status=status if in_draft else f"{status} (not in draft)",
+                          ok=status == "match", in_draft=in_draft))
+    return table
+
+
+def print_draft_table(table):
+    w = max(len(t["quantity"]) for t in table)
+    print(f"{'claim':7s} | {'quantity':{w}s} | {'regenerated':>11s} | {'text':24s} | rule  | match")
+    for t in table:
+        print(f"{t['claim']:7s} | {t['quantity']:{w}s} | {fmt(t['value']):>11s} | {t['printed']:24s} | {t['rule']:5s} | "
+              f"{t['status']}")
+    bad = [t for t in table if not t["ok"]]
+    print(f"draft numbers: {len(table) - len(bad)}/{len(table)} regenerated and matching; "
+          f"{sum(not t['in_draft'] for t in table)} not (yet) in the draft (non-fatal)")
     return bad

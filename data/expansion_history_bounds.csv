@@ -1,0 +1,8 @@
+id,quantity,value,err,units,CL,bound_type,arxiv,location,verified_by_opening,notes
+dNeff_P18,extra relativistic species Delta N_eff (Delta N_eff > 0 prior),0.30,,-,95,upper,1807.06209,"Planck 2018 VI Sec. 7.5.2, text after Eq. (70b): one-tailed TT,TE,EE+lowE+lensing+BAO",yes,"radiation-like extra density (rho ~ a^-4) at all z >~ z*; converted to delta H/H at z* in hz_bounds.py"
+Neff_P18_95,N_eff two-sided,2.99,0.34,-,95,two-sided,1807.06209,"Eq. (67b), TT,TE,EE+lowE+lensing+BAO",yes,"+0.34 -0.33"
+Omega_e_P15,Doran-Robbers early dark energy fraction Omega_e,0.0036,,-,95,upper,1502.01590,"Planck 2015 XIV Sec. 5.1.5, Eq. (26) model, Table 3, Planck TT,TE,EE+lowP+BSH",yes,"constant fraction of the total density at early times; other combinations (no high-l pol.) give < 0.0070-0.0087. Opened via ar5iv HTML"
+Omega_e_z50_P15,early dark energy fraction active only at z > 50 (EDE3),0.02,,-,95,upper,1502.01590,"Sec. 5.1.5, Eq. (27) model, text ('about 2%' for z_e ~ 50; Fig. 11)",yes,"weaker for z_e < 50; z_e = 10 limit only in Fig. 11, not transcribed"
+theta_star_P18,100 theta_* (acoustic angular scale),1.04110,0.00031,-,68,measurement,1807.06209,"Table 2, TT,TE,EE+lowE+lensing column",yes,"0.03% precision; integral constraint on H(z) for 0 < z < infinity"
+z_eq_P18,redshift of matter-radiation equality,3402,26,-,68,measurement,1807.06209,"Table 2, TT,TE,EE+lowE+lensing column",yes,"used to get rho_r/rho_m at z*: (1+z*)/(1+z_eq)"
+nu_per_species,rho_nu/rho_gamma per neutrino species (7/8)(4/11)^(4/3),0.22710731766,,-,-,theory,-,standard (exact for instantaneous decoupling),-,"theory constant"
