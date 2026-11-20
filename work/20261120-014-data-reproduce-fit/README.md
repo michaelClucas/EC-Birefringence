@@ -135,3 +135,6 @@ SPT-3G: Δχ²_SPT is 0.28, 1.6 and 4.9 at A_CB = 10⁻⁵, 5×10⁻⁵ and 1.2�
 - BIC with a compressed β (n = 1) has no penalty. The ACT β comes from hundreds of EB/TB bandpowers, so a "real" n would add k ln n ≈ 5-6 per parameter. That is not computable from the compressed likelihood.
 - The SPT part is uninformative for these models: EC-03' predicts A_CB ~ 10⁻¹⁶, and KK-02's envelope (1.3×10⁻⁵ for k = 1) costs Δχ² ≈ 0.4 at most. Since all models can set A_CB = 0, SPT does not discriminate among them.
 - `act_wmap_planck` is the published inverse-variance combination. It assumes independence and uses symmetrised EK22 errors (010 open issue).
+
+## Addendum (iter 5, task 021)
+The free-β ALP now counts k_full = 2 in `fit_candidates.py` (skeptic 015). ALP ΔAIC_full drops by 2.00 (6.44 → 4.44 ACT DR6; 18.72 → 16.72 ACT+WMAP+Planck). `fit_results.csv` in this folder predates the fix; `python -m src.reproduce` writes the current table to `artifacts/reproduce/`. Penalties, Δχ² and B₁₀ are unchanged.

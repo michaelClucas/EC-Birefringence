@@ -1,0 +1,25 @@
+[PASS] A1 solved KK Levi-Civita connection: w0_[ab4] = W_ab/6, w0_[abc] = 0 (agrees with 004/016)
+[PASS] A2 (s=+1) Clifford algebra; Sigma sign -1; g0 Sigma^dag g0 = -Sigma (symmetrised form valid)
+[PASS] A3 (s=+1) only the totally antisymmetric connection enters the fermion term
+[PASS] A2 (s=-1) Clifford algebra; Sigma sign -1; g0 Sigma^dag g0 = -Sigma (symmetrised form valid)
+[PASS] A3 (s=-1) only the totally antisymmetric connection enters the fermion term
+[INFO] s=+1, sign(Wt in K)=+1: theta=0  D_E = 2*c**2 - 1/4,  D_B = 3*c/2;  general theta: D_E = 2*c**2*cos(theta) - 3*c*sin(theta)/2 - cos(theta)/4, D_B = 2*c**2*sin(theta) - 3*c*sin(theta/2)**2 + 3*c/2 - sin(theta)/4
+[INFO] s=+1, sign(Wt in K)=-1: theta=0  D_E = 2*c**2 - 1/4,  D_B = -3*c/2;  general theta: D_E = 2*c**2*cos(theta) + 3*c*sin(theta)/2 - cos(theta)/4, D_B = 2*c**2*sin(theta) + 3*c*sin(theta/2)**2 - 3*c/2 - sin(theta)/4
+[INFO] s=-1, sign(Wt in K)=+1: theta=0  D_E = 1/4 - 2*c**2,  D_B = -3*c/2;  general theta: D_E = -2*c**2*cos(theta) + 3*c*sin(theta)/2 + cos(theta)/4, D_B = -2*c**2*sin(theta) + 3*c*sin(theta/2)**2 - 3*c/2 + sin(theta)/4
+[INFO] s=-1, sign(Wt in K)=-1: theta=0  D_E = 1/4 - 2*c**2,  D_B = 3*c/2;  general theta: D_E = -2*c**2*cos(theta) - 3*c*sin(theta)/2 + cos(theta)/4, D_B = -2*c**2*sin(theta) - 3*c*sin(theta/2)**2 + 3*c/2 + sin(theta)/4
+[PASS] A4 real-mass zero mode: D_E = (3/2)(1/6 - (4/3)c^2) (P'-even pieces -> EDM), D_B = (3/2)c (P'-odd piece -> MDM), both reps, both K signs; mass phase mixes them as D_E cos th +- D_B sin th (= 016 D5/D6)
+[INFO] 012 used (3/4)c for the c-odd piece: the 3/4 counts each unordered pair (a,b) once in (3/4)K_[ab5] Psibar G^{ab5} Psi; summing over both orderings gives 3/2, as found here.
+[INFO] A5 s=+1, sign(n)=+1: KK mode at c=0 has D_E' = 0, D_B' = -1/4 -> g = 1
+[INFO] A5 s=+1, sign(n)=-1: KK mode at c=0 has D_E' = 0, D_B' = 1/4 -> g = 1
+[INFO] A5 s=-1, sign(n)=+1: KK mode at c=0 has D_E' = 0, D_B' = -1/4 -> g = 1
+[INFO] A5 s=-1, sign(n)=-1: KK mode at c=0 has D_E' = 0, D_B' = 1/4 -> g = 1
+[PASS] A5 massless 5D fermion, KK modes n != 0: the Levi-Civita W/6 Pauli term is purely MAGNETIC and gives g = 1 (literature: universal g = 1 of massive KK states, Ohkuwa 1984 thesis; Hosoya et al. PLB 134 (1984) 44)
+[INFO] So the same W/6 term is an EDM only because a real 5D mass M (P_4-odd, Thirring 1972) sets theta = 0. A KK mode with both M and n has tan(theta) = n/(M R) and EDM ~ M/sqrt(M^2+n^2/R^2).
+[INFO] A6 k/e = 3.785e-32 cm; d(c=0) = 9.46e-33 e cm; large-c slope (theta=0) 2.185e-32 e cm per unit c
+[PASS] A6 theta = 0 (real-mass zero mode + non-geometric charge): JILA gives c <= 188 (016 E2 reproduced)  (c_max = 187.6)
+[INFO] A7 theta = pi/2 (KK-charged mode, M = 0): d = (3/2)c k/sqrt(1+12c^2) -> 1.64e-32 e cm; max over c in [1e-3,1e8] = 1.64e-32 e cm; JILA 4.1e-30
+[PASS] A7 for the only gauge-consistent charge (KK momentum, theta -> pi/2) the EDM saturates below JILA: no bound on c (015's form, with 3/2 in place of 3/4)  (ratio 4.0e-03)
+[INFO] A8 KK-charged electron with physical charge e at c = 1: m >= e sqrt(Z)/k = 1.88e+27 eV
+[INFO] A8 KK-charged electron with physical charge e at c = 188: m >= e sqrt(Z)/k = 3.40e+29 eV
+[INFO] A8 KK-charged electron with physical charge e at c = 51000: m >= e sqrt(Z)/k = 9.21e+31 eV
+SUMMARY: 0 FAIL

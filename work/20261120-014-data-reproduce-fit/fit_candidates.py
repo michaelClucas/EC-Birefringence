@@ -17,7 +17,8 @@ Models (beta in deg, sign convention of CONVENTIONS.md; every model allows eithe
             Anisotropy envelope A_CB <= (k alpha/2)^2 (theta fluctuating by O(pi), task 009).
 Parameter counts: k_eff = parameters the beta data constrain (1 for every non-null model). k_full also counts the
 parameters a model needs for beta to be what it is but which the beta data do not constrain:
-  ALP: beta only (the user-specified 1-parameter ALP; physically g, m, phi_i collapse to beta here)
+  ALP: amplitude g phi_i and mass/timing m (2; task 021, after skeptic 015: a physical ALP needs m on the
+       plateau and an initial amplitude just like EC-03' and KK-02, so all non-null models count 2)
   EC-03': phi_i and m (m must sit on the plateau 6e-33 .. 3e-31 eV); the cap is fixed per row
   KK-02: Delta_theta and the timing/mass parameter 2 pi L M (k is a discrete model label, not counted)
 BIC uses n = 1 for a compressed beta (so ln n = 0 and BIC = chi2: no penalty, stated, not hidden) and n = 6 for
@@ -97,7 +98,7 @@ def main(vals=None):
     H_max = math.pi * ci["MP_reduced"] * math.sqrt(ci["r_BK18"] * math.exp(ci["logA"]) * 1e-10 / 2)  # eV
     acb_ec03 = (H_max * ec["_EC-03'.g_T_eVinv"] * ec["_EC-03'.F"] / (4 * math.pi)) ** 2
 
-    models = [("ALP (free beta)", ALP_PRIOR, 1, 1, None)]
+    models = [("ALP (free beta)", ALP_PRIOR, 1, 2, None)]  # k_full = 2 (amplitude, mass), task 021
     ulf = ultralight_caps(ci["omch2"])
     print("EC-03' caps from data/ultralight_fraction_bounds.csv (95%, m = 1e-32 eV; no per-mass bound at 5-8e-33 eV):")
     for k, v in ulf.items():

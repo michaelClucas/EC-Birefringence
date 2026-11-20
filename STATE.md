@@ -1,48 +1,36 @@
 # State
 
-Iteration: 4 (completed 2026-11-20)
+Iteration: 5 (completed 2026-11-20)
 
 The ACT DR6 β = 0.215° ± 0.074° is 2.9σ with stated systematics caveats (miscalibration angle set by an optics-model prior, dust EB neglected). The signal may not be cosmological. Nothing below is an explanation; every mechanism is a candidate mechanism. No `RESULT.md`.
 
 ## Environment
 - `.venv`: Python 3.12.14 (uv), packages pinned in `requirements.txt` (candl 2.2.0).
-- CPU: logical CPUs 12-13 only, via `tools/pin.py`. iter 4: `repin.ps1` found nothing to fix at start and after return.
-- `artifacts/` (gitignored): SPT candl_data and reproduce outputs.
-- iter 3: commit 87caa4e included a run.log with an absolute local path (from a candl SyntaxWarning). Scrubbed in e239b04; it remains in git history (no history rewrites). Since then: overseer runs the path scan as a gate before every commit, and `src.reproduce` filters the warning and scrubs paths from its own output (017).
-- `python -m src.reproduce` (~3 min, 1 CPU; run with `-W ignore::SyntaxWarning` through `tools/pin.py`): published β/A_CB validation (18 PASS) and all 36 live numbers in CLAIMS.md (expected values in `src/claims_expected.csv`), plus fit summary. Exit 0 after iter-4 audit.
+- CPU: logical CPUs 12-13 only, via `tools/pin.py`. iter 5: `repin.ps1` re-pinned 2 python.exe during the clean-checkout run (launcher-stub pattern); nothing at start or after return.
+- `artifacts/` (gitignored, ~650 MB): SPT candl_data, reproduce outputs, `clean_checkout/` clone from task 021 (safe to delete).
+- Path leak in commit 87caa4e (iter 3) remains in history; scrubbed since. Path-scan gate before every commit.
+- `python -m src.reproduce` (~3 min main checkout, ~8 min clean clone; run with `-W ignore::SyntaxWarning` through `tools/pin.py`): 18 validation PASS + 36/36 live CLAIMS numbers. Verified on a clean clone (021): no dependence on uncommitted files. Not covered: the symbolic checks behind EC-00 and KK-01 (run separately via the work/ `run_checks.py` files).
 
-## Iteration 4 tasks
-- 015 skeptic on 012/014: shift symmetry, photon decoupling (C = 96 re-derived by dispersion integral), Green-Schwarz, MICROSCOPE/clock bounds, 4D Holst/NY g = 0 survive. Claimed 012's EDM bound c ≲ 140 BROKEN (photon normalisation Z omitted; canonical EDM saturates below JILA, so no bound). 014 AIC k_full column weakened (free ALP should also count 2 parameters, or drop the column). Scripts 18/18 PASS (rerun).
-- 016 KK-05 EDM + CS level: re-derived Z = 1+12c², Y = 16c³ exactly; finds 012 and 015 both assigned the dipole pieces wrongly: the P'-even pieces are the EDM and grow linearly in c, so JILA gives c ≤ 188 for a bulk Dirac electron with P'-even mass, excluding the minimal form by a factor 273 vs clocks (1.8 vs MICROSCOPE at Δχ = 0.39 M_P). Escapes: P'-odd electron mass (≥ 99.6%), non-bulk electron, Δχ > 0.71 M_P. A fixed fibre vector is a P'-odd background that keeps the KK photon massless and 4D Lorentz invariance (cost: explicit breaking of y-dependent 5D diffeos). CS level k ∈ Z with mixed gauge-gravitational CS term (6Z without). 28/28 PASS (rerun).
-- 017 reproduce: all CLAIMS numbers covered; path scrubbing. Overseer re-pointed the KK-05 EDM row from 012 to 016 (c ≤ 188).
-- 018 overseer: RESULT draft in `work/20261120-018-result-draft/RESULT_DRAFT.md`.
+## Iteration 5 tasks
+- 019 adjudicator (KK-05 EDM): the P'-even pieces are the EDM (016 right, 012 and 015 wrong on assignment; 012 also off by 2 and missing Z). JILA bound c ≤ 188 holds only for a KK-neutral electron with a non-geometric charge, which breaks the KK gauge symmetry. With the consistent KK-momentum charge: no EDM bound, but the electron mass is ~M_P scale. 9/9 PASS (rerun).
+- 020 final skeptic on the RESULT draft: numbers, signs, units, cited bounds (2301.08361, 2409.08280, Chandra) and reproduce verified. BLOCKER: the 4D no-go only covers spin-sourced torsion; unsourced O(H) torsion (EC with varying Λ, teleparallel FRW torsion, PGT torsion cosmologies) with a CFJ coupling needs only ξε ≈ 10⁻³. MAJOR: KK verdict logic inconsistent (now resolved: KK-05 dead by charge problem); literature novelty overstated (photon decoupling of derivative-coupled ALPs is standard: 1708.00443, 1903.12559, 2011.10025; only the torsion application is new; draft omitted 0908.0629, a torsion-photon birefringence fit). 8 MINOR items in its README. 6/6 PASS (rerun).
+- 021 data: AIC k_full fixed (free ALP = 2); clean-checkout reproduce passes.
 
 ## Settled
-- Minimal EC and EC with minimally coupled fermions give no isotropic β (EC-00, EC-02, EC-05), skeptic-survived.
-- Torsion pseudoscalars coupled via ∂φ·J₅ are exactly shift symmetric: no QCD mass, photon coupling (m_φ/m_e)²/96 (EC-03 dead), skeptic-survived twice.
-- Any ALP route needs a photon coupling added beyond EC; Green-Schwarz completion brings back the QCD mass.
-- Pure EC-KK has no parity-odd photon coupling at any order; radion × FF̃ excluded (KK-01, KK-04).
-- KK-02: CS level |k| = 1 allowed with the mixed CS term; β ≤ 0.209°.
-- Fits: no candidate beats a free-β ALP; SPT A_CB does not discriminate.
+- 4D: no birefringence from minimal EC or from spin-sourced torsion (EC-00, EC-02, EC-05); torsion pseudoscalars with ∂φ·J₅ couplings have no photon coupling (EC-03); ALP routes need a coupling added beyond EC (EC-03', EC-04).
+- KK: pure EC-KK gives nothing at any order (KK-01); radion × FF̃ excluded (KK-04); KK-05 (torsion-generated χFF̃ via u-Holst) dead because no light state can carry KK charge e; KK-02/KK-03 are ALPs in which torsion plays no role.
+- Fits: no candidate beats a free-β ALP.
 
-## Live candidate mechanisms
-- KK-02, KK-03: ALPs in disguise, torsion plays no role.
-- EC-03', EC-04: ALPs with a hand-set coupling; EC-03' disfavoured by the cited energy cap.
-- KK-05: the only route where torsion generates the coupling. DISPUTED: 016 says excluded in minimal form (EDM), 015 said no EDM bound. Strongly disfavoured either way by structural costs (fixed P'-odd background breaking y-dependent diffeos, KK photon = CMB photon, c ≳ 5×10⁴).
-
-## Dead mechanisms
-EC-00, EC-02, EC-03, EC-05, KK-01, KK-04.
-
-## Open questions
-- KK-05 EDM dispute: which dipole structure is P'-even for the KK photon (axial under P') and whether the -(4/3)c²W term contributes to the EDM. Needs a third, independent adjudication.
-- 014 AIC k_full: set free-ALP k_full = 2 or drop the column (minor, no verdict depends on it).
-- KK-05 non-minimal escapes: are the escapes natural or tuned (P'-odd electron mass ≥ 99.6%)?
-- Minor, no verdict depends on them: Data Tables β→k_AF factor 4.47; Planck isocurvature bound; no BBN bound on axial torsion; S¹/S¹/Z₂ only (warped not treated).
+## Live / unexamined
+- EC-06 (NEW, unexamined): background torsion of order H not tied to spin (Magueijo-Złośnik EC with varying Λ 1908.05184; teleparallel; PGT torsion cosmologies) + a non-minimal CFJ coupling ξ. Needs ξε ≈ 1.1×10⁻³ (skeptic estimate). Questions: is such a background a solution of EC or only of an extension; gauge invariance of the CFJ term beyond FRW (p must be closed); anisotropy from torsion perturbations vs SPT A_CB; β(z) history (reionization vs recombination) vs ALP; what bounds ξ (photon-sector LV, the torsion's own coupling to fermions in that theory, solar-system torsion); prior art (0908.0629 Das-Mohanty-Prasanna; open gap G10 in literature/open_gaps.md).
+- KK-02, KK-03, EC-03', EC-04: ALPs.
+- KK-05 loophole: brane photon mixing with the KK photon (low priority).
 
 ## Direction toward a stop
-4D track: Result B (no-go) with a C footnote (only ALPs with couplings added beyond EC). KK track: Result B if KK-05 is excluded, Result C (torsion-generated coupling possible only with a fixed P'-odd background, non-minimal fermion sector, c ≳ 5×10⁴) if it survives in non-minimal form. The draft states both cases.
+KK track is ready for Result B (with KK-02/03 as ALPs where torsion plays no role) after the draft is corrected. The 4D track cannot stop until EC-06 is settled: it is either a Result C (a non-spin torsion background plus an added photon coupling, with stated costs) or a no-go with a named reason.
 
-## Next planned tasks (iter 5)
-1. Adjudicator (fresh agent, did neither 015 nor 016): settle the KK-05 EDM dispute with an independent derivation.
-2. Fresh skeptic on `work/20261120-018-result-draft/RESULT_DRAFT.md` + CLAIMS.md + the repo, for one full iteration (the stop condition's skeptic).
-3. Data analyst: fix the 014 AIC column; confirm reproduce on a clean checkout (fresh clone into artifacts/, run download + reproduce).
+## Next planned tasks (iter 6)
+1. Theorist: EC-06 class: derive the background torsion in each named theory (Magueijo-Złośnik, teleparallel/TEGR and f(T), PGT torsion cosmologies), which components are nonzero (axial vs trace) on FRW, the CFJ couplings allowed and their gauge invariance off-FRW, β formula, and what independently bounds ξ.
+2. Cosmologist: β(z) and β for parameterized backgrounds S_0 = εH, T_τ = ε′·aH etc.; reionization vs recombination split; anisotropy from torsion perturbations vs SPT; fit to the β likelihood with Δχ² vs null and vs free ALP.
+3. Literature scout: prior art on non-spin cosmological torsion + photon couplings (0908.0629 and citing papers, Magueijo-Złośnik follow-ups, teleparallel birefringence papers), and fix the novelty list per skeptic 020 MAJOR 4.
+4. Overseer: update RESULT draft (KK verdict, novelty list, MINOR items from 020) after 1-3.
