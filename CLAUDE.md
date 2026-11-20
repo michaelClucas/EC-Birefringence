@@ -7,6 +7,7 @@ Research program: can Einstein-Cartan torsion explain the cosmic birefringence (
 - Each task lives in `work/<YYYYMMDD>-<NNN>-<slug>/` with a `README.md` (question, method, result, verdict, open issues) and the scripts needed to rerun it.
 - Every derivation gets a symbolic or independent second check. Use the conventions in `CONVENTIONS.md` and convert imported results to them.
 - Minimal Einstein-Cartan with a minimally coupled photon gives zero birefringence. Any mechanism must name the coupling or extension that changes this.
+- Two tracks: 4D Einstein-Cartan, and Einstein-Cartan-Kaluza-Klein (claim ids `KK-`). In KK the photon is geometric, so the 4D zero-coupling argument must be rechecked there, not assumed.
 - Every bound and measured number is cited (arXiv ID, table/equation) in `data/` or `literature/`. Don't hardcode measured numbers in scripts: load them from `data/`.
 - Python lives in `.venv/`. Add dependencies to `requirements.txt` with pinned versions.
 - 14 CPU cores shared with other work: this program uses at most 4 unless load is low. Intel iGPU, no CUDA. Long jobs run in the background and log to `work/<id>/run.log`.

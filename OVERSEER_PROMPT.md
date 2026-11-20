@@ -18,7 +18,7 @@ Work only inside this folder and this repo. Do not read, list, or reference any 
 
 ## Question
 
-Can the Einstein-Cartan formalism of gravity (the Einstein-Cartan-Sciama-Kibble action, where the connection carries torsion) explain the cosmic birefringence reported or constrained in these four papers?
+Can the Einstein-Cartan formalism of gravity (the Einstein-Cartan-Sciama-Kibble action, where the connection carries torsion) explain the cosmic birefringence reported or constrained in these four papers? The program runs two tracks: 4D Einstein-Cartan and its extensions, and an Einstein-Cartan extension of Kaluza-Klein theory (described below).
 
 | arXiv | What it reports |
 |-------|-----------------|
@@ -37,6 +37,20 @@ These are starting facts to verify in iteration 1, not conclusions:
 - In minimal EC, torsion is algebraic and tied to the spin density, so it vanishes outside matter. Its cosmological size today follows from the spin density and is expected to be tiny. Whether any spin source could give the required effect has to be computed, not assumed.
 - Homogeneous isotropic cosmology allows only specific torsion components (the axial part S_0 and the trace part). An isotropic rotation β needs a mechanism built from those.
 - Torsion couplings to fermions are bounded by laboratory and astrophysical Lorentz-violation tests (SME b_μ coefficients, spin-polarized torsion pendulums, comagnetometers). Any mechanism must respect these bounds.
+
+### Second track: Einstein-Cartan extension of Kaluza-Klein
+
+Run this as its own track alongside the 4D Einstein-Cartan track, with its own entries in `CLAIMS.md` (ids prefixed `KK-`). The question is the same: can a 5D (or higher) Einstein-Cartan-Kaluza-Klein theory, reduced to 4D, explain the observed β?
+
+Why it is a separate case: in Kaluza-Klein the photon is part of the higher-dimensional geometry (the g_{μ5} components), so the 4D argument "the photon doesn't couple to torsion" does not carry over automatically. Higher-dimensional torsion components reduce to 4D fields that may couple to F directly, and the reduction can produce a scalar or pseudoscalar times F∧F̃, which is the Chern-Simons structure that birefringence needs. Tasks for this track:
+
+- Write the 5D Einstein-Cartan action (with the fermion or spin source, if any, that sources torsion), state the compactification (S¹, orbifold, warped), and carry out the dimensional reduction explicitly with a symbolic check. List every 4D field that appears and every coupling to F_{μν}.
+- Determine whether a parity-odd term (pseudoscalar × F F̃ or an axial-vector × Chern-Simons term) arises, from what, and with what coefficient in terms of the 5D couplings and the compactification radius. If none arises without an added term, say so and identify the minimal added term (for example a 5D Chern-Simons term A∧F∧F, or a Holst/Nieh-Yan term in 5D).
+- Compute β from the cosmological evolution of that field between last scattering and today, and its anisotropy.
+- Apply the constraints specific to KK: radion/dilaton stabilization, bounds on time variation of the fine-structure constant (the KK scalar typically changes α), fifth-force and equivalence-principle tests, collider and astrophysical bounds on the compactification scale and KK modes, and washout and isocurvature constraints if the field acts like an axion.
+- The literature scout covers prior work on Einstein-Cartan-Kaluza-Klein reductions, Kalb-Ramond/torsion axions from compactification (where the dual of a 3-form field strength identified with torsion gives an axion coupled to F F̃), and KK explanations of birefringence.
+
+Results A, B and C below apply to each track separately. The loop stops when both tracks have a result that meets the stop conditions, and `RESULT.md` reports both.
 
 The literature on torsion-induced birefringence already exists. The literature scout finds it early so the team does not rederive a known result and call it new.
 
@@ -58,13 +72,14 @@ Before the loop stops on any result, it must:
 - Survive a skeptic: a fresh subagent that did not do the work, given only the claim file and the repo, tries to break it for one full iteration (sign conventions, missing factors of 2 or κ, gauge invariance, unit conversions between rad, degrees and natural units, misread bounds, double counting of data) and fails.
 - Be reproducible: `python -m src.reproduce` regenerates every number in the claim from `data/` on a clean checkout.
 
-Then write `RESULT.md` (question, answer A/B/C in one line, derivation summary, numbers table, bounds used, comparison with the axion baseline, literature check, known weaknesses, reproduce command), commit, push, send a push notification, and end the loop.
+Then write `RESULT.md` (question, answer A/B/C in one line per track, derivation summary, numbers table, bounds used, comparison with the axion baseline, literature check, known weaknesses, reproduce command), commit, push, send a push notification, and end the loop.
 
 ## The team
 
 Each iteration, dispatch 2 to 5 research subagents in parallel with the Agent tool, in one message. Pick roles based on what `STATE.md` says is needed:
 
 - **Literature scout:** reads the four papers in full and finds prior work on torsion and birefringence, torsion bounds, and EC cosmology. Keeps `literature/` with summaries and arXiv IDs.
+- **KK theorist:** owns the Einstein-Cartan-Kaluza-Klein track: 5D action, dimensional reduction, 4D couplings to F, and KK-specific constraints.
 - **Theorist:** writes actions, derives field equations and the modified photon dispersion relation, and gets β in terms of the torsion parameters. Every derivation goes in a `.md` with the symbolic check script next to it.
 - **Cosmologist:** builds the background evolution of the torsion/spin source over cosmic history and integrates the rotation from last scattering to today, then computes the anisotropy spectrum if the source fluctuates.
 - **Data analyst:** reproduces the published β and A_CB constraints from public likelihoods or published summary statistics, then fits mechanisms to them. Uses the public likelihoods where possible (candl_data for SPT, ACT DR6 products, Planck PR4).

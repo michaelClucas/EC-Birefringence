@@ -9,6 +9,7 @@ Repo scaffolded. No literature notes, data, derivations, or code yet.
 - Literature scout: read the four papers in full; record numbers, datasets, frequency dependence, systematics in `literature/`. Collect prior work on torsion-induced birefringence.
 - Theorist: write `CONVENTIONS.md`; verify that minimal EC with a minimally coupled photon gives zero rotation; list candidate couplings and extensions with their actions.
 - Bounds analyst: collect laboratory/astrophysical/cosmological torsion bounds with units.
+- KK theorist: write the 5D Einstein-Cartan-Kaluza-Klein action, reduce to 4D on S¹, list every coupling to F_{μν}, and check whether a parity-odd (F F̃) term appears.
 - Set up `.venv` and `requirements.txt`; record Python version.
 
 ## Settled
