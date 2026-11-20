@@ -1,0 +1,9 @@
+id,quantity,value,units,CL,source_arxiv,location,notes
+M_SiriusB,Sirius B mass,1.018,M_sun,68 (+-0.011),1703.10625,abstract (Bond et al. 2017 ApJ 840 70),"recalled, not re-opened in task 028; overseer: move to data/ if kept"
+R_SiriusB,Sirius B radius,0.008098,R_sun,68 (+-0.000046),1801.00876,abstract (Joyce et al. 2018 MNRAS 479 1612),"recalled, not re-opened in task 028"
+Teff_SiriusB,Sirius B effective temperature,25000,K,approx,1801.00876,abstract,"rounded; used only for the atmospheric scale height"
+M_WD_typ,typical DA white dwarf mass,0.6,M_sun,peak of mass distribution,1611.00629,"Tremblay et al. 2017 (Gaia DR1 WD mass-radius relation)","representative; recalled"
+R_WD_typ,typical WD radius at 0.6 M_sun,0.0125,R_sun,approx,1611.00629,mass-radius relation,"representative; recalled"
+M_J0030,PSR J0030+0451 mass,1.34,M_sun,68 (+0.15 -0.16),1912.05702,abstract (Riley et al. 2019 NICER),"recalled, not re-opened"
+R_J0030,PSR J0030+0451 radius,12.71,km,68 (+1.14 -1.19),1912.05702,abstract,"recalled, not re-opened"
+ne_corona_model,"Baumbach-Allen coronal electron density n_e(r) = 1e8 (2.99 x^-16 + 1.55 x^-6 + 0.036 x^-1.5) cm^-3, x = r/R_sun",1e8,cm^-3,model,-,"Allen, Astrophysical Quantities (Baumbach-Allen formula)","standard empirical model; no arXiv ID"

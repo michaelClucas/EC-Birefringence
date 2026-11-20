@@ -1,0 +1,49 @@
+=== eta_sector.py
+PASS: E1 025's zeta solution equals Golovnev-Koivisto 1808.05565 Eq. (6)
+   delta_1 T_sc (Phi = Psi = 0) = -4*Derivative(a(tau), tau)*Derivative(eta(tau, x), x)/a(tau)**3
+PASS: E2a first-order torsion scalar contains the boost: delta_1 T_sc = -4 a'/a^3 eta_x (up to sign)
+   delta_2 T_sc (Phi = Psi = 0) = 0
+PASS: E2b delta_2 T_sc has no eta-eta term, so TEGR has no eta stiffness (frame is pure gauge in TEGR)
+   eta-eta part of the eta Euler-Lagrange expression: -16*F2(tau)*Derivative(a(tau), tau)**2*Derivative(eta(tau, x), (x, 2))/a(tau)**2
+   coefficient of eta_xx: -16*F2(tau)*Derivative(a(tau), tau)**2/a(tau)**2 ; of eta_tautau: 0
+PASS: E2c eta-eta Lagrangian is 8 f_TT (a'/a)^2 eta_x^2 in e f(T): coefficient of eta_xx = -16 f_TT a'^2/a^2, no eta_tautau (eta is a constraint field)
+   CFJ source in the eta equation: xi*(-Derivative(Kt(tau, x), x) - Derivative(Kx(tau, x), tau))/2
+PASS: E3 CFJ source = -(xi/2)(d_x K^tau + d_tau K^x)
+== 5 PASS, 0 FAIL ==
+exit 0
+=== window_cutoff.py
+xi = 3.576e-04, v/c = 1.234e-03
+W1 Sun         : Phi = 2.12e-06, R = 6.957e+08 m -> m_min = 6.6e-28 eV (A<0.1), 6.6e-29 eV (A<1)
+W1 WD 0.6 Msun : Phi = 1.02e-04, R = 8.696e+06 m -> m_min = 2.5e-24 eV (A<0.1), 2.5e-25 eV (A<1)
+W1 Sirius B    : Phi = 2.67e-04, R = 5.634e+06 m -> m_min = 1.0e-23 eV (A<0.1), 1.0e-24 eV (A<1)
+W1 NS J0030    : Phi = 1.56e-01, R = 1.271e+04 m -> m_min = 2.7e-18 eV (A<0.1), 2.7e-19 eV (A<1)
+PASS: W1a reproduces 025's solar value 6.6e-28 eV (A < 0.1)
+PASS: W1b white dwarfs give a stronger lower edge than the Sun by > 100x
+PASS: W1c WD lower edge exceeds the Proca galactic upper limit 1e-26 eV even with A < 1
+W2 Sun, optical: vacuum-like mixing starts at r = 19.0 R_sun (n_e = 4.3e+04 cm^-3)
+W2 Sun with plasma (optical): m_min = 1.8e-30 eV (A<0.1), 1.8e-31 eV (A<1)
+PASS: W2a plasma lowers the solar edge but does not remove it (factor < 1e3)
+W2 WD: vacuum-like needs n_e < 6.6e+07 cm^-3; scale height 196 m; reached after 21 scale heights = 4.1 km above the photosphere (R = 8696 km)
+PASS: W2b WD: the plasma-detuned layer is < 1% of R, so vacuum mixing applies
+W3 windows (lower edge = max over Sun-with-plasma, WD, Sirius B; NS not used):
+   A<0.1: Proca gal: CLOSED (lower 1e-23 > upper 1e-26)
+   A<0.1: PDG      : open 1e-23 - 1e-18 eV
+   A<1.0: Proca gal: CLOSED (lower 1e-24 > upper 1e-26)
+   A<1.0: PDG      : open 1e-24 - 1e-18 eV
+PASS: W3 with the Proca galactic limit the window is closed; with PDG only it is open above ~1e-24 eV
+W3 neutron star (vacuum mixing, magnetosphere ignored): m_min = 2.7e-18 eV (A<0.1)
+C1 m = 7e-28 eV: (m M_P^2/xi)^(1/3) = 22.6 GeV, x (4 pi)^(1/3) = 52.6 GeV
+C1 m = 1e-26 eV: (m M_P^2/xi)^(1/3) = 54.9 GeV, x (4 pi)^(1/3) = 128 GeV
+C1 m = 1e-23 eV: (m M_P^2/xi)^(1/3) = 555 GeV, x (4 pi)^(1/3) = 1.29e+03 GeV
+C1 m = 1e-18 eV: (m M_P^2/xi)^(1/3) = 2.55e+04 GeV, x (4 pi)^(1/3) = 5.93e+04 GeV
+PASS: C1 reproduces 025's 20-60 GeV at 7e-28 and 1e-26 eV
+C2 m = 7e-28 eV: Lambda_eta = 1.98e+02 eV (alpha = 1), 6.25e+01 eV (alpha = 0.01)
+C2 m = 1e-26 eV: Lambda_eta = 7.47e+02 eV (alpha = 1), 2.36e+02 eV (alpha = 0.01)
+C2 m = 1e-23 eV: Lambda_eta = 2.40e+04 eV (alpha = 1), 7.58e+03 eV (alpha = 0.01)
+C2 m = 1e-18 eV: Lambda_eta = 7.47e+06 eV (alpha = 1), 2.36e+06 eV (alpha = 0.01)
+PASS: C2a Lambda_eta < 10 MeV for every m up to the PDG limit and alpha <= 1
+PASS: C2b Lambda_eta < 1 keV everywhere in 025's window (m <= 1e-26 eV, alpha <= 1)
+C2 m needed for Lambda_eta >= 10 TeV at alpha = 1: 1.8e-06 eV (vs PDG 1e-18 eV)
+PASS: C2c a collider-safe Lambda_eta needs m far above the PDG photon-mass limit
+== 10 PASS, 0 FAIL ==
+exit 0

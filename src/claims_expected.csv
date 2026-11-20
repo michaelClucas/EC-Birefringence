@@ -52,3 +52,11 @@ EC-06c,xi_min_k1,xi lower bound (k = +1 axial branch),ξ ≥ 0.022,0.022,sig,2,0
 EC-06d,Phi_coeff,coefficient in T_t = c d ln(R+6mu/b)/dt,T_t = -(3/2) d ln(R+6μ/b)/dt,-1.5,exact,0,022 ec06_numbers sympy Phi (SNY Eq. 46),live
 EC-06d,PhiH_min,Phi/H today lower end (transcribed SNY Table 1),Φ/H ≈ 0.8-1.4,0.8,exact,0,022 ec06_numbers rows (SNY 0805.3834 Table 1; transcribed not computed),live
 EC-06d,PhiH_max,Phi/H today upper end (transcribed SNY Table 1),Φ/H ≈ 0.8-1.4,1.4,exact,0,022 ec06_numbers rows (SNY 0805.3834 Table 1; transcribed not computed),live
+EC-06c,mgamma_min_eV,Stueckelberg photon mass lower end (eV),7×10⁻²⁸ ≲ m_γ ≲ 10⁻²⁶ eV,7e-28,sig,1,025 ec06c_numbers m_low (max of conversion A < 0.1 and CFJ stability),live
+EC-06c,mgamma_max_eV,Stueckelberg photon mass upper end (eV; Proca galactic),7×10⁻²⁸ ≲ m_γ ≲ 10⁻²⁶ eV,1e-26,sig,1,025 ec06c_numbers m_up_proca (data/ec06c_costs_inputs.csv; hep-ph/0306245),live
+EC-06c,cutoff_min_GeV,naive EFT cutoff (m M_P^2/xi)^(1/3) at the lower mass (GeV),~20-60 GeV,20,oom,0,025 ec06c_numbers N3 cutoff at m_low (printed ~; value 22),live
+EC-06c,cutoff_max_GeV,naive EFT cutoff (m M_P^2/xi)^(1/3) at the upper mass (GeV),~20-60 GeV,60,oom,0,025 ec06c_numbers N3 cutoff at m_up_proca (printed ~; value 55, 1-sig rounding gives 5e1 not 6e1),live
+EC-06d,xi_SNY_zstar,xi needed on SNY cases III-V at z* (mean),ξ ≈ 4.3×10⁻⁴,4.3e-4,sig,2,025 sny_background xi_needed at z* (mean of cases III-V; range 4.2-4.5e-4),live
+EC-06d,Hratio_min_zstar,H_SNY/H_LCDM at z* lower end (cases III-V),H(z*) = 33-66 × ΛCDM,33,sig,2,025 sny_background H_over_LCDM at z* (min over cases),live
+EC-06d,Hratio_max_zstar,H_SNY/H_LCDM at z* upper end (cases III-V),H(z*) = 33-66 × ΛCDM,66,sig,2,025 sny_background H_over_LCDM at z* (max over cases),live
+EC-06d,xi_min_GRlike,xi needed in the GR-like regime for |delta H^2/H^2(z*)| <= 1e-2,ξ ≳ 1,1,oom,0,025 check_sny_limit xi_per(1e-2) with mu = 1,live

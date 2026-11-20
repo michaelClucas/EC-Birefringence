@@ -1,0 +1,10 @@
+H0 = 1.4369e-33 eV, Omega_r = 9.220e-05, z* = 1089.92
+g =   2, rho_f = 1.00 rho_tot: beta_max(xi=1) = 2.60e-27 deg; xi needed = 8.3e+25; orders short = 25.9
+g =   2, rho_f = 0.05 rho_tot: beta_max(xi=1) = 2.75e-28 deg; xi needed = 7.8e+26; orders short = 26.9
+g = 100, rho_f = 1.00 rho_tot: beta_max(xi=1) = 6.91e-27 deg; xi needed = 3.1e+25; orders short = 25.5
+g = 100, rho_f = 0.05 rho_tot: beta_max(xi=1) = 7.31e-28 deg; xi needed = 2.9e+26; orders short = 26.5
+S/H at z* (g=100, rho_f = rho_tot) = 1.89e-28; today: 1.24e-30
+PASS: any fermionic axial source in minimal EC is > 20 orders short at xi = 1 (Pauli bound)
+n_B today = 1.93e-21 eV^3 = 0.25 m^-3; beta(xi=1, c=1) = 1.3e-37 deg; c needed = 1.7e+36 (36.2 orders)
+induced B-B contact scale if the four-fermion term is c*kappa*J^2: M_P/sqrt(c) = 1.9e+00 GeV; if c^2*kappa*J^2: M_P/c = 1.4e-18 GeV
+PASS: vector-current-sourced torsion (non-minimal coupling) needs c > 1e20 at xi = 1

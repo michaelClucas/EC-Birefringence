@@ -19,7 +19,9 @@ Sources (scripts are imported, not copied; their stdout is captured and parsed w
   EC-06, EC-06a-d   work/20261120-022 ec06_numbers (needed xi, GW bound, f(T) numbers, SNY 0+ form), -023 ec06_common
                 (xi eps for p tracking H) and ec06_aniso (A_CB), -024 kaf_lowz (low-z xi eps limit, run from the repo
                 root), -026 skep_beta (skeptic corrections: MZ GW side, visibility-averaged
-                reionization share). Table EC06 below, one line per number (task 027).
+                reionization share), -025 ec06c_numbers (EC-06c photon-mass window, EFT cutoff), sny_background
+                (EC-06d xi and H(z*) on SNY cases III-V), check_sny_limit (EC-06d GR-regime xi). Table EC06 below,
+                one line per number (tasks 027, 030).
 Files the scripts write (plots, csv) are redirected to artifacts/reproduce/ by patching the module's HERE.
 """
 import contextlib
@@ -47,6 +49,7 @@ T016 = "20261120-016-kk05-edm-cs"
 T022 = "20261120-022-theory-ec06"
 T023 = "20261120-023-cosmo-ec06"
 T024 = "20261120-024-lit-ec06-novelty"
+T025 = "20261120-025-theory-ec06c-costs"
 T026 = "20261120-026-skeptic-ec06"
 
 # KK-05 numbers: one line each (task 016 may revise them; change the source here and the row in claims_expected.csv).
@@ -312,6 +315,24 @@ def _ec06_026():
     return g
 
 
+def _ec06_025(name):
+    """025 scripts share one common.py PASS/FAIL counter, so judge each by its own FAIL: lines and exit code.
+    here=OUTDIR: sny_background.csv is written to artifacts/reproduce/, not work/."""
+    def f():
+        g, txt, code = exec_script(T025, name, here=OUTDIR, cwd=ROOT)
+        g["_checks_ok"] = code == 0 and "FAIL:" not in txt and "PASS:" in txt
+        return g
+    return f
+
+
+def _sny_star(g):
+    """SNY cases III-V rows at z* from 025 sny_background.py (all three must reach z*)."""
+    rows = g["reached_star"]
+    if len(rows) != 3:
+        raise ValueError(f"025 sny_background: {len(rows)} of 3 cases reached z*")
+    return rows
+
+
 def _sny_coeff(g):
     """Coefficient c in Phi = c d ln(R + 6 mu/b)/dt from 022's sympy solve of SNY Eq. 46."""
     import sympy as sp
@@ -329,7 +350,9 @@ def _kaf_xieps(g, rid):
     return float(re.search(rf"^{re.escape(rid)}\s.*xi\*eps<\s*([\d.eE+-]+)", g["_txt"], re.M).group(1))
 
 
-EC06_SOURCES = {"022": _ec06_022, "023": _ec06_023, "023-aniso": _ec06_023_aniso, "024": _ec06_024, "026": _ec06_026}
+EC06_SOURCES = {"022": _ec06_022, "023": _ec06_023, "023-aniso": _ec06_023_aniso, "024": _ec06_024, "026": _ec06_026,
+                "025-num": _ec06_025("ec06c_numbers"), "025-sny": _ec06_025("sny_background"),
+                "025-lim": _ec06_025("check_sny_limit")}
 
 # One line per CLAIMS.md number: "claim.key" -> (source, getter on that source's namespace). Task 025 may revise
 # EC-06c/EC-06d: change the getter here and the row in claims_expected.csv.
@@ -348,6 +371,15 @@ EC06 = {
     "EC-06d.Phi_coeff": ("022", _sny_coeff),
     "EC-06d.PhiH_min": ("022", lambda g: _sny_range(g, 1)),
     "EC-06d.PhiH_max": ("022", lambda g: _sny_range(g, 2)),
+    # task 025 (EC-06c repair (a) Stueckelberg photon; EC-06d at z*), added by task 030
+    "EC-06c.mgamma_min_eV": ("025-num", lambda g: g["m_low"]),  # max(conversion A < 0.1, CFJ stability)
+    "EC-06c.mgamma_max_eV": ("025-num", lambda g: g["m_up_proca"]),  # data/ec06c_costs_inputs.csv (hep-ph/0306245)
+    "EC-06c.cutoff_min_GeV": ("025-num", lambda g: (g["m_low"] * g["MP"]**2 / g["xi"])**(1 / 3) / 1e9),
+    "EC-06c.cutoff_max_GeV": ("025-num", lambda g: (g["m_up_proca"] * g["MP"]**2 / g["xi"])**(1 / 3) / 1e9),
+    "EC-06d.xi_SNY_zstar": ("025-sny", lambda g: sum(r["xi_needed"] for r in _sny_star(g)) / 3),  # mean of III-V
+    "EC-06d.Hratio_min_zstar": ("025-sny", lambda g: min(r["H_over_LCDM"] for r in _sny_star(g))),
+    "EC-06d.Hratio_max_zstar": ("025-sny", lambda g: max(r["H_over_LCDM"] for r in _sny_star(g))),
+    "EC-06d.xi_min_GRlike": ("025-lim", lambda g: g["xi_per"](1e-2)),  # |delta H^2/H^2 (z*)| <= 1e-2, mu = 1
 }
 
 
@@ -382,7 +414,7 @@ def regenerate(full_scan=True):
     vals, times = {}, {}
     for label, fn in (("007 (EC-01/02/04/05)", ec01_ec02_ec04_ec05), ("008 (EC-03, EC-03')", lambda: ec03(full_scan)),
                       ("009 (KK-02/03/04)", kk), ("012 (EC-03 photon, KK-05)", lambda: {**ec03_photon(), **kk05()}),
-                      ("022-024 (EC-06)", ec06)):
+                      ("022-026 (EC-06)", ec06)):
         t0 = time.time()
         vals.update(fn())
         times[label] = time.time() - t0
