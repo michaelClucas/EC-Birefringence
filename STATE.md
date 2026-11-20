@@ -8,6 +8,7 @@ The ACT DR6 β = 0.215° ± 0.074° is 2.9σ with stated systematics caveats (mi
 - `.venv`: Python 3.12.14 (uv), packages pinned in `requirements.txt` (candl 2.2.0).
 - CPU: logical CPUs 12-13 only, via `tools/pin.py`. iter 3: `repin.ps1` re-pinned 1 python.exe mid-iteration (the `.venv` launcher stub pattern from iter 2); the skeptic reported one sub-second unpinned file-edit helper. No sustained unpinned load.
 - `artifacts/` (gitignored): SPT candl_data and reproduce outputs.
+- iter 3: commit 87caa4e included a run.log with an absolute local path (from a candl SyntaxWarning). Scrubbed in the next commit; it remains in git history (no history rewrites). Overseer now runs the path scan as a gate before every commit.
 - `python -m src.reproduce` (~2 min, 1 CPU): published β/A_CB validation (18 PASS) and every number in CLAIMS.md's last two columns (expected values in `src/claims_expected.csv`; EC-03 QCD-mass rows kept as "superseded"). Exit 0 after iter-3 audit. Newer numbers (EC-03' 2.7% cap, fit penalties, KK-05) are not yet in the reproduce table.
 
 ## Iteration 3 tasks

@@ -1,4 +1,4 @@
-C:\Users\mluca\Documents\SideWork\EC-Birefringence\.venv\Lib\site-packages\candl\transformations\abstract_base.py:227: SyntaxWarning: invalid escape sequence '\e'
+<repo>/.venv\Lib\site-packages\candl\transformations\abstract_base.py:227: SyntaxWarning: invalid escape sequence '\e'
   Abstract base class for template foregrounds, i.e. some D_\ell template spectrum that gets reused with potentially
 ### likelihood validation (20261120-010)
 == (a) isotropic beta ==
