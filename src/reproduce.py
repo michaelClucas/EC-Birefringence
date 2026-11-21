@@ -9,7 +9,7 @@ Steps:
   4. claim numbers vs CLAIMS.md: compared with src/claims_expected.csv, whose printed text is also checked to still
      occur in CLAIMS.md.
   4b. draft-only numbers (task 033): src/draft_expected.csv, numbers due in the RESULT draft but not in CLAIMS.md
-     (029 Pauli bound, Cosmoglobe penalties). A wrong or missing value fails; text not (yet) in
+     (029 Pauli bound, Cosmoglobe penalties; task 041: 037 shortfalls at the bound, 036 EC-06d). A wrong or missing value fails; text not (yet) in
      work/20261120-018-result-draft/RESULT_DRAFT.md is reported as "not in draft" and does not fail.
   5. fit summary table (model, beta_max, penalty vs free ALP, Delta chi2 vs null) for ACT DR6, ACT+WMAP+Planck (EK22)
      and ACT+Cosmoglobe WMAP+Planck.

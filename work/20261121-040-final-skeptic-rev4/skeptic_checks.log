@@ -1,0 +1,14 @@
+[PASS] T1 div S = 0 for conserved J5 on FRW 
+[PASS] T1b div S = -(kappa/2) x nabla.J5 (axial non-conservation) 
+  T1: the operator is sourced only by axial non-conservation (2 i m psibar g5 psi, anomaly), each further suppressed; 020's (H/Lambda)^2 estimate is an upper bound, so the kill holds a fortiori.
+[PASS] T2 B1 = -z/12 - z^2/90 (Feynman-parameter expansion) -z**2/90 - z/12
+[PASS] T2 sum N_c Q^2 = 8 and electron share (1/12)/8 = 1/96 
+[PASS] T3 g_{mu5} -> -g_{mu5}, g_{mu nu}, g_55 even under y -> -y 
+[PASS] T3 Z2-odd zero mode vanishes 
+[PASS] T3 RS warp factor even under y -> -y 
+[PASS] T3 nabla_M A_N - nabla_N A_M = (dA)_MN - T^L_MN A_L in 5D (so gauge-invariant F = dA is torsion-free) 
+  T4 Cassini: 0.5/sigma -> 4.34 orders (KK-04 headline); 0.5/(|c|+2 sigma) -> 3.87 (EC-06d heavy)
+[PASS] T4 KK-04 4.34 and EC-06d 3.87 reproduced (different conventions for the same bound) 
+  T5 H0 = 1.437e-33 eV, (M_P/H0)^2 = 2.87e+120
+[PASS] T5 EC-04 tuning ~ (M_P/H0)^2 within a factor 2 of the quoted 4e120 ratio 1.39
+== 10 PASS, 0 FAIL ==

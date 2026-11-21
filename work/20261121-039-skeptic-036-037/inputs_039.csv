@@ -1,0 +1,7 @@
+id,quantity,value,units,source,notes
+a_grain_small,radius of a typical large interstellar dust grain (lower choice),1e-7,m,"MRN size distribution a <= 0.25 um (Mathis Rumpl Nordsieck 1977 ApJ 217 425); Draine 2003 ARA&A review astro-ph/0304489 Sec. 4","order of magnitude; the submm emission and polarization is dominated by grains ~0.1 um (choice)"
+a_grain_large,radius of the largest MRN grains,2.5e-7,m,"MRN upper cutoff (Mathis Rumpl Nordsieck 1977)",choice
+rho_grain,bulk density of silicate grain material,3000,kg/m^3,"Draine 2003 astro-ph/0304489 (silicate ~3.5 g/cm^3, carbonaceous ~2.2); order of magnitude",choice
+rho_rock,density of crustal rock under a ground telescope,2700,kg/m^3,"typical continental crust (textbook value)","only used for the ground observer at lambda >~ 10 m (036 used air only, a lower estimate)"
+E_babar_monophoton,centre-of-mass energy of the BaBar e+e- -> gamma + invisible search,10.58,GeV,"BaBar 1702.03327 (PRL 119 131804); recalled, not opened","shows e+e- -> gamma + missing energy is standard (no excess) at this energy"
+E_lep2,maximum LEP2 centre-of-mass energy,209,GeV,"LEP2 (e.g. DELPHI hep-ex/0406019); recalled, not opened","e+e- -> gamma gamma and gamma + invisible measured standard up to here"

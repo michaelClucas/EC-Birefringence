@@ -68,6 +68,8 @@ T031 = "20261120-031-theory-mz-verdict"
 T032 = "20261120-032-lit-bounds-fixes"
 T034 = "20261120-034-skeptic-mz"
 T035 = "20261120-035-final-skeptic-rev3"
+T036 = "20261121-036-theory-pgt0plus-heavy"
+T037 = "20261121-037-theory-shortfalls-at-bound"
 DRAFT_EXPECTED = Path(__file__).resolve().parent / "draft_expected.csv"
 DRAFT = WORK / "20261120-018-result-draft" / "RESULT_DRAFT.md"
 
@@ -397,6 +399,50 @@ def _endpoint_035():
     return g
 
 
+_SUMMARY_OK = re.compile(r"== \d+ PASS, 0 FAIL ==")
+
+
+def _pgt_036(name):
+    """036 check_scalar_mode.py (sympy reduction of SNY 0+) and endpoint_bounds.py (Cassini, ACT/MK endpoint, HB
+    size); both read-only, data/ via 036 common.py. They share common's PASS/FAIL counter, so each is judged by its
+    own FAIL: lines and exit code."""
+    def f():
+        g, txt, code = exec_script(T036, name, cwd=ROOT)
+        g["_checks_ok"] = code == 0 and "FAIL:" not in txt and _SUMMARY_OK.search(txt) is not None
+        return g
+    return f
+
+
+def _shortfalls_037():
+    """037 shortfalls.py: beta_max at the largest allowed xi per completion class; read-only, writes no files. It
+    always exits 0 and prints 12 PASS: lines and ALL PASS when everything passes."""
+    g, txt, code = exec_script(T037, "shortfalls", cwd=ROOT)
+    g["_checks_ok"] = code == 0 and "FAIL" not in txt and txt.count("PASS:") == 12 and "ALL PASS" in txt
+    return g
+
+
+def _alpha_min_036(g):
+    """inf over a1 > 0 of the Yukawa strength alpha = mu/(3 a1) = (a1 + 1)/(3 a1) (a0 = -1): the a1 -> oo limit."""
+    import sympy as sp
+    ap = sp.Symbol("ap", positive=True)
+    return float(sp.limit(g["alpha"].subs(g["a1"], ap), ap, sp.oo))
+
+
+def _sf037(g, beta1, xi_max):
+    """037 shortfall in orders, log10(0.215 deg / beta_max), for beta(xi = 1) = beta1 at xi = xi_max."""
+    return g["math"].log10(g["beta_obs"] / (beta1 * xi_max))
+
+
+def _xiD_037(g):
+    """037 class-D (dual massless axion) bounds on xi: CAST product, CAST x RG, Chandra x RG."""
+    return [g["xi_D_CAST"], g["xi_D_CaRG"], g["xi_D_ChRG"]]
+
+
+def _xiSa_037(g, which):
+    """037 class S-a (Lambda_s > T_BBN) bound on xi for the photon mass: Retino weak end or PDG."""
+    return g["xi_S"](g["mg_Ret"] if which == "Ret" else g["mg_PDG"], g["T_BBN"])
+
+
 def _kk04_alt(g):
     """032 kk04_shortfall: orders short for brane matter (1 sigma, 2 sigma) and bulk matter at 2 sigma."""
     lg = g["math"].log10
@@ -449,7 +495,8 @@ EC06_SOURCES = {"022": _ec06_022, "023": _ec06_023, "023-aniso": _ec06_023_aniso
                 "025-num": _ec06_025("ec06c_numbers"), "025-sny": _ec06_025("sny_background"),
                 "025-lim": _ec06_025("check_sny_limit"), "028-win": _ec06_028, "029-pauli": _pauli_029,
                 "032-kk04": _kk04_032, "032-hz": _hz_032, "031-mz": _mz_031, "034-mz": _mz_034,
-                "035-end": _endpoint_035}
+                "035-end": _endpoint_035, "036-mode": _pgt_036("check_scalar_mode"),
+                "036-end": _pgt_036("endpoint_bounds"), "037-sf": _shortfalls_037}
 
 # One line per CLAIMS.md number: "claim.key" -> (source, getter on that source's namespace). Task 025 may revise
 # EC-06c/EC-06d: change the getter here and the row in claims_expected.csv.
@@ -504,6 +551,13 @@ EC06 = {
     "EC-06a.xi_ratio_vac": ("034-mz", lambda g: g["J"] / g["Jalt"]),
     # skeptic 035: beta/xi ratio, ground (air at 5.2 km) vs L2 observer endpoint, heavy-0+ branch (mu = 1, delta = 1%)
     "EC-06d.endpoint_ratio_ground_L2": ("035-end", lambda g: g["r"]),
+    # task 041 (iter 12): 036 heavy-0+ branch. Cassini: prediction |gamma - 1| >= 1/2 vs |gamma-1| + 2 sigma
+    "EC-06d.orders_short_Cassini_0p": ("036-end", lambda g: g["math"].log10(0.5 / g["lim_g"])),
+    "EC-06d.ratio_ACT_MK": ("036-end", lambda g: g["r_meas"]),  # beta_ACT / beta_EK22 measured
+    "EC-06d.ratio_ACT_MK_err": ("036-end", lambda g: g["r_err"]),
+    # ACT-type observer piece at the HB photon bound, lam = lam_max (100 um, alpha = 1/3); b_obs is set at lam_max
+    "EC-06d.orders_short_size_HB": ("036-end", lambda g: g["math"].log10(g["beta_act"] / g["b_obs"])),
+    "EC-06d.alpha_min": ("036-mode", _alpha_min_036),
 }
 
 # Numbers due in the RESULT draft but not in CLAIMS.md: "claim.key" -> (source, getter). Expected values in
@@ -512,7 +566,31 @@ DRAFT_NUMBERS = {
     # 029 Pauli bound: any fermionic axial source in minimal EC, g = 100 helicity states carrying all of rho_LCDM
     "EC-02.orders_short_pauli": ("029-pauli", lambda g: g["math"].log10(g["beta_obs"] / g["beta_max_deg"](100, 1.0))),
     "EC-02.c_vector_needed": ("029-pauli", lambda g: g["c_need"]),  # vector-current (baryon) source, xi = 1
+    # task 041 (iter 12): 037 shortfalls at the largest allowed xi. D = dual massless axion (CAST product, CAST x RG,
+    # Chandra x RG); S-a = Stueckelberg, Lambda_s > T_BBN with the Retino weak-end or PDG photon mass.
+    "EC-02.xi_max_D_CAST": ("037-sf", lambda g: max(_xiD_037(g))),
+    "EC-02.xi_max_D_ChRG": ("037-sf", lambda g: min(_xiD_037(g))),
+    "EC-02.orders_short_D_min": ("037-sf", lambda g: min(_sf037(g, g["b_nu"], x) for x in _xiD_037(g))),
+    "EC-02.orders_short_D_max": ("037-sf", lambda g: max(_sf037(g, g["b_nu"], x) for x in _xiD_037(g))),
+    "EC-02.orders_short_S_Ret": ("037-sf", lambda g: _sf037(g, g["b_nu"], _xiSa_037(g, "Ret"))),
+    "EC-02.orders_short_S_PDG": ("037-sf", lambda g: _sf037(g, g["b_nu"], _xiSa_037(g, "PDG"))),
+    "EC-02.pauli_short_D_min": ("037-sf", lambda g: min(_sf037(g, g["b_pauli"], x) for x in _xiD_037(g))),
+    "EC-02.pauli_short_D_max": ("037-sf", lambda g: max(_sf037(g, g["b_pauli"], x) for x in _xiD_037(g))),
+    "EC-02.pauli_short_S_Ret": ("037-sf", lambda g: _sf037(g, g["b_pauli"], _xiSa_037(g, "Ret"))),
+    "EC-02.pauli_short_S_PDG": ("037-sf", lambda g: _sf037(g, g["b_pauli"], _xiSa_037(g, "PDG"))),
+    # vector J_B: class D = contact 1/(2 f^2) J_B^2 < CMS dijet for g_ag = ALPS II / CAST / Chandra (weakest = ALPS II)
+    "EC-02.vector_short_D_min": ("037-sf", lambda g: min(_sf037(g, g["b_vec"], v) for v in g["xic_D"].values())),
+    "EC-02.vector_short_S_Ret": ("037-sf", lambda g: _sf037(g, g["b_vec"], _xiSa_037(g, "Ret"))),
+    "EC-02.vector_short_S_PDG": ("037-sf", lambda g: _sf037(g, g["b_vec"], _xiSa_037(g, "PDG"))),
+    # Lambda*^2 fixed by the signal for J_B: 1/Lambda*^2 = xi c kappa/2 with xi c = beta_obs/beta(xi = c = 1) (GeV^2)
+    "EC-02.LambdaStar2_vector_GeV2": ("037-sf", lambda g: 2 / (g["beta_obs"] / g["b_vec"] * g["kap"]) / 1e18),
+    # weakest corner (Pauli, S-a, Retino weak end, T_BBN): shift if the Proca galactic m_gamma is used instead, and
+    # if the NDA decoupling cutoff Lambda_s(m_mu) replaces T_BBN (3 log10(Lambda_s/T_BBN), mass independent)
+    "EC-02.corner_shift_Proca": ("037-sf", lambda g: g["math"].log10(g["mg_Ret"] / g["mg_gal"])),
+    "EC-02.corner_shift_NDA": ("037-sf", lambda g: g["math"].log10(_xiSa_037(g, "Ret") / g["xi_S"](g["mg_Ret"],
+                                                                                               g["Lam_s_NDA"]))),
 }
+# The draft's EC-06d "3.9 orders vs Cassini" / "23.7 orders short in size" reuse the EC06 keys of the same name.
 # EC-03'.m_best_eV (draft only, task 038) comes from ec03(): grid mass of beta_max under the 5% cap.
 
 

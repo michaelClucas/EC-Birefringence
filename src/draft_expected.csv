@@ -4,3 +4,21 @@ EC-02,c_vector_needed,coefficient c for vector-current-sourced torsion at xi = 1
 EC-03',penalty_cap27_CG,"chi2 penalty vs free ALP (ACT + Cosmoglobe WMAP+Planck, 2.7% cap)",4.95 (Cosmoglobe),4.95,dec,2,014 fit_candidates.main with DATASETS + act_cosmoglobe (src.reproduce)
 KK-02,penalty_k1_CG,chi2 penalty vs free ALP at k = 1 (ACT + Cosmoglobe WMAP+Planck),0.14 (Cosmoglobe),0.14,dec,2,014 fit_candidates.main with DATASETS + act_cosmoglobe (src.reproduce)
 EC-03',m_best_eV,EC-03' best-fit mass (beta_max under the 5% cap),5.6×10⁻³³ eV,5.6e-33,sig,2,008 variants.main via src.claims_numbers.ec03 m[j] (grid mass)
+EC-02,orders_short_D_min,"EC-02 cited xi_nu: orders short at the largest xi, dual-axion class (min over CAST product, CAST x RG, Chandra x RG)",10.5-13.3 orders,10.5,dec,1,037 shortfalls b_nu x xi_D (CAST product; value 10.5)
+EC-02,orders_short_D_max,"EC-02 cited xi_nu: orders short at the largest xi, dual-axion class (max; Chandra x RG)",10.5-13.3 orders,13.3,dec,1,037 shortfalls b_nu x xi_D_ChRG
+EC-02,xi_max_D_CAST,"largest xi, dual-axion class, CAST g_ag g_ae product",ξ < 9.4×10¹⁷ / 1.5×10¹⁵,9.4e17,sig,2,037 shortfalls xi_D_CAST (cosmo_inputs helioscope_gag_gae_GeV)
+EC-02,xi_max_D_ChRG,"largest xi, dual-axion class, Chandra g_ag x red-giant g_ae",ξ < 9.4×10¹⁷ / 1.5×10¹⁵,1.5e15,sig,2,037 shortfalls xi_D_ChRG (bounds.csv A-Chandra; shortfall_bound_inputs RG_gae_TRGB)
+EC-02,orders_short_S_Ret,"EC-02 cited xi_nu: orders short, Stueckelberg S-a (Lambda_s > T_BBN), weakest m_gamma (Retino)",4.2-9.1 orders,4.2,dec,1,037 shortfalls b_nu x xi_S(mg_Ret; T_BBN)
+EC-02,orders_short_S_PDG,"EC-02 cited xi_nu: orders short, Stueckelberg S-a, PDG m_gamma",4.2-9.1 orders,9.1,dec,1,037 shortfalls b_nu x xi_S(mg_PDG; T_BBN)
+EC-02,pauli_short_D_min,"Pauli envelope: orders short, dual-axion class (min; CAST product)",7.5-10.3,7.5,dec,1,037 shortfalls b_pauli x xi_D
+EC-02,pauli_short_D_max,"Pauli envelope: orders short, dual-axion class (max; Chandra x RG)",7.5-10.3,10.3,dec,1,037 shortfalls b_pauli x xi_D_ChRG
+EC-02,pauli_short_S_Ret,"Pauli envelope: orders short, Stueckelberg S-a, weakest m_gamma (Retino)",1.2-6.1 orders,1.2,dec,1,037 shortfalls b_pauli x xi_S(mg_Ret; T_BBN)
+EC-02,pauli_short_S_PDG,"Pauli envelope: orders short, Stueckelberg S-a, PDG m_gamma",1.2-6.1 orders,6.1,dec,1,037 shortfalls b_pauli x xi_S(mg_PDG; T_BBN)
+EC-02,vector_short_D_min,"vector J_B: orders short, dual-axion contact vs CMS dijet (min over g_ag; ALPS II)",≥ 11.1,11.1,dec,1,037 shortfalls b_vec x xic_D (ALPS II)
+EC-02,vector_short_S_Ret,"vector J_B: orders short, Stueckelberg S-a, weakest m_gamma (Retino)",12.0-16.9 orders,12.0,dec,1,037 shortfalls b_vec x xi_S(mg_Ret; T_BBN)
+EC-02,vector_short_S_PDG,"vector J_B: orders short, Stueckelberg S-a, PDG m_gamma",12.0-16.9 orders,16.9,dec,1,037 shortfalls b_vec x xi_S(mg_PDG; T_BBN)
+EC-02,LambdaStar2_vector_GeV2,"Lambda*^2 fixed by the signal for the baryon current, 1/Lambda*^2 = xi c kappa/2 (GeV^2)",Λ*² ≈ 7 GeV²,7,sig,1,037 shortfalls 2/(kap beta_obs/b_vec)
+EC-02,corner_shift_Proca,"weakest corner (Pauli, S-a, Retino m_gamma): orders added by the Proca galactic m_gamma instead (printed integer = floor)",+13 orders,13,dec,0,037 shortfalls log10(mg_Ret/mg_gal) (Pauli 1.2 -> 14.1)
+EC-02,corner_shift_NDA,"weakest corner: orders added by the NDA decoupling cutoff instead of T_BBN, 3 log10(Lambda_s/T_BBN) (printed integer = floor)",+15 orders,15,floor,0,037 shortfalls log10(xi_S(T_BBN)/xi_S(Lam_s_NDA)) (Pauli 1.2 -> 16.9)
+EC-06d,orders_short_Cassini_0p,heavy 0+ |gamma - 1| = 1/2 vs Cassini (orders),3.9 orders vs Cassini,3.9,dec,1,036 endpoint_bounds C1 log10(0.5/lim_g) (value 3.87)
+EC-06d,orders_short_size_HB,"heavy 0+ ACT observer piece at the HB bound, lam = 100 um (orders short)",23.7 orders short in size,23.7,dec,1,036 endpoint_bounds C3 log10(beta_ACT/b_obs) at lam_max
