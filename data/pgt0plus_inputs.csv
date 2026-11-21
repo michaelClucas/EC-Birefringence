@@ -1,0 +1,19 @@
+id,quantity,value,err,units,CL,source,location,note
+EW20-lambda-alpha1,max range of a gravitational-strength (|alpha|=1) Yukawa force,38.6e-6,,m,95,"Lee, Adelberger, Cook, Fleischer, Heckel, PRL 124 101101 (2020), arXiv:2002.11761",abstract,"|alpha| >= 1 excluded for lambda > 38.6 um. alpha = 1/3 is not quoted in the abstract; task 036 uses lambda_max = 100 um for alpha >= 1/3 as a generous stand-in (assumption, see 036 README)"
+K07-lambda-alpha1,max range of a gravitational-strength (|alpha|=1) Yukawa force (older),56e-6,,m,95,"Kapner et al., PRL 98 021101 (2007), arXiv:hep-ph/0611184",abstract,superseded by EW20; listed for comparison
+lambda_max_alpha13_assumed,assumed max Compton length allowed for alpha = 1/3 Yukawa (task 036 choice),100e-6,,m,-,task 036 assumption (factor 2.6 above EW20 |alpha|=1 value),-,"not a published number; beta scales as lambda^2, so a factor 2.6 is 0.8 orders"
+M_sun,solar mass,1.98841e30,,kg,-,"IAU 2015 Resolution B3 nominal GM_sun / CODATA 2018 G",-,constant
+M_earth,Earth mass,5.9722e24,,kg,-,"IAU 2015 Resolution B3 nominal GM_earth / CODATA 2018 G",-,constant
+R_earth,Earth mean radius,6.371e6,,m,-,"IUGG mean radius",-,constant
+AU,astronomical unit,1.495978707e11,,m,-,IAU 2012 Resolution B2 (exact),-,constant
+d_L2,Sun-Earth L2 distance from Earth,1.5e9,,m,-,"standard value (ESA Planck mission pages); order of magnitude only",-,constant
+M_planck_sc,Planck spacecraft launch mass,1.9e3,,kg,-,ESA Planck fact sheet (~1.9 t),-,order of magnitude; only enters a spacecraft self-field estimate
+Mpc_m,megaparsec,3.0856775814913673e22,,m,-,IAU 2015 Resolution B2 (pc definition),-,constant
+eV_per_kg,mass-energy of 1 kg,5.609588603e35,,eV,-,CODATA 2018 (exact from c and e),-,constant
+M_P_red_eV,reduced Planck mass,2.435e27,,eV,-,CONVENTIONS.md (kappa = 1/M_P^2),-,constant
+t_film_assumed,assumed minimum thickness of the polarization-analyzing film (OMT probe / absorber),1e-7,,m,-,task 036 assumption (0.1 um; real films are thicker),-,"illustrative lower bound only; enters a margin of >= 15 orders"
+rho_film,density of the analyzing film substrate (silicon),2329,,kg/m^3,-,"CRC Handbook (silicon); same value as skeptic 035 local_inputs.csv",-,
+rho_air_5200m,air density at 5.2 km (ACT site),0.736,,kg/m^3,-,"U.S. Standard Atmosphere 1976 (NOAA-S/T 76-1562), 5.2 km",-,"copied from work/20261120-035 local_inputs.csv"
+n_sw_1AU,solar-wind proton density at 1 AU (typical),5,,cm^-3,-,"typical OMNI value; order of magnitude",-,"copied from work/20261120-035 local_inputs.csv"
+n_ism_diffuse,diffuse ISM hydrogen density (polarized-dust regions; typical),1,,cm^-3,-,order of magnitude (diffuse cold/warm neutral medium 0.1-50 cm^-3),-,"Galactic-foreground endpoint for Minami-Komatsu calibration; result insensitive below ~1e3 cm^-3"
+m_p_eV,proton mass,938.27208816e6,,eV,-,CODATA 2018,-,constant

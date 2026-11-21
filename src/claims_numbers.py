@@ -26,6 +26,9 @@ Sources (scripts are imported, not copied; their stdout is captured and parsed w
                 025 sny_background (EC-06d H/H_LCDM at z = 10), 025 check_sny_limit (xi for 10% deviations),
                 032 kk04_shortfall (KK-04 shortfall vs Cassini), 032 hz_bounds (EC-06d H(z*) ratios with radiation and
                 shortfall vs the cited H(z*) bounds; replaces 025's no-radiation ratios); in EC06.
+  iter-9/10 numbers (task 038)   work/20261120-031 mz_numbers (EC-06a Lambda_SC 3.6 keV, 9.4 orders below 10 TeV,
+                xi >= 4.7e16 from k*), -034 skeptic_mz (EC-06a no-GW tracker <= 9 MeV, f(Lambda)FFtilde xi ratio 21),
+                -035 ec06d_endpoint (EC-06d ground/L2 ratio), 032 kk04_shortfall (KK-04 brane / 2 sigma 3.6-4.1); in EC06.
   draft-only numbers (task 033)   src/draft_expected.csv: numbers quoted in the RESULT draft
                 (work/20261120-018-result-draft/RESULT_DRAFT.md) but not in CLAIMS.md. Table DRAFT_NUMBERS below
                 (029 pauli_bound) plus the Cosmoglobe fit penalties from fit_values(). compare_draft() checks each
@@ -61,7 +64,10 @@ T025 = "20261120-025-theory-ec06c-costs"
 T026 = "20261120-026-skeptic-ec06"
 T028 = "20261120-028-skeptic-ec06c-costs"
 T029 = "20261120-029-final-skeptic-rev2"
+T031 = "20261120-031-theory-mz-verdict"
 T032 = "20261120-032-lit-bounds-fixes"
+T034 = "20261120-034-skeptic-mz"
+T035 = "20261120-035-final-skeptic-rev3"
 DRAFT_EXPECTED = Path(__file__).resolve().parent / "draft_expected.csv"
 DRAFT = WORK / "20261120-018-result-draft" / "RESULT_DRAFT.md"
 
@@ -369,6 +375,35 @@ def _hz_032():
     return g
 
 
+def _mz_031():
+    """031 mz_numbers.py: EC-06a numbers (tracker, GW and k* bounds, Lambda_SC); read-only, data/ via 031 common."""
+    g, txt, code = exec_script(T031, "mz_numbers", cwd=ROOT)
+    g["_checks_ok"] = code == 0 and "FAIL:" not in txt and re.search(r"== \d+ PASS, 0 FAIL ==", txt) is not None
+    return g
+
+
+def _mz_034():
+    """034 skeptic_mz.py: independent EC-06a checks (own loader); read-only."""
+    g, txt, code = exec_script(T034, "skeptic_mz", cwd=ROOT)
+    g["_checks_ok"] = code == 0 and "FAIL:" not in txt and re.search(r"== \d+ PASS, 0 FAIL ==", txt) is not None
+    return g
+
+
+def _endpoint_035():
+    """035 ec06d_endpoint.py: EC-06d observer-endpoint dependence; reads local_inputs.csv next to itself; read-only.
+    It prints PASS/FAIL lines but always exits 0, so both PASS lines are required."""
+    g, txt, code = exec_script(T035, "ec06d_endpoint", cwd=ROOT)
+    g["_checks_ok"] = code == 0 and "FAIL" not in txt and txt.count("PASS:") == 2
+    return g
+
+
+def _kk04_alt(g):
+    """032 kk04_shortfall: orders short for brane matter (1 sigma, 2 sigma) and bulk matter at 2 sigma."""
+    lg = g["math"].log10
+    bulk, brane = g["pred"]["bulk matter (omega = 0)"], g["pred"]["brane matter (alpha0^2 = 1/6)"]
+    return [lg(bulk / g["b2"]), lg(brane / g["b1"]), lg(brane / g["b2"])]
+
+
 def _hz_star(g):
     """032 rows at z*: (case, z, H/H_LCDM with radiation, bound, orders in H, orders in rho); 3 cases x 2 bounds."""
     rows = [o for o in g["out"] if abs(o[1] - g["zstar"]) < 1]
@@ -413,7 +448,8 @@ def _kaf_xieps(g, rid):
 EC06_SOURCES = {"022": _ec06_022, "023": _ec06_023, "023-aniso": _ec06_023_aniso, "024": _ec06_024, "026": _ec06_026,
                 "025-num": _ec06_025("ec06c_numbers"), "025-sny": _ec06_025("sny_background"),
                 "025-lim": _ec06_025("check_sny_limit"), "028-win": _ec06_028, "029-pauli": _pauli_029,
-                "032-kk04": _kk04_032, "032-hz": _hz_032}
+                "032-kk04": _kk04_032, "032-hz": _hz_032, "031-mz": _mz_031, "034-mz": _mz_034,
+                "035-end": _endpoint_035}
 
 # One line per CLAIMS.md number: "claim.key" -> (source, getter on that source's namespace). Task 025 may revise
 # EC-06c/EC-06d: change the getter here and the row in claims_expected.csv.
@@ -455,6 +491,19 @@ EC06 = {
     "EC-06d.xi_min_10pct": ("025-lim", lambda g: g["xi_per"](1e-1)),  # |delta H^2/H^2 (z*)| <= 0.1, mu = 1
     # skeptic 029 item 3, computed by task 032: orders between the bulk-matter radion |gamma - 1| = 1/2 and Cassini
     "KK-04.orders_short_Cassini": ("032-kk04", lambda g: g["math"].log10(g["pred"]["bulk matter (omega = 0)"] / g["b1"])),
+    # task 038 (iter 11): numbers 035 listed as not regenerated
+    "KK-04.orders_short_alt_min": ("032-kk04", lambda g: min(_kk04_alt(g))),  # brane matter, 2 sigma (3.63)
+    "KK-04.orders_short_alt_max": ("032-kk04", lambda g: max(_kk04_alt(g))),  # brane matter, 1 sigma (4.09)
+    # EC-06a (031): theta-exchange strong-coupling scale at xi(GW speed), PDG photon mass, 1 - c_s = Omega_m today
+    "EC-06a.LambdaSC_GW_keV": ("031-mz", lambda g: g["lam_sc"](g["xi_gw"], g["ecc"]["m_gamma_PDG"], g["one_m_cs"]) / 1e3),
+    "EC-06a.orders_below_Esafe": ("031-mz", lambda g: g["math"].log10(
+        g["E_safe"] / g["lam_sc"](g["xi_gw"], g["ecc"]["m_gamma_PDG"], g["one_m_cs"]))),
+    "EC-06a.xi_min_kstar": ("031-mz", lambda g: g["xi_k"]),  # k* = H/eps_S > k_GW(24 Hz) on the tracker
+    # skeptic 034: plain tracker at the N_eff limit (no GW bound), PDG mass; f(Lambda)FFtilde needs xi x J/J_alt
+    "EC-06a.LambdaSC_noGW_MeV": ("034-mz", lambda g: g["lam_sc"](g["xi_noGW"], g["mP"], g["omc_mean"]) / 1e6),
+    "EC-06a.xi_ratio_vac": ("034-mz", lambda g: g["J"] / g["Jalt"]),
+    # skeptic 035: beta/xi ratio, ground (air at 5.2 km) vs L2 observer endpoint, heavy-0+ branch (mu = 1, delta = 1%)
+    "EC-06d.endpoint_ratio_ground_L2": ("035-end", lambda g: g["r"]),
 }
 
 # Numbers due in the RESULT draft but not in CLAIMS.md: "claim.key" -> (source, getter). Expected values in
@@ -464,6 +513,7 @@ DRAFT_NUMBERS = {
     "EC-02.orders_short_pauli": ("029-pauli", lambda g: g["math"].log10(g["beta_obs"] / g["beta_max_deg"](100, 1.0))),
     "EC-02.c_vector_needed": ("029-pauli", lambda g: g["c_need"]),  # vector-current (baryon) source, xi = 1
 }
+# EC-03'.m_best_eV (draft only, task 038) comes from ec03(): grid mass of beta_max under the 5% cap.
 
 
 def _run_table(table, ns, out):
@@ -511,7 +561,7 @@ def regenerate(full_scan=True):
     vals, times = {}, {}
     for label, fn in (("007 (EC-01/02/04/05)", ec01_ec02_ec04_ec05), ("008 (EC-03, EC-03')", lambda: ec03(full_scan)),
                       ("009 (KK-02/03/04)", kk), ("012 (EC-03 photon, KK-05)", lambda: {**ec03_photon(), **kk05()}),
-                      ("022-029 (EC-06, iter-8 skeptics)", ec06)):
+                      ("022-035 (EC-06, KK-04, skeptics)", ec06)):
         t0 = time.time()
         vals.update(fn())
         times[label] = time.time() - t0

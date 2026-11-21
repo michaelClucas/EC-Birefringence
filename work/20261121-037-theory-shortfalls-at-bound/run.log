@@ -1,0 +1,61 @@
+=== check_gauge.py: 7 PASS, 0 FAIL, exit 0, 11.1 s
+PASS: d_nu Ft^{mu nu} = 0 identically (Bianchi)
+PASS: delta O = total derivative - alpha (d_nu J_mu) Ft^{mu nu}
+PASS: closed current J = d(theta): (d_nu J_mu) Ft^{mu nu} = 0
+PASS: homogeneous J = (n(t),0,0,0): variation vanishes (FRW background is gauge safe)
+PASS: inhomogeneous J0 = n(t,x): variation = (Derivative(A2(x0, x1, x2, x3), x3) - Derivative(A3(x0, x1, x2, x3), x2))*Derivative(n(x0, x1), x1) != 0 (U(1) broken off the background)
+PASS: Stueckelberg: O -> O - (1/m) pi (d_nu J_mu) Ft^{mu nu} + total derivative
+PASS: operator dimension 6 = 6; coefficient xi kappa/4 has dimension 4 - 6 = -2 (Lambda^-2)
+Stueckelberg mode coupling: (C/m_gamma) pi dJ Ft, dimension 7 -> strong-coupling scale Lambda_s = (m_gamma / C)^(1/3)
+CP: J5 is C-even, A Ft is C-even; J5^mu and A_nu Ft^{mu nu} are both axial vectors -> P-even, hence T-even: no EDM from O
+ALL PASS
+=== check_fmt.py: 6 PASS, 0 FAIL, exit 0, 8.5 s
+PASS: gamma -> inf, alpha = 0: A^2 coefficient -> 3 kappa/16 (minimal EC)
+PASS: |V^2 coefficient| = (3 kappa/16) c^2 (gamma^2 + 1)
+PASS: hence |V^2| >= (3 kappa/16) c^2 for every real gamma (minimum as gamma -> 0 at fixed c)
+PASS: cross term / (2 A^2 term) = alpha/gamma = S-response ratio of FMT Eq. 18
+PASS: V^2 contact at fixed r = alpha/gamma: 3*gamma**4*kappa*r**2/(16*(gamma**2 + 1)) -> 0 as gamma -> 0
+PASS: vector-current photon coupling is (zeta r kappa/4) J.A Ft with zeta = xi gamma^2/(gamma^2+1); xi*c = zeta*r
+Conclusion: torsion-induced quark/lepton contact terms bound c = gamma alpha/(gamma^2+1), but small Immirzi gamma
+lets r = alpha/gamma (what beta needs at fixed zeta) grow with no contact cost: the FMT contact alone is not a bound on xi*c.
+ALL PASS
+=== shortfalls.py: 12 PASS, 0 FAIL, exit 0, 4.9 s
+beta(xi=1): EC-02 cited xi_nu<=0.048: 7.47e-30 deg; generous (xi_mu,tau=0.57): 6.34e-29; Pauli: 6.91e-27; vector (xi=c=1): 1.27e-37
+PASS: EC-02 cited case reproduces 007 (7.5e-30 deg) within 3%
+PASS: EC-02 generous case reproduces 007 (6.3e-29 deg) within 5%
+PASS: Pauli envelope reproduces 029 (6.91e-27 deg) within 2%
+PASS: vector route reproduces 029 (xi c needed 1.7e36) within 5%
+PASS: CAST g_ag*g_ae bound -> xi < 9.40e+17 (007: 9.4e17)
+PASS: Reig Eq. 11: m_e/Lambda*^2 = 5.28e-12 GeV^-1 vs 5.3e-12 (10%)
+PASS: Reig Eq. 12: f = g_ALPS Lambda*^2 = 0.29 GeV vs 0.3 GeV (10%)
+PASS: Reig Eq. S14: 1/(2f^2) = 5.9 GeV^-2 vs 5.6 (10%)
+PASS: a thermal pi decoupling below m_mu gives Delta N_eff >= 0.39 > 95% room 0.29
+S-b NDA: pi decouples above m_mu only if Lambda_s > 1.72e+11 eV (rate T^7/Lambda_s^6 vs H, g* = 14.25)
+
+| bound on xi (J5 operator) | xi_max | source | EC-02 nu, cited xi_nu beta_max deg / short | EC-02 nu, generous N_eff beta_max deg / short | Pauli, any fermion beta_max deg / short |
+| D: CAST g_ag*g_ae (Reig; 007) | 9.4e+17 | 2611.07578 + CAST via Reig ref [45] | 7.0e-12 / 10.5 | 6.0e-11 / 9.6 | 6.5e-09 / 7.5 |
+| D: CAST g_ag x RG g_ae | 1.1e+17 | 2406.16840 x 2007.03694 | 8.0e-13 / 11.4 | 6.8e-12 / 10.5 | 7.4e-10 / 8.5 |
+| D: Chandra g_ag x RG g_ae | 1.5e+15 | 1907.05475 x 2007.03694 | 1.1e-14 / 13.3 | 9.4e-14 / 12.4 | 1.0e-11 / 10.3 |
+| S-a: Lambda_s>T_BBN, m_g Retino weak end | 1.9e+24 | 1302.6168; T_BBN choice | 1.4e-05 / 4.2 | 1.2e-04 / 3.3 | 1.3e-02 / 1.2 |
+| S-a: Lambda_s>T_BBN, m_g PDG | 2.4e+19 | PDG 2024 (Ryutov 07); T_BBN choice | 1.8e-10 / 9.1 | 1.5e-09 / 8.2 | 1.6e-07 / 6.1 |
+| S-a: Lambda_s>T_BBN, m_g Proca galactic | 2.4e+11 | hep-ph/0306245 via PDG | 1.8e-18 / 17.1 | 1.5e-17 / 16.2 | 1.6e-15 / 14.1 |
+| S-b: NDA decoupling, m_g Retino weak end | 3.7e+08 | 1302.6168; NDA | 2.8e-21 / 19.9 | 2.3e-20 / 19.0 | 2.6e-18 / 16.9 |
+| S-b: NDA decoupling, m_g PDG | 4.7e+03 | PDG 2024; NDA | 3.5e-26 / 24.8 | 3.0e-25 / 23.9 | 3.2e-23 / 21.8 |
+
+| bound on xi*c (vector J_B operator) | (xi c)_max | beta_max deg | shortfall |
+| D: contact 1/(2f^2) J_B^2 < CMS dijet, g = ALPS II | 1.5e+25 | 1.9e-12 | 11.1 |
+| D: contact 1/(2f^2) J_B^2 < CMS dijet, g = CAST | 5.7e+23 | 7.3e-14 | 12.5 |
+| D: contact 1/(2f^2) J_B^2 < CMS dijet, g = Chandra | 7.9e+21 | 1.0e-15 | 14.3 |
+| S-a: T_BBN, m_g Retino weak end | 1.9e+24 | 2.4e-13 | 12.0 |
+| S-a: T_BBN, m_g PDG | 2.4e+19 | 3.0e-18 | 16.9 |
+
+FMT contact only: c (baryon normalisation) < 3.3e+15 / sqrt(gamma^2+1)
+  at zeta = 9.4e+17 (CAST product): needed r = 1.8e+18; FMT contact allows it iff Immirzi gamma < 0.04
+  at zeta = 2.4e+19 (S-a PDG): needed r = 7.1e+16; FMT contact allows it iff Immirzi gamma < 0.22
+PASS: no J5 route reaches beta at the weakest examined xi bound (1.9e+24)
+PASS: no vector route reaches beta in either completion class
+PASS: ordering: dual-axion bounds (all three) are stronger than the T_BBN Stueckelberg bound with the PDG mass
+ALL PASS
+
+TOTAL: 25 PASS, 0 FAIL
+ALL PASS

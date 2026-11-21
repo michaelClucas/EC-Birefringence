@@ -14,8 +14,9 @@ Steps:
   5. fit summary table (model, beta_max, penalty vs free ALP, Delta chi2 vs null) for ACT DR6, ACT+WMAP+Planck (EK22)
      and ACT+Cosmoglobe WMAP+Planck.
   5b. only with --checks (task 027, skeptic 020 MINOR 12): the derivation/symbolic check scripts behind the
-     no-number verdicts (tasks 003, 004, 009, 012, 016, 019, 022, and 025 if present), each in its own pinned
-     process; fails if any exits nonzero or prints FAIL. Output files they write into work/ are restored.
+     no-number verdicts (tasks 003, 004, 009, 012, 016, 019, 022, 025, 031, 032, skeptics 034 and 035, and any
+     run_checks.py in a work folder numbered above 035, found automatically), each in its own pinned process; fails
+     if any exits nonzero or prints FAIL. Output files they write into work/ are restored.
   6. path scan: the log (--log) and the text outputs in artifacts/reproduce/ are scanned for absolute local paths;
      the repo root becomes <repo>, the home folder <home>, anything else absolute <abs-path>. stdout/stderr are
      scrubbed the same way as they are written, so a shell redirect is also path-free.
@@ -161,12 +162,17 @@ def fit_summary(rows):
                   f"{float(r['dchi2_vs_null']):13.2f}")
 
 
-# symbolic/derivation checks behind the no-number verdicts (--checks). Task 025 is picked up if it has a run_checks.py.
+# symbolic/derivation checks behind the no-number verdicts (--checks). 007, 008, 023 have run_checks.py too but are
+# left out: their numbers are regenerated in-process by src.claims_numbers (008's is the slow EC-03' scan).
 CHECKS = ["20261120-003-theory-ec-photon/run_checks.py", "20261120-004-kk-reduction/run_checks.py",
           "20261120-009-kk-bounds/run_checks.py", "20261120-012-theory-shift-uholst/run_checks.py",
           "20261120-016-kk05-edm-cs/run_checks.py", "20261120-019-adjudicate-kk05-edm/adjudicate_edm.py",
-          "20261120-022-theory-ec06/run_checks.py"]
-OPTIONAL_CHECKS = ["20261120-025-*/run_checks.py"]
+          "20261120-022-theory-ec06/run_checks.py", "20261120-025-theory-ec06c-costs/run_checks.py",
+          # task 038: iteration 9-10 tasks and skeptics (skeptic folders have no run_checks.py; their script is named)
+          "20261120-031-theory-mz-verdict/run_checks.py", "20261120-032-lit-bounds-fixes/run_checks.py",
+          "20261120-034-skeptic-mz/skeptic_mz.py", "20261120-035-final-skeptic-rev3/ec06d_endpoint.py"]
+# later tasks: every work/<date>-<NNN>-*/run_checks.py with NNN above this is added automatically
+AUTO_CHECKS_AFTER = 35
 # outputs the check scripts write into their own work folder (run.log, csv, png); restored afterwards so --checks
 # leaves work/ unchanged. Scripts and READMEs are never touched.
 _OUTPUT_SUFFIXES = (".log", ".csv", ".png", ".json", ".txt")
@@ -196,7 +202,9 @@ def run_checks():
     """Run each check script in its own pinned process (tools/pin.py, 1 thread) from the repo root. Full output goes
     to artifacts/reproduce/checks_<task>.log. Fails if a script exits nonzero or prints a FAIL line/count."""
     work = ROOT / "work"
-    scripts = [work / s for s in CHECKS] + sorted(p for g in OPTIONAL_CHECKS for p in work.glob(g))
+    auto = sorted(p for p in work.glob("*/run_checks.py") if p.parent.name.split("-")[1].isdigit()
+                  and int(p.parent.name.split("-")[1]) > AUTO_CHECKS_AFTER)
+    scripts = [work / s for s in CHECKS] + [p for p in auto if p not in {work / s for s in CHECKS}]
     env = dict(os.environ, OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", MKL_NUM_THREADS="1",
                NUMEXPR_NUM_THREADS="1", PYTHONIOENCODING="utf-8")
     py = [sys.executable, "-W", "ignore::SyntaxWarning"]

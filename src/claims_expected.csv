@@ -69,3 +69,11 @@ EC-06d,xi_min_10pct,xi needed in the GR-like regime for |delta H^2/H^2(z*)| <= 0
 KK-04,orders_short_Cassini,"radion |gamma - 1| = 1/2 (bulk matter) vs Cassini 1 sigma 2.3e-5 (orders)",~4.3 orders,4.3,dec,1,032 kk04_shortfall (data/kk_bounds_inputs.csv; value 4.34; brane matter 4.09),live
 EC-06d,orders_short_Hzstar_min,shortfall in orders of delta H/H at z* (min over cases III-V and the two 95% bounds),3.8-4.5 orders,3.8,dec,1,032 hz_bounds (case V vs Delta N_eff; value 3.76),live
 EC-06d,orders_short_Hzstar_max,shortfall in orders of delta H/H at z* (max over cases III-V and the two 95% bounds),3.8-4.5 orders,4.5,dec,1,032 hz_bounds (case III vs Omega_e; value 4.49),live
+KK-04,orders_short_alt_min,"radion orders short, brane matter or 2 sigma Cassini bound: lower end (brane, 2 sigma)",3.6-4.1,3.6,dec,1,032 kk04_shortfall (min of bulk/2sigma 3.87; brane/1sigma 4.09; brane/2sigma 3.63),live
+KK-04,orders_short_alt_max,"radion orders short, brane matter or 2 sigma Cassini bound: upper end (brane, 1 sigma)",3.6-4.1,4.1,dec,1,032 kk04_shortfall (max of the same three; value 4.09),live
+EC-06a,LambdaSC_GW_keV,"theta-exchange strong-coupling scale at xi(GW speed), PDG m_gamma, 1-c_s = Omega_m (keV)",3.6 keV,3.6,sig,2,031 mz_numbers N5 lam_sc(xi_gw; m_gamma_PDG; one_m_cs) (034 K2c: 3.58),live
+EC-06a,orders_below_Esafe,orders in energy between Lambda_SC (3.6 keV) and E_collider_safe = 10 TeV,9.4 orders,9.4,dec,1,031 mz_numbers N5 log10(E_safe/Lambda_SC) (data/mz_inputs.csv; value 9.45),live
+EC-06a,xi_min_kstar,xi lower bound from k* = H/eps_S > k_GW(24 Hz) on the tracker,ξ ≥ 4.7×10¹⁶,4.7e16,sig,2,031 mz_numbers N3 xi_k (034 K6: 4.7e16),live
+EC-06a,LambdaSC_noGW_MeV,"Lambda_SC on the plain tracker at the N_eff limit (no GW bound), PDG m_gamma (MeV)",≤ 9 MeV,9,sig,1,034 skeptic_mz K2 lam_sc(xi_noGW; mP; omc_mean) (value 8.94),live
+EC-06a,xi_ratio_vac,xi ratio for the vacuum-gradient (f(Lambda)FFtilde) coupling vs full S (J/J_alt),ξ 21× larger,21,sig,2,034 skeptic_mz K7 J/Jalt (value 21.2),live
+EC-06d,endpoint_ratio_ground_L2,"beta/xi ratio, ground (air at 5.2 km) vs L2 observer endpoint (heavy 0+, mu = 1, delta = 1%)",-7.8×10³,-7.8e3,sig,2,035 ec06d_endpoint r (local_inputs.csv in 035; value -7.79e3),live
