@@ -76,3 +76,39 @@ Draft numbers neither regenerated nor cited as data: the 036/037 set (finding 1)
   - If 039 upholds both, findings 1-3 are the remaining gate.
 - Skeptic 034's open ghost question for the MZ θ sector would kill the EC-06a remnant independently; it is not in the draft.
 - I did not recompute the KK-02 hilltop tuning or the EC-06a remnant viability; both are listed as required quantifications, not done here.
+
+## Addendum (iteration 13): confirmation against commit 03d33c0
+
+### Clean-checkout reproducibility test
+Fresh `git clone` of HEAD 03d33c0 into `artifacts/clean_040/` (the existing `artifacts/clean_checkout` had another task's uncommitted `src/` edits and its pull aborted, so I left it untouched). candl_data was copied from the main repo's `artifacts/candl_data` (the same files `download_candl_data.py` fetches). Run: main repo's `.venv` by relative path, `tools/pin.py`, 1 thread, `-m src.reproduce --checks`. Logs: `clean_head_reproduce.log`, `clean_head_run.log`.
+- **Exit 0** (958 s). Validation 18/18 PASS; claim numbers 79/79 match; draft-only numbers 36/36 regenerated and matching; `--checks` 16/16 scripts PASS (now including 042 and 043); path scan clean.
+- Gap: skeptic 039's scripts (`stueckelberg_cutoff.py`, `endpoint_grain.py`, `rc_trace_indep.py`) are not run by `--checks` (no `run_checks.py` in 039) and none of their numbers is a `draft_expected.csv` row. The draft quotes them: 2.3 MeV, ξ = 3.1×10²⁵, 3.7 orders, 11.0 and 13.9 orders (caveat paragraph and headline), ~26 orders universal piece, 5 km / 2×10³ km boundaries. 039 also keeps its inputs (grain radius, densities) in `work/.../inputs_039.csv` rather than `data/`.
+
+### Item-by-item status
+| # | item | status | note |
+|---|---|---|---|
+| 1 | reproduce stop condition | **applied** | exit 0 on clean HEAD; but see the 039 gap above (new, item A) |
+| 2a | EC-06a remnant cost | applied | g lower limits 1.2×10⁻²⁰ / 7.4×10⁻¹⁴ / 0.24 / 8.2 GeV⁻¹, naive-Chandra failure, ghost open; asserted in 043 checks M2-M6 |
+| 2b | KK-03 λ/κ₄ and kick | applied | (1.5-8.7)×10⁶, kick below ~6-37 MeV, ΔN_ν 0.005-0.16; 043 C1-C8 |
+| 2c | KK-02 hilltop tuning | applied | P ≈ 0.7% (1.4×10⁻⁴ for 0.277°); 043 H1-H10 |
+| 3 | KK-05 and 020 Λ numbers in reproduce | applied in `src/`, **text stale** | rows regenerate (`draft_expected.csv`), but the draft still says "(estimate, not in reproduce)" and "(not in reproduce)" on those rows |
+| 4 | headline "only" / "many orders" | applied, **incorrectly** in one number | see item B |
+| 5 | 2608.06480 | applied | data rows, literature note, refit; my hand values (23.6, 9.7, 4.2, 1.4; dust 12.4, 4.1, 1.3, 0.16) agree |
+| 6 | EC-04 Chandra | applied | ξ < 2.4×10⁶ regenerated |
+| 7 | Cassini convention | applied (as a Known-weaknesses note) | acceptable |
+| 8 | cited γγ energy | applied | ATLAS 2102.13405 (2.36 TeV), ATLAS LbL 1702.01625, BaBar 1702.03327 in `data/collider_photon_bounds.csv` |
+| 9 | EC-03' conditional penalty wording | not applied | the existing "(no published cap at its best-fit mass)" disclosure is enough; MINOR, optional |
+| 10 | plasma / 2212.13871 | applied in draft Not examined | not added to `literature/`; MINOR |
+| 11 | primary sources for ALPS II / CAST rows | not applied | MINOR |
+| 12 | "candidate" heading, caveat repeat | not applied | MINOR |
+| T3 | warped row "argument, not separately checked" | not applied | can cite this folder's `skeptic_checks.py` T3; MINOR |
+
+### Problems in the new text
+- **A (MAJOR). 039 numbers in the draft are not reproduced** (above). Fix: add a `run_checks.py` to 039 (or list its scripts in `src/reproduce.py` CHECKS) and the 2.3 MeV / 11.0 / 13.9 rows to `draft_expected.csv`.
+- **B (MAJOR). Headline shortfall is wrong.** "Spin-sourced routes fall short by 11.0-13.9 orders at the largest coupling a consistent completion allows." 11.0 and 13.9 are the Stückelberg-class numbers after 039's cutoff. The dual-axion completion, also consistent and also in the kill table, leaves the Pauli envelope 7.5 orders short (CAST product) and the cited-ν EC-02 route 10.5 orders short. The minimum over completions is 7.5, not 11.0. Fix: "fall short by ≥ 7.5 orders (any fermionic source; ≥ 10.5 for the cited relic-ν source) at the largest coupling either completion allows". No verdict changes.
+- **C (MINOR). Stale Stückelberg entries in the kill table.** The EC-02 and Pauli rows still give "4.2-9.1" and "1.2-6.1 orders (Stückelberg)" while the caveat says the corner closes at 11.0 / 13.9 once the 2.3 MeV cutoff is imposed. Label the old numbers "with a 1 MeV cutoff" or replace them.
+- **D (MINOR). Target caveat sentence.** After the 2608.06480 insertion, "with the miscalibration angle set by an optics-model prior and dust EB neglected" reads as if it applies to 2608.06480. Its 4.8σ assumes the instrumental priors at face value, and the author says unresolved systematics must be understood first. Split the sentence and add that.
+- No overclaiming found in the cost table, the 2608.06480 lines, the commit message or CLAIMS/STATE. The EC-06a remnant row honestly says the route survives Chandra only through an estimate. The commit message's "all draft numbers regenerate" is true for the `draft_expected.csv` rows but not for 039's numbers (item A).
+
+### Go / no-go
+**No-go as committed. Go after A and B** (plus C and D, which are text-only). The four edits are mechanical; they need no new physics review if limited to those lines and a clean `src.reproduce --checks` exits 0 afterwards. The physics verdict is unchanged: both tracks are Result C with a B-type core.

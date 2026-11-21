@@ -1,0 +1,82 @@
+PASS: C0 inputs_039.csv (6 rows) equals data/skeptic039_inputs.csv (6 rows) in ids and values
+=== 039 rc_trace_indep.py: 7 PASS, 0 FAIL, exit 0, 8.8 s
+PASS: connection uniquely determined by metric compatibility + torsion
+   R (flat, pure trace) = 2*T0(t, x, y, z)**2/3 - 2*T1(t, x, y, z)**2/3 - 2*T2(t, x, y, z)**2/3 - 2*T3(t, x, y, z)**2/3 - 2*Derivative(T0(t, x, y, z), t) + 2*Derivative(T1(t, x, y, z), x) + 2*Derivative(T2(t, x, y, z), y) + 2*Derivative(T3(t, x, y, z), z)
+PASS: commutator check: no derivative-of-V terms left (torsion term in the commutator is right)
+PASS: R = 2 d.T - (2/3) T.T  (036 A3)
+PASS: Shapiro-normalisation alternative -(4/3) T.T is NOT what our conventions give
+PASS: Einstein-frame mass m^2 = 2*a0*(a0 - a1)/(a1*b) equals -2 a0 mu/(a1 b)
+PASS: Brans-Dicke omega = -3*a0/(2*a0 - 2*a1), alpha = 1/(3+2 omega) = mu/(3 a1)
+PASS: a1 -> infinity gives the Starobinsky scalaron 2 M_P^2/b
+== 7 PASS, 0 FAIL ==
+=== 039 endpoint_grain.py: 7 PASS, 0 FAIL, exit 0, 6.1 s
+A2 beta_ACT/beta_EK22 = 0.629 +- 0.275 (linear propagation); ACT/MK20 = 0.61
+   MC: median 0.63, 16-84% [0.39, 0.97], P(ratio < 0) = 0.0019
+PASS: A2 measured ratio 0.63 +- 0.28 reproduced from data/
+   rho_* = 3.49e-18 kg/m^3, rho_ISM = 1.7e-21 kg/m^3
+PASS: A3a grain-centre smoothed density at lam = 1e-05 m equals a^2/(2 lam^2) (ratio 0.9934)
+PASS: A3a grain-centre smoothed density at lam = 0.001 m equals a^2/(2 lam^2) (ratio 0.9999)
+A3 a = 0.10 um: grain endpoint beats rho_* for lam < 2.1 km (rho_grain/rho_* at 100 um: 4.3e+14)
+A3 a = 0.25 um: grain endpoint beats rho_* for lam < 5.2 km (rho_grain/rho_* at 100 um: 2.7e+15)
+PASS: A3b for lam below ~2-5 km the MK source endpoint is the grain, not the ISM mean: predicted ratio sign is + there
+A4 ACT observer piece at 100 um: 7.13e-27 rad, short by 23.7 orders (036: 7e-27, 23.7)
+PASS: A4a reproduces 036's 7e-27 rad / 23.7 orders
+   MK piece at 100 um with the grain endpoint (a = 0.25 um): 5.7e-29 rad, short by 25.8 orders (036's ISM-mean 'universal piece': 41.4 orders)
+PASS: A4b the MK-measured piece is set by the grain, ~15 orders larger than 036's universal piece
+   lam [m] | rho_ground [kg/m3] | beta_ACT size [rad] | short [orders]
+    1.00e-04 |  1.16e+00 |  7.13e-27 |   23.7
+    3.16e-04 |  3.68e-01 |  2.26e-26 |   23.2
+    1.00e-03 |  1.16e-01 |  7.13e-26 |   22.7
+    3.16e-03 |  3.68e-02 |  2.26e-25 |   22.2
+    1.00e-02 |  1.16e-02 |  7.13e-25 |   21.7
+    3.16e-02 |  3.68e-03 |  2.26e-24 |   21.2
+    1.00e-01 |  1.16e-03 |  7.13e-24 |   20.7
+    3.16e-01 |  3.68e-04 |  2.26e-23 |   20.2
+    1.00e+00 |  3.68e-01 |  2.25e-19 |   16.2
+    3.16e+00 |  5.71e+01 |  3.50e-16 |   13.0
+    1.00e+01 |  4.97e+02 |  3.04e-14 |   11.1
+    3.16e+01 |  9.84e+02 |  6.03e-13 |    9.8
+    1.00e+02 |  1.22e+03 |  7.48e-12 |    8.7
+    3.16e+02 |  1.31e+03 |  8.01e-11 |    7.7
+    1.00e+03 |  1.34e+03 |  8.19e-10 |    6.7
+    3.16e+03 |  1.35e+03 |  8.24e-09 |    5.7
+    1.00e+04 |  1.35e+03 |  8.26e-08 |    4.7
+    3.16e+04 |  1.35e+03 |  8.27e-07 |    3.7
+    1.00e+05 |  1.35e+03 |  8.27e-06 |    2.7
+    3.16e+05 |  1.35e+03 |  8.27e-05 |    1.7
+    1.00e+06 |  1.35e+03 |  8.27e-04 |    0.7
+    3.16e+06 |  1.35e+03 |  8.27e-03 |   -0.3
+A4 size kill (HB g, ground observer, half-space) holds up to lam ~ 3.2e+06 m
+PASS: A4c size kill and the (corrected) endpoint-sign kill overlap: size holds to >> 5 km
+== 7 PASS, 0 FAIL ==
+=== 039 stueckelberg_cutoff.py: 8 PASS, 0 FAIL, exit 0, 12.8 s
+PASS: S1 delta(J.A Ft) = total derivative - alpha (d_nu J_mu) Ft^{mu nu}
+PASS: S2a Clifford algebra {g^mu, g^nu} = 2 eta^{mu nu} and g5 anticommutes
+   spins (0,1) photon hel +1: int|M|^2 dcos = 21.3333 (E=1, C/m=1) -> |a_1| = 3.751e-02 (C/m) E^3
+   spins (0,1) photon hel -1: int|M|^2 dcos = 21.3333 (E=1, C/m=1) -> |a_1| = 3.751e-02 (C/m) E^3
+   spins (1,0) photon hel +1: int|M|^2 dcos = 21.3333 (E=1, C/m=1) -> |a_1| = 3.751e-02 (C/m) E^3
+   spins (1,0) photon hel -1: int|M|^2 dcos = 21.3333 (E=1, C/m=1) -> |a_1| = 3.751e-02 (C/m) E^3
+PASS: S2b |M|^2 scales as E^6 (ratio 64.00 for E x2, expect 64)
+S2 max |a_1| = 3.7513e-02 (C/m) E^3 = 4.6891e-03 (C/m) s^(3/2)
+S4 Pauli beta(xi=1) = 6.913e-27 deg (029/037: 6.91e-27) -> xi needed 3.11e+25; EC-02 nu: xi needed 2.87e+28
+PASS: S4a Pauli envelope reproduces 029/037 within 2%
+
+| route | m_gamma [eV] | xi | C/m [eV^-3] | 037 (m/C)^(1/3) | tree sqrt(s), |a_1|=1 | tree, |a_1|=1/2 | loop gg->pipi (N=4) |
+| Pauli envelope | 7.9e-14 | 3.11e+25 | 1.66e-17 | 0.392 MeV | 2.34 MeV | 1.86 MeV | 1.1 MeV |
+| Pauli envelope | 1.0e-18 | 3.11e+25 | 1.31e-12 | 0.00914 MeV | 0.0546 MeV | 0.0433 MeV | 0.0257 MeV |
+| EC-02 cited nu | 7.9e-14 | 2.87e+28 | 1.53e-14 | 0.0403 MeV | 0.241 MeV | 0.191 MeV | 0.113 MeV |
+| EC-02 cited nu | 1.0e-18 | 2.87e+28 | 1.21e-09 | 0.000939 MeV | 0.00561 MeV | 0.00445 MeV | 0.00264 MeV |
+
+S4 weak corner (Pauli, weakest m_gamma): Lambda = 2.34 MeV; below BaBar mono-photon sqrt(s) by 3.7 orders, below LEP2 by 5.0 orders
+PASS: S4b weak-corner cutoff (tree, |a_1| = 1) is below 10 MeV
+PASS: S4c weak-corner cutoff is > 3 orders below e+e- -> gamma + invisible energies (BaBar)
+S4 Lambda_tree >= 1 MeV (037 S-a), weakest m_gamma: xi < 4.00e+26; Pauli short by -1.1 orders, EC-02 nu short by 1.9
+S4 Lambda_tree >= BaBar 10.58 GeV, weakest m_gamma: xi < 3.37e+14; Pauli short by 11.0 orders, EC-02 nu short by 13.9
+S4 Lambda_tree >= LEP2 209 GeV, weakest m_gamma: xi < 4.38e+10; Pauli short by 14.9 orders, EC-02 nu short by 17.8
+PASS: S4d with Lambda >= BaBar energy the Pauli corner is > 10 orders short
+S5 RG core, w = 26 keV: sigma(g e -> pi e) ~ 9.7e-18 eV^-2 vs allowed axion-Compton 6.1e-43 eV^-2 (ratio 2e+25); xi must drop by ~12.6 orders
+PASS: S5 NDA star emission excludes the weak corner by > 10 orders in xi
+== 8 PASS, 0 FAIL ==
+
+TOTAL: 23 PASS, 0 FAIL
+ALL PASS

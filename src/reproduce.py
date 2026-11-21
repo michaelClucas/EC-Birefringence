@@ -9,13 +9,14 @@ Steps:
   4. claim numbers vs CLAIMS.md: compared with src/claims_expected.csv, whose printed text is also checked to still
      occur in CLAIMS.md.
   4b. draft-only numbers (task 033): src/draft_expected.csv, numbers due in the RESULT draft but not in CLAIMS.md
-     (029 Pauli bound, Cosmoglobe penalties; task 041: 037 shortfalls at the bound, 036 EC-06d). A wrong or missing value fails; text not (yet) in
+     (029 Pauli bound, Cosmoglobe penalties; task 041: 037 shortfalls at the bound, 036 EC-06d; task 044: skeptic 039). A wrong or missing value fails; text not (yet) in
      work/20261120-018-result-draft/RESULT_DRAFT.md is reported as "not in draft" and does not fail.
   5. fit summary table (model, beta_max, penalty vs free ALP, Delta chi2 vs null) for ACT DR6, ACT+WMAP+Planck (EK22),
      ACT+Cosmoglobe WMAP+Planck and the joint ACT+Planck of 2608.06480 (baseline, dust-mitigated; task 042).
   5b. only with --checks (task 027, skeptic 020 MINOR 12): the derivation/symbolic check scripts behind the
      no-number verdicts (tasks 003, 004, 009, 012, 016, 019, 022, 025, 031, 032, skeptics 034 and 035, and any
-     run_checks.py in a work folder numbered above 035, found automatically), each in its own pinned process; fails
+     run_checks.py in a work folder numbered above 035, found automatically; skeptic 039's three scripts run through
+     work/20261121-044-reproduce-039/run_checks.py), each in its own pinned process; fails
      if any exits nonzero or prints FAIL. Output files they write into work/ are restored.
   6. path scan: the log (--log) and the text outputs in artifacts/reproduce/ are scanned for absolute local paths;
      the repo root becomes <repo>, the home folder <home>, anything else absolute <abs-path>. stdout/stderr are
