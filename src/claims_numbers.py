@@ -29,6 +29,8 @@ Sources (scripts are imported, not copied; their stdout is captured and parsed w
   iter-9/10 numbers (task 038)   work/20261120-031 mz_numbers (EC-06a Lambda_SC 3.6 keV, 9.4 orders below 10 TeV,
                 xi >= 4.7e16 from k*), -034 skeptic_mz (EC-06a no-GW tracker <= 9 MeV, f(Lambda)FFtilde xi ratio 21),
                 -035 ec06d_endpoint (EC-06d ground/L2 ratio), 032 kk04_shortfall (KK-04 brane / 2 sigma 3.6-4.1); in EC06.
+  task 042 (iter 13)   work/20261120-020 skeptic_checks (KK-05 ~21 orders, higher-dim. cutoffs), -042 run_checks
+                (EC-04 Chandra edge, EC-06a vs ATLAS diphoton maximum), 2608.06480 fit rows; in DRAFT_NUMBERS / fit_values.
   draft-only numbers (task 033)   src/draft_expected.csv: numbers quoted in the RESULT draft
                 (work/20261120-018-result-draft/RESULT_DRAFT.md) but not in CLAIMS.md. Table DRAFT_NUMBERS below
                 (029 pauli_bound) plus the Cosmoglobe fit penalties from fit_values(). compare_draft() checks each
@@ -70,6 +72,8 @@ T034 = "20261120-034-skeptic-mz"
 T035 = "20261120-035-final-skeptic-rev3"
 T036 = "20261121-036-theory-pgt0plus-heavy"
 T037 = "20261121-037-theory-shortfalls-at-bound"
+T020 = "20261120-020-skeptic-result-draft"
+T042 = "20261121-042-data-final-fixes"
 DRAFT_EXPECTED = Path(__file__).resolve().parent / "draft_expected.csv"
 DRAFT = WORK / "20261120-018-result-draft" / "RESULT_DRAFT.md"
 
@@ -421,6 +425,22 @@ def _shortfalls_037():
     return g
 
 
+def _skep_020():
+    """020 skeptic_checks.py: S2 KK-05 charge-to-mass, S3 higher-dimension operator cutoffs (xi_needed(EC-02) = 2.9e28
+    hardcoded there; 042 run_checks C3 checks it against 007's regenerated value). Read-only."""
+    g, txt, code = exec_script(T020, "skeptic_checks", cwd=ROOT)
+    g["_checks_ok"] = code == 0 and re.search(r"== \d+ PASS, 0 FAIL ==", txt) is not None
+    return g
+
+
+def _fixes_042():
+    """042 run_checks.py: EC-04 Chandra edge, KK-05 mass gap (independent), EC-06a vs the ATLAS diphoton maximum.
+    Read-only; exits 1 on any FAIL."""
+    g, txt, code = exec_script(T042, "run_checks", cwd=ROOT)
+    g["_checks_ok"] = code == 0 and re.search(r"== \d+ PASS, 0 FAIL ==", txt) is not None
+    return g
+
+
 def _alpha_min_036(g):
     """inf over a1 > 0 of the Yukawa strength alpha = mu/(3 a1) = (a1 + 1)/(3 a1) (a0 = -1): the a1 -> oo limit."""
     import sympy as sp
@@ -496,7 +516,8 @@ EC06_SOURCES = {"022": _ec06_022, "023": _ec06_023, "023-aniso": _ec06_023_aniso
                 "025-lim": _ec06_025("check_sny_limit"), "028-win": _ec06_028, "029-pauli": _pauli_029,
                 "032-kk04": _kk04_032, "032-hz": _hz_032, "031-mz": _mz_031, "034-mz": _mz_034,
                 "035-end": _endpoint_035, "036-mode": _pgt_036("check_scalar_mode"),
-                "036-end": _pgt_036("endpoint_bounds"), "037-sf": _shortfalls_037}
+                "036-end": _pgt_036("endpoint_bounds"), "037-sf": _shortfalls_037,
+                "020-skep": _skep_020, "042-fix": _fixes_042}
 
 # One line per CLAIMS.md number: "claim.key" -> (source, getter on that source's namespace). Task 025 may revise
 # EC-06c/EC-06d: change the getter here and the row in claims_expected.csv.
@@ -589,6 +610,15 @@ DRAFT_NUMBERS = {
     "EC-02.corner_shift_Proca": ("037-sf", lambda g: g["math"].log10(g["mg_Ret"] / g["mg_gal"])),
     "EC-02.corner_shift_NDA": ("037-sf", lambda g: g["math"].log10(_xiSa_037(g, "Ret") / g["xi_S"](g["mg_Ret"],
                                                                                                g["Lam_s_NDA"]))),
+    # task 042 (iter 13; skeptic 040 items 3, 6, 8). KK-05 lightest KK-charged state e M_P/sqrt2 over m_e (020 S2), and
+    # the cutoffs 020 S3 needs for (div S)FFtilde/Lambda^2 and Das-Mohanty-Prasanna p^2 T operators with EC torsion
+    "KK-05.orders_mass_KKcharge": ("020-skep", lambda g: g["math"].log10(g["m_min"] / g["me"])),
+    "EC-02.Lambda_divS_eV": ("020-skep", lambda g: g["Lam_dim6"]),
+    "EC-02.Lambda_DMP_eV": ("020-skep", lambda g: g["Lam_DMP"]),
+    # EC-04 upper edge with Chandra (m < 1e-12 eV covers m ~ H0) instead of CAST; for CLAIMS/draft EC-04 rows
+    "EC-04.xi_max_Chandra": ("042-fix", lambda g: g["xi_ch"]),
+    # EC-06a strong-coupling scale vs the highest observed SM diphoton mass (ATLAS 2102.13405, 2.36 TeV)
+    "EC-06a.orders_below_ATLAS": ("042-fix", lambda g: g["oat"]),
 }
 # The draft's EC-06d "3.9 orders vs Cassini" / "23.7 orders short in size" reuse the EC06 keys of the same name.
 # EC-03'.m_best_eV (draft only, task 038) comes from ec03(): grid mass of beta_max under the 5% cap.
@@ -623,6 +653,7 @@ def fit_values(rows, caps):
         assert len(hit) == 1, (ds, [r["model"] for r in hit])
         return hit[0]
     ec27 = lambda m: m.startswith("EC-03'") and "P18+BOSS" in m
+    ec69 = lambda m: m.startswith("EC-03'") and m.endswith(" P18")  # Planck 2018 cap alone (6.9%)
     return {
         "EC-03'.beta_max_cap27_deg": float(row("act_wmap_planck", ec27)["beta_max_deg"]),
         "EC-03'.penalty_cap27_AWP": float(row("act_wmap_planck", ec27)["penalty_vs_ALP"]),
@@ -632,6 +663,15 @@ def fit_values(rows, caps):
         # draft only (task 033; skeptic 020 S4, 029 item 13): penalties with the ACT + Cosmoglobe combination
         "EC-03'.penalty_cap27_CG": float(row("act_cosmoglobe", ec27)["penalty_vs_ALP"]),
         "KK-02.penalty_k1_CG": float(row("act_cosmoglobe", lambda m: m == "KK-02 k=1")["penalty_vs_ALP"]),
+        # draft only (task 042; skeptic 040 item 5): joint ACT+Planck of 2608.06480, baseline and dust-mitigated
+        "ALP.dchi2_null_ESK26": float(row("act_planck_esk26", lambda m: m.startswith("ALP"))["dchi2_vs_null"]),
+        "EC-03'.penalty_cap27_ESK26": float(row("act_planck_esk26", ec27)["penalty_vs_ALP"]),
+        "EC-03'.penalty_cap69_ESK26": float(row("act_planck_esk26", ec69)["penalty_vs_ALP"]),
+        "KK-02.penalty_k1_ESK26": float(row("act_planck_esk26", lambda m: m == "KK-02 k=1")["penalty_vs_ALP"]),
+        "ALP.dchi2_null_ESK26dust": float(row("act_planck_esk26_dust", lambda m: m.startswith("ALP"))["dchi2_vs_null"]),
+        "EC-03'.penalty_cap27_ESK26dust": float(row("act_planck_esk26_dust", ec27)["penalty_vs_ALP"]),
+        "EC-03'.penalty_cap69_ESK26dust": float(row("act_planck_esk26_dust", ec69)["penalty_vs_ALP"]),
+        "KK-02.penalty_k1_ESK26dust": float(row("act_planck_esk26_dust", lambda m: m == "KK-02 k=1")["penalty_vs_ALP"]),
     }
 
 

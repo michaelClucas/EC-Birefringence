@@ -1,0 +1,308 @@
+### likelihood validation (20261120-010)
+== (a) isotropic beta ==
+[PASS] significance act_dr6: beta = 0.215 +- 0.074 deg, Delta chi2 = 8.441 -> 2.905 sigma (published 2.9); Delta AIC = 6.44, Delta BIC(n=1) = 8.44, B10 (uniform beta in [-1,1] deg) = 6.3 (ln B10 = 1.84)
+[PASS] Savage-Dickey numeric vs analytic act_dr6: 6.3141 vs 6.3141
+[PASS] significance act_wmap_planck: beta = 0.264 +- 0.058 deg, Delta chi2 = 20.718 -> 4.552 sigma (published 4.6); Delta AIC = 18.72, Delta BIC(n=1) = 20.72, B10 (uniform beta in [-1,1] deg) = 2292.9 (ln B10 = 7.74)
+[PASS] Savage-Dickey numeric vs analytic act_wmap_planck: 2292.9063 vs 2292.9063
+[PASS] significance act_cosmoglobe: beta = 0.231 +- 0.059 deg, Delta chi2 = 15.329 -> 3.915 sigma (published 3.9); Delta AIC = 13.33, Delta BIC(n=1) = 15.33, B10 (uniform beta in [-1,1] deg) = 157.6 (ln B10 = 5.06)
+[PASS] Savage-Dickey numeric vs analytic act_cosmoglobe: 157.6191 vs 157.6191
+[PASS] combination act_dr6 + wmap_planck_pr4: 0.2646 +- 0.0578 vs published 0.264 +- 0.058
+[PASS] combination act_dr6 + cosmoglobe_wmap_planck: 0.2309 +- 0.0595 vs published 0.231 +- 0.059
+[PASS] joint() refuses overlapping data: act_wmap_planck shares data ['ACT_DR6'] with another member; use a published combined value instead of multiplying
+[INFO] joint act_dr6 x planck_pr4 (disjoint): best beta = 0.256 deg, 4.30 sigma
+[INFO] planck_pr4 alone (ESK22-beta): 0.33 +- 0.1 deg, 3.30 sigma, B10 = 29.0
+== (b) frequency dependence ==
+[INFO] per-frequency rows available: DPK25-psi-PA5diff, DPK25-psi-PA5f090, DPK25-psi-PA5f150, DPK25-psi-PA6f090, DPK25-psi-PA6f150, DPK25-psi-mean, ESK22-beta0-all, ESK22-beta0-dust, ESK22-beta0-noFG, ESK22-n-all, ESK22-n-dust, ESK22-n-noFG, LOUIS25-psi-mean
+[PASS] psi bands, stat only, weighted mean: 0.1917 +- 0.0318 vs published 0.192 +- 0.032
+[INFO] psi bands + Pi^PA alpha prior, achromatic beta: 0.193 +- 0.075 deg (approximate reconstruction, EB only, no PA4 f220); full analysis Table 2 Pi^PA (EB+TB): 0.212 +- 0.072
+[INFO] psi bands power law beta0 (nu/150)^n: beta0 = 0.258 deg, n = 1.61; chi2 1.17 vs achromatic 5.26 (Delta chi2 = 4.09, 1 extra param, 2.02 sigma); Delta AIC = 2.09, Delta BIC(n=4) = 2.71
+[INFO] PA5 f150 - f090 difference: 0.21 +- 0.090 (stat), +- 0.099 with Pi^PA alpha-difference prior; achromatic chi2 = 5.44 / 4.54
+[INFO] Planck PR4 power law (ESK22, all bands): beta0 = (0.29, 0.11, 0.1), n = (-0.35, 0.47, 0.48); chi2(n=0, beta0=0.29) = 0.53
+== (c) SPT anisotropy ==
+Failed to import `candl_data` (see instructions here for installation: https://github.com/Lbalkenhol/candl_data).
+You can still use likelihoods from other data libraries.
+[PASS] candl SPT-3G D1 BB lite own test: -15.446949 vs -15.446949
+[PASS] numpy offset-lognormal vs candl: max |diff| = 5.15e-15 after constant -0.0000
+[INFO] CB template calibration: thin-LSS template x 0.485 reproduces the published A_CB>=0, no-A_LT-prior limit by construction (raw thin-LSS limit = 5.821e-05); Namikawa 2404.13771 abstract: exact spectrum about 2x below thin-LSS at l >~ 100, so a scale near 0.5 is expected
+[PASS] CB template scale consistent with thin-LSS overestimate (0.35-0.65): 0.485
+[INFO] SPT-3G A_CB 95% UL (no A_LT prior; calibration target): 1.199e-04 vs published < 1.20e-04
+[PASS] SPT-3G r 95% UL (A_CB >= 0, no A_LT prior): 0.259 vs published < 0.26
+[PASS] SPT-3G A_CB 95% UL (A_LT APS prior): 4.526e-05 vs published < 5.30e-05 (ratio 0.854; tol 20%; raw thin-LSS 2.195e-05)
+[PASS] SPT-3G A_CB negative allowed: -1.043e-04 +- 9.014e-05 vs published -1.13e-04 +- 9.40e-05 (tol 0.25 sigma, 15%)
+[INFO] negative-allowed extras: A_LT = 1.20 +- 0.36; P(A_CB<0) = 0.87 (published 0.89)
+[PASS] SPT-3G A_LT (A_CB >= 0): 0.670 +- 0.200 vs published 0.69 +- 0.18
+[PASS] SPT Gaussian-approx A_CB 95% UL (truncated at 0): 1.246e-04 vs published < 1.20e-04
+== 18 PASS, 0 FAIL ==
+### claim numbers: regeneration (20261120-014, -017)
+  007 (EC-01/02/04/05): 15.6 s
+  008 (EC-03, EC-03'): 29.4 s
+  009 (KK-02/03/04): 2.5 s
+  012 (EC-03 photon, KK-05): 20.8 s
+  022-035 (EC-06, KK-04, skeptics): 75.0 s
+  [INFO] EC-03' scan: 45 masses, max rel. diff of beta/(g phi_i) vs committed work/20261120-008 scan.csv = 0.0e+00
+### candidate fits (20261120-014; csv to artifacts/reproduce/)
+EC-03' caps from data/ultralight_fraction_bounds.csv (95%, m = 1e-32 eV; no per-mass bound at 5-8e-33 eV):
+  ULF-R23-P18-m1e-32: Omega_a/Omega_DM < 0.0694
+  ULF-R23-P18BOSS-m1e-32: Omega_a/Omega_DM < 0.0268
+SPT likelihood: spt3g_d1_bb_lite; Delta chi2_SPT(A_CB) profiled over r, A_LT; monotone in A_CB >= 0: True
+  Delta chi2_SPT at A_CB = 1e-5, 5e-5, 1.2e-4: 0.275, 1.621, 4.913
+  EC-03' A_CB,max = (H_inf,max g_T F/4pi)^2 = 3.60e-16 (H_inf,max = 4.70e+13 GeV, BK18)
+
+=== act_dr6: beta = 0.215 +- 0.074 deg; chi2_null = 8.441
+model                        beta_max   best   chi2   pen  dchi2 sigma dAIC_eff dAIC_full dBIC_n1 dBIC_n6    B10 SPT dchi2@Amax
+ALP (free beta)                (free)  0.215  0.000  0.00   8.44  2.91     6.44      4.44    8.44    6.65   6.31            nan
+EC-03' 2.7% P18+BOSS            0.100  0.100  2.424  2.42   6.02  2.45     4.02      2.02    6.02    4.23   3.78       9.68e-12
+EC-03' 5.0% 008 assumed         0.136  0.136  1.128  1.13   7.31  2.70     5.31      3.31    7.31    5.52   6.67       9.68e-12
+EC-03' 6.9% P18                 0.161  0.161  0.538  0.54   7.90  2.81     5.90      3.90    7.90    6.11   9.10       9.68e-12
+EC-03' 12.0% fit 0.215 EXCL     0.211  0.211  0.002  0.00   8.44  2.90     6.44      4.44    8.44    6.65  14.35       9.68e-12
+KK-02 k=1                       0.209  0.209  0.006  0.01   8.43  2.90     6.43      4.43    8.43    6.64  14.13          0.372
+KK-02 k=2                       0.418  0.215  0.000  0.00   8.44  2.91     6.44      4.44    8.44    6.65  15.06           1.75
+EC-03' cap needed for the best fit 0.215 deg: 12.4% rho_DM; KK-02 k=1 needs Delta_theta = 1.03 pi
+
+=== act_wmap_planck: beta = 0.264 +- 0.058 deg; chi2_null = 20.718
+model                        beta_max   best   chi2   pen  dchi2 sigma dAIC_eff dAIC_full dBIC_n1 dBIC_n6    B10 SPT dchi2@Amax
+ALP (free beta)                (free)  0.264  0.000  0.00  20.72  4.55    18.72     16.72   20.72   18.93 2292.91            nan
+EC-03' 2.7% P18+BOSS            0.100  0.100  8.017  8.02  12.70  3.56    10.70      8.70   12.70   10.91  53.25       9.68e-12
+EC-03' 5.0% 008 assumed         0.136  0.136  4.839  4.84  15.88  3.98    13.88     11.88   15.88   14.09 233.87       9.68e-12
+EC-03' 6.9% P18                 0.161  0.161  3.170  3.17  17.55  4.19    15.55     13.55   17.55   15.76 535.02       9.68e-12
+EC-03' 12.0% fit 0.215 EXCL     0.211  0.211  0.824  0.82  19.89  4.46    17.89     15.89   19.89   18.10 1973.99       9.68e-12
+KK-02 k=1                       0.209  0.209  0.897  0.90  19.82  4.45    17.82     15.82   19.82   18.03 1883.54          0.372
+KK-02 k=2                       0.418  0.264  0.000  0.00  20.72  4.55    18.72     16.72   20.72   18.93 5462.40           1.75
+EC-03' cap needed for the best fit 0.264 deg: 18.7% rho_DM; KK-02 k=1 needs Delta_theta = 1.26 pi
+
+=== act_cosmoglobe: beta = 0.231 +- 0.059 deg; chi2_null = 15.329
+model                        beta_max   best   chi2   pen  dchi2 sigma dAIC_eff dAIC_full dBIC_n1 dBIC_n6    B10 SPT dchi2@Amax
+ALP (free beta)                (free)  0.231  0.000  0.00  15.33  3.92    13.33     11.33   15.33   13.54 157.62            nan
+EC-03' 2.7% P18+BOSS            0.100  0.100  4.946  4.95  10.38  3.22     8.38      6.38   10.38    8.59  20.65       9.68e-12
+EC-03' 5.0% 008 assumed         0.136  0.136  2.570  2.57  12.76  3.57    10.76      8.76   12.76   10.97  62.92       9.68e-12
+EC-03' 6.9% P18                 0.161  0.161  1.418  1.42  13.91  3.73    11.91      9.91   13.91   12.12 114.58       9.68e-12
+EC-03' 12.0% fit 0.215 EXCL     0.211  0.211  0.111  0.11  15.22  3.90    13.22     11.22   15.22   13.43 275.55       9.68e-12
+KK-02 k=1                       0.209  0.209  0.138  0.14  15.19  3.90    13.19     11.19   15.19   13.40 267.63          0.372
+KK-02 k=2                       0.418  0.231  0.000  0.00  15.33  3.92    13.33     11.33   15.33   13.54 376.70           1.75
+EC-03' cap needed for the best fit 0.231 deg: 14.3% rho_DM; KK-02 k=1 needs Delta_theta = 1.10 pi
+
+=== act_planck_esk26: beta = 0.277 +- 0.057 deg; chi2_null = 23.616
+model                        beta_max   best   chi2   pen  dchi2 sigma dAIC_eff dAIC_full dBIC_n1 dBIC_n6    B10 SPT dchi2@Amax
+ALP (free beta)                (free)  0.277  0.000  0.00  23.62  4.86    21.62     19.62   23.62   21.82 9596.77            nan
+EC-03' 2.7% P18+BOSS            0.100  0.100  9.667  9.67  13.95  3.73    11.95      9.95   13.95   12.16  90.24       9.68e-12
+EC-03' 5.0% 008 assumed         0.136  0.136  6.083  6.08  17.53  4.19    15.53     13.53   17.53   15.74 480.10       9.68e-12
+EC-03' 6.9% P18                 0.161  0.161  4.160  4.16  19.46  4.41    17.46     15.46   19.46   17.66 1235.30       9.68e-12
+EC-03' 12.0% fit 0.215 EXCL     0.211  0.211  1.327  1.33  22.29  4.72    20.29     18.29   22.29   20.50 5660.93       9.68e-12
+KK-02 k=1                       0.209  0.209  1.421  1.42  22.20  4.71    20.20     18.20   22.20   20.40 5353.66          0.372
+KK-02 k=2                       0.418  0.277  0.000  0.00  23.62  4.86    21.62     19.62   23.62   21.82 22800.22           1.75
+EC-03' cap needed for the best fit 0.277 deg: 20.6% rho_DM; KK-02 k=1 needs Delta_theta = 1.33 pi
+
+=== act_planck_esk26_dust: beta = 0.236 +- 0.067 deg; chi2_null = 12.407
+model                        beta_max   best   chi2   pen  dchi2 sigma dAIC_eff dAIC_full dBIC_n1 dBIC_n6    B10 SPT dchi2@Amax
+ALP (free beta)                (free)  0.236  0.000  0.00  12.41  3.52    10.41      8.41   12.41   10.62  41.53            nan
+EC-03' 2.7% P18+BOSS            0.100  0.100  4.134  4.13   8.27  2.88     6.27      4.27    8.27    6.48   8.75       9.68e-12
+EC-03' 5.0% 008 assumed         0.136  0.136  2.209  2.21  10.20  3.19     8.20      6.20   10.20    8.41  20.88       9.68e-12
+EC-03' 6.9% P18                 0.161  0.161  1.262  1.26  11.15  3.34     9.15      7.15   11.15    9.35  33.75       9.68e-12
+EC-03' 12.0% fit 0.215 EXCL     0.211  0.211  0.136  0.14  12.27  3.50    10.27      8.27   12.27   10.48  70.03       9.68e-12
+KK-02 k=1                       0.209  0.209  0.162  0.16  12.25  3.50    10.25      8.25   12.25   10.45  68.29          0.372
+KK-02 k=2                       0.418  0.236  0.000  0.00  12.41  3.52    10.41      8.41   12.41   10.62  98.99           1.75
+EC-03' cap needed for the best fit 0.236 deg: 15.0% rho_DM; KK-02 k=1 needs Delta_theta = 1.13 pi
+
+wrote fit_results.csv
+### claim numbers vs CLAIMS.md (20261120-014, -017)
+  [PASS] EC-02.checks_ok
+  [PASS] EC-04.checks_ok
+  [PASS] EC-05.checks_ok
+  [PASS] EC-03.f_a_independent
+  [PASS] KK.checks_ok
+  [PASS] EC-03.012_formfactor_checks_ok
+  [PASS] KK-05.bounds_uholst_checks_ok
+  [PASS] KK-05.edm_bound_checks_ok
+  [PASS] EC-06.023_checks_ok
+  [PASS] EC-06.024_checks_ok
+  [PASS] EC-06.023-aniso_checks_ok
+  [PASS] EC-06.026_checks_ok
+  [PASS] EC-06.022_checks_ok
+  [PASS] EC-06.025-num_checks_ok
+  [PASS] EC-06.025-sny_checks_ok
+  [PASS] EC-06.032-hz_checks_ok
+  [PASS] EC-06.025-lim_checks_ok
+  [PASS] EC-06.028-win_checks_ok
+  [PASS] EC-06.032-kk04_checks_ok
+  [PASS] EC-06.031-mz_checks_ok
+  [PASS] EC-06.034-mz_checks_ok
+  [PASS] EC-06.035-end_checks_ok
+  [PASS] EC-06.036-end_checks_ok
+  [PASS] EC-06.036-mode_checks_ok
+  [PASS] EC-06.029-pauli_checks_ok
+  [PASS] EC-06.037-sf_checks_ok
+  [PASS] EC-06.020-skep_checks_ok
+  [PASS] EC-06.042-fix_checks_ok
+claim   | quantity                                                                                      | regenerated | in CLAIMS.md             | rule  | match
+EC-01   | needed |xi S_0| (eV)                                                                          |   1.135e-35 | 1.1×10⁻³⁵ eV             | sig2  | match
+EC-01   | lab |S_0| bound (eV)                                                                          |   7.300e-22 | 7.3×10⁻²² eV             | sig2  | match
+EC-02   | max beta at xi = 1 (deg)                                                                      |   7.470e-30 | 7.5×10⁻³⁰ deg            | sig2  | match
+EC-02   | xi needed                                                                                     |   2.900e+28 | ξ ≈ 3×10²⁸               | sig1  | match
+EC-02   | orders short at xi = 1                                                                        |        28.5 | 28.5 orders              | dec1  | match
+EC-02   | xi bound (Reig dual axion + helioscope)                                                       |   9.400e+17 | ξ < 9×10¹⁷               | sig1  | match
+EC-03   | local oscillation amplitude (deg)                                                             |   1.081e-20 | 1.1×10⁻²⁰ deg            | sig2  | match [superseded]
+EC-03   | QCD mass lower end (eV)                                                                       |   1.432e-12 | 1.4-8.6×10⁻¹² eV         | sig2  | match [superseded]
+EC-03   | QCD mass upper end (eV)                                                                       |   8.593e-12 | 1.4-8.6×10⁻¹² eV         | sig2  | match [superseded]
+EC-03   | shortfall (orders)                                                                            |        19.3 | 19.3 orders short        | dec1  | match [superseded]
+EC-03'  | g = 8 alpha/(pi f) (GeV^-1)                                                                   |   4.669e-21 | 4.7×10⁻²¹ GeV⁻¹          | sig2  | match
+EC-03'  | beta_max at 5% rho_DM (deg)                                                                   |      0.1364 | ≤ 0.136°                 | dec3  | match
+EC-03'  | energy cap at best m                                                                          |        0.05 | 5% ρ_DM                  | sig1  | match
+EC-03'  | cap needed for 0.215 deg (% rho_DM)                                                           |       12.42 | ~12% ρ_DM                | dec0  | match
+EC-04   | xi lower end (lab |S_0|)                                                                      |   1.000e-14 | 10⁻¹⁴ ≲ ξ                | oom0  | match
+EC-04   | xi upper end (CAST)                                                                           |   1.700e+08 | ξ < 2×10⁸                | sig1  | match
+EC-04   | tuning w = A/m^2 for m ~ H0                                                                   |  4.300e+120 | ~4×10¹²⁰ tuning          | sig1  | match
+EC-05   | max beta (deg)                                                                                |   1.300e-30 | ≤ 1.3×10⁻³⁰ deg          | sig2  | match
+EC-05   | shortfall (orders)                                                                            |        29.2 | ≥ 29 orders short        | floor0 | match
+KK-02   | beta_max at k = 1 (deg)                                                                       |      0.2091 | ≤ 0.209° at k = 1        | dec3  | match
+KK-02   | 1/L lower end (GeV)                                                                           |   5.524e+09 | 5.5×10⁹ GeV              | sig2  | match
+KK-02   | 1/L upper end (GeV)                                                                           |   9.714e+17 | ~10¹⁸ GeV                | oom0  | match
+KK-02   | 2 pi L M lower end                                                                            |       219.9 | 2πLM ≈ 220-280           | sig2  | match
+KK-02   | 2 pi L M upper end                                                                            |       278.4 | 2πLM ≈ 220-280           | sig2  | match
+KK-03   | g window lower end (GeV^-1)                                                                   |   1.355e-13 | 1.4×10⁻¹³                | sig2  | match
+KK-03   | g window upper end (GeV^-1)                                                                   |   8.000e-13 | 8×10⁻¹³ GeV⁻¹            | sig1  | match
+KK-03   | natural lambda = kappa_4 excluded (1 = yes)                                                   |           1 | natural λ = κ₄ excluded  | exact0 | match
+KK-04   | radion PPN gamma - 1                                                                          |        -0.5 | γ-1 = -1/2               | exact0 | match
+KK-04   | ISL mass bound (eV)                                                                           |     0.00511 | ISL m > 5 meV            | sig1  | match
+EC-03   | g_eff/g_anom lower end (derivative coupling)                                                  |   1.440e-78 | 10⁻⁷⁸-10⁻⁷⁰              | exp0  | match
+EC-03   | g_eff/g_anom upper end (derivative coupling)                                                  |   3.990e-70 | 10⁻⁷⁸-10⁻⁷⁰              | exp0  | match
+EC-03   | coefficient C in g_eff/g_anom = (m_phi/m_e)^2/C                                               |          96 | (m_φ/m_e)²/96            | sig2  | match
+EC-03'  | beta_max at 2.7% cap (deg)                                                                    |     0.09978 | ≤ 0.100° at the cited 2.7% cap | dec3  | match
+EC-03'  | Planck 2018 + BOSS cap at 1e-32 eV (% rho_DM)                                                 |       2.675 | 2.7% cap                 | dec1  | match
+EC-03'  | Planck 2018 cap at 1e-32 eV (% rho_DM)                                                        |       6.942 | caps 6.9% at 10⁻³² eV    | dec1  | match
+EC-03'  | chi2 penalty vs free ALP (ACT+WMAP+Planck, 2.7% cap)                                          |       8.017 | Δχ² penalty vs free ALP 8.0 (ACT+WMAP+Planck, 2.7% cap) | dec1  | match
+KK-02   | chi2 penalty vs free ALP at k = 1 (ACT+WMAP+Planck)                                           |      0.8975 | Δχ² penalty vs free ALP 0.9 at k = 1 | dec1  | match
+KK-05   | c lower bound (MICROSCOPE, Delta chi = 0.39 M_P)                                              |       340.2 | MICROSCOPE needs c ≥ 340 | sig2  | match
+KK-05   | c lower bound (clocks)                                                                        |   5.129e+04 | clocks c ≳ 5×10⁴         | sig1  | match
+KK-05   | c upper bound (JILA EDM; disputed by 015)                                                     |       187.6 | JILA EDM c ≤ 188         | sig3  | match
+EC-06   | xi eps for 0.215 deg with p tracking H                                                        |    0.001073 | ξε ≈ 1.07×10⁻³           | sig3  | match
+EC-06   | low-z radio-galaxy UV xi eps limit (L-AFG10-UV)                                               |       0.136 | ξε < 0.14                | sig2  | match
+EC-06   | max L(L+1)C_L/2pi of the rotation (rad^2)                                                     |   4.927e-11 | A_CB ≤ 5×10⁻¹¹           | sig1  | match
+EC-06a  | MZ eps_S bound from GW170817 (c_T > 1 side)                                                   |   7.483e-08 | ε_S ≤ 7.5×10⁻⁸           | sig2  | match
+EC-06a  | MZ xi lower bound from GW170817 (c_T > 1 side)                                                |   1.434e+04 | ξ ≥ 1.4×10⁴              | sig2  | match
+EC-06c  | f(T) flat trace eps_T = T_t/H                                                                 |           3 | ε_T = 3                  | exact0 | match
+EC-06c  | share of beta after reionization: visibility-avg (%)                                          |       23.03 | 23-31%                   | dec0  | match
+EC-06c  | share of beta after reionization: at z_re (%)                                                 |       30.88 | 23-31%                   | dec0  | match
+EC-06c  | xi needed (flat trace)                                                                        |   3.576e-04 | ξ = 3.6×10⁻⁴             | sig2  | match
+EC-06c  | xi lower bound (k = +1 axial branch)                                                          |      0.0219 | ξ ≥ 0.022                | sig2  | match
+EC-06d  | coefficient in T_t = c d ln(R+6mu/b)/dt                                                       |        -1.5 | T_t = -(3/2) d ln(R+6μ/b)/dt | exact0 | match
+EC-06d  | Phi/H today lower end (transcribed SNY Table 1)                                               |         0.8 | Φ/H ≈ 0.8-1.4            | exact0 | match
+EC-06d  | Phi/H today upper end (transcribed SNY Table 1)                                               |         1.4 | Φ/H ≈ 0.8-1.4            | exact0 | match
+EC-06c  | Stueckelberg photon mass lower end (eV)                                                       |   6.640e-28 | 7×10⁻²⁸ ≲ m_γ ≲ 10⁻²⁶ eV | sig1  | match
+EC-06c  | Stueckelberg photon mass upper end (eV; Proca galactic)                                       |   1.000e-26 | 7×10⁻²⁸ ≲ m_γ ≲ 10⁻²⁶ eV | sig1  | match
+EC-06c  | naive EFT cutoff (m M_P^2/xi)^(1/3) at the lower mass (GeV)                                   |       22.25 | ~20-60 GeV               | oom0  | match
+EC-06c  | naive EFT cutoff (m M_P^2/xi)^(1/3) at the upper mass (GeV)                                   |       54.93 | ~20-60 GeV               | oom0  | match
+EC-06d  | xi needed on SNY cases III-V at z* (mean)                                                     |   4.335e-04 | ξ ≈ 4.3×10⁻⁴             | sig2  | match
+EC-06d  | H_SNY/H_LCDM at z* lower end (cases III-V; radiation included)                                |       28.89 | H(z*) = 29-57 × ΛCDM     | sig2  | match
+EC-06d  | H_SNY/H_LCDM at z* upper end (cases III-V; radiation included)                                |       57.28 | H(z*) = 29-57 × ΛCDM     | sig2  | match
+EC-06d  | xi needed in the GR-like regime for |delta H^2/H^2(z*)| <= 1e-2                               |       1.125 | ξ ≳ 1                    | oom0  | match
+EC-06c  | Lambda_eta at alpha = 1 and m_low of 025's window (keV)                                       |      0.1924 | 0.2-0.7 keV              | dec1  | match
+EC-06c  | Lambda_eta at alpha = 1 and the Proca galactic limit 1e-26 eV (keV)                           |      0.7466 | 0.2-0.7 keV              | dec1  | match
+EC-06c  | Lambda_eta at alpha = 1 and the PDG photon-mass limit (MeV)                                   |       7.466 | 7 MeV                    | sig1  | match
+EC-06c  | white-dwarf lower edge of the photon-mass window (eV; 0.6 M_sun WD; A < 0.1)                  |   2.550e-24 | ~10⁻²⁴ eV                | oom0  | match
+EC-06d  | H_SNY/H_LCDM at z = 10 (max over cases III-V; case III)                                       |       5.876 | H/H_ΛCDM is already 5.9 at z = 10 | sig2  | match
+EC-06d  | xi needed in the GR-like regime for |delta H^2/H^2(z*)| <= 0.1                                |      0.1125 | ξ ≥ 0.1                  | sig1  | match
+KK-04   | radion |gamma - 1| = 1/2 (bulk matter) vs Cassini 1 sigma 2.3e-5 (orders)                     |       4.337 | ~4.3 orders              | dec1  | match
+EC-06d  | shortfall in orders of delta H/H at z* (min over cases III-V and the two 95% bounds)          |       3.757 | 3.8-4.5 orders           | dec1  | match
+EC-06d  | shortfall in orders of delta H/H at z* (max over cases III-V and the two 95% bounds)          |       4.494 | 3.8-4.5 orders           | dec1  | match
+KK-04   | radion orders short, brane matter or 2 sigma Cassini bound: lower end (brane, 2 sigma)        |        3.63 | 3.6-4.1                  | dec1  | match
+KK-04   | radion orders short, brane matter or 2 sigma Cassini bound: upper end (brane, 1 sigma)        |       4.094 | 3.6-4.1                  | dec1  | match
+EC-06a  | theta-exchange strong-coupling scale at xi(GW speed), PDG m_gamma, 1-c_s = Omega_m (keV)      |       3.583 | 3.6 keV                  | sig2  | match
+EC-06a  | orders in energy between Lambda_SC (3.6 keV) and E_collider_safe = 10 TeV                     |       9.446 | 9.4 orders               | dec1  | match
+EC-06a  | xi lower bound from k* = H/eps_S > k_GW(24 Hz) on the tracker                                 |   4.699e+16 | ξ ≥ 4.7×10¹⁶             | sig2  | match
+EC-06a  | Lambda_SC on the plain tracker at the N_eff limit (no GW bound), PDG m_gamma (MeV)            |       8.941 | ≤ 9 MeV                  | sig1  | match
+EC-06a  | xi ratio for the vacuum-gradient (f(Lambda)FFtilde) coupling vs full S (J/J_alt)              |       21.19 | ξ 21× larger             | sig2  | match
+EC-06d  | beta/xi ratio, ground (air at 5.2 km) vs L2 observer endpoint (heavy 0+, mu = 1, delta = 1%)  |       -7792 | -7.8×10³                 | sig2  | match
+EC-06d  | heavy 0+ (alpha >= 1/3, lam >~ AU): log10(|gamma - 1| = 1/2 over Cassini |gamma-1| + 2 sigma) |       3.873 | 3.9 orders               | dec1  | match
+EC-06d  | measured beta_ACT/beta_EK22 (ACT optics vs Planck/WMAP dust-EB calibration)                   |      0.6287 | +0.63 ± 0.28             | dec2  | match
+EC-06d  | error of the measured beta_ACT/beta_EK22 (errors in quadrature)                               |      0.2769 | +0.63 ± 0.28             | dec2  | match
+EC-06d  | heavy 0+ ACT observer piece at the HB photon bound, lam = 100 um, alpha = 1/3 (orders short)  |       23.72 | 23.7 orders              | dec1  | match
+EC-06d  | Yukawa strength alpha = mu/(3 a1) of the 0+ mode, infimum over a1 > 0 (a1 -> oo)              |      0.3333 | α ≥ 1/3                  | sig4  | match
+claim numbers (live): 79 match, 0 not matching; superseded (EC-03 QCD-mass reading, skeptic 011): 4/4 still reproduced by 008's scripts
+### draft-only numbers vs the RESULT draft (src/draft_expected.csv; task 033)
+claim   | quantity                                                                                                                      | regenerated | text                     | rule  | match
+EC-02   | orders short at xi = 1 for any fermionic axial source (Pauli bound; g = 100; rho_f = rho_LCDM)                                |       25.49 | ≥ 25 orders (25.49)      | dec2  | match
+EC-02   | coefficient c for vector-current-sourced torsion at xi = 1                                                                    |   1.688e+36 | c ≈ 10³⁶                 | oom0  | match
+EC-03'  | chi2 penalty vs free ALP (ACT + Cosmoglobe WMAP+Planck, 2.7% cap)                                                             |       4.946 | 4.95 (Cosmoglobe)        | dec2  | match
+KK-02   | chi2 penalty vs free ALP at k = 1 (ACT + Cosmoglobe WMAP+Planck)                                                              |      0.1384 | 0.14 (Cosmoglobe)        | dec2  | match
+EC-03'  | EC-03' best-fit mass (beta_max under the 5% cap)                                                                              |   5.623e-33 | 5.6×10⁻³³ eV             | sig2  | match
+EC-02   | EC-02 cited xi_nu: orders short at the largest xi, dual-axion class (min over CAST product, CAST x RG, Chandra x RG)          |       10.49 | 10.5-13.3 orders         | dec1  | match
+EC-02   | EC-02 cited xi_nu: orders short at the largest xi, dual-axion class (max; Chandra x RG)                                       |       13.29 | 10.5-13.3 orders         | dec1  | match
+EC-02   | largest xi, dual-axion class, CAST g_ag g_ae product                                                                          |   9.399e+17 | ξ < 9.4×10¹⁷ / 1.5×10¹⁵  | sig2  | match
+EC-02   | largest xi, dual-axion class, Chandra g_ag x red-giant g_ae                                                                   |   1.485e+15 | ξ < 9.4×10¹⁷ / 1.5×10¹⁵  | sig2  | match
+EC-02   | EC-02 cited xi_nu: orders short, Stueckelberg S-a (Lambda_s > T_BBN), weakest m_gamma (Retino)                                |       4.187 | 4.2-9.1 orders           | dec1  | match
+EC-02   | EC-02 cited xi_nu: orders short, Stueckelberg S-a, PDG m_gamma                                                                |       9.084 | 4.2-9.1 orders           | dec1  | match
+EC-02   | Pauli envelope: orders short, dual-axion class (min; CAST product)                                                            |        7.52 | 7.5-10.3                 | dec1  | match
+EC-02   | Pauli envelope: orders short, dual-axion class (max; Chandra x RG)                                                            |       10.32 | 7.5-10.3                 | dec1  | match
+EC-02   | Pauli envelope: orders short, Stueckelberg S-a, weakest m_gamma (Retino)                                                      |        1.22 | 1.2-6.1 orders           | dec1  | match
+EC-02   | Pauli envelope: orders short, Stueckelberg S-a, PDG m_gamma                                                                   |       6.118 | 1.2-6.1 orders           | dec1  | match
+EC-02   | vector J_B: orders short, dual-axion contact vs CMS dijet (min over g_ag; ALPS II)                                            |       11.06 | ≥ 11.1                   | dec1  | match
+EC-02   | vector J_B: orders short, Stueckelberg S-a, weakest m_gamma (Retino)                                                          |       11.95 | 12.0-16.9 orders         | dec1  | match
+EC-02   | vector J_B: orders short, Stueckelberg S-a, PDG m_gamma                                                                       |       16.85 | 12.0-16.9 orders         | dec1  | match
+EC-02   | Lambda*^2 fixed by the signal for the baryon current, 1/Lambda*^2 = xi c kappa/2 (GeV^2)                                      |       7.026 | Λ*² ≈ 7 GeV²             | sig1  | match
+EC-02   | weakest corner (Pauli, S-a, Retino m_gamma): orders added by the Proca galactic m_gamma instead (printed integer = floor)     |        12.9 | +13 orders               | dec0  | match
+EC-02   | weakest corner: orders added by the NDA decoupling cutoff instead of T_BBN, 3 log10(Lambda_s/T_BBN) (printed integer = floor) |        15.7 | +15 orders               | floor0 | match
+EC-06d  | heavy 0+ |gamma - 1| = 1/2 vs Cassini (orders)                                                                                |       3.873 | 3.9 orders vs Cassini    | dec1  | match
+EC-06d  | heavy 0+ ACT observer piece at the HB bound, lam = 100 um (orders short)                                                      |       23.72 | 23.7 orders short in size | dec1  | match
+ALP     | free-ALP chi2 improvement vs null, joint ACT+Planck 2608.06480                                                                |       23.62 | Δχ² = 23.6 vs null (2608.06480) | dec1  | match (not in draft)
+EC-03'  | chi2 penalty vs free ALP, 2.7% cap, joint ACT+Planck 2608.06480                                                               |       9.667 | penalty 9.7 (2608.06480) | dec1  | match (not in draft)
+EC-03'  | chi2 penalty vs free ALP, 6.9% cap, joint ACT+Planck 2608.06480                                                               |        4.16 | penalty 4.2 (2608.06480) | dec1  | match (not in draft)
+KK-02   | chi2 penalty vs free ALP at k = 1, joint ACT+Planck 2608.06480                                                                |       1.421 | penalty 1.4 (2608.06480) | dec1  | match (not in draft)
+ALP     | free-ALP chi2 improvement vs null, 2608.06480 dust-mitigated                                                                  |       12.41 | Δχ² = 12.4 vs null (2608.06480 dust-mitigated) | dec1  | match (not in draft)
+EC-03'  | chi2 penalty vs free ALP, 2.7% cap, 2608.06480 dust-mitigated                                                                 |       4.134 | penalty 4.1 (2608.06480 dust-mitigated) | dec1  | match (not in draft)
+EC-03'  | chi2 penalty vs free ALP, 6.9% cap, 2608.06480 dust-mitigated                                                                 |       1.262 | penalty 1.3 (2608.06480 dust-mitigated) | dec1  | match (not in draft)
+KK-02   | chi2 penalty vs free ALP at k = 1, 2608.06480 dust-mitigated                                                                  |      0.1618 | penalty 0.16 (2608.06480 dust-mitigated) | dec2  | match (not in draft)
+EC-04   | xi upper end from Chandra NGC 1275 (g < 8e-13 GeV^-1, m < 1e-12 eV), g = 0.82 xi/M_P                                          |   2.386e+06 | 10⁻¹⁴ ≲ ξ < 2.4×10⁶      | sig2  | match (not in draft)
+EC-06a  | EC-06a Lambda_SC (3.6 keV) vs the highest observed SM diphoton mass, ATLAS 2102.13405 (orders)                                |       8.819 | 8.8 orders in energy below 2.36 TeV | dec1  | match (not in draft)
+KK-05   | lightest state with KK charge e, e M_P/sqrt2, over m_e (orders)                                                               |       21.01 | ~21 orders in the electron mass | dec0  | match
+EC-02   | cutoff needed by (div S) F Ftilde/Lambda^2 with EC spin-sourced torsion (eV)                                                  |   1.960e-43 | Λ ≲ 2×10⁻⁴³ eV / 4×10⁻¹⁵ eV | sig1  | match
+EC-02   | cutoff needed by the Das-Mohanty-Prasanna p^2 T F dFtilde operator (eV)                                                       |   4.062e-15 | Λ ≲ 2×10⁻⁴³ eV / 4×10⁻¹⁵ eV | sig1  | match
+draft numbers: 36/36 regenerated and matching; 10 not (yet) in the draft (non-fatal)
+### fit summary (penalty = chi2_min(model) - chi2_min(free ALP); dchi2 = chi2_null - chi2_min)
+ACT DR6:
+  model                        | beta_max (deg) | penalty vs ALP | dchi2 vs null
+  ALP (free beta)              |           free |           0.00 |          8.44
+  EC-03' 2.7% P18+BOSS         |          0.100 |           2.42 |          6.02
+  EC-03' 5.0% 008 assumed      |          0.136 |           1.13 |          7.31
+  EC-03' 6.9% P18              |          0.161 |           0.54 |          7.90
+  EC-03' 12.0% fit 0.215 EXCL  |          0.211 |           0.00 |          8.44
+  KK-02 k=1                    |          0.209 |           0.01 |          8.43
+  KK-02 k=2                    |          0.418 |           0.00 |          8.44
+ACT+WMAP+Planck:
+  model                        | beta_max (deg) | penalty vs ALP | dchi2 vs null
+  ALP (free beta)              |           free |           0.00 |         20.72
+  EC-03' 2.7% P18+BOSS         |          0.100 |           8.02 |         12.70
+  EC-03' 5.0% 008 assumed      |          0.136 |           4.84 |         15.88
+  EC-03' 6.9% P18              |          0.161 |           3.17 |         17.55
+  EC-03' 12.0% fit 0.215 EXCL  |          0.211 |           0.82 |         19.89
+  KK-02 k=1                    |          0.209 |           0.90 |         19.82
+  KK-02 k=2                    |          0.418 |           0.00 |         20.72
+ACT+Cosmoglobe WMAP+Planck:
+  model                        | beta_max (deg) | penalty vs ALP | dchi2 vs null
+  ALP (free beta)              |           free |           0.00 |         15.33
+  EC-03' 2.7% P18+BOSS         |          0.100 |           4.95 |         10.38
+  EC-03' 5.0% 008 assumed      |          0.136 |           2.57 |         12.76
+  EC-03' 6.9% P18              |          0.161 |           1.42 |         13.91
+  EC-03' 12.0% fit 0.215 EXCL  |          0.211 |           0.11 |         15.22
+  KK-02 k=1                    |          0.209 |           0.14 |         15.19
+  KK-02 k=2                    |          0.418 |           0.00 |         15.33
+ACT+Planck joint (2608.06480):
+  model                        | beta_max (deg) | penalty vs ALP | dchi2 vs null
+  ALP (free beta)              |           free |           0.00 |         23.62
+  EC-03' 2.7% P18+BOSS         |          0.100 |           9.67 |         13.95
+  EC-03' 5.0% 008 assumed      |          0.136 |           6.08 |         17.53
+  EC-03' 6.9% P18              |          0.161 |           4.16 |         19.46
+  EC-03' 12.0% fit 0.215 EXCL  |          0.211 |           1.33 |         22.29
+  KK-02 k=1                    |          0.209 |           1.42 |         22.20
+  KK-02 k=2                    |          0.418 |           0.00 |         23.62
+ACT+Planck joint, dust-mitigated (2608.06480):
+  model                        | beta_max (deg) | penalty vs ALP | dchi2 vs null
+  ALP (free beta)              |           free |           0.00 |         12.41
+  EC-03' 2.7% P18+BOSS         |          0.100 |           4.13 |          8.27
+  EC-03' 5.0% 008 assumed      |          0.136 |           2.21 |         10.20
+  EC-03' 6.9% P18              |          0.161 |           1.26 |         11.15
+  EC-03' 12.0% fit 0.215 EXCL  |          0.211 |           0.14 |         12.27
+  KK-02 k=1                    |          0.209 |           0.16 |         12.25
+  KK-02 k=2                    |          0.418 |           0.00 |         12.41
+### path scan
+  scrubbed on write: 0 absolute path(s); artifacts/reproduce: 24 text files, 0 replaced
+### reproduce: OK (210 s)

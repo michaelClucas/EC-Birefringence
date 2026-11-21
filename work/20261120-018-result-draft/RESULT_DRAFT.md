@@ -1,24 +1,24 @@
 # RESULT draft, revision 4 (not RESULT.md)
 
-Revised by the overseer in iteration 11 after final skeptic 035 and skeptic 034. Becomes `RESULT.md` only after a fresh skeptic fails to break it. Iteration-11 tasks 036-038 folded in; 036 and 037 await skeptic review.
+Revised by the overseer in iterations 11-13 after final skeptics 035 and 040 and skeptics 034 and 039. Final skeptic 040 found that both tracks survive as Result C with a B-type core, subject to listed fixes; iteration 13 applies them.
 
 ## Question
 Can Einstein-Cartan (ECSK) torsion, in 4D or in an Einstein-Cartan extension of Kaluza-Klein theory, explain the cosmic birefringence reported in ACT DR6 (β = 0.215° ± 0.074°, arXiv:2509.13654) and constrained by SPT-3G (A_CB < 1.2×10⁻⁴, arXiv:2510.07928), in the context of arXiv:2601.13624 and 2512.21888?
 
-Caveat on the target: the ACT β is 2.9σ (4.6σ combined with WMAP and Planck; 3.9σ with the Cosmoglobe reanalysis), with the miscalibration angle set by an optics-model prior and dust EB neglected. ACT per-band angles prefer a power law n ≈ 1.6 over achromatic at 2.0σ (driven by the PA5 f150-f090 split, attributed to instrument systematics); Planck PR4 gives n = -0.35 ± 0.48. The signal may not be cosmological.
+Caveat on the target: the ACT β is 2.9σ (4.6σ combined with WMAP and Planck; 3.9σ with the Cosmoglobe reanalysis; a later joint ACT DR6 + Planck PR4 analysis, arXiv:2608.06480, gives 0.277° ± 0.057° (4.8σ), or 0.236° ± 0.067° dust-mitigated), with the miscalibration angle set by an optics-model prior and dust EB neglected. ACT per-band angles prefer a power law n ≈ 1.6 over achromatic at 2.0σ (driven by the PA5 f150-f090 split, attributed to instrument systematics); Planck PR4 gives n = -0.35 ± 0.48. The signal may not be cosmological.
 
 ## Answer
-- **4D track: Result C (mixed).** Core finding (no-go): no photon coupling that Einstein-Cartan torsion generates by itself, minimally or through fermions, produces the observed β; every such route falls short by many orders of magnitude or loses its photon coupling to an exact shift symmetry, and every unsourced-torsion route examined (EC with varying Λ, TEGR, f(T)) either is undefined or breaks U(1) gauge invariance and becomes strongly coupled far below tested energies. β of the observed size is possible only by adding, by hand, a photon coupling to a torsion-associated field that then behaves as an axion-like particle (ALP); the costs are listed below. The one gauge-invariant unsourced-torsion route (PGT 0⁺, closed trace torsion) is excluded at every mass of the 0⁺ mode.
-- **Einstein-Cartan-Kaluza-Klein track: Result C (mixed).** Core finding (no-go): pure EC-KK has no parity-odd photon coupling at any order in a P'-invariant state; radion × FF̃ is excluded; the one route where torsion generates the coupling (u-Holst) has no light charged matter. β is possible only through ALPs with couplings added beyond EC-KK (5D Chern-Simons Wilson line; Kalb-Ramond + Green-Schwarz), in which torsion plays no role or is a relabelling of the 2-form.
+- **4D track: Result C (mixed).** Core finding (no-go, among the routes examined): no photon coupling that Einstein-Cartan torsion generates by itself, minimally or through fermions, produces the observed β. Spin-sourced routes fall short by 11.0-13.9 orders of magnitude at the largest coupling a consistent completion allows (28.5 orders at unit coupling); torsion pseudoscalars lose their photon coupling to an exact shift symmetry; every unsourced-torsion route examined (EC with varying Λ, TEGR, f(T)) is either undefined or breaks U(1) gauge invariance and becomes strongly coupled at keV-MeV energies; the one gauge-invariant unsourced-torsion route (PGT 0⁺, closed trace torsion) is excluded at every mass of the 0⁺ mode. Among the routes examined, β of the observed size is possible only by adding, by hand, a photon coupling to a torsion-associated field that then behaves as an axion-like particle (ALP); the costs are listed below.
+- **Einstein-Cartan-Kaluza-Klein track: Result C (mixed).** Core finding (no-go): pure EC-KK has no parity-odd photon coupling at any order in a P'-invariant state; radion × FF̃ is excluded; the one route where torsion generates the coupling (u-Holst) has no light charged matter. Among the routes examined, β is possible only through ALPs with couplings added beyond EC-KK (5D Chern-Simons Wilson line; Kalb-Ramond + Green-Schwarz), in which torsion plays no role or is a relabelling of the 2-form.
 
 ## Routes that can produce β, with their costs (Result C content)
 | id | route | added beyond EC | coupling needed | other costs | fit vs free ALP |
 |---|---|---|---|---|---|
-| EC-04 | PGT dynamical 0⁻ torsion mode + CFJ term | PGT (propagating torsion), photon coupling by hand | 10⁻¹⁴ ≲ ξ < 2×10⁸ | m ~ H₀ needs ~4×10¹²⁰ tuning of the mass term | free amplitude: penalty 0 |
+| EC-04 | PGT dynamical 0⁻ torsion mode + CFJ term | PGT (propagating torsion), photon coupling by hand | 10⁻¹⁴ ≲ ξ < 2.4×10⁶ (Chandra, 042) | m ~ H₀ needs the (∇·S)² coefficient tuned to 4×10¹²⁰ = 1.5(M_P/H₀)² (043) | free amplitude: penalty 0 |
 | EC-03' | pseudoscalar with torsion-scale f, coupling by hand | photon coupling by hand (torsion generates none) | g = 8α/(πf) = 4.7×10⁻²¹ GeV⁻¹ | energy fraction 11-19% ρ_DM needed; cited cap 2.7-6.9% at 10⁻³² eV (no published cap at its best-fit mass 5.6×10⁻³³ eV) | penalty 8.0 (EK22), 4.95 (Cosmoglobe) at 2.7% |
-| EC-06a remnant | f(Λ)FF̃ or g = ξ/(√3 M_P) coupling to the MZ Λ field | MZ extension + ALP-type coupling (not the torsion CFJ) | ξ 21× the CFJ value | ALP-class; viability not computed | not fit |
-| KK-02 | bulk U(1) + 5D CS, Wilson-line axion | bulk U(1), CS term, charged bulk fermion for the potential | k = 1 (allowed with the mixed CS term) | 1/L between 5.5×10⁹ GeV and ~10¹⁸ GeV; 2πLM ≈ 220-280 | β ≤ 0.209°; penalty 0.9 (EK22), 0.14 (Cosmoglobe) |
-| KK-03 | Kalb-Ramond 2-form (= totally antisymmetric torsion) + Green-Schwarz term | GS term; natural λ = κ₄ excluded | g between 1.4×10⁻¹³ and 8×10⁻¹³ GeV⁻¹ | narrow window between BBN and Chandra | free amplitude in window: penalty 0 |
+| EC-06a remnant | f(Λ)FF̃ or g = ξ/(√3 M_P) coupling to the MZ Λ field | MZ extension + ALP-type coupling (not the torsion CFJ) | ξ 21× the CFJ value | g ≥ 1.2×10⁻²⁰, 7.4×10⁻¹⁴, 0.24 or 8.2 GeV⁻¹ depending on the MZ γ bound; the branches consistent with MZ's own GW analysis fail naive Chandra by 10¹¹-10¹³ (survive only if c_s dispersion suppresses conversion, an estimate); ghost question open (043) | not fit |
+| KK-02 | bulk U(1) + 5D CS, Wilson-line axion | bulk U(1), CS term, charged bulk fermion for the potential | k = 1 (allowed with the mixed CS term) | 1/L between 5.5×10⁹ GeV and ~10¹⁸ GeV; 2πLM ≈ 220-280; at k = 1 relaxation from rest gives β ≤ 0.209°, so 0.215° needs an overshoot from a hilltop start (m ≈ 6-200 H₀), probability ≈ 0.7% for uniform initial angle and log-uniform mass (≈ 1.4×10⁻⁴ for 0.277°); k = 2 reaches both generically (043) | β ≤ 0.209° without overshoot; penalty 0.9 (EK22), 0.14 (Cosmoglobe) |
+| KK-03 | Kalb-Ramond 2-form (= totally antisymmetric torsion) + Green-Schwarz term | GS term; natural λ = κ₄ excluded | g between 1.4×10⁻¹³ and 8×10⁻¹³ GeV⁻¹ | narrow window between BBN and Chandra; λ/κ₄ = (1.5-8.7)×10⁶ (M_s ≈ 0.8-2×10¹⁵ GeV); the massless b must be kicked at T ≲ 6-37 MeV, carrying ΔN_ν = 0.005-0.16 at BBN, with no known source (043) | free amplitude in window: penalty 0 |
 
 ## Kills with shortfalls (4D)
 | route | reason | shortfall | where |
@@ -33,13 +33,13 @@ Coupling-bound caveat (037): the operator ξS·AF̃ with EC torsion is C J₅·A
 | Higher-dim. gauge-invariant torsion-photon operators with EC torsion | (∇·S)FF̃/Λ², F∂F̃T | Λ ≲ 2×10⁻⁴³ eV / 4×10⁻¹⁵ eV needed | skeptic 020 (estimate, not in reproduce) |
 | Torsion pseudoscalars via ∂φ·J₅ (EC-03) | exact shift symmetry; photon coupling (m_φ/m_e)²/96 | 10⁻⁷⁸-10⁻⁷⁰ suppression | 012; skeptics 011, 015 |
 | Green-Schwarz completion of EC-03 | restores φGG̃ and the QCD mass, so washout | superseded EC-03 numbers | 012 |
-| MZ torsion, EC + varying Λ (EC-06a) | CFJ vector not closed in matter; Stückelberg photon; strong coupling at 3.6 keV | 9.4 orders in energy below 10 TeV; off-tracker best case ≤ 9 MeV | 031; skeptic 034 |
+| MZ torsion, EC + varying Λ (EC-06a) | CFJ vector not closed in matter; Stückelberg photon; strong coupling at 3.6 keV | 9.4 orders in energy below 10 TeV (8.8 orders in energy below 2.36 TeV, the highest diphoton mass probed by ATLAS 2102.13405); off-tracker best case ≤ 9 MeV | 031; skeptic 034 |
 | TEGR torsion (EC-06b) | not defined by TEGR's dynamics | n/a | 022; skeptic 026 |
 | f(T) trace torsion (EC-06c, not EC) | U(1) broken on solutions; Stückelberg repair strongly coupled at 0.2-0.7 keV (7 MeV at the PDG limit) | ≥ 6 orders in energy | 025; skeptic 028 |
 | PGT 0⁺ SNY, O(H) branch (EC-06d) | H(z*) = 29-57 × ΛCDM vs δH/H < 0.18-0.49% (95%) | 3.8-4.5 orders | 025, 032; skeptic 028 |
 | PGT 0⁺, heavy GR-compatible branch (EC-06d) | 0⁺ mode couples to the matter trace with α ≥ 1/3, unscreened: Cassini excludes Compton lengths ≳ AU; for ~5 km-20 pc the observer endpoint is local and ACT (optics calibration) vs Planck/WMAP (dust-EB calibration, source endpoint inside dust grains) would see opposite signs, against the measured ratio +0.63 ± 0.28; for shorter lengths the size kill (ground rock included) covers λ_C ≲ 2×10³ km | 3.9 orders vs Cassini; sign; 23.7 orders short in size at the HB bound (universal piece ~26 orders) | 036; skeptic 039 |
 
-The strong-coupling comparisons use 10 TeV as the scale up to which photon physics is observed to be standard (`E_collider_safe` in data/ec06c_costs_inputs.csv, a choice representing LHC and TeV-blazar photon physics, not a single cited measurement). The verdicts do not depend on its exact value: the strong-coupling scales are keV-MeV.
+The strong-coupling comparisons use 10 TeV as a convention for the scale up to which photon physics is observed to be standard (`E_collider_safe` in data/ec06c_costs_inputs.csv); the cited reference points are ATLAS diphoton masses up to 2.36 TeV (2102.13405) and BaBar e⁺e⁻ → γ + invisible at 10.58 GeV (1702.03327, data/collider_photon_bounds.csv). The verdicts do not depend on its exact value: the strong-coupling scales are keV-MeV.
 
 ## Kills with shortfalls (KK)
 | route | reason | shortfall | where |
@@ -57,9 +57,12 @@ The strong-coupling comparisons use 10 TeV as the scale up to which photon physi
 - Bosonic spin sources of torsion.
 - More than five dimensions.
 - KK-05 loophole: a brane photon mixing with the KK photon.
+- Torsion-induced photon effects in media/plasma (e.g. 2212.13871); the program treats vacuum propagation only.
 
 ## Comparison with the axion-like baseline
 Free-β ALP: Δχ² = 20.7 vs β = 0 (ACT + WMAP + Planck, EK22). Penalties per route are in the cost table above. No route fits better than a generic ALP; routes with a free amplitude (EC-04, KK-03) tie it. SPT A_CB does not discriminate.
+
+Against the later joint ACT DR6 + Planck PR4 value (2608.06480; it shares data with the combinations above and is never multiplied with them): free ALP Δχ² = 23.6 vs null (2608.06480), Δχ² = 12.4 vs null (2608.06480 dust-mitigated); EC-03′ at 2.7% penalty 9.7 (2608.06480), penalty 4.1 (2608.06480 dust-mitigated); EC-03′ at 6.9% penalty 4.2 (2608.06480), penalty 1.3 (2608.06480 dust-mitigated); KK-02 k = 1 penalty 1.4 (2608.06480), penalty 0.16 (2608.06480 dust-mitigated). KK-02 at k = 1 reaches 0.277° only with probability ≈ 1.4×10⁻⁴ (overshoot, 043).
 
 ## Distinguishability
 - All surviving routes are ALP-like: not distinguishable from the axion-like explanation by β alone. KK-02 has β ≤ kα/2 ≈ 0.21° at k = 1.
@@ -75,6 +78,7 @@ Free-β ALP: Δχ² = 20.7 vs β = 0 (ACT + WMAP + Planck, EK22). Penalties per 
 - Strong-coupling scales (EC-06a, EC-06c) are power counting on the scalar sector.
 - KK: S¹ and S¹/Z₂ only; warped case by argument; P'-odd 5D matter backgrounds not computed.
 - SPT A_CB template scaled by a fitted factor; ACT EB/TB and Planck map-level likelihoods not run locally (published summaries used).
+- Both Cassini kills compare a predicted |γ-1| ≥ 1/2 with Bertotti-Iess-Tortora 2003 (γ-1 = (2.1 ± 2.3)×10⁻⁵); KK-04 quotes the 1σ width (4.34 orders), EC-06d the 2σ limit (3.9 orders). The convention changes the shortfall by 0.3 orders and no verdict.
 - Unresolved factor 4.47 in the Data Tables β → k_AF map (literature/bounds.md); no verdict depends on it.
 - Correction log: iteration 6 called EC-06a dead on a mis-sided GW bound; iteration 7 softened it; iteration 9 killed it by strong coupling (031, skeptic 034).
 

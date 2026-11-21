@@ -67,3 +67,10 @@ CG23-beta-cited,beta_iso_deg,0.26,0.10,0.10,68,0,Cosmoglobe WMAP + Planck,2305.0
 SUL25-beta-SEVEM,beta_iso_deg,0.46,0.28,0.28,68,0,Planck PR4 map-space SEVEM,2502.07654,abstract,"0.04 stat + 0.28 syst; err column is syst only; no miscalibration correction"
 SUL25-beta-Commander,beta_iso_deg,0.48,0.28,0.28,68,0,Planck PR4 map-space Commander,2502.07654,abstract,"0.04 stat + 0.28 syst; err column is syst only"
 DPK25-alphaprior-corr,alpha_prior_corr_within_PA,0.9,,,,0,ACT optics model,2509.13654,"Sec. II, Fig. 1","Correlation of alpha_i priors between array-bands of the same PA in the baseline Pi^PA prior"
+ESK26-joint,beta_iso_deg,0.277,0.057,0.057,68,0,"ACT DR6 (PA5/PA6 f090 f150, PA4 f220) + Planck PR4 NPIPE 30-353 GHz, joint EB/TB likelihood incl. ACT x Planck cross-spectra",2608.06480,"Abstract; Sec. III; Sec. IV","Eskilt 2026. ACT and Planck instrumental alpha priors at face value; 4.8 sigma; 68% CL (Sec. I). No WMAP. Shares ACT DR6 and Planck PR4 data with DPK25-comb-EK22 and DPK25-comb-CG: an alternative to them, never multiplied. Sign convention not restated; same author/framework as EK22 (Minami-Komatsu), positive like ACT and EK22"
+ESK26-joint-dust,beta_iso_deg,0.236,0.067,0.067,68,0,"ACT DR6 + Planck PR4 without 30, 44, 353 GHz (dust EB mitigated)",2608.06480,"Sec. III; Sec. IV","Robustness test; excludes 0 at 3.5 sigma; same data as ESK26-joint"
+ESK26-joint-noPlanckprior,beta_iso_deg,0.280,0.059,0.059,68,0,ACT DR6 + Planck PR4,2608.06480,Sec. III,Without Planck alpha priors
+ESK26-joint-nopriors,beta_iso_deg,0.442,0.098,0.098,68,0,ACT DR6 + Planck PR4,2608.06480,Sec. III,Without Planck and ACT alpha priors
+ESK26-planck,beta_iso_deg,0.387,0.094,0.094,68,0,Planck PR4 (dust EB model),2608.06480,"Sec. III; Sec. IV",This pipeline
+ESK26-cross,beta_iso_deg,0.178,0.078,0.078,68,0,ACT x Planck cross-spectra only,2608.06480,"Sec. III; Sec. IV",2.3 sigma
+ESK26-act,beta_iso_deg,0.205,0.072,0.072,68,0,ACT DR6 (this pipeline),2608.06480,Sec. III,"ACT x ACT from published spectra gives 0.207 +- 0.073; cf. DPK25-beta-baseline 0.215 +- 0.074"

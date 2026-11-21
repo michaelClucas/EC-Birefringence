@@ -94,3 +94,15 @@ Written by task `work/20261120-032-lit-bounds-fixes` for EC-06d. Columns: `id`, 
 ## shortfall_bound_inputs.csv
 
 Written by task `work/20261121-037-theory-shortfalls-at-bound`. Bounds used to place the spin-sourced routes (EC-02, Pauli envelope, vector-current torsion) at the largest allowed ξ or ξc: check targets from Reig 2611.07578 (Eqs. 11, 12, S14; HTML opened), ALPS II g_aγ as quoted by Reig, the red-giant-tip g_ae bound (2007.03694), the CMS dijet contact-interaction scale (1803.08030 abstract; Eichten-Lane-Peskin normalisation assumed), and m_μ (CODATA) for an NDA decoupling criterion. Columns: `id`, `quantity`, `value`, `units`, `CL`, `source_arxiv`, `location`, `verified_by_opening`, `notes`.
+
+## alp_costs_inputs.csv (task 20261121-043)
+- `ESK26-beta-joint`: Eskilt arXiv:2608.06480 joint ACT + Planck β = 0.277° ± 0.057° (abstract opened). The dust-mitigated test has no central value in the abstract.
+- `MZ-gamma-Eq70`: |γ| ≪ 10⁻²¹ from 2001.06373 Eq. 70 (opened by skeptic 034).
+- `MZ-cT-coeff`: the 0.057 coefficient of the GW-speed γ bound (theory input from 026/034).
+- `conv_omega_min`, `conv_L_min`: choices for the EC-06a conversion-suppression estimate, not measurements.
+
+## birefringence_measurements.csv rows ESK26-* (task 20261121-042)
+Eskilt arXiv:2608.06480 (full text, arXiv HTML): joint ACT DR6 + Planck PR4 β = 0.277° ± 0.057° (baseline, 4.8σ), dust-mitigated 0.236° ± 0.067° (Sec. III; 3.5σ), and variants. 68% CL (Sec. I). Shares ACT DR6 and Planck PR4 with `DPK25-comb-EK22` / `DPK25-comb-CG`: an alternative combination, never multiplied (`src.likelihood` components {ACT_DR6, PLANCK}). Notes in `literature/2608.06480.md`.
+
+## collider_photon_bounds.csv (task 20261121-042)
+Energies at which photon processes are observed and agree with the SM, for strong-coupling comparisons. BaBar single-photon (e⁺e⁻ → γ + invisible) search 1702.03327: √s = 10.58 / 10.36 / 10.02 GeV (Υ(4S/3S/2S), p. 4 and Table I, PDF opened). ATLAS diphoton 2102.13405: highest m_γγ observed 2.36 TeV, spectrum consistent with SM (Sec. 8, Fig. 3; HTML opened). ATLAS light-by-light 1702.01625: γγ → γγ with m_γγ > 6 GeV (abstract). The 10 TeV `E_collider_safe` in `mz_inputs.csv` / `ec06c_costs_inputs.csv` is a convention; the highest cited observed energy here is 2.36 TeV (0.63 orders lower). Columns: `id`, `quantity`, `value`, `units`, `CL`, `experiment`, `arxiv`, `location_in_paper`, `note`.

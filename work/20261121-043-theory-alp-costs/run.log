@@ -1,0 +1,125 @@
+===== ec04_tuning.py (exit 0) =====
+EC-04 PGT 0- mode: mass tuning (candidate mechanism, ALP class with hand-added CFJ coupling)
+[INFO] m = 0.3 H0: w = A/m^2 = 4.79e+121
+[INFO] m = 1.0 H0: w = A/m^2 = 4.31e+120
+[INFO] m = 5.0 H0: w = A/m^2 = 1.72e+119
+[INFO] (M_P/H0)^2 = 2.87e+120; O(1) w gives m = sqrt(1.5) M_P = 2.98e+18 GeV
+[PASS] T1 w(m = H0) = 1.5 (M_P/H0)^2 = 4.3e120 (task 007 quotes ~4e120)
+[PASS] T2 thawing range m = 0.3-5 H0 spans w = 1.7e119 - 4.8e121
+== 2 PASS, 0 FAIL ==
+
+===== kk02_hilltop.py (exit 0) =====
+KK-02 Wilson-line axion: initial-angle tuning (candidate mechanism, ALP class)
+[INFO] beta_max(k=1) = alpha/2 = 0.2091 deg
+[INFO] ACT DR6 2509.13654 beta = 0.215 +- 0.074 deg, k = 1: theta_req = 1.028 pi (1 sigma 0.674-1.382 pi); P(beta >= central) = 0.000; P(beta in 1 sigma) = 0.326; 1 sigma lower edge needs start within 0.326 pi of the hilltop
+[INFO] ACT DR6 2509.13654 beta = 0.215 +- 0.074 deg, k = 2: theta_req = 0.514 pi (1 sigma 0.337-0.691 pi); P(beta >= central) = 0.486; P(beta in 1 sigma) = 0.354; 1 sigma lower edge needs start within 0.663 pi of the hilltop
+[INFO] ACT DR6 2509.13654 beta = 0.215 +- 0.074 deg, k = 3: theta_req = 0.343 pi (1 sigma 0.225-0.461 pi); P(beta >= central) = 0.657; P(beta in 1 sigma) = 0.236; 1 sigma lower edge needs start within 0.775 pi of the hilltop
+[INFO] ACT DR6 2509.13654: smallest integer k reaching the central value = 2 (k in 6Z: k = 6, theta_req = 0.171 pi)
+[INFO] ACT DR6 2509.13654: k = 1 ceiling 0.209 deg sits 0.08 sigma below the central value
+[INFO] ACT+Planck 2608.06480 beta = 0.277 +- 0.057 deg, k = 1: theta_req = 1.325 pi (1 sigma 1.052-1.598 pi); P(beta >= central) = 0.000; P(beta in 1 sigma) = 0.000; 1 sigma lower edge needs start within -0.052 pi of the hilltop
+[INFO] ACT+Planck 2608.06480 beta = 0.277 +- 0.057 deg, k = 2: theta_req = 0.663 pi (1 sigma 0.526-0.799 pi); P(beta >= central) = 0.337; P(beta in 1 sigma) = 0.273; 1 sigma lower edge needs start within 0.474 pi of the hilltop
+[INFO] ACT+Planck 2608.06480 beta = 0.277 +- 0.057 deg, k = 3: theta_req = 0.442 pi (1 sigma 0.351-0.533 pi); P(beta >= central) = 0.558; P(beta in 1 sigma) = 0.182; 1 sigma lower edge needs start within 0.649 pi of the hilltop
+[INFO] ACT+Planck 2608.06480: smallest integer k reaching the central value = 2 (k in 6Z: k = 6, theta_req = 0.221 pi)
+[INFO] ACT+Planck 2608.06480: k = 1 ceiling 0.209 deg sits 1.19 sigma below the central value
+[PASS] H1 full relaxation: k=1 cannot reach the ACT central value (theta_req = 1.028 pi > pi)
+[PASS] H2 full relaxation, k=1, ACT 1 sigma: P(beta in [0.141, 0.289] deg) = 1 - 0.673 = 0.327 (start within 0.33 pi of hilltop)
+[PASS] H3 full relaxation: k=1 cannot reach 2608.06480 even at its 1 sigma lower edge (0.220 deg > 0.209 deg)
+[PASS] H4 2608.06480 central value needs k >= 2 (theta_req(k=2) = 0.663 pi)
+[PASS] H0 vectorised and scalar integrators agree (m = 10 H0)
+[INFO] m = 200 H0: |Delta theta|/theta_i for theta_i < 0.9 pi in [0.9949, 1.0040]
+[PASS] H5 m = 200 H0 is fully relaxed away from the hilltop (|Delta theta| = theta_i to 3%)
+[PASS] H6 m = 200 H0: numerical P(k=1, beta >= ACT lower 1 sigma) = 0.321 vs full-relaxation 0.326
+[INFO] max |Delta theta|/pi over theta_i, per m/H0: 1.0:0.04, 1.1:0.06, 1.3:0.08, 1.5:0.10, 1.7:0.13, 2.0:0.17, 2.3:0.22, 2.6:0.29, 3.0:0.37, 3.4:0.48, 3.9:0.60, 4.5:0.74, 5.1:0.88, 5.8:1.01, 6.7:1.13, 7.7:1.23, 8.8:1.30, 10.1:1.35, 11.5:1.40, 13.2:1.43, 15.1:1.47, 17.3:1.50, 19.9:1.53, 22.8:1.56, 26.1:1.59, 29.9:1.37, 34.2:1.41, 39.2:1.30, 44.9:1.24, 51.4:1.24, 58.9:1.18, 67.5:1.17, 77.3:1.17, 88.5:1.13, 101.4:1.11, 116.2:1.10, 133.1:1.08, 152.4:1.09, 174.6:1.06, 200.0:1.05
+[PASS] H7 overshoot exists: for some m in the H0-H* window |Delta theta| > pi (k=1 can exceed 0.209 deg)  (max 1.59 pi at m = 26.1 H0)
+[INFO] k = 1, ACT>=central (0.215 deg, theta_req = 1.028 pi): joint P = 6.736e-03; (+ <= 2.6e-06 overshoot tail above 200 H0); P(m) max = 1.191e-01; reachable at m = 6.7-200.0 H0 numerically
+[INFO] k = 1, ACT>=lo1s (0.141 deg, theta_req = 0.674 pi): joint P = 2.777e-01; (+ <= 0.0e+00 overshoot tail above 200 H0); P(m) max = 3.871e-01; reachable at m = 4.5-200.0 H0 numerically
+[INFO] k = 1, ESK>=central (0.277 deg, theta_req = 1.325 pi): joint P = 1.259e-04; (+ <= 0.0e+00 overshoot tail above 200 H0); P(m) max = 4.956e-03; reachable at m = 10.1-34.2 H0 numerically
+[INFO] k = 1, ESK>=lo1s (0.220 deg, theta_req = 1.052 pi): joint P = 5.692e-03; (+ <= 1.1e-08 overshoot tail above 200 H0); P(m) max = 1.042e-01; reachable at m = 6.7-200.0 H0 numerically
+[INFO] k = 2, ACT>=central (0.215 deg, theta_req = 0.514 pi): joint P = 4.203e-01; (+ <= 0.0e+00 overshoot tail above 200 H0); P(m) max = 5.235e-01; reachable at m = 3.9-200.0 H0 numerically
+[INFO] k = 2, ACT>=lo1s (0.141 deg, theta_req = 0.337 pi): joint P = 5.863e-01; (+ <= 0.0e+00 overshoot tail above 200 H0); P(m) max = 6.859e-01; reachable at m = 3.0-200.0 H0 numerically
+[INFO] k = 2, ESK>=central (0.277 deg, theta_req = 0.663 pi): joint P = 2.881e-01; (+ <= 0.0e+00 overshoot tail above 200 H0); P(m) max = 3.970e-01; reachable at m = 4.5-200.0 H0 numerically
+[INFO] k = 2, ESK>=lo1s (0.220 deg, theta_req = 0.526 pi): joint P = 4.097e-01; (+ <= 0.0e+00 overshoot tail above 200 H0); P(m) max = 5.136e-01; reachable at m = 3.9-200.0 H0 numerically
+[PASS] H8 k=1 joint probability of beta >= ACT central is small but nonzero (overshoot only)
+[PASS] H9 k=1 joint probability of beta >= 2608.06480 central is below that for ACT central
+[INFO] base grid took 4 s; convergence run with 1.75x theta grid and 1.5x m grid
+KK-02 Wilson-line axion: initial-angle tuning (candidate mechanism, ALP class)
+[INFO] beta_max(k=1) = alpha/2 = 0.2091 deg
+[INFO] ACT DR6 2509.13654 beta = 0.215 +- 0.074 deg, k = 1: theta_req = 1.028 pi (1 sigma 0.674-1.382 pi); P(beta >= central) = 0.000; P(beta in 1 sigma) = 0.326; 1 sigma lower edge needs start within 0.326 pi of the hilltop
+[INFO] ACT DR6 2509.13654 beta = 0.215 +- 0.074 deg, k = 2: theta_req = 0.514 pi (1 sigma 0.337-0.691 pi); P(beta >= central) = 0.486; P(beta in 1 sigma) = 0.354; 1 sigma lower edge needs start within 0.663 pi of the hilltop
+[INFO] ACT DR6 2509.13654 beta = 0.215 +- 0.074 deg, k = 3: theta_req = 0.343 pi (1 sigma 0.225-0.461 pi); P(beta >= central) = 0.657; P(beta in 1 sigma) = 0.236; 1 sigma lower edge needs start within 0.775 pi of the hilltop
+[INFO] ACT DR6 2509.13654: smallest integer k reaching the central value = 2 (k in 6Z: k = 6, theta_req = 0.171 pi)
+[INFO] ACT DR6 2509.13654: k = 1 ceiling 0.209 deg sits 0.08 sigma below the central value
+[INFO] ACT+Planck 2608.06480 beta = 0.277 +- 0.057 deg, k = 1: theta_req = 1.325 pi (1 sigma 1.052-1.598 pi); P(beta >= central) = 0.000; P(beta in 1 sigma) = 0.000; 1 sigma lower edge needs start within -0.052 pi of the hilltop
+[INFO] ACT+Planck 2608.06480 beta = 0.277 +- 0.057 deg, k = 2: theta_req = 0.663 pi (1 sigma 0.526-0.799 pi); P(beta >= central) = 0.337; P(beta in 1 sigma) = 0.273; 1 sigma lower edge needs start within 0.474 pi of the hilltop
+[INFO] ACT+Planck 2608.06480 beta = 0.277 +- 0.057 deg, k = 3: theta_req = 0.442 pi (1 sigma 0.351-0.533 pi); P(beta >= central) = 0.558; P(beta in 1 sigma) = 0.182; 1 sigma lower edge needs start within 0.649 pi of the hilltop
+[INFO] ACT+Planck 2608.06480: smallest integer k reaching the central value = 2 (k in 6Z: k = 6, theta_req = 0.221 pi)
+[INFO] ACT+Planck 2608.06480: k = 1 ceiling 0.209 deg sits 1.19 sigma below the central value
+[PASS] H1 full relaxation: k=1 cannot reach the ACT central value (theta_req = 1.028 pi > pi)
+[PASS] H2 full relaxation, k=1, ACT 1 sigma: P(beta in [0.141, 0.289] deg) = 1 - 0.673 = 0.327 (start within 0.33 pi of hilltop)
+[PASS] H3 full relaxation: k=1 cannot reach 2608.06480 even at its 1 sigma lower edge (0.220 deg > 0.209 deg)
+[PASS] H4 2608.06480 central value needs k >= 2 (theta_req(k=2) = 0.663 pi)
+[PASS] H0 vectorised and scalar integrators agree (m = 10 H0)
+[INFO] m = 200 H0: |Delta theta|/theta_i for theta_i < 0.9 pi in [0.9949, 1.0040]
+[PASS] H5 m = 200 H0 is fully relaxed away from the hilltop (|Delta theta| = theta_i to 3%)
+[PASS] H6 m = 200 H0: numerical P(k=1, beta >= ACT lower 1 sigma) = 0.322 vs full-relaxation 0.326
+[INFO] max |Delta theta|/pi over theta_i, per m/H0: 1.0:0.04, 1.1:0.05, 1.2:0.06, 1.3:0.08, 1.4:0.09, 1.6:0.11, 1.7:0.13, 1.9:0.15, 2.1:0.18, 2.2:0.22, 2.5:0.26, 2.7:0.31, 2.9:0.37, 3.2:0.43, 3.5:0.51, 3.8:0.59, 4.2:0.68, 4.6:0.77, 5.0:0.86, 5.5:0.96, 6.0:1.04, 6.6:1.12, 7.2:1.19, 7.9:1.24, 8.6:1.29, 9.4:1.33, 10.3:1.36, 11.3:1.39, 12.4:1.42, 13.5:1.44, 14.8:1.46, 16.2:1.49, 17.7:1.51, 19.4:1.53, 21.2:1.55, 23.2:1.56, 25.4:1.58, 27.7:1.60, 30.3:1.37, 33.2:1.40, 36.3:1.42, 39.7:1.31, 43.5:1.33, 47.5:1.26, 52.0:1.21, 56.9:1.24, 62.2:1.20, 68.1:1.17, 74.5:1.16, 81.5:1.14, 89.1:1.14, 97.5:1.13, 106.7:1.10, 116.7:1.11, 127.7:1.09, 139.6:1.08, 152.8:1.07, 167.1:1.07, 182.8:1.07, 200.0:1.05
+[PASS] H7 overshoot exists: for some m in the H0-H* window |Delta theta| > pi (k=1 can exceed 0.209 deg)  (max 1.60 pi at m = 27.7 H0)
+[INFO] k = 1, ACT>=central (0.215 deg, theta_req = 1.028 pi): joint P = 7.275e-03; (+ <= 2.8e-06 overshoot tail above 200 H0); P(m) max = 1.176e-01; reachable at m = 6.0-200.0 H0 numerically
+[INFO] k = 1, ACT>=lo1s (0.141 deg, theta_req = 0.674 pi): joint P = 2.765e-01; (+ <= 0.0e+00 overshoot tail above 200 H0); P(m) max = 3.852e-01; reachable at m = 4.2-200.0 H0 numerically
+[INFO] k = 1, ESK>=central (0.277 deg, theta_req = 1.325 pi): joint P = 1.411e-04; (+ <= 0.0e+00 overshoot tail above 200 H0); P(m) max = 6.078e-03; reachable at m = 9.4-43.5 H0 numerically
+[INFO] k = 1, ESK>=lo1s (0.220 deg, theta_req = 1.052 pi): joint P = 5.432e-03; (+ <= 8.2e-09 overshoot tail above 200 H0); P(m) max = 1.062e-01; reachable at m = 6.6-200.0 H0 numerically
+[INFO] k = 2, ACT>=central (0.215 deg, theta_req = 0.514 pi): joint P = 4.196e-01; (+ <= 0.0e+00 overshoot tail above 200 H0); P(m) max = 5.240e-01; reachable at m = 3.8-200.0 H0 numerically
+[INFO] k = 2, ACT>=lo1s (0.141 deg, theta_req = 0.337 pi): joint P = 5.859e-01; (+ <= 0.0e+00 overshoot tail above 200 H0); P(m) max = 6.853e-01; reachable at m = 2.9-200.0 H0 numerically
+[INFO] k = 2, ESK>=central (0.277 deg, theta_req = 0.663 pi): joint P = 2.874e-01; (+ <= 0.0e+00 overshoot tail above 200 H0); P(m) max = 3.952e-01; reachable at m = 4.2-200.0 H0 numerically
+[INFO] k = 2, ESK>=lo1s (0.220 deg, theta_req = 0.526 pi): joint P = 4.090e-01; (+ <= 0.0e+00 overshoot tail above 200 H0); P(m) max = 5.127e-01; reachable at m = 3.8-200.0 H0 numerically
+[PASS] H8 k=1 joint probability of beta >= ACT central is small but nonzero (overshoot only)
+[PASS] H9 k=1 joint probability of beta >= 2608.06480 central is below that for ACT central
+[PASS] H10 convergence: k=1 joint P(beta >= ACT central) changes < 10% on the finer grid  (6.74e-03 -> 7.28e-03)
+== 21 PASS, 0 FAIL ==
+
+===== kk03_kick.py (exit 0) =====
+KK-03 Kalb-Ramond axion + Green-Schwarz: lambda window and pre-BBN kick (candidate mechanism, ALP class)
+[INFO] ACT beta = 0.215 deg: g in [1.355e-13, 8.0e-13] GeV^-1, lambda/kappa4 in [1.469e+06, 8.672e+06], M_s = M_P/sqrt(lambda/kappa4) in [8.27e+14, 2.01e+15] GeV, window width g_max/g_min = 5.90
+[INFO] ACT beta = 0.141 deg: g in [8.889e-14, 8.0e-13] GeV^-1, lambda/kappa4 in [9.636e+05, 8.672e+06], M_s = M_P/sqrt(lambda/kappa4) in [8.27e+14, 2.48e+15] GeV, window width g_max/g_min = 9.00
+[INFO] ACT beta = 0.289 deg: g in [1.822e-13, 8.0e-13] GeV^-1, lambda/kappa4 in [1.975e+06, 8.672e+06], M_s = M_P/sqrt(lambda/kappa4) in [8.27e+14, 1.73e+15] GeV, window width g_max/g_min = 4.39
+[INFO] 2608.06480 beta = 0.277 deg: g in [1.746e-13, 8.0e-13] GeV^-1, lambda/kappa4 in [1.893e+06, 8.672e+06], M_s = M_P/sqrt(lambda/kappa4) in [8.27e+14, 1.77e+15] GeV, window width g_max/g_min = 4.58
+[INFO] 2608.06480 beta = 0.220 deg: g in [1.387e-13, 8.0e-13] GeV^-1, lambda/kappa4 in [1.503e+06, 8.672e+06], M_s = M_P/sqrt(lambda/kappa4) in [8.27e+14, 1.99e+15] GeV, window width g_max/g_min = 5.77
+[INFO] 2608.06480 beta = 0.334 deg: g in [2.106e-13, 8.0e-13] GeV^-1, lambda/kappa4 in [2.283e+06, 8.672e+06], M_s = M_P/sqrt(lambda/kappa4) in [8.27e+14, 1.61e+15] GeV, window width g_max/g_min = 3.80
+[PASS] C1 ACT central: lambda/kappa4 window = (1.47-8.67)e6 (task 009 numbers reproduced independently)
+[PASS] C2 window stays open for the 2608.06480 central value and the ACT +1 sigma edge
+[PASS] C3 lambda/kappa4 closed form: 8e-13 GeV^-1 * 2.435e18 GeV / (sqrt6 * 4 pi alpha) = 8.67e6
+[INFO] ACT central, g_min: Delta N_nu(BBN) = 1.600e-01, rho_b/rho_rad(1 MeV) = 2.60e-02, bdot/T^2 at 1 MeV = 0.429; velocity must originate at T_k <= 6.2 MeV (else kination domination above that T)
+[INFO] ACT central, g_max (Chandra): Delta N_nu(BBN) = 4.593e-03, rho_b/rho_rad(1 MeV) = 7.48e-04, bdot/T^2 at 1 MeV = 0.073; velocity must originate at T_k <= 36.6 MeV (else kination domination above that T)
+[PASS] C4 at g_min the stiff b saturates the BBN bound (Delta N_nu = 0.16) by construction
+[PASS] C5 kick must originate below ~6 MeV (g_min) to ~37 MeV (g_max): T_k,max in [3, 60] MeV
+[PASS] C6 stiff/radiation ratio grows as a^-2 = T^2 (fixed g*)
+[INFO] share of Delta b between z* and z = 500: 0.675; after z = 10: 1.0e-03 (rotation is right after z*)
+[PASS] C7 a massless kicked b rotates mostly just after z* (> 50% before z = 500), no timing tuning needed
+[INFO] natural lambda = kappa4: g = 9.22e-20 GeV^-1, Delta N_nu = 3.45e+11
+[PASS] C8 natural lambda = kappa4 excluded by BBN by > 1e10
+== 8 PASS, 0 FAIL ==
+
+===== ec06a_remnant.py (exit 0) =====
+EC-06a remnant: MZ Lambda-field with f(Lambda) F Ftilde (candidate mechanism, ALP class)
+[INFO] J = 4.584, J_alt = 0.217 (034: 4.584, 0.216)
+[PASS] M1 tracker integrals reproduce skeptic 034 (J = 4.58, J_alt = 0.216) to 2%
+[INFO] share of the rotation after z = 1: 0.76 (all CMB photons see the full Delta, no l dependence at l > 100)
+[INFO] ACT beta = 0.215 deg: xi*gamma = 3.458e-02
+[INFO]    N_eff only (no GW bound): gamma <= 6.90e-01 -> g >= 1.19e-20 GeV^-1 (passes naive Chandra 8e-13, factor 1.5e-08)
+[INFO]    GW170817 speed (formula used outside its k* regime): gamma <= 1.11e-07 -> g >= 7.40e-14 GeV^-1 (passes naive Chandra 8e-13, factor 9.2e-02)
+[INFO]    k* >> k_LIGO at 24 Hz (2001.06373 consistency): gamma <= 3.49e-20 -> g >= 2.35e-01 GeV^-1 (fails naive Chandra 8e-13, factor 2.9e+11)
+[INFO]    2001.06373 Eq. 70 (|gamma| << 1e-21): gamma <= 1.00e-21 -> g >= 8.20e+00 GeV^-1 (fails naive Chandra 8e-13, factor 1.0e+13)
+[INFO] 2608.06480 beta = 0.277 deg: xi*gamma = 4.455e-02
+[INFO]    N_eff only (no GW bound): gamma <= 6.90e-01 -> g >= 1.53e-20 GeV^-1 (passes naive Chandra 8e-13, factor 1.9e-08)
+[INFO]    GW170817 speed (formula used outside its k* regime): gamma <= 1.11e-07 -> g >= 9.53e-14 GeV^-1 (passes naive Chandra 8e-13, factor 1.2e-01)
+[INFO]    k* >> k_LIGO at 24 Hz (2001.06373 consistency): gamma <= 3.49e-20 -> g >= 3.02e-01 GeV^-1 (fails naive Chandra 8e-13, factor 3.8e+11)
+[INFO]    2001.06373 Eq. 70 (|gamma| << 1e-21): gamma <= 1.00e-21 -> g >= 1.06e+01 GeV^-1 (fails naive Chandra 8e-13, factor 1.3e+13)
+[PASS] M2 g lower limits reproduce 034: 1.2e-20, 7.4e-14, 0.24, 8.2 GeV^-1 (ACT) to 5%
+[PASS] M3 naive Chandra: N_eff and GW-speed branches pass, both 2001.06373-consistent branches fail by > 1e11
+[PASS] M4 2608.06480 shifts every g up by 0.277/0.215 = 1.29 (linear in beta)
+[INFO] c_s(today, cosmic mean) = 0.686; q L = omega L (1/c_s - 1) = 7.15e+28 at omega = 1 keV, L = 1 kpc; conversion suppressed by (2/qL)^2 = 7.8e-58; Chandra bound on g_eff relaxes to 2.9e+16 GeV^-1
+[PASS] M5 even at omega = 1 eV and L = 1 m, q L >> 1 (no coherent conversion; Chandra does not bound g)  (q L = 2.3e+06)
+[PASS] M6 with the dispersion estimate the Eq. 70 branch (g >= 8 GeV^-1) is below the relaxed Chandra bound
+== 6 PASS, 0 FAIL ==
+
+===== TOTAL: 37 PASS, 0 FAIL; scripts failing: 0 =====

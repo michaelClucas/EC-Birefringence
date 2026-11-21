@@ -11,8 +11,8 @@ Steps:
   4b. draft-only numbers (task 033): src/draft_expected.csv, numbers due in the RESULT draft but not in CLAIMS.md
      (029 Pauli bound, Cosmoglobe penalties; task 041: 037 shortfalls at the bound, 036 EC-06d). A wrong or missing value fails; text not (yet) in
      work/20261120-018-result-draft/RESULT_DRAFT.md is reported as "not in draft" and does not fail.
-  5. fit summary table (model, beta_max, penalty vs free ALP, Delta chi2 vs null) for ACT DR6, ACT+WMAP+Planck (EK22)
-     and ACT+Cosmoglobe WMAP+Planck.
+  5. fit summary table (model, beta_max, penalty vs free ALP, Delta chi2 vs null) for ACT DR6, ACT+WMAP+Planck (EK22),
+     ACT+Cosmoglobe WMAP+Planck and the joint ACT+Planck of 2608.06480 (baseline, dust-mitigated; task 042).
   5b. only with --checks (task 027, skeptic 020 MINOR 12): the derivation/symbolic check scripts behind the
      no-number verdicts (tasks 003, 004, 009, 012, 016, 019, 022, 025, 031, 032, skeptics 034 and 035, and any
      run_checks.py in a work folder numbered above 035, found automatically), each in its own pinned process; fails
@@ -44,7 +44,10 @@ from .data import ROOT  # noqa: E402
 VALIDATE = ROOT / "work" / "20261120-010-data-likelihood" / "validate.py"
 FIT = ROOT / "work" / "20261120-014-data-reproduce-fit" / "fit_candidates.py"
 FIT_DATASETS = {"act_dr6": "ACT DR6", "act_wmap_planck": "ACT+WMAP+Planck",
-                "act_cosmoglobe": "ACT+Cosmoglobe WMAP+Planck"}  # Cosmoglobe added by task 033 (skeptic 020 S4)
+                "act_cosmoglobe": "ACT+Cosmoglobe WMAP+Planck",  # Cosmoglobe added by task 033 (skeptic 020 S4)
+                # task 042: Eskilt 2608.06480 joint ACT+Planck PR4, baseline and dust-mitigated
+                "act_planck_esk26": "ACT+Planck joint (2608.06480)",
+                "act_planck_esk26_dust": "ACT+Planck joint, dust-mitigated (2608.06480)"}
 
 
 # ------------------------------------------------------------------------------------------ path scrubbing

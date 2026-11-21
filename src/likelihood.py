@@ -33,6 +33,10 @@ ISO_DATASETS = {
     "act_dr6": ("DPK25-beta-baseline", {"ACT_DR6"}),
     "act_wmap_planck": ("DPK25-comb-EK22", {"ACT_DR6", "WMAP", "PLANCK"}),
     "act_cosmoglobe": ("DPK25-comb-CG", {"ACT_DR6", "WMAP", "PLANCK"}),
+    # task 042: Eskilt 2608.06480 joint ACT DR6 + Planck PR4 likelihood (baseline and dust-mitigated); shares data
+    # with the two DPK25 combinations, so it is an alternative to them, never multiplied
+    "act_planck_esk26": ("ESK26-joint", {"ACT_DR6", "PLANCK"}),
+    "act_planck_esk26_dust": ("ESK26-joint-dust", {"ACT_DR6", "PLANCK"}),
     "planck_pr4": ("ESK22-beta", {"PLANCK"}),
     "wmap_planck_pr4": ("EK22-beta", {"WMAP", "PLANCK"}),
     "cosmoglobe_wmap_planck": ("CG23-beta-cited", {"WMAP", "PLANCK"}),

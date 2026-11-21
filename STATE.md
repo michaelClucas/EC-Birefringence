@@ -1,6 +1,6 @@
 # State
 
-Iteration: 12 (completed 2026-11-21)
+Iteration: 13 (in progress 2026-11-21: fixes from final skeptic 040 applied, awaiting its confirmation)
 
 The ACT DR6 β = 0.215° ± 0.074° is 2.9σ with stated systematics caveats (miscalibration angle set by an optics-model prior, dust EB neglected). The signal may not be cosmological. Nothing below is an explanation; every mechanism is a candidate mechanism. No `RESULT.md`.
 
